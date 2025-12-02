@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktivitas Terminal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(#eef7ff, #eaf6ff);
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    .navbar {
+        width: 100%;
+        padding: 18px 45px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        box-sizing: border-box; /* Agar padding tidak merusak lebar */
+    }
+
+    .nav-links { margin-right: 70px; }
+
+    .nav-links a {
+        margin-left: 25px;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+    }
+    .nav-links a:hover { color: #0077cc; }
+
+    .title {
+        margin-top: 130px;
+        text-align: center;
+        font-size: 34px;
+        font-weight: 700;
+        color: #333;
+    }
+
+    /* --- GRID CONTAINER --- */
+    .kb-container {
+        width: 85%;
+        margin: 50px auto 100px auto; /* Margin bawah ditambah agar tidak kepotong footer */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px; /* Jarak antar kotak */
+        align-items: start; /* Penting: Agar saat satu kotak memanjang, kotak sebelahnya tetap di atas */
+    }
+
+    /* --- KOTAK UTAMA (TOMBOL) --- */
+    .kb-box {
+        background: #dbe7b2;
+        padding: 30px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #222;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease; /* Transisi halus */
+        box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden; /* Menjaga isi tetap di dalam border radius */
+    }
+
+    .kb-box:hover {
+        transform: translateY(-5px); /* Sedikit naik saat hover */
+        background: #c9dc96;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* --- JUDUL AKTIVITAS --- */
+    .kb-title-text {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 0;
+        transition: 0.3s;
+        text-align: center;
+    }
+
+    /* --- DESKRIPSI (KOTAK PUTIH) --- */
+    .kb-desc {
+        background: #ffffff; /* Kotak Putih */
+        color: #555;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        text-align: center;
+        border-radius: 15px;
+        width: 100%;
+        
+        /* Properti Animasi Sembunyi */
+        max-height: 0; 
+        opacity: 0;
+        margin-top: 0;
+        padding: 0 15px; /* Padding kiri kanan saja */
+        overflow: hidden;
+        transition: all 0.5s ease; /* Durasi animasi turun */
+        box-sizing: border-box;
+    }
+
+    /* --- EFEK SAAT HOVER --- */
+    .kb-box:hover .kb-desc {
+        max-height: 300px; /* Batas tinggi maksimal saat terbuka (bisa disesuaikan) */
+        opacity: 1;
+        margin-top: 20px; /* Jarak antara judul dan kotak putih */
+        padding: 20px 15px; /* Padding dalam kotak putih */
+    }
+
+    .bottom-hill {
+        width: 100%;
+        height: 250px;
+        background: url('hill.svg') no-repeat center bottom;
+        background-size: cover;
+        position: fixed;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    @media (max-width: 900px) {
+        .kb-container { grid-template-columns: 1fr; }
+    }
+</style>
+
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="knowledge-base.html">Knowledge Base</a>
+    </div>
+</div>
+
+<h1 class="title">Aktivitas Terminal</h1>
+
+<div class="kb-container">
+
+    <a href="aktivitas1.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 1</div>
+        <div class="kb-desc">
+            Berth Allocation (BA)
+        </div>
+    </a>
+
+    <a href="aktivitas2.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 2</div>
+        <div class="kb-desc">
+            Manning & Deployment
+        </div>
+    </a>
+
+    <a href="aktivitas3.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 3</div>
+        <div class="kb-desc">
+            Ship Planner
+        </div>
+    </a>
+
+    <a href="aktivitas4.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 4</div>
+        <div class="kb-desc">
+            Yard Planner
+        </div>
+    </a>
+
+    <a href="aktivitas5.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 5</div>
+        <div class="kb-desc">
+            Ship Talker
+        </div>
+    </a>
+
+    <a href="aktivitas6.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 6</div>
+        <div class="kb-desc">
+            Yard Talker
+        </div>
+    </a>
+
+</div>
+
+<div class="bottom-hill"></div>
+
+</body>
+</html>

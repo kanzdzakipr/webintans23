@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aktivitas Administrasi & Pemeriksaan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(#eef7ff, #eaf6ff);
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    .navbar {
+        width: 100%;
+        padding: 18px 45px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        box-sizing: border-box;
+    }
+
+    .nav-links a {
+        margin-left: 25px;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+    }
+    .nav-links a:hover { color: #0077cc; }
+
+    .page-title {
+        margin-top: 130px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 40px;
+    }
+
+    /* Wrapper dua kolom */
+    .diagram-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 70px;
+        padding-bottom: 80px;
+    }
+
+    .column {
+        text-align: center;
+    }
+
+    .column-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    /* Tree CSS */
+    .tree ul {
+        padding-top: 20px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding-left: 0;
+    }
+
+    .tree li {
+        list-style-type: none;
+        position: relative;
+        padding: 20px 10px 0 10px;
+        text-align: center;
+    }
+
+    .tree li::before, .tree li::after {
+        content: '';
+        position: absolute; top: 0; right: 50%;
+        border-top: 2px solid #555;
+        width: 50%; height: 20px;
+    }
+    .tree li::after {
+        right: auto; left: 50%;
+        border-left: 2px solid #555;
+    }
+
+    .tree li:only-child::after, 
+    .tree li:only-child::before { display: none; }
+    .tree li:only-child { padding-top: 0; }
+
+    .tree li:first-child::before, 
+    .tree li:last-child::after { border: 0 none; }
+
+    .tree li:last-child::before {
+        border-right: 2px solid #555;
+        border-radius: 0 5px 0 0;
+    }
+    .tree li:first-child::after {
+        border-radius: 5px 0 0 0;
+    }
+
+    .tree ul ul::before {
+        content: '';
+        position: absolute; top: 0; left: 50%;
+        border-left: 2px solid #555;
+        width: 0; height: 20px;
+    }
+
+    /* Node */
+    .node {
+        display: inline-block;
+        padding: 45px 30px;
+        border-radius: 15px;
+        border: 2px solid #000;
+        font-size: 18px;
+        font-weight: 700;
+        width: 100px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        transition: 0.3s;
+    }
+    .node:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+    }
+
+    .purple { background: #9b5de5; color: #fff; }
+    .yellow { background: #fee440; color: #000; }
+    .red    { background: #ff5c5c; color: #000; }
+    .green  { background: #8ac926; color: #000; }
+
+    /* Modal */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        opacity: 0;
+        transition: 0.3s ease;
+    }
+    .modal-content {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+    }
+    .close-btn {
+        position: absolute;
+        top: 10px; right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .modal-active { display: flex; opacity: 1; }
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="knowledge-base.html">Knowledge Base</a>
+    </div>
+</div>
+
+<h1 class="page-title">Aktivitas Administrasi & Pemeriksaan</h1>
+
+<!-- ========================= -->
+<!-- WRAPPER KS: KIRI DAN KANAN -->
+<!-- ========================= -->
+
+<div class="diagram-wrapper">
+
+    <!-- ========================== -->
+    <!-- KOLOM KIRI: ADMINISTRASI 1 -->
+    <!-- ========================== -->
+    <div class="column">
+        <div class="column-title">Aktivitas Administrasi 1</div>
+
+        <div class="tree">
+            <ul>
+                <li>
+                    <div class="node purple" onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi (posisi & waktu sandar dengan alokasi crane)')">AA 1</div>
+                    <ul>
+                        <li>
+                            <div class="node yellow" onclick="showModal('Risk 2','Ketidaksesuaian alokasi crane & kapasitas fasilitas')">R 2</div>
+                            <ul>
+                                <li>
+                                    <div class="node red" onclick="showModal('Cause 2','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya)')">C 2</div>
+                                    <ul>
+                                        <li><div class="node green" onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS agar status alat (operational/out-of-service) real-time; lengkapi fitur keselamatan minimum (anemometer, tie-down, anti-collision) untuk mengurangi downtime karena cuaca/gangguan.')">PM 2</div></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <div class="node yellow" onclick="showModal('Risk 1','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)')">R 1</div>
+                            <ul>
+                                <li>
+                                    <div class="node red" onclick="showModal('Cause 1','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage)')">C 1</div>
+                                    <ul>
+                                        <li><div class="node green" onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD berkala via Inaportnet dan berbagi memakai data standar IMO FAL.5/Circ.52, terhubung ke VTS/pandu')">PM 1</div></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ========================== -->
+    <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
+    <!-- ========================== -->
+    <div class="column">
+        <div class="column-title">Aktivitas Pemeriksaan 1</div>
+
+        <div class="tree">
+            <ul>
+                <li>
+                    <div class="node purple" onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')">AP 1</div>
+                    <ul>
+
+                        <li>
+                            <div class="node yellow" onclick="showModal('Risk 2','Ketidakcocokan kapal–dermaga')">R 2</div>
+                            <ul>
+                                <li>
+                                    <div class="node red" onclick="showModal('Cause 4','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur)')">C 4</div>
+                                    <ul><li><div class="node green" onclick="showModal('PM 4','Update harian “berth capacity matrix” (kedalaman aktual & status crane) terhubung ke BA Map dengan aturan no-allocate jika tidak memenuhi batas')">PM 4</div></li></ul>
+                                </li>
+                                <li>
+                                    <div class="node red" onclick="showModal('Cause 3','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi')">C 3</div>
+                                    <ul><li><div class="node green" onclick="showModal('PM 3','Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane harus valid sebelum alokasi diproses)')">PM 3</div></li></ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <div class="node yellow" onclick="showModal('Risk 1','Konflik jadwal/berth conflict (double-booking)')">R 1</div>
+                            <ul>
+                                <li>
+                                    <div class="node red" onclick="showModal('Cause 2','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk')">C 2</div>
+                                    <ul><li><div class="node green" onclick="showModal('PM 2','Tambahkan buffer time antar kapal berbasis histori produktivitas/tidal window pada penetapan window sandar')">PM 2</div></li></ul>
+                                </li>
+                                <li>
+                                    <div class="node red" onclick="showModal('Cause 1','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')">C 1</div>
+                                    <ul><li><div class="node green" onclick="showModal('PM 1','Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30 menit) antara TOS/BA Map–Inaportnet–shipping line')">PM 1</div></li></ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="infoModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalText"></p>
+    </div>
+</div>
+
+<script>
+function showModal(title, text) {
+    document.getElementById("modalTitle").innerText = title;
+    document.getElementById("modalText").innerText = text;
+    document.getElementById("infoModal").classList.add("modal-active");
+}
+
+function closeModal() {
+    document.getElementById("infoModal").classList.remove("modal-active");
+}
+</script>
+
+</body>
+</html>
