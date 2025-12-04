@@ -91,6 +91,23 @@
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       }
 
+      .kb-img {
+        width: 100%;
+        border-radius: 15px;
+        margin-top: 15px;
+        display: block;
+
+        /* Animasi seperti .kb-desc */
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.9s ease;
+      }
+      .kb-box:hover .kb-img {
+        max-height: 400px; /* bebas lo atur */
+        opacity: 1;
+      }
+
       /* --- JUDUL AKTIVITAS --- */
       .kb-title-text {
         font-size: 24px;
@@ -160,31 +177,37 @@
       <a href="aktivitas1.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 1</div>
         <div class="kb-desc">Berth Allocation (BA)</div>
+        <img src="aset/berth allocation (BA).jpg" class="kb-img" />
       </a>
 
       <a href="aktivitas2.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 2</div>
         <div class="kb-desc">Manning & Deployment</div>
+        <img src="aset/Manning & Deployment.png" class="kb-img" />
       </a>
 
       <a href="aktivitas3.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 3</div>
         <div class="kb-desc">Ship Planner</div>
+        <img src="aset/Ship Planner.jpg" class="kb-img" />
       </a>
 
       <a href="aktivitas4.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 4</div>
         <div class="kb-desc">Yard Planner</div>
+        <img src="aset/Yard Planner.jpg" class="kb-img" />
       </a>
 
       <a href="aktivitas5.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 5</div>
         <div class="kb-desc">Ship Talker</div>
+        <img src="aset/Ship Talker.jpg" class="kb-img" />
       </a>
 
       <a href="aktivitas6.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 6</div>
         <div class="kb-desc">Yard Talker</div>
+        <img src="aset/Yard Talker.jpg" class="kb-img" />
       </a>
     </div>
 

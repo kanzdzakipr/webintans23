@@ -20,7 +20,7 @@
 
       .navbar {
         width: 100%;
-        padding: 18px 45px;
+        padding: 1.2rem 3vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -39,7 +39,7 @@
       .nav-links a {
         margin-left: 25px;
         text-decoration: none;
-        font-size: 17px;
+        font-size: 1.1rem;
         font-weight: 600;
         color: #222;
         transition: 0.3s;
@@ -55,26 +55,28 @@
       }
 
       .header-title h1 {
-        font-size: 34px;
+        font-size: 2.2rem;
         font-weight: 700;
       }
 
       .header-title h2 {
         color: #5b5b5b;
-        font-size: 20px;
+        font-size: 1.3rem;
       }
 
       .content {
-        width: 80%;
+        max-width: 1400px; /* ukuran versi 80% */
+        width: 90vw; /* fleksibel tapi tetap stabil */
         margin: 50px auto 100px;
         display: flex;
         justify-content: center;
-        gap: 50px;
+        gap: 3vw;
       }
 
       .image-box {
-        width: 380px;
-        height: 250px;
+        width: 40vw;
+        max-width: 570px;
+        aspect-ratio: 1.5; /* bikin proporsi stabil */
         border-radius: 15px;
         overflow: hidden;
         box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
@@ -89,18 +91,19 @@
       }
 
       .text-box {
+        width: 45vw;
         max-width: 600px;
       }
 
       .text-box h3 {
-        font-size: 30px;
+        font-size: 1.9rem;
         margin-bottom: 20px;
         font-weight: 600;
       }
 
       .text-box p {
         line-height: 1.8;
-        font-size: 17px;
+        font-size: 1.1rem;
         color: #333;
         margin-bottom: 16px;
       }
@@ -112,6 +115,8 @@
         }
         .image-box {
           margin: 0 auto;
+          width: 90vw;
+          max-width: 570px;
         }
       }
     </style>
@@ -131,7 +136,7 @@
 
     <div class="content">
       <div class="image-box">
-        <img src="terminal.jpg" alt="Gambar Terminal Teluk Lamong" />
+        <img src="aset/terminal.jpg" alt="Gambar Terminal Teluk Lamong" />
       </div>
 
       <div class="text-box">
