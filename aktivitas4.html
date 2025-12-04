@@ -227,43 +227,93 @@
 
     <div class="diagram-wrapper">
       <!-- ========================== -->
-      <!-- KOLOM KIRI: ADMINISTRASI 1 -->
+      <!-- KOLOM KIRI: ADMINISTRASI 4 -->
       <!-- ========================== -->
       <div class="column">
-        <div class="column-title">Aktivitas Administrasi 1</div>
+        <div class="column-title">Aktivitas Administrasi 4</div>
 
         <div class="tree">
           <ul>
             <li>
+              <!-- ROOT NODE -->
               <div
                 class="node purple"
-                onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi (posisi & waktu sandar dengan alokasi crane)')"
+                onclick="showModal('Aktivitas Administrasi 4','Menerbitkan Position Assignment/Stack Map final (inbound & outbound)')"
               >
-                AA 1
+                AA 4
               </div>
+
               <ul>
+                <!-- ======================= -->
+                <!-- RISK 7 -->
+                <!-- ======================= -->
                 <li>
                   <div
                     class="node yellow"
-                    onclick="showModal('Risk 2','Ketidaksesuaian alokasi crane & kapasitas fasilitas')"
+                    onclick="showModal('Risk 7','Penempatan/slotting yard tidak efisien jadi re-handle & alat banyak jalan')"
                   >
-                    R 2
+                    R 7
                   </div>
+
                   <ul>
+                    <!-- C11 → PM11 -->
                     <li>
                       <div
                         class="node red"
-                        onclick="showModal('Cause 2','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya)')"
+                        onclick="showModal('Cause 11','Stack map tidak pakai urutan pengambilan (delivery sequence/dwell time/priority tidak dipertimbangkan)')"
                       >
-                        C 2
+                        C 11
                       </div>
+
                       <ul>
                         <li>
                           <div
                             class="node green"
-                            onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS agar status alat (operational/out-of-service) real-time; lengkapi fitur keselamatan minimum (anemometer, tie-down, anti-collision) untuk mengurangi downtime karena cuaca/gangguan.')"
+                            onclick="showModal('Preventive Measure 11','Lakukan slotting berbasis sequence & dwell time untuk meminimalkan re-handle')"
                           >
-                            PM 2
+                            PM 11
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <!-- C12 → PM12 -->
+                    <li>
+                      <div
+                        class="node red"
+                        onclick="showModal('Cause 12','Data kontainer di TOS tidak lengkap/akurat (size/type/berat/reefer/DG/hold) saat planning')"
+                      >
+                        C 12
+                      </div>
+
+                      <ul>
+                        <li>
+                          <div
+                            class="node green"
+                            onclick="showModal('Preventive Measure 12','Aktifkan rule-based validation (termasuk VGM SOLAS) & gunakan MIG BAPLIE/MOVINS terbaru saat planning')"
+                          >
+                            PM 12
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <!-- C13 → PM13 -->
+                    <li>
+                      <div
+                        class="node red"
+                        onclick="showModal('Cause 13','Inventori yard tidak real-time (slot di sistem ≠ kondisi lapangan), sehingga slot rencana ternyata terisi/terblokir')"
+                      >
+                        C 13
+                      </div>
+
+                      <ul>
+                        <li>
+                          <div
+                            class="node green"
+                            onclick="showModal('Preventive Measure 13','Pasang RFID/QR-based yard tracking + mandatory move confirmation agar inventory TOS selalu mutakhir')"
+                          >
+                            PM 13
                           </div>
                         </li>
                       </ul>
@@ -271,28 +321,55 @@
                   </ul>
                 </li>
 
+                <!-- ======================= -->
+                <!-- RISK 8 -->
+                <!-- ======================= -->
                 <li>
                   <div
                     class="node yellow"
-                    onclick="showModal('Risk 1','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)')"
+                    onclick="showModal('Risk 8','Tidak sinkron dengan arus truk/gate → blok macet & truck turnaround time naik')"
                   >
-                    R 1
+                    R 8
                   </div>
+
                   <ul>
+                    <!-- C14 → PM14 -->
                     <li>
                       <div
                         class="node red"
-                        onclick="showModal('Cause 1','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage)')"
+                        onclick="showModal('Cause 14','Perubahan/ketidakpastian jadwal kedatangan truk (TAS/ETA) tidak masuk ke perencanaan')"
                       >
-                        C 1
+                        C 14
                       </div>
+
                       <ul>
                         <li>
                           <div
                             class="node green"
-                            onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD berkala via Inaportnet dan berbagi memakai data standar IMO FAL.5/Circ.52, terhubung ke VTS/pandu')"
+                            onclick="showModal('Preventive Measure 14','Terapkan Terminal Booking System (TBS) terintegrasi TOS untuk meratakan kedatangan & memperkecil waiting time')"
                           >
-                            PM 1
+                            PM 14
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <!-- C15 → PM15 -->
+                    <li>
+                      <div
+                        class="node red"
+                        onclick="showModal('Cause 15','Beban pengambilan ditumpuk di blok yang sama pada jam yang sama (kapasitas gate/alat tidak diperhitungkan)')"
+                      >
+                        C 15
+                      </div>
+
+                      <ul>
+                        <li>
+                          <div
+                            class="node green"
+                            onclick="showModal('Preventive Measure 15','Load-balancing per blok & time-window lewat aturan TAS/yard (kapasitas gate & alat sebagai constraint)')"
+                          >
+                            PM 15
                           </div>
                         </li>
                       </ul>
@@ -309,117 +386,118 @@
       <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
       <!-- ========================== -->
       <div class="column">
-        <div class="column-title">Aktivitas Pemeriksaan 1</div>
+        <div class="column-title">Aktivitas Pemeriksaan 4</div>
 
         <div class="tree">
+  <ul>
+    <li>
+      <!-- AKTIVITAS -->
+      <div
+        class="node purple"
+        onclick="showModal('Aktivitas Pemeriksaan 4','Validasi Open Stack dan Analisa YOR (kepadatan) termasuk prediksinya')"
+      >
+        AP 4
+      </div>
+
+      <ul>
+        <li>
+          <!-- RISK TUNGGAL -->
+          <div
+            class="node yellow"
+            onclick="showModal('Risk 8','YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak re-handle')"
+          >
+            R 8
+          </div>
+
           <ul>
+
+            <!-- CAUSE 1 -->
             <li>
               <div
-                class="node purple"
-                onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')"
+                class="node red"
+                onclick="showModal('Cause 15','Imbalance arus: gate-out tertahan (hold BC/karantina) sementara gate-in terus mengalir; rollover muatan karena kapal terlambat')"
               >
-                AP 1
+                C 15
               </div>
               <ul>
                 <li>
                   <div
-                    class="node yellow"
-                    onclick="showModal('Risk 2','Ketidakcocokan kapal–dermaga')"
+                    class="node green"
+                    onclick="showModal('Preventive Measure 15','Terapkan throttled release + truck appointment agar arus gate-out/gate-in seimbang')"
                   >
-                    R 2
+                    PM 15
                   </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 4','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur)')"
-                      >
-                        C 4
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 4','Update harian “berth capacity matrix” (kedalaman aktual & status crane) terhubung ke BA Map dengan aturan no-allocate jika tidak memenuhi batas')"
-                          >
-                            PM 4
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 3','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi')"
-                      >
-                        C 3
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 3','Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane harus valid sebelum alokasi diproses)')"
-                          >
-                            PM 3
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 1','Konflik jadwal/berth conflict (double-booking)')"
-                  >
-                    R 1
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 2','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk')"
-                      >
-                        C 2
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 2','Tambahkan buffer time antar kapal berbasis histori produktivitas/tidal window pada penetapan window sandar')"
-                          >
-                            PM 2
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 1','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
-                      >
-                        C 1
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 1','Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30 menit) antara TOS/BA Map–Inaportnet–shipping line')"
-                          >
-                            PM 1
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </li>
+
+            <!-- CAUSE 2 -->
+            <li>
+              <div
+                class="node red"
+                onclick="showModal('Cause 16','Produktivitas yard turun: breakdown alat/kurang operator sehingga backlog menumpuk')"
+              >
+                C 16
+              </div>
+              <ul>
+                <li>
+                  <div
+                    class="node green"
+                    onclick="showModal('Preventive Measure 16','Siapkan standby plan operator & unit cadangan untuk hot-swap saat downtime')"
+                  >
+                    PM 16
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <!-- CAUSE 3 -->
+            <li>
+              <div
+                class="node red"
+                onclick="showModal('Cause 17','Area efektif berkurang: blok ditutup (maintenance/No-Work Area) atau dibatasi (zona reefer/DG) sehingga kepadatan naik')"
+              >
+                C 17
+              </div>
+              <ul>
+                <li>
+                  <div
+                    class="node green"
+                    onclick="showModal('Preventive Measure 17','Aktifkan blok alternatif/overflow sementara & lakukan dynamic zoning untuk rebalance kepadatan.')"
+                  >
+                    PM 17
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <!-- CAUSE 4 -->
+            <li>
+              <div
+                class="node red"
+                onclick="showModal('Cause 18','Kebijakan stacking kurang tepat: tinggi tumpukan/slotting campur (import-export-empty) menambah re-handle dan memperlambat pengosongan blok.')"
+              >
+                C 18
+              </div>
+              <ul>
+                <li>
+                  <div
+                    class="node green"
+                    onclick="showModal('Preventive Measure 18','Kunci yard policy di TOS (tinggi tumpuk & blok khusus import/export/empty) dengan rule-based slotting.')"
+                  >
+                    PM 18
+                  </div>
+                </li>
+              </ul>
+            </li>
+
           </ul>
-        </div>
-      </div>
-    </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
 
     <!-- MODAL -->
     <div class="modal-overlay" id="infoModal">
