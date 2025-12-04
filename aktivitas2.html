@@ -230,40 +230,90 @@
       <!-- KOLOM KIRI: ADMINISTRASI 1 -->
       <!-- ========================== -->
       <div class="column">
-        <div class="column-title">Aktivitas Administrasi 1</div>
+        <div class="column-title">Aktivitas Administrasi 2</div>
 
         <div class="tree">
           <ul>
             <li>
+              <!-- ROOT NODE -->
               <div
                 class="node purple"
-                onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi (posisi & waktu sandar dengan alokasi crane)')"
+                onclick="showModal('AA 2','Menerbitkan Roster & Deployment per shift (termasuk update flexible roster)')"
               >
-                AA 1
+                AA 2
               </div>
+
               <ul>
+                <!-- ======================= -->
+                <!-- RISK 3 -->
+                <!-- ======================= -->
                 <li>
                   <div
                     class="node yellow"
-                    onclick="showModal('Risk 2','Ketidaksesuaian alokasi crane & kapasitas fasilitas')"
+                    onclick="showModal('R 3','Under-/Over-staffing & salah alokasi personel')"
                   >
-                    R 2
+                    R 3
                   </div>
+
                   <ul>
+                    <!-- C3 → PM5 -->
                     <li>
                       <div
                         class="node red"
-                        onclick="showModal('Cause 2','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya)')"
+                        onclick="showModal('C 3','Perkiraan beban kerja tidak akurat')"
                       >
-                        C 2
+                        C 3
                       </div>
+
                       <ul>
                         <li>
                           <div
                             class="node green"
-                            onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS agar status alat (operational/out-of-service) real-time; lengkapi fitur keselamatan minimum (anemometer, tie-down, anti-collision) untuk mengurangi downtime karena cuaca/gangguan.')"
+                            onclick="showModal('PM 3','Gunakan forecast berbasis BAPLIE final + historis move, lalu simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.')"
                           >
-                            PM 2
+                            PM 3
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <!-- C4 → PM4 -->
+                    <li>
+                      <div
+                        class="node red"
+                        onclick="showModal('C 4','Kurang update skills-matrix & sertifikasi')"
+                      >
+                        C 4
+                      </div>
+
+                      <ul>
+                        <li>
+                          <div
+                            class="node green"
+                            onclick="showModal('PM 4','Solusi dari C4')"
+                          >
+                            PM 4
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <!-- C5 → PM5 -->
+                    <li>
+                      <div
+                        class="node red"
+                        onclick="showModal('C 5','Penempatan tidak sesuai kompetensi')"
+                      >
+                        C 5
+                      </div>
+
+                      <ul>
+                        <li>
+                          <div
+                            class="node green"
+                            onclick="showModal('PM 5','Solusi dari C5')"
+                          >
+                            PM 5
                           </div>
                         </li>
                       </ul>
@@ -271,28 +321,55 @@
                   </ul>
                 </li>
 
+                <!-- ======================= -->
+                <!-- RISK 4 -->
+                <!-- ======================= -->
                 <li>
                   <div
                     class="node yellow"
-                    onclick="showModal('Risk 1','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)')"
+                    onclick="showModal('R 4','Risiko lain terkait AA2')"
                   >
-                    R 1
+                    R 4
                   </div>
+
                   <ul>
+                    <!-- C6 → PM6 -->
                     <li>
                       <div
                         class="node red"
-                        onclick="showModal('Cause 1','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage)')"
+                        onclick="showModal('C 6','Penyebab 6')"
                       >
-                        C 1
+                        C 6
                       </div>
+
                       <ul>
                         <li>
                           <div
                             class="node green"
-                            onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD berkala via Inaportnet dan berbagi memakai data standar IMO FAL.5/Circ.52, terhubung ke VTS/pandu')"
+                            onclick="showModal('PM 6','Solusi dari C6')"
                           >
-                            PM 1
+                            PM 6
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <!-- C7 → PM7 -->
+                    <li>
+                      <div
+                        class="node red"
+                        onclick="showModal('C 7','Penyebab 7')"
+                      >
+                        C 7
+                      </div>
+
+                      <ul>
+                        <li>
+                          <div
+                            class="node green"
+                            onclick="showModal('PM 7','Solusi dari C7')"
+                          >
+                            PM 7
                           </div>
                         </li>
                       </ul>
@@ -318,7 +395,7 @@
                 class="node purple"
                 onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')"
               >
-                AP 1
+                AP 2
               </div>
               <ul>
                 <li>
