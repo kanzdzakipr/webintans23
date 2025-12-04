@@ -57,10 +57,10 @@
 
       /* Wrapper dua kolom */
       .diagram-wrapper {
+        min-width: 1400px; /* supaya tidak kepotong */
         display: flex;
         justify-content: center;
-        gap: 0;
-        padding-bottom: 80px;
+        gap: 70px;
       }
 
       .column {
@@ -209,6 +209,51 @@
         display: flex;
         opacity: 1;
       }
+
+      .diagram-scale {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;  /* biar tidak ada scroll */
+}
+
+.diagram-wrapper {
+  transform-origin: top center;
+  transition: transform 0.3s ease;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1600px) {
+  .diagram-wrapper {
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 1400px) {
+  .diagram-wrapper {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 1200px) {
+  .diagram-wrapper {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-width: 1000px) {
+  .diagram-wrapper {
+    transform: scale(0.65);
+  }
+}
+
+@media (max-width: 850px) {
+  .diagram-wrapper {
+    transform: scale(0.55);
+  }
+}
+
+      
     </style>
   </head>
   <body>
@@ -224,7 +269,7 @@
     <!-- ========================= -->
     <!-- WRAPPER KS: KIRI DAN KANAN -->
     <!-- ========================= -->
-
+<div class="diagram-scale">
     <div class="diagram-wrapper">
       <!-- ========================== -->
       <!-- KOLOM KIRI: ADMINISTRASI 4 -->
@@ -497,7 +542,7 @@
     </li>
   </ul>
 </div>
-
+</div>
 
     <!-- MODAL -->
     <div class="modal-overlay" id="infoModal">

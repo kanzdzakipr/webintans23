@@ -57,10 +57,10 @@
 
       /* Wrapper dua kolom */
       .diagram-wrapper {
+        min-width: 1400px; /* supaya tidak kepotong */
         display: flex;
         justify-content: center;
-        gap: 0;
-        padding-bottom: 80px;
+        gap: 70px;
       }
 
       .column {
@@ -209,6 +209,49 @@
         display: flex;
         opacity: 1;
       }
+
+      .diagram-scale {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden; /* biar tidak ada scroll */
+      }
+
+      .diagram-wrapper {
+        transform-origin: top center;
+        transition: transform 0.3s ease;
+      }
+
+      /* RESPONSIVE BREAKPOINTS */
+      @media (max-width: 1600px) {
+        .diagram-wrapper {
+          transform: scale(0.95);
+        }
+      }
+
+      @media (max-width: 1400px) {
+        .diagram-wrapper {
+          transform: scale(0.85);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .diagram-wrapper {
+          transform: scale(0.75);
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .diagram-wrapper {
+          transform: scale(0.65);
+        }
+      }
+
+      @media (max-width: 850px) {
+        .diagram-wrapper {
+          transform: scale(0.55);
+        }
+      }
     </style>
   </head>
   <body>
@@ -225,220 +268,221 @@
     <!-- WRAPPER KS: KIRI DAN KANAN -->
     <!-- ========================= -->
 
-    <div class="diagram-wrapper">
-      <!-- ========================== -->
-      <!-- KOLOM KIRI: ADMINISTRASI 1 -->
-      <!-- ========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Administrasi 3</div>
+    <div class="diagram-scale">
+      <div class="diagram-wrapper">
+        <!-- ========================== -->
+        <!-- KOLOM KIRI: ADMINISTRASI 1 -->
+        <!-- ========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Administrasi 3</div>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('Aktivitas Administrasi 3','Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS.')"
-              >
-                AA 3
-              </div>
-              <ul>
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 5','Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE & VGM)')"
-                  >
-                    R 5
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 8','Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak tersebar)')"
-                      >
-                        C 8
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 8','Terapkan kontrol versi & acknowledgement EDI (gunakan APERAK/CONTRL) agar hanya versi terbaru yang dipakai.')"
-                          >
-                            PM 8
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 9','Kualitas data buruk: salah bay/row/tier, size/type, atau VGM belum/salah')"
-                      >
-                        C 9
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 9','Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM sesuai SOLAS-VGM sebelum publish.')"
-                          >
-                            PM 9
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('Aktivitas Administrasi 3','Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS.')"
+                >
+                  AA 3
+                </div>
+                <ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 5','Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE & VGM)')"
+                    >
+                      R 5
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 8','Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak tersebar)')"
+                        >
+                          C 8
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('PM 8','Terapkan kontrol versi & acknowledgement EDI (gunakan APERAK/CONTRL) agar hanya versi terbaru yang dipakai.')"
+                            >
+                              PM 8
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 9','Kualitas data buruk: salah bay/row/tier, size/type, atau VGM belum/salah')"
+                        >
+                          C 9
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('PM 9','Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM sesuai SOLAS-VGM sebelum publish.')"
+                            >
+                              PM 9
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 6','Interferensi antar quay crane karena CWP tidak optimal')"
-                  >
-                    R 6
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 10','Range kerja crane overlap (aturan non-crossing/jarak aman tidak diterapkan)')"
-                      >
-                        C 10
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 10','Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing & safety distance + validasi CWP sebelum publish')"
-                          >
-                            PM 10
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 6','Interferensi antar quay crane karena CWP tidak optimal')"
+                    >
+                      R 6
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 10','Range kerja crane overlap (aturan non-crossing/jarak aman tidak diterapkan)')"
+                        >
+                          C 10
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 10','Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing & safety distance + validasi CWP sebelum publish')"
+                            >
+                              PM 10
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <!-- ========================== -->
-      <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
-      <!-- ========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Pemeriksaan 3</div>
+        <!-- ========================== -->
+        <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
+        <!-- ========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Pemeriksaan 3</div>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('Aktivitas Pemeriksaan 3','Verifikasi data rencana di TOS (cek data/ship particular) serta rencana Bay Plan/CWP sebelum dibagikan')"
-              >
-                AP 3
-              </div>
-              <ul>
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 6','Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer, VGM, data kapal)')"
-                  >
-                    R 6
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 11','Kesalahan input/manual mapping (ISO size/type, reefer/DG flag, container ID) atau VGM belum masuk saat cut-off')"
-                      >
-                        C 11
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 1','Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM wajib ada—kalau tidak, blok rencana)')"
-                          >
-                            PM 11
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 12','Profil kapal (bay/vessel particulars) tidak mutakhir di library TOS sehingga penomoran slot/kapasitas tidak cocok')"
-                      >
-                        C 12
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 12','Governansi master data kapal (update saat first call & sign-off oleh shipping line; versi dikunci sebelum planning)')"
-                          >
-                            PM 12
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('Aktivitas Pemeriksaan 3','Verifikasi data rencana di TOS (cek data/ship particular) serta rencana Bay Plan/CWP sebelum dibagikan')"
+                >
+                  AP 3
+                </div>
+                <ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 6','Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer, VGM, data kapal)')"
+                    >
+                      R 6
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 11','Kesalahan input/manual mapping (ISO size/type, reefer/DG flag, container ID) atau VGM belum masuk saat cut-off')"
+                        >
+                          C 11
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('PM 1','Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM wajib ada—kalau tidak, blok rencana)')"
+                            >
+                              PM 11
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 12','Profil kapal (bay/vessel particulars) tidak mutakhir di library TOS sehingga penomoran slot/kapasitas tidak cocok')"
+                        >
+                          C 12
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('PM 12','Governansi master data kapal (update saat first call & sign-off oleh shipping line; versi dikunci sebelum planning)')"
+                            >
+                              PM 12
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 7','Bay Plan melanggar aturan keselamatan (stabilitas, batas tumpuk/lashing, dan segregasi Dangerous Goods)')"
-                  >
-                    R 7
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 13','Deklarasi Dangerous Goods/segregation code tidak lengkap/salah, atau reefer/OOG tidak ditandai')"
-                      >
-                        C 13
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 13','TIMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis block jika tidak sesuai segregasi)')"
-                          >
-                            PM 13
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 14','Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan dalam rule TOS saat menyusun rencana')"
-                      >
-                        C 14
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 14','Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP (rencana tidak bisa dieksekusi sebelum lolos)')"
-                          >
-                            PM 14
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 7','Bay Plan melanggar aturan keselamatan (stabilitas, batas tumpuk/lashing, dan segregasi Dangerous Goods)')"
+                    >
+                      R 7
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 13','Deklarasi Dangerous Goods/segregation code tidak lengkap/salah, atau reefer/OOG tidak ditandai')"
+                        >
+                          C 13
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('PM 13','TIMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis block jika tidak sesuai segregasi)')"
+                            >
+                              PM 13
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 14','Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan dalam rule TOS saat menyusun rencana')"
+                        >
+                          C 14
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('PM 14','Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP (rencana tidak bisa dieksekusi sebelum lolos)')"
+                            >
+                              PM 14
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-
     <!-- MODAL -->
     <div class="modal-overlay" id="infoModal">
       <div class="modal-content">

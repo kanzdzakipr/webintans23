@@ -57,10 +57,10 @@
 
       /* Wrapper dua kolom */
       .diagram-wrapper {
+        min-width: 1400px; /* supaya tidak kepotong */
         display: flex;
         justify-content: center;
         gap: 70px;
-        padding-bottom: 80px;
       }
 
       .column {
@@ -209,6 +209,48 @@
         display: flex;
         opacity: 1;
       }
+      .diagram-scale {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden; /* biar tidak ada scroll */
+      }
+
+      .diagram-wrapper {
+        transform-origin: top center;
+        transition: transform 0.3s ease;
+      }
+
+      /* RESPONSIVE BREAKPOINTS */
+      @media (max-width: 1600px) {
+        .diagram-wrapper {
+          transform: scale(0.95);
+        }
+      }
+
+      @media (max-width: 1400px) {
+        .diagram-wrapper {
+          transform: scale(0.85);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .diagram-wrapper {
+          transform: scale(0.75);
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .diagram-wrapper {
+          transform: scale(0.65);
+        }
+      }
+
+      @media (max-width: 850px) {
+        .diagram-wrapper {
+          transform: scale(0.55);
+        }
+      }
     </style>
   </head>
   <body>
@@ -224,191 +266,192 @@
     <!-- ========================= -->
     <!-- WRAPPER KS: KIRI DAN KANAN -->
     <!-- ========================= -->
+    <div class="diagram-scale">
+      <div class="diagram-wrapper">
+        <!-- =========================== -->
+        <!-- KOLOM KIRI: ADMINISTRASI 6 -->
+        <!-- =========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Administrasi 6</div>
 
-    <div class="diagram-wrapper">
-      <!-- =========================== -->
-      <!-- KOLOM KIRI: ADMINISTRASI 6 -->
-      <!-- =========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Administrasi 6</div>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('AA 6','Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke alat & tim')"
+                >
+                  AA 6
+                </div>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('AA 6','Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke alat & tim')"
-              >
-                AA 6
-              </div>
+                <ul>
+                  <!-- RISK 11 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 11','Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh.')"
+                    >
+                      R 11
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 18','Kualitas radio buruk/crosstalk sehingga pesan terpotong atau tertukar.')"
+                        >
+                          C 18
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 18','Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan fallback ke hand-signals standar bila kualitas audio tidak memadai.')"
+                            >
+                              PM 18
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-              <ul>
-                <!-- RISK 11 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 11','Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh.')"
-                  >
-                    R 11
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 18','Kualitas radio buruk/crosstalk sehingga pesan terpotong atau tertukar.')"
-                      >
-                        C 18
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 18','Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan fallback ke hand-signals standar bila kualitas audio tidak memadai.')"
-                          >
-                            PM 18
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <!-- RISK 12 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 12','Dispatch tidak sinkron dengan rencana yard & arus truk/gate.')"
-                  >
-                    R 12
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 19','Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher & operator.')"
-                      >
-                        C 19
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 19','Gunakan Truck Appointment System terintegrasi TOS (time-window, load-balancing) dengan notifikasi perubahan otomatis.')"
-                          >
-                            PM 19
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                  <!-- RISK 12 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 12','Dispatch tidak sinkron dengan rencana yard & arus truk/gate.')"
+                    >
+                      R 12
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 19','Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher & operator.')"
+                        >
+                          C 19
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 19','Gunakan Truck Appointment System terintegrasi TOS (time-window, load-balancing) dengan notifikasi perubahan otomatis.')"
+                            >
+                              PM 19
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <!-- ========================== -->
-      <!-- KOLOM KANAN: PEMERIKSAAN 6 -->
-      <!-- ========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Pemeriksaan 6</div>
+        <!-- ========================== -->
+        <!-- KOLOM KANAN: PEMERIKSAAN 6 -->
+        <!-- ========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Pemeriksaan 6</div>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('AP 6','Kontrol alokasi di yard termasuk keputusan hold & release saat operasi')"
-              >
-                AP 6
-              </div>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('AP 6','Kontrol alokasi di yard termasuk keputusan hold & release saat operasi')"
+                >
+                  AP 6
+                </div>
 
-              <ul>
-                <!-- RISK 11 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 11','Salah hold/release sehingga kontainer yang masih “ditahan” (Customs/Karantina/DG) terlepas atau sebaliknya.')"
-                  >
-                    R 11
-                  </div>
-                  <ul>
-                    <!-- CAUSE 22 -->
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 22','Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS (SPPB, pemeriksaan fisik, red/yellow lane).')"
-                      >
-                        C 22
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 22','Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB tervalidasi di sistem.')"
-                          >
-                            PM 22
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
+                <ul>
+                  <!-- RISK 11 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 11','Salah hold/release sehingga kontainer yang masih “ditahan” (Customs/Karantina/DG) terlepas atau sebaliknya.')"
+                    >
+                      R 11
+                    </div>
+                    <ul>
+                      <!-- CAUSE 22 -->
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 22','Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS (SPPB, pemeriksaan fisik, red/yellow lane).')"
+                        >
+                          C 22
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 22','Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB tervalidasi di sistem.')"
+                            >
+                              PM 22
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
 
-                    <!-- CAUSE 23 -->
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 23','Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah scan STID/RFID).')"
-                      >
-                        C 23
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 23','Wajib double-scan (gate & yard) + verifikasi otomatis nomor box↔B/L di TOS sebelum rilis.')"
-                          >
-                            PM 23
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+                      <!-- CAUSE 23 -->
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 23','Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah scan STID/RFID).')"
+                        >
+                          C 23
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 23','Wajib double-scan (gate & yard) + verifikasi otomatis nomor box↔B/L di TOS sebelum rilis.')"
+                            >
+                              PM 23
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-                <!-- RISK 12 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 12','Lonjakan kemacetan karena bulk release atau last-minute hold → yard padat & truck turn time melonjak.')"
-                  >
-                    R 12
-                  </div>
-                  <ul>
-                    <!-- CAUSE 24 -->
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 24','Last-minute hold dari regulator/pelayaran (audit, dokumen kurang) saat volume sudah siap keluar.')"
-                      >
-                        C 24
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 24','Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance; setelah cut-off perubahan wajib approval.')"
-                          >
-                            PM 24
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                  <!-- RISK 12 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 12','Lonjakan kemacetan karena bulk release atau last-minute hold → yard padat & truck turn time melonjak.')"
+                    >
+                      R 12
+                    </div>
+                    <ul>
+                      <!-- CAUSE 24 -->
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 24','Last-minute hold dari regulator/pelayaran (audit, dokumen kurang) saat volume sudah siap keluar.')"
+                        >
+                          C 24
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 24','Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance; setelah cut-off perubahan wajib approval.')"
+                            >
+                              PM 24
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

@@ -57,10 +57,10 @@
 
       /* Wrapper dua kolom */
       .diagram-wrapper {
+        min-width: 1400px; /* supaya tidak kepotong */
         display: flex;
         justify-content: center;
         gap: 70px;
-        padding-bottom: 80px;
       }
 
       .column {
@@ -209,6 +209,49 @@
         display: flex;
         opacity: 1;
       }
+
+      .diagram-scale {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden; /* biar tidak ada scroll */
+      }
+
+      .diagram-wrapper {
+        transform-origin: top center;
+        transition: transform 0.3s ease;
+      }
+
+      /* RESPONSIVE BREAKPOINTS */
+      @media (max-width: 1600px) {
+        .diagram-wrapper {
+          transform: scale(0.95);
+        }
+      }
+
+      @media (max-width: 1400px) {
+        .diagram-wrapper {
+          transform: scale(0.85);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .diagram-wrapper {
+          transform: scale(0.75);
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .diagram-wrapper {
+          transform: scale(0.65);
+        }
+      }
+
+      @media (max-width: 850px) {
+        .diagram-wrapper {
+          transform: scale(0.55);
+        }
+      }
     </style>
   </head>
   <body>
@@ -224,191 +267,192 @@
     <!-- ========================= -->
     <!-- WRAPPER KS: KIRI DAN KANAN -->
     <!-- ========================= -->
+    <div class="diagram-scale">
+      <div class="diagram-wrapper">
+        <!-- =========================== -->
+        <!-- KOLOM KIRI: ADMINISTRASI 5 -->
+        <!-- =========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Administrasi 5</div>
 
-    <div class="diagram-wrapper">
-      <!-- =========================== -->
-      <!-- KOLOM KIRI: ADMINISTRASI 5 -->
-      <!-- =========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Administrasi 5</div>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('AA 5','Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di CWP/Bay Plan).')"
+                >
+                  AA 5
+                </div>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('AA 5','Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di CWP/Bay Plan).')"
-              >
-                AA 5
-              </div>
+                <ul>
+                  <!-- RISK 9 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 9','RInstruksi/komunikasi tidak jelas (radio/isyarat tangan).')"
+                    >
+                      R 9
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 16','Kualitas radio buruk/crosstalk atau noise sehingga pesan terpotong/tertukar.')"
+                        >
+                          C 16
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 16','Audit & peremajaan radio, kanal khusus operasi, dan fallback ke hand-signals standar bila audio tidak andal.')"
+                            >
+                              PM 16
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-              <ul>
-                <!-- RISK 9 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 9','RInstruksi/komunikasi tidak jelas (radio/isyarat tangan).')"
-                  >
-                    R 9
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 16','Kualitas radio buruk/crosstalk atau noise sehingga pesan terpotong/tertukar.')"
-                      >
-                        C 16
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 16','Audit & peremajaan radio, kanal khusus operasi, dan fallback ke hand-signals standar bila audio tidak andal.')"
-                          >
-                            PM 16
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <!-- RISK 10 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 10','Tidak sinkron dengan CWP/Bay Plan terbaru (versi salah).')"
-                  >
-                    R 10
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 17','Rencana terbaru tidak dipublikasikan ke semua pihak/perangkat (pakai file lama).')"
-                      >
-                        C 17
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 17','Terapkan PCS/TOS sebagai “single source of truth” + kontrol versi & notifikasi otomatis saat ada revisi rencana.')"
-                          >
-                            PM 17
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                  <!-- RISK 10 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 10','Tidak sinkron dengan CWP/Bay Plan terbaru (versi salah).')"
+                    >
+                      R 10
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 17','Rencana terbaru tidak dipublikasikan ke semua pihak/perangkat (pakai file lama).')"
+                        >
+                          C 17
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 17','Terapkan PCS/TOS sebagai “single source of truth” + kontrol versi & notifikasi otomatis saat ada revisi rencana.')"
+                            >
+                              PM 17
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <!-- ========================== -->
-      <!-- KOLOM KANAN: PEMERIKSAAN 5 -->
-      <!-- ========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Pemeriksaan 5</div>
+        <!-- ========================== -->
+        <!-- KOLOM KANAN: PEMERIKSAAN 5 -->
+        <!-- ========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Pemeriksaan 5</div>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('AP 5','Validasi perangkat & dokumen kerja sebelum mulai (device & validasi tools kerja; CWP/PA/Radio).')"
-              >
-                AP 5
-              </div>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('AP 5','Validasi perangkat & dokumen kerja sebelum mulai (device & validasi tools kerja; CWP/PA/Radio).')"
+                >
+                  AP 5
+                </div>
 
-              <ul>
-                <!-- RISK 9 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 9','Gagal komunikasi radio atau miskom (radio mati/salah kanal/tidak cukup unit).')"
-                  >
-                    R 9
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 19','Gangguan cakupan & kebisingan: dead spot di area kerja, headset/noise-cancelling tidak digunakan.')"
-                      >
-                        C 19
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 19','Petakan cakupan & pasang repeater di area dead spot, sekaligus wajib headset untuk semua peran kritis.')"
-                          >
-                            PM 19
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+                <ul>
+                  <!-- RISK 9 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 9','Gagal komunikasi radio atau miskom (radio mati/salah kanal/tidak cukup unit).')"
+                    >
+                      R 9
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 19','Gangguan cakupan & kebisingan: dead spot di area kerja, headset/noise-cancelling tidak digunakan.')"
+                        >
+                          C 19
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 19','Petakan cakupan & pasang repeater di area dead spot, sekaligus wajib headset untuk semua peran kritis.')"
+                            >
+                              PM 19
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-                <!-- RISK 10 -->
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 10','Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA kadaluarsa) → interferensi crane & waktu tunggu.')"
-                  >
-                    R 10
-                  </div>
+                  <!-- RISK 10 -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 10','Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA kadaluarsa) → interferensi crane & waktu tunggu.')"
+                    >
+                      R 10
+                    </div>
 
-                  <ul>
-                    <!-- CAUSE 20 -->
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 20','Perubahan rencana last-minute tidak tersosialisasi (tidak ada cut-off & change control yang jelas).')"
-                      >
-                        C 20
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 20','Terapkan cut-off & change control terpusat di TOS; revisi hanya lewat tiket yang otomatis broadcast.')"
-                          >
-                            PM 20
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
+                    <ul>
+                      <!-- CAUSE 20 -->
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 20','Perubahan rencana last-minute tidak tersosialisasi (tidak ada cut-off & change control yang jelas).')"
+                        >
+                          C 20
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 20','Terapkan cut-off & change control terpusat di TOS; revisi hanya lewat tiket yang otomatis broadcast.')"
+                            >
+                              PM 20
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
 
-                    <!-- CAUSE 21 -->
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 21','Distribusi rencana manual (print/WA) tanpa kontrol versi/timestamp, sehingga tim memakai versi berbeda.')"
-                      >
-                        C 21
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 21','Gunakan satu sumber (TOS) dengan timestamp; bagikan tautan versi live, bukan file cetak/WA.')"
-                          >
-                            PM 21
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                      <!-- CAUSE 21 -->
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 21','Distribusi rencana manual (print/WA) tanpa kontrol versi/timestamp, sehingga tim memakai versi berbeda.')"
+                        >
+                          C 21
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 21','Gunakan satu sumber (TOS) dengan timestamp; bagikan tautan versi live, bukan file cetak/WA.')"
+                            >
+                              PM 21
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

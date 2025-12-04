@@ -56,11 +56,12 @@
       }
 
       /* Wrapper dua kolom */
+
       .diagram-wrapper {
+        min-width: 1400px; /* supaya tidak kepotong */
         display: flex;
         justify-content: center;
         gap: 70px;
-        padding-bottom: 80px;
       }
 
       .column {
@@ -209,6 +210,49 @@
         display: flex;
         opacity: 1;
       }
+
+      .diagram-scale {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden; /* biar tidak ada scroll */
+      }
+
+      .diagram-wrapper {
+        transform-origin: top center;
+        transition: transform 0.3s ease;
+      }
+
+      /* RESPONSIVE BREAKPOINTS */
+      @media (max-width: 1600px) {
+        .diagram-wrapper {
+          transform: scale(0.95);
+        }
+      }
+
+      @media (max-width: 1400px) {
+        .diagram-wrapper {
+          transform: scale(0.85);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        .diagram-wrapper {
+          transform: scale(0.75);
+        }
+      }
+
+      @media (max-width: 1000px) {
+        .diagram-wrapper {
+          transform: scale(0.65);
+        }
+      }
+
+      @media (max-width: 850px) {
+        .diagram-wrapper {
+          transform: scale(0.55);
+        }
+      }
     </style>
   </head>
   <body>
@@ -219,204 +263,200 @@
       </div>
     </div>
 
-    <h1 class="page-title">Aktivitas Administrasi & Pemeriksaan</h1>
+    <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN</h1>
 
     <!-- ========================= -->
     <!-- WRAPPER KS: KIRI DAN KANAN -->
     <!-- ========================= -->
+    <div class="diagram-scale">
+      <div class="diagram-wrapper">
+        <!-- ========================== -->
+        <!-- KOLOM KIRI: ADMINISTRASI 1 -->
+        <!-- ========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Administrasi 1</div>
 
-    <div class="diagram-wrapper">
-      <!-- ========================== -->
-      <!-- KOLOM KIRI: ADMINISTRASI 1 -->
-      <!-- ========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Administrasi 1</div>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi (posisi & waktu sandar dengan alokasi crane)')"
+                >
+                  AA 1
+                </div>
+                <ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 1','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)')"
+                    >
+                      R 1
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 1','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage).')"
+                        >
+                          C 1
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD berkala via Inaportnet dan berbagi memakai data standar IMO FAL.5/Circ.52, terhubung ke VTS/pandu.')"
+                            >
+                              PM 1
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi (posisi & waktu sandar dengan alokasi crane)')"
-              >
-                AA 1
-              </div>
-              <ul>
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 2','Ketidaksesuaian alokasi crane & kapasitas fasilitas')"
-                  >
-                    R 2
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 2','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya)')"
-                      >
-                        C 2
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS agar status alat (operational/out-of-service) real-time; lengkapi fitur keselamatan minimum (anemometer, tie-down, anti-collision) untuk mengurangi downtime karena cuaca/gangguan.')"
-                          >
-                            PM 2
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 1','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)')"
-                  >
-                    R 1
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 1','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage)')"
-                      >
-                        C 1
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD berkala via Inaportnet dan berbagi memakai data standar IMO FAL.5/Circ.52, terhubung ke VTS/pandu')"
-                          >
-                            PM 1
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 2','Ketidaksesuaian alokasi crane & kapasitas fasilitas')"
+                    >
+                      R 2
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 2','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya).')"
+                        >
+                          C 2
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS agar status alat (operational/out-of-service) real-time; lengkapi fitur keselamatan minimum (anemometer, tie-down, anti-collision) untuk mengurangi downtime karena cuaca/gangguan..')"
+                            >
+                              PM 2
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <!-- ========================== -->
-      <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
-      <!-- ========================== -->
-      <div class="column">
-        <div class="column-title">Aktivitas Pemeriksaan 1</div>
+        <!-- ========================== -->
+        <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
+        <!-- ========================== -->
+        <div class="column">
+          <div class="column-title">Aktivitas Pemeriksaan 1</div>
 
-        <div class="tree">
-          <ul>
-            <li>
-              <div
-                class="node purple"
-                onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')"
-              >
-                AP 1
-              </div>
-              <ul>
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 2','Ketidakcocokan kapal–dermaga')"
-                  >
-                    R 2
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 4','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur)')"
-                      >
-                        C 4
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 4','Update harian “berth capacity matrix” (kedalaman aktual & status crane) terhubung ke BA Map dengan aturan no-allocate jika tidak memenuhi batas')"
-                          >
-                            PM 4
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 3','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi')"
-                      >
-                        C 3
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 3','Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane harus valid sebelum alokasi diproses)')"
-                          >
-                            PM 3
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+          <div class="tree">
+            <ul>
+              <li>
+                <div
+                  class="node purple"
+                  onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')"
+                >
+                  AP 1
+                </div>
+                <ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 1','Konflik jadwal/berth conflict (double-booking)')"
+                    >
+                      R 1
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 1','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
+                        >
+                          C 1
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 1','Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30 menit) antara TOS/BA Map–Inaportnet–shipping line')"
+                            >
+                              PM 1
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 2','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk.')"
+                        >
+                          C 2
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 2','Tambahkan buffer time antar kapal berbasis histori produktivitas/tidal window pada penetapan window sandar.')"
+                            >
+                              PM 2
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
 
-                <li>
-                  <div
-                    class="node yellow"
-                    onclick="showModal('Risk 1','Konflik jadwal/berth conflict (double-booking)')"
-                  >
-                    R 1
-                  </div>
-                  <ul>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 2','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk')"
-                      >
-                        C 2
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 2','Tambahkan buffer time antar kapal berbasis histori produktivitas/tidal window pada penetapan window sandar')"
-                          >
-                            PM 2
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <div
-                        class="node red"
-                        onclick="showModal('Cause 1','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
-                      >
-                        C 1
-                      </div>
-                      <ul>
-                        <li>
-                          <div
-                            class="node green"
-                            onclick="showModal('PM 1','Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30 menit) antara TOS/BA Map–Inaportnet–shipping line')"
-                          >
-                            PM 1
-                          </div>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 2','Ketidakcocokan kapal–dermaga')"
+                    >
+                      R 2
+                    </div>
+                    <ul>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 3','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi.')"
+                        >
+                          C 3
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 3','Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane harus valid sebelum alokasi diproses)')"
+                            >
+                              PM 3
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 4','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur).')"
+                        >
+                          C 4
+                        </div>
+                        <ul>
+                          <li>
+                            <div class="node green">PM 4</div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
