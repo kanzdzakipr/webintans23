@@ -547,52 +547,119 @@
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AA 6</td>
-            <td>Koordinasi operasional yard</td>
+            <td>
+              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
+              alat & tim
+            </td>
             <td>R11</td>
-            <td>Instruksi salah</td>
-            <td>C22</td>
-            <td>Data block salah</td>
-            <td>PM22</td>
-            <td>Auto-verification yard block</td>
+            <td>Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh</td>
+            <td>C18</td>
+            <td>
+              Kualitas radio buruk/crosstalk sehingga pesan terpotong atau
+              tertukar
+            </td>
+            <td>PM18</td>
+            <td>
+              Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan
+              fallback ke hand-signals standar bila kualitas audio tidak memadai
+            </td>
           </tr>
 
           <tr>
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AA 6</td>
-            <td>Koordinasi yard</td>
+            <td>
+              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
+              alat & tim
+            </td>
             <td>R12</td>
-            <td>Keterlambatan instruksi</td>
-            <td>C23</td>
-            <td>Keterlambatan update posisi</td>
-            <td>PM23</td>
-            <td>Live position system</td>
+            <td>Dispatch tidak sinkron dengan rencana yard & arus truk/gate</td>
+            <td>C19</td>
+            <td>
+              Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher &
+              operator.
+            </td>
+            <td>PM19</td>
+            <td>
+              Gunakan Truck Appointment System terintegrasi TOS (time-window,
+              load-balancing) dengan notifikasi perubahan otomatis
+            </td>
           </tr>
 
           <tr>
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AP 6</td>
-            <td>Verifikasi pergerakan yard</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
             <td>R11</td>
-            <td>Instruksi salah</td>
-            <td>C24</td>
-            <td>Operator salah baca info</td>
-            <td>PM24</td>
-            <td>Dashboard info + highlight</td>
+            <td>
+              Salah hold/release sehingga kontainer yang masih “ditahan”
+              (Customs/Karantina/DG) terlepas atau sebaliknya
+            </td>
+            <td>C22</td>
+            <td>
+              Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS
+              (SPPB, pemeriksaan fisik, red/yellow lane)
+            </td>
+            <td>PM22</td>
+            <td>
+              Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB
+              tervalidasi di sistem
+            </td>
           </tr>
 
           <tr>
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AP 6</td>
-            <td>Verifikasi pergerakan yard</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
+            <td>R11</td>
+            <td>
+              Salah hold/release sehingga kontainer yang masih “ditahan”
+              (Customs/Karantina/DG) terlepas atau sebaliknya
+            </td>
+            <td>C23</td>
+            <td>
+              Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah
+              scan STID/RFID)
+            </td>
+            <td>PM23</td>
+            <td>
+              Wajib double-scan (gate & yard) + verifikasi otomatis nomor
+              box↔B/L di TOS sebelum rilis
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 6</td>
+            <td>Yard Talker</td>
+            <td>AP 6</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
             <td>R12</td>
-            <td>Keterlambatan instruksi</td>
-            <td>C25</td>
-            <td>Komunikasi manual</td>
-            <td>PM25</td>
-            <td>Instant messaging terintegrasi TOS</td>
+            <td>
+              Lonjakan kemacetan karena bulk release atau last-minute hold →
+              yard padat & truck turn time melonjak
+            </td>
+            <td>C24</td>
+            <td>
+              Last-minute hold dari regulator/pelayaran (audit, dokumen kurang)
+              saat volume sudah siap keluar
+            </td>
+            <td>PM24</td>
+            <td>
+              Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance;
+              setelah cut-off perubahan wajib approval
+            </td>
           </tr>
         </tbody>
       </table>
