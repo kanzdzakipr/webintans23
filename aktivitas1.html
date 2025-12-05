@@ -33,7 +33,44 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
       }
+      .modal-body {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+        text-align: left;
+        justify-content: center;
+      }
+      /* Responsif untuk HP */
+      @media (max-width: 600px) {
+        .modal-body { flex-direction: column; align-items: center; }
+        .stats-container { width: 100%; justify-content: center; }
+        .desc-text { text-align: center; }
+      }
+      .stats-container {
+        display: none; /* Default disembunyikan */
+        gap: 15px;
+        flex-shrink: 0;
+      }
+      .stat-box {
+        background-color: #ffffff;
+        border-radius: 15px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .stat-label { font-size: 14px; font-weight: 600; margin-bottom: 5px; color: #000; }
+      .stat-value { font-size: 32px; font-weight: 700; color: #000; }
 
+      .desc-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #444;
+        width: 100%;
+      }
       .nav-links a {
         margin-left: 25px;
         text-decoration: none;
@@ -212,14 +249,34 @@
         transition: 0.3s ease;
       }
       .modal-content {
-        background: white;
+        background-color: #ffffff; /* Default Putih */
         padding: 30px;
-        border-radius: 15px;
-        max-width: 500px;
+        border-radius: 20px;
+        max-width: 600px;
         width: 90%;
         text-align: center;
         position: relative;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        color: #333;
+        transition: background-color 0.3s ease, max-width 0.3s ease;
+      }
+      /* 2. Tambahkan Class Khusus Mode Risk */
+      .modal-content.risk-mode {
+        background-color: #ffffff;
+        border-radius: 30px;
+        max-width: 700px; /* Lebih lebar */
+      }
+      .modal-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #126e80;
+      }
+      .Risk-mode .modal-title {
+        color: #000;
+        font-size: 26px;
+        margin-bottom: 30px;
       }
       .close-btn {
         position: absolute;
@@ -367,7 +424,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 1 (Risiko 1)','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)')"
+                      onclick="showModal('Risk 1 (Risiko 1)','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)', 3, 4)"
                     >
                       R 1
                     </div>
@@ -396,7 +453,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 2 (Risiko 2)','Ketidaksesuaian alokasi crane & kapasitas fasilitas')"
+                      onclick="showModal('Risk 2 (Risiko 2)','Ketidaksesuaian alokasi crane & kapasitas fasilitas', 2, 4)"
                     >
                       R 2
                     </div>
@@ -443,7 +500,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 1 (Risiko 1)','Konflik jadwal/berth conflict (double-booking)')"
+                      onclick="showModal('Risk 1 (Risiko 1)','Konflik jadwal/berth conflict (double-booking)', 3, 3)"
                     >
                       R 1
                     </div>
@@ -490,7 +547,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 2 (Risiko 2)','Ketidakcocokan kapal–dermaga')"
+                      onclick="showModal('Risk 2 (Risiko 2)','Ketidakcocokan kapal–dermaga', 3, 4)"
                     >
                       R 2
                     </div>
@@ -701,21 +758,57 @@
       </table>
     </div>
 
-    <div class="modal-overlay" id="infoModal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="color: #126e80; margin-top: 0"></h2>
-        <p
-          id="modalText"
-          style="font-size: 15px; line-height: 1.6; color: #444"
-        ></p>
-      </div>
+<div class="modal-overlay" id="infoModal">
+  <div class="modal-content" id="modalContentBox">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    
+    <h2 id="modalTitle" class="modal-title">Judul</h2>
+    
+    <div class="modal-body">
+        <div class="stats-container" id="statsContainer">
+            <div class="stat-box">
+                <span class="stat-label">Likelihood</span>
+                <span class="stat-value" id="valLikelihood">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Severity</span>
+                <span class="stat-value" id="valSeverity">0</span>
+            </div>
+        </div>
+
+        <div class="desc-text">
+            <p id="modalText">Deskripsi...</p>
+        </div>
     </div>
+  </div>
+</div>
 
     <script>
-      function showModal(title, text) {
+      
+      function showModal(title, text, likelihood, severity) {
+        // 1. Set Teks Judul & Deskripsi
         document.getElementById("modalTitle").innerText = title;
         document.getElementById("modalText").innerText = text;
+
+        const modalContent = document.getElementById("modalContentBox");
+        const statsContainer = document.getElementById("statsContainer");
+
+        // 2. Cek apakah ini Node Risk (punya likelihood & severity)
+        if (likelihood !== undefined && severity !== undefined) {
+            // --- Risk --
+            modalContent.classList.add("risk-mode"); 
+            statsContainer.style.display = "flex";      // Munculkan kotak angka
+            
+            // Isi angka
+            document.getElementById("valLikelihood").innerText = likelihood;
+            document.getElementById("valSeverity").innerText = severity;
+        } else {
+            // --- MODE BIASA (PUTIH) ---
+            modalContent.classList.remove("risk-mode"); // Hapus class hijau
+            statsContainer.style.display = "none";       // Sembunyikan kotak angka
+        }
+
+        // 3. Tampilkan Modal
         document.getElementById("infoModal").classList.add("modal-active");
       }
 
