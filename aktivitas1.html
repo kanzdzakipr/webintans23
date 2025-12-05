@@ -156,10 +156,10 @@
         justify-content: center;
         align-items: center;
         /* Padding dan ukuran font dikurangi drastis agar mirip gambar */
-        padding: 15px 20px; 
+        padding: 15px 20px;
         min-width: 80px;
         min-height: 50px;
-        
+
         border-radius: 12px;
         border: 2px solid #000;
         font-size: 14px; /* Font lebih kecil */
@@ -171,16 +171,28 @@
         position: relative;
         z-index: 2;
       }
-      
+
       .node:hover {
         transform: scale(1.05);
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
       }
 
-      .purple { background: #126e80; color: #fff; }
-      .yellow { background: #32a0b4; color: #000; }
-      .red { background: #98dfe1; color: #000; }
-      .green { background: #e0f7f8; color: #000; }
+      .purple {
+        background: #126e80;
+        color: #fff;
+      }
+      .yellow {
+        background: #32a0b4;
+        color: #000;
+      }
+      .red {
+        background: #98dfe1;
+        color: #000;
+      }
+      .green {
+        background: #e0f7f8;
+        color: #000;
+      }
 
       /* Modal */
       .modal-overlay {
@@ -205,7 +217,7 @@
         width: 90%;
         text-align: center;
         position: relative;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       }
       .close-btn {
         position: absolute;
@@ -255,46 +267,61 @@
         border-bottom: 1px solid #eee;
         text-align: left;
       }
-      .clean-table td:first-child { text-align: center; }
-      
-      .clean-table tr:nth-child(even) { background: #f9fbfc; }
-      .clean-table tr:hover { background: #f0f8fa; }
+      .clean-table td:first-child {
+        text-align: center;
+      }
+
+      .clean-table tr:nth-child(even) {
+        background: #f9fbfc;
+      }
+      .clean-table tr:hover {
+        background: #f0f8fa;
+      }
 
       /* ========================================= */
       /* RESPONSIVE SCALING LOGIC (KUNCI UTAMA)    */
       /* ========================================= */
-      
+
       /* Logika: Kita memaksa diagram mengecil (zoom out) 
          agar muat di layar laptop standar tanpa scroll.
       */
 
       /* Layar Besar (Desktop PC) > 1600px */
       @media (min-width: 1601px) {
-        .diagram-wrapper { transform: scale(1); }
+        .diagram-wrapper {
+          transform: scale(1);
+        }
       }
 
       /* Laptop Besar (1440px - 1600px) */
       @media (max-width: 1600px) {
-        .diagram-wrapper { transform: scale(0.9); }
+        .diagram-wrapper {
+          transform: scale(0.9);
+        }
       }
 
       /* Laptop Standar (1366px - 1440px) */
       @media (max-width: 1440px) {
-        .diagram-wrapper { 
-            transform: scale(0.8); 
-            gap: 50px; /* Rapatkan jarak antar kolom */
+        .diagram-wrapper {
+          transform: scale(0.8);
+          gap: 50px; /* Rapatkan jarak antar kolom */
         }
-        .page-title { margin-top: 90px; margin-bottom: 10px; }
+        .page-title {
+          margin-top: 90px;
+          margin-bottom: 10px;
+        }
       }
 
       /* Laptop Kecil / Tablet Landscape (1024px - 1366px) */
       @media (max-width: 1280px) {
-        .diagram-wrapper { 
-            transform: scale(0.65); 
-            gap: 40px;
+        .diagram-wrapper {
+          transform: scale(0.65);
+          gap: 40px;
         }
         /* Compacting layout vertically */
-        .diagram-scale { margin-bottom: -50px; } 
+        .diagram-scale {
+          margin-bottom: -50px;
+        }
       }
 
       /* Tablet Portrait / Mobile */
@@ -304,9 +331,10 @@
           transform: scale(0.8);
           gap: 50px;
         }
-        .tree ul { padding-top: 10px; }
+        .tree ul {
+          padding-top: 10px;
+        }
       }
-
     </style>
   </head>
   <body>
@@ -321,23 +349,42 @@
 
     <div class="diagram-scale">
       <div class="diagram-wrapper">
-        
         <div class="column">
           <div class="column-title">Aktivitas Administrasi 1</div>
 
           <div class="tree">
             <ul>
               <li>
-                <div class="node purple" onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi...')">AA 1</div>
+                <div
+                  class="node purple"
+                  onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi...')"
+                >
+                  AA 1
+                </div>
                 <ul>
                   <li>
-                    <div class="node yellow" onclick="showModal('Risk 1 (Risiko 1)','Ketidakakuratan jadwal & posisi sandar...')">R 1</div>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 1 (Risiko 1)','Ketidakakuratan jadwal & posisi sandar...')"
+                    >
+                      R 1
+                    </div>
                     <ul>
                       <li>
-                        <div class="node red" onclick="showModal('Cause 1 (Penyebab 1)','ETA/ETD kapal tidak akurat...')">C 1</div>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 1 (Penyebab 1)','ETA/ETD kapal tidak akurat...')"
+                        >
+                          C 1
+                        </div>
                         <ul>
                           <li>
-                            <div class="node green" onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT)...')">PM 1</div>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT)...')"
+                            >
+                              PM 1
+                            </div>
                           </li>
                         </ul>
                       </li>
@@ -345,13 +392,28 @@
                   </li>
 
                   <li>
-                    <div class="node yellow" onclick="showModal('Risk 2 (Risiko 2)','Ketidaksesuaian alokasi crane...')">R 2</div>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 2 (Risiko 2)','Ketidaksesuaian alokasi crane...')"
+                    >
+                      R 2
+                    </div>
                     <ul>
                       <li>
-                        <div class="node red" onclick="showModal('Cause 2 (Penyebab 2)','Ketersediaan crane tidak real-time...')">C 2</div>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 2 (Penyebab 2)','Ketersediaan crane tidak real-time...')"
+                        >
+                          C 2
+                        </div>
                         <ul>
                           <li>
-                            <div class="node green" onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring...')">PM 2</div>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring...')"
+                            >
+                              PM 2
+                            </div>
                           </li>
                         </ul>
                       </li>
@@ -369,24 +431,54 @@
           <div class="tree">
             <ul>
               <li>
-                <div class="node purple" onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule...')">AP 1</div>
+                <div
+                  class="node purple"
+                  onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule...')"
+                >
+                  AP 1
+                </div>
                 <ul>
                   <li>
-                    <div class="node yellow" onclick="showModal('Risk 1 (Risiko 1)','Konflik jadwal/berth conflict...')">R 1</div>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 1 (Risiko 1)','Konflik jadwal/berth conflict...')"
+                    >
+                      R 1
+                    </div>
                     <ul>
                       <li>
-                        <div class="node red" onclick="showModal('Cause 1 (Penyebab 1)','Update ETA/ETB terlambat...')">C 1</div>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 1 (Penyebab 1)','Update ETA/ETB terlambat...')"
+                        >
+                          C 1
+                        </div>
                         <ul>
                           <li>
-                            <div class="node green" onclick="showModal('Preventive Measure 1','Aktifkan sinkronisasi otomatis...')">PM 1</div>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 1','Aktifkan sinkronisasi otomatis...')"
+                            >
+                              PM 1
+                            </div>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <div class="node red" onclick="showModal('Cause 2 (Penyebab 2)','Durasi operasi kapal sebelumnya meleset...')">C 2</div>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 2 (Penyebab 2)','Durasi operasi kapal sebelumnya meleset...')"
+                        >
+                          C 2
+                        </div>
                         <ul>
                           <li>
-                            <div class="node green" onclick="showModal('Preventive Measure 2','Tambahkan buffer time...')">PM 2</div>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 2','Tambahkan buffer time...')"
+                            >
+                              PM 2
+                            </div>
                           </li>
                         </ul>
                       </li>
@@ -394,21 +486,46 @@
                   </li>
 
                   <li>
-                    <div class="node yellow" onclick="showModal('Risk 2 (Risiko 2)','Ketidakcocokan kapal–dermaga')">R 2</div>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 2 (Risiko 2)','Ketidakcocokan kapal–dermaga')"
+                    >
+                      R 2
+                    </div>
                     <ul>
                       <li>
-                        <div class="node red" onclick="showModal('Cause 3 (Penyebab 3)','Data teknis kapal tidak lengkap...')">C 3</div>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 3 (Penyebab 3)','Data teknis kapal tidak lengkap...')"
+                        >
+                          C 3
+                        </div>
                         <ul>
                           <li>
-                            <div class="node green" onclick="showModal('Preventive Measure 3','Wajibkan pre-berthing checklist...')">PM 3</div>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 3','Wajibkan pre-berthing checklist...')"
+                            >
+                              PM 3
+                            </div>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <div class="node red" onclick="showModal('Cause 4 (Penyebab 4)','Informasi kondisi dermaga tidak akurat...')">C 4</div>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 4 (Penyebab 4)','Informasi kondisi dermaga tidak akurat...')"
+                        >
+                          C 4
+                        </div>
                         <ul>
                           <li>
-                            <div class="node green" onclick="showModal('Preventive Measure 4','Update matrix kapasitas dermaga...')">PM 4</div>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 4','Update matrix kapasitas dermaga...')"
+                            >
+                              PM 4
+                            </div>
                           </li>
                         </ul>
                       </li>
@@ -419,12 +536,18 @@
             </ul>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="table-container">
-      <h2 style="text-align: center; margin-bottom: 25px; font-weight: 700; color: #126e80;">
+      <h2
+        style="
+          text-align: center;
+          margin-bottom: 25px;
+          font-weight: 700;
+          color: #126e80;
+        "
+      >
         Knowledge Base Aktivitas Terminal Teluk Lamong
       </h2>
 
@@ -450,11 +573,20 @@
             <td>AA 1</td>
             <td>Menerbitkan Berth Plan terkonfirmasi</td>
             <td>R1</td>
-            <td>Ketidakakuratan jadwal & posisi sandar</td>
+            <td>
+              Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)
+            </td>
             <td>C1</td>
-            <td>ETA/ETD kapal tidak akurat</td>
+            <td>
+              ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian,
+              pilotage)
+            </td>
             <td>PM1</td>
-            <td>Just-in-Time Port Call + update ETA/ETD</td>
+            <td>
+              Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD
+              berkala via Inaportnet dan berbagi memakai data standar IMO
+              FAL.5/Circ.52, terhubung ke VTS/pandu
+            </td>
           </tr>
           <tr>
             <td>AT 1</td>
@@ -462,59 +594,106 @@
             <td>AA 1</td>
             <td>Menerbitkan Berth Plan terkonfirmasi</td>
             <td>R2</td>
-            <td>Ketidaksesuaian alokasi crane</td>
+            <td>Ketidaksesuaian alokasi crane & kapasitas fasilitas</td>
             <td>C2</td>
-            <td>Status crane tidak real-time</td>
+            <td>
+              Ketersediaan crane/fasilitas tidak real-time
+              (breakdown/maintenance, overlap rel/jangkauan, batas daya)
+            </td>
             <td>PM2</td>
-            <td>Integrasi CMMS + condition monitoring</td>
+            <td>
+              Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS
+              agar status alat (operational/out-of-service) real-time; lengkapi
+              fitur keselamatan minimum (anemometer, tie-down, anti-collision)
+              untuk mengurangi downtime karena cuaca/gangguan.
+            </td>
           </tr>
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule & Alokasi</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
             <td>R1</td>
-            <td>Berth conflict</td>
+            <td>Konflik jadwal/berth conflict (double-booking)</td>
             <td>C1</td>
-            <td>ETA/ETB tidak sinkron</td>
+            <td>
+              Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA
+              Map–Inaportnet–shipping line/agent).
+            </td>
             <td>PM1</td>
-            <td>Sinkronisasi otomatis ETA/ETB</td>
+            <td>
+              Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30
+              menit) antara TOS/BA Map–Inaportnet–shipping line
+            </td>
           </tr>
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar. Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map
+              sebelum sandar.
+            </td>
             <td>R1</td>
-            <td>Berth conflict</td>
+            <td>Konflik jadwal/berth conflict (double-booking)</td>
             <td>C2</td>
-            <td>Durasi operasi kapal meleset</td>
+            <td>
+              Durasi operasi kapal sebelumnya meleset (overrun karena
+              produktivitas turun), sehingga window bertumpuk
+            </td>
             <td>PM2</td>
-            <td>Buffer time antar kapal</td>
+            <td>
+              Tambahkan buffer time antar kapal berbasis histori
+              produktivitas/tidal window pada penetapan window sandar
+            </td>
           </tr>
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
             <td>R2</td>
             <td>Ketidakcocokan kapal–dermaga</td>
             <td>C3</td>
-            <td>Data teknis kapal tidak lengkap</td>
+            <td>
+              Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft,
+              kebutuhan crane, special cargo) saat verifikasi
+            </td>
             <td>PM3</td>
-            <td>Ship particulars checklist + hard validation</td>
+            <td>
+              Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan
+              aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane
+              harus valid sebelum alokasi diproses)
+            </td>
           </tr>
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
             <td>R2</td>
             <td>Ketidakcocokan kapal–dermaga</td>
             <td>C4</td>
-            <td>Informasi dermaga tidak akurat</td>
+            <td>
+              Informasi kondisi dermaga & peralatan tidak akurat (kedalaman
+              aktual, crane outage/jangkauan, batasan struktur)
+            </td>
             <td>PM4</td>
-            <td>Berth capacity matrix + crane status</td>
+            <td>
+              Update harian “berth capacity matrix” (kedalaman aktual & status
+              crane) terhubung ke BA Map dengan aturan no-allocate jika tidak
+              memenuhi batas
+            </td>
           </tr>
         </tbody>
       </table>
@@ -523,8 +702,11 @@
     <div class="modal-overlay" id="infoModal">
       <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="color: #126e80; margin-top: 0;"></h2>
-        <p id="modalText" style="font-size: 15px; line-height: 1.6; color: #444;"></p>
+        <h2 id="modalTitle" style="color: #126e80; margin-top: 0"></h2>
+        <p
+          id="modalText"
+          style="font-size: 15px; line-height: 1.6; color: #444"
+        ></p>
       </div>
     </div>
 
@@ -538,14 +720,14 @@
       function closeModal() {
         document.getElementById("infoModal").classList.remove("modal-active");
       }
-      
+
       // Close modal when clicking outside box
-      window.onclick = function(event) {
+      window.onclick = function (event) {
         const modal = document.getElementById("infoModal");
         if (event.target == modal) {
-            closeModal();
+          closeModal();
         }
-      }
+      };
     </script>
   </body>
 </html>
