@@ -57,20 +57,39 @@
 
       /* Wrapper dua kolom */
       .diagram-wrapper {
-        min-width: 1400px; /* supaya tidak kepotong */
-        display: flex;
-        justify-content: center;
-        gap: 70px;
+        width: max-content; /* penting */
+        max-width: 1600px;
+        display: grid;
+        grid-template-columns: 750px 750px; /* fix width kiri & kanan */
+        gap: 120px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
       }
 
+      /* Kolom */
       .column {
+        max-width: 100%;
+        margin: 0 auto;
         text-align: center;
+        padding-left: 40px; /* ruang kiri */
+        padding-right: 40px; /* ruang kanan */
+        box-sizing: border-box;
+        width: 700px; /* bisa kamu atur ulang */
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* ini bikin judul nge-center tepat di root */
       }
 
       .column-title {
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-bottom: 25px;
         font-size: 28px;
         font-weight: 700;
-        margin-bottom: 20px;
         color: #333;
       }
 
@@ -82,6 +101,9 @@
         justify-content: center;
         margin: 0;
         padding-left: 0;
+        width: max-content; /* <— tree tidak nyebar */
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .tree li {
@@ -214,42 +236,28 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        overflow: hidden; /* biar tidak ada scroll */
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 20px;
       }
 
-      .diagram-wrapper {
-        transform-origin: top center;
-        transition: transform 0.3s ease;
-      }
-
-      /* RESPONSIVE BREAKPOINTS */
-      @media (max-width: 1600px) {
+      /* Mobile version: diagram diperkecil */
+      @media (max-width: 900px) {
         .diagram-wrapper {
-          transform: scale(0.95);
+          grid-template-columns: 1fr;
+          max-width: 800px;
+          gap: 50px;
         }
-      }
 
-      @media (max-width: 1400px) {
-        .diagram-wrapper {
+        .column {
           transform: scale(0.85);
+          transform-origin: top center;
         }
       }
 
-      @media (max-width: 1200px) {
-        .diagram-wrapper {
-          transform: scale(0.75);
-        }
-      }
-
-      @media (max-width: 1000px) {
-        .diagram-wrapper {
-          transform: scale(0.65);
-        }
-      }
-
-      @media (max-width: 850px) {
-        .diagram-wrapper {
-          transform: scale(0.55);
+      @media (max-width: 600px) {
+        .column {
+          transform: scale(0.7);
         }
       }
     </style>
@@ -267,52 +275,54 @@
     <!-- ========================= -->
     <!-- WRAPPER KS: KIRI DAN KANAN -->
     <!-- ========================= -->
+
     <div class="diagram-scale">
       <div class="diagram-wrapper">
-        <!-- ========================== -->
-        <!-- KOLOM KIRI: ADMINISTRASI 2 -->
-        <!-- ========================== -->
+        <!-- ========================================================= -->
+        <!-- ====================== KIRI — AA2 ======================== -->
+        <!-- ========================================================= -->
         <div class="column">
           <div class="column-title">Aktivitas Administrasi 2</div>
 
           <div class="tree">
             <ul>
               <li>
-                <!-- ROOT NODE -->
+                <!-- ROOT -->
                 <div
                   class="node purple"
-                  onclick="showModal('AA 2','Menerbitkan Roster & Deployment per shift (termasuk update flexible roster)')"
+                  onclick="showModal('Aktivitas Administrasi 2',
+                 'Menerbitkan Roster & Deployment per shift (termasuk update flexible roster)')"
                 >
                   AA 2
                 </div>
 
                 <ul>
-                  <!-- ======================= -->
-                  <!-- RISK 3 -->
-                  <!-- ======================= -->
+                  <!-- ================= RISK 3 ================= -->
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('R 3','Under-/Over-staffing & salah alokasi personel')"
+                      onclick="showModal('Risk 3',
+                     'Under-/Over-staffing & salah alokasi personel')"
                     >
                       R 3
                     </div>
 
                     <ul>
-                      <!-- C3 → PM5 -->
+                      <!-- C3 → PM3 -->
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('C 3','Perkiraan beban kerja tidak akurat')"
+                          onclick="showModal('Cause 3',
+                         'Perkiraan beban kerja tidak akurat')"
                         >
                           C 3
                         </div>
-
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 3','Gunakan forecast berbasis BAPLIE final + historis move, lalu simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.')"
+                              onclick="showModal('Preventive Measure 3',
+                             'Gunakan forecast berbasis BAPLIE final + historis move, lalu simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.')"
                             >
                               PM 3
                             </div>
@@ -324,16 +334,17 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('C 4','Kurang update skills-matrix & sertifikasi')"
+                          onclick="showModal('Cause 4',
+                         'Tidak ada/kurang update skills-matrix & sertifikasi, sehingga penempatan tidak sesuai kompetensi.')"
                         >
                           C 4
                         </div>
-
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 4','Solusi dari C4')"
+                              onclick="showModal('Preventive Measure 4',
+                             'Terapkan skills-matrix formal dan program kompetensi/sertifikasi operator sesuai pedoman keselamatan pelabuhan.')"
                             >
                               PM 4
                             </div>
@@ -345,16 +356,17 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('C 5','Penempatan tidak sesuai kompetensi')"
+                          onclick="showModal('Cause 5',
+                         'Ketidakhadiran mendadak tidak tertangani real-time karena tidak ada back-up pool')"
                         >
                           C 5
                         </div>
-
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 5','Solusi dari C5')"
+                              onclick="showModal('Preventive Measure 5',
+                             'Siapkan reserve/on-call pool dan rencana workforce planning berbasis skenario untuk menutup gap kehadiran.')"
                             >
                               PM 5
                             </div>
@@ -364,13 +376,12 @@
                     </ul>
                   </li>
 
-                  <!-- ======================= -->
-                  <!-- RISK 4 -->
-                  <!-- ======================= -->
+                  <!-- ================= RISK 4 ================= -->
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('R 4','Risiko lain terkait AA2')"
+                      onclick="showModal('Risk 4',
+                     'Roster kurang fleksibel terhadap ketidakpastian operasional')"
                     >
                       R 4
                     </div>
@@ -380,16 +391,17 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('C 6','Penyebab 6')"
+                          onclick="showModal('Cause 6',
+                         'Roster kaku (fixed shift tanpa buffer/on-call/multi-skilling)')"
                         >
                           C 6
                         </div>
-
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 6','Solusi dari C6')"
+                              onclick="showModal('Preventive Measure 6',
+                             'Terapkan flexible rostering (buffer shift, multi-skilling) sebagai bagian dari perencanaan tenaga kerja pelabuhan.')"
                             >
                               PM 6
                             </div>
@@ -401,16 +413,17 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('C 7','Penyebab 7')"
+                          onclick="showModal('Cause 7',
+                         'Batasan regulasi & kontrak (jam kerja/overtime/aturan serikat) menyulitkan penyesuaian cepat')"
                         >
                           C 7
                         </div>
-
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 7','Solusi dari C7')"
+                              onclick="showModal('Preventive Measure 7',
+                             'Bangun roster yang patuh aturan jam kerja & kelelahan sesuai ILO Code of Practice, plus MoU dengan serikat untuk skema fleksibel.')"
                             >
                               PM 7
                             </div>
@@ -425,62 +438,75 @@
           </div>
         </div>
 
-        <!-- ========================== -->
-        <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
-        <!-- ========================== -->
+        <!-- ========================================================= -->
+        <!-- ====================== KANAN — AP2 ======================= -->
+        <!-- ========================================================= -->
         <div class="column">
-          <div class="column-title">Aktivitas Pemeriksaan 1</div>
+          <div class="column-title">Aktivitas Pemeriksaan 2</div>
 
           <div class="tree">
             <ul>
               <li>
+                <!-- ROOT -->
                 <div
                   class="node purple"
-                  onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')"
+                  onclick="showModal('Aktivitas Pemeriksaan 2',
+                 'Verifikasi Roster & Deployment per shift (termasuk update flexible roster)')"
                 >
                   AP 2
                 </div>
+
                 <ul>
+                  <!-- ================= RISK 3 ================= -->
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 2','Ketidakcocokan kapal–dermaga')"
+                      onclick="showModal('Risk 3',
+                     'Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing & mis-allocation)')"
                     >
-                      R 2
+                      R 3
                     </div>
+
                     <ul>
+                      <!-- C5 → PM5 -->
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 4','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur)')"
+                          onclick="showModal('Cause 5',
+                         'Data/peramalan beban kerja tidak akurat atau belum tersinkron')"
                         >
-                          C 4
+                          C 5
                         </div>
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 4','Update harian “berth capacity matrix” (kedalaman aktual & status crane) terhubung ke BA Map dengan aturan no-allocate jika tidak memenuhi batas')"
+                              onclick="showModal('Preventive Measure 5',
+                             'Sinkronkan TOS ke engine roster otomatis sebelum H-12 lalu freeze roster')"
                             >
-                              PM 4
+                              PM 5
                             </div>
                           </li>
                         </ul>
                       </li>
+
+                      <!-- C6 → PM6 -->
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 3','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi')"
+                          onclick="showModal('Cause 6',
+                         'Absensi mendadak tidak tertangani dan tidak ada pool cadangan')"
                         >
-                          C 3
+                          C 6
                         </div>
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 3','Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane harus valid sebelum alokasi diproses)')"
+                              onclick="showModal('Preventive Measure 6',
+                             'Sediakan standby pool pada flexible roster (roving/multi-skill) tiap shift')"
                             >
-                              PM 3
+                              PM 6
                             </div>
                           </li>
                         </ul>
@@ -488,46 +514,113 @@
                     </ul>
                   </li>
 
+                  <!-- ================= RISK 4 ================= -->
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 1','Konflik jadwal/berth conflict (double-booking)')"
+                      onclick="showModal('Risk 4',
+                     'Ketidakcocokan kompetensi/sertifikasi dengan penugasan')"
                     >
-                      R 1
+                      R 4
                     </div>
+
                     <ul>
+                      <!-- C7 → PM7 -->
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 2','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk')"
+                          onclick="showModal('Cause 7',
+                         'Penjadwalan tidak berbasis keterampilan/izin alat')"
                         >
-                          C 2
+                          C 7
                         </div>
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('PM 2','Tambahkan buffer time antar kapal berbasis histori produktivitas/tidal window pada penetapan window sandar')"
+                              onclick="showModal('Preventive Measure 7',
+                             'Aktifkan aturan skill/license lock di engine roster')"
                             >
-                              PM 2
+                              PM 7
                             </div>
                           </li>
                         </ul>
                       </li>
+
+                      <!-- C8 → PM8 -->
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 1','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
+                          onclick="showModal('Cause 8',
+                         'Minimnya multi-skilling sehingga pengganti sangat terbatas')"
                         >
-                          C 1
+                          C 8
                         </div>
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 1','Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30 menit) antara TOS/BA Map–Inaportnet–shipping line')"
+                              onclick="showModal('Preventive Measure 8',
+                             'Program multi-skilling terjadwal + matriks kompetensi')"
                             >
-                              PM 1
+                              PM 8
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <!-- ================= RISK 5 ================= -->
+                  <li>
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 5',
+                     'Kelelahan (fatigue) karena pola shift/roster yang tidak sehat')"
+                    >
+                      R 5
+                    </div>
+
+                    <ul>
+                      <!-- C9 → PM9 -->
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 9',
+                         'Rotasi shift tidak sehat (malam berturut-turut, jam panjang)')"
+                        >
+                          C 9
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 9',
+                             'Terapkan FRMS + batas jam kerja & rotasi sehat di engine roster')"
+                            >
+                              PM 9
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <!-- C10 → PM10 -->
+                      <li>
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 10',
+                         'Kekurangan personel → lembur berulang')"
+                        >
+                          C 10
+                        </div>
+                        <ul>
+                          <li>
+                            <div
+                              class="node green"
+                              onclick="showModal('Preventive Measure 10',
+                             'Standby pool multi-skill per shift untuk tutup absen tanpa lembur')"
+                            >
+                              PM 10
                             </div>
                           </li>
                         </ul>
@@ -541,6 +634,7 @@
         </div>
       </div>
     </div>
+
     <!-- MODAL -->
     <div class="modal-overlay" id="infoModal">
       <div class="modal-content">
