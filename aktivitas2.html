@@ -15,29 +15,29 @@
         margin: 0;
         font-family: "Poppins", sans-serif;
         background: linear-gradient(#eef7ff, #eaf6ff);
-        overflow-x: auto;
+        overflow-x: hidden; /* MENGHILANGKAN SCROLL HORIZONTAL */
         min-height: 100vh;
       }
 
       .navbar {
         width: 100%;
-        padding: 18px 45px;
+        padding: 15px 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: fixed;
         top: 0;
         z-index: 100;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(10px);
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
       }
 
       .nav-links a {
         margin-left: 25px;
         text-decoration: none;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 600;
         color: #222;
         transition: 0.3s;
@@ -47,49 +47,49 @@
       }
 
       .page-title {
-        margin-top: 130px;
+        margin-top: 100px; /* Jarak atas dikurangi */
         text-align: center;
-        font-size: 32px;
+        font-size: 28px; /* Font judul diperkecil sedikit */
         font-weight: 700;
         color: #333;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
 
-      /* Wrapper dua kolom */
+      /* ========================================= */
+      /* CONTAINER UTAMA DIAGRAM (SCALE LOGIC)     */
+      /* ========================================= */
+      
+      .diagram-scale {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: visible; 
+        /* Margin bottom negatif agar tidak ada ruang kosong besar di bawah saat di-scale */
+        margin-bottom: 0px; 
+      }
+
       .diagram-wrapper {
-        width: max-content; /* penting */
-        max-width: 1600px;
-        display: grid;
-        grid-template-columns: 750px 750px; /* fix width kiri & kanan */
-        gap: 120px;
-        margin: 0 auto;
-        padding: 20px;
-        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        gap: 60px; /* Jarak antar kolom kiri dan kanan */
+        padding: 0 20px;
+        transform-origin: top center; /* Titik pusat pengecilan dari atas tengah */
+        transition: transform 0.3s ease;
+        /* Memastikan lebar tidak memaksa scroll */
+        width: fit-content;
       }
 
-      /* Kolom */
       .column {
-        max-width: 100%;
-        margin: 0 auto;
-        text-align: center;
-        padding-left: 40px; /* ruang kiri */
-        padding-right: 40px; /* ruang kanan */
-        box-sizing: border-box;
-        width: 700px; /* bisa kamu atur ulang */
         text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: center; /* ini bikin judul nge-center tepat di root */
+        align-items: center;
       }
 
       .column-title {
-        width: max-content;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        margin-bottom: 25px;
-        font-size: 28px;
+        font-size: 20px;
         font-weight: 700;
+        margin-bottom: 20px;
         color: #333;
       }
 
@@ -101,18 +101,16 @@
         justify-content: center;
         margin: 0;
         padding-left: 0;
-        width: max-content; /* <— tree tidak nyebar */
-        margin-left: auto;
-        margin-right: auto;
       }
 
       .tree li {
         list-style-type: none;
         position: relative;
-        padding: 20px 10px 0 10px;
+        padding: 20px 5px 0 5px; /* Padding dikurangi agar lebih rapat */
         text-align: center;
       }
 
+      /* Garis Konektor */
       .tree li::before,
       .tree li::after {
         content: "";
@@ -160,40 +158,34 @@
         height: 20px;
       }
 
-      /* Node */
+      /* NODE (KOTAK) - DIPERKECIL */
       .node {
-        display: inline-block;
-        padding: 25px 20px;
-        border-radius: 15px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 15px; /* Padding lebih kecil */
+        border-radius: 10px;
         border: 2px solid #000;
-        font-size: 16px;
+        font-size: 13px; /* Font lebih kecil */
         font-weight: 700;
-        width: 70px;
+        min-width: 50px; /* Lebar minimal lebih kecil */
         cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        transition: 0.3s;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        transition: 0.2s;
+        background: white;
+        position: relative;
+        z-index: 2;
       }
+      
       .node:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
       }
 
-      .purple {
-        background: #126e80;
-        color: #fff;
-      }
-      .yellow {
-        background: #32a0b4;
-        color: #000;
-      }
-      .red {
-        background: #98dfe1;
-        color: #000;
-      }
-      .green {
-        background: #e0f7f8;
-        color: #000;
-      }
+      .purple { background: #126e80; color: #fff; }
+      .yellow { background: #32a0b4; color: #000; }
+      .red { background: #98dfe1; color: #000; }
+      .green { background: #e0f7f8; color: #000; }
 
       /* Modal */
       .modal-overlay {
@@ -212,12 +204,13 @@
       }
       .modal-content {
         background: white;
-        padding: 40px;
-        border-radius: 20px;
+        padding: 30px;
+        border-radius: 15px;
         max-width: 500px;
         width: 90%;
         text-align: center;
         position: relative;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       }
       .close-btn {
         position: absolute;
@@ -225,6 +218,7 @@
         right: 15px;
         font-size: 24px;
         cursor: pointer;
+        color: #555;
       }
 
       .modal-active {
@@ -232,30 +226,22 @@
         opacity: 1;
       }
 
-      .diagram-scale {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        overflow-x: auto;
-        overflow-y: auto;
-        padding-bottom: 20px;
-      }
-
       /* TABEL */
       .table-container {
         width: 90%;
-        margin: 60px auto;
+        max-width: 1200px;
+        margin: 40px auto; /* Jarak atas dikurangi */
         background: #ffffff;
         padding: 30px;
         border-radius: 20px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         overflow-x: auto;
       }
 
       .clean-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 14px;
+        font-size: 13px;
         color: #333;
       }
 
@@ -266,41 +252,72 @@
         padding: 12px;
         text-align: center;
         border-bottom: 2px solid #0f5c6a;
+        white-space: nowrap;
       }
 
       .clean-table td {
         padding: 10px 12px;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+      }
+      .clean-table td:first-child { text-align: center; }
+      
+      .clean-table tr:nth-child(even) { background: #f9fbfc; }
+      .clean-table tr:hover { background: #f0f8fa; }
+
+      /* ================================================== */
+      /* MEDIA QUERIES: ZOOM OUT OTOMATIS (RESPONSIVE)      */
+      /* ================================================== */
+      
+      /* Layar Besar (Desktop PC) */
+      @media (min-width: 1601px) {
+        .diagram-wrapper { transform: scale(1); }
       }
 
-      .clean-table tr:nth-child(even) {
-        background: #f5fbfc;
+      /* Laptop Besar (1440px - 1600px) */
+      @media (max-width: 1600px) {
+        .diagram-wrapper { transform: scale(0.9); }
       }
 
-      .clean-table tr:hover {
-        background: #e7f5f7;
+      /* Laptop Standar (1366px - 1440px) */
+      @media (max-width: 1440px) {
+        .diagram-wrapper { 
+            transform: scale(0.8); 
+            gap: 40px; 
+        }
+        .page-title { margin-top: 90px; margin-bottom: 10px; }
+        .diagram-scale { margin-bottom: -50px; } /* Menarik tabel ke atas */
       }
 
-      /* Mobile version: diagram diperkecil */
-      @media (max-width: 900px) {
+      /* Laptop Kecil (1280px) */
+      @media (max-width: 1280px) {
+        .diagram-wrapper { 
+            transform: scale(0.7); 
+            gap: 30px;
+        }
+        .diagram-scale { margin-bottom: -100px; }
+      }
+
+      /* Tablet/Layar Sempit */
+      @media (max-width: 1024px) {
+        .diagram-wrapper { 
+            transform: scale(0.6); 
+            gap: 20px;
+        }
+        .diagram-scale { margin-bottom: -150px; }
+      }
+
+      /* Mobile - Stack Vertikal */
+      @media (max-width: 768px) {
         .diagram-wrapper {
-          grid-template-columns: 1fr;
-          max-width: 800px;
+          flex-direction: column;
+          transform: scale(0.75);
           gap: 50px;
         }
-
-        .column {
-          transform: scale(0.85);
-          transform-origin: top center;
-        }
+        .diagram-scale { margin-bottom: -50px; }
+        .tree ul { padding-top: 10px; }
       }
 
-      @media (max-width: 600px) {
-        .column {
-          transform: scale(0.7);
-        }
-      }
     </style>
   </head>
   <body>
@@ -311,163 +328,64 @@
       </div>
     </div>
 
-    <h1 class="page-title">Aktivitas Administrasi & Pemeriksaan</h1>
-
-    <!-- ========================= -->
-    <!-- WRAPPER KS: KIRI DAN KANAN -->
-    <!-- ========================= -->
+    <h1 class="page-title">Aktivitas Administrasi & Pemeriksaan 2</h1>
 
     <div class="diagram-scale">
       <div class="diagram-wrapper">
-        <!-- ========================================================= -->
-        <!-- ====================== KIRI — AA2 ======================== -->
-        <!-- ========================================================= -->
+        
         <div class="column">
           <div class="column-title">Aktivitas Administrasi 2</div>
 
           <div class="tree">
             <ul>
               <li>
-                <!-- ROOT -->
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Administrasi 2',
-                 'Menerbitkan Roster & Deployment per shift (termasuk update flexible roster)')"
-                >
-                  AA 2
-                </div>
-
+                <div class="node purple" onclick="showModal('Aktivitas Administrasi 2','Menerbitkan Roster & Deployment per shift...')">AA 2</div>
                 <ul>
-                  <!-- ================= RISK 3 ================= -->
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 3 (Risiko 3)',
-                     'Under-/Over-staffing & salah alokasi personel')"
-                    >
-                      R 3
-                    </div>
-
+                    <div class="node yellow" onclick="showModal('Risk 3 (Risiko 3)','Under-/Over-staffing & salah alokasi personel')">R 3</div>
                     <ul>
-                      <!-- C3 → PM3 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 3 (Penyebab 3)',
-                         'Perkiraan beban kerja tidak akurat')"
-                        >
-                          C 3
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 3 (Penyebab 3)','Perkiraan beban kerja tidak akurat')">C 3</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 3 (Tindakan Preventif 3)',
-                             'Gunakan forecast berbasis BAPLIE final + historis move, lalu simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.')"
-                            >
-                              PM 3
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 3','Gunakan forecast berbasis BAPLIE final...')">PM 3</div>
                           </li>
                         </ul>
                       </li>
-
-                      <!-- C4 → PM4 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 4 (Penyebab 4)',
-                         'Tidak ada/kurang update skills-matrix & sertifikasi, sehingga penempatan tidak sesuai kompetensi.')"
-                        >
-                          C 4
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 4 (Penyebab 4)','Tidak ada/kurang update skills-matrix...')">C 4</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 4 (Tindakan Preventif 4)',
-                             'Terapkan skills-matrix formal dan program kompetensi/sertifikasi operator sesuai pedoman keselamatan pelabuhan.')"
-                            >
-                              PM 4
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 4','Terapkan skills-matrix formal...')">PM 4</div>
                           </li>
                         </ul>
                       </li>
-
-                      <!-- C5 → PM5 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 5 (Penyebab 5)',
-                         'Ketidakhadiran mendadak tidak tertangani real-time karena tidak ada back-up pool')"
-                        >
-                          C 5
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 5 (Penyebab 5)','Ketidakhadiran mendadak tidak tertangani...')">C 5</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 5 (Tindakan Preventif 5)',
-                             'Siapkan reserve/on-call pool dan rencana workforce planning berbasis skenario untuk menutup gap kehadiran.')"
-                            >
-                              PM 5
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 5','Siapkan reserve/on-call pool...')">PM 5</div>
                           </li>
                         </ul>
                       </li>
                     </ul>
                   </li>
-
-                  <!-- ================= RISK 4 ================= -->
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 4 (Risiko 4)',
-                     'Roster kurang fleksibel terhadap ketidakpastian operasional')"
-                    >
-                      R 4
-                    </div>
-
+                    <div class="node yellow" onclick="showModal('Risk 4 (Risiko 4)','Roster kurang fleksibel terhadap ketidakpastian...')">R 4</div>
                     <ul>
-                      <!-- C6 → PM6 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 6 (Penyebab 6)',
-                         'Roster kaku (fixed shift tanpa buffer/on-call/multi-skilling)')"
-                        >
-                          C 6
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 6 (Penyebab 6)','Roster kaku (fixed shift tanpa buffer...)')">C 6</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 6 (Tindakan Preventif 6)',
-                             'Terapkan flexible rostering (buffer shift, multi-skilling) sebagai bagian dari perencanaan tenaga kerja pelabuhan.')"
-                            >
-                              PM 6
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 6','Terapkan flexible rostering...')">PM 6</div>
                           </li>
                         </ul>
                       </li>
-
-                      <!-- C7 → PM7 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 7 (Penyebab 7)',
-                         'Batasan regulasi & kontrak (jam kerja/overtime/aturan serikat) menyulitkan penyesuaian cepat')"
-                        >
-                          C 7
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 7 (Penyebab 7)','Batasan regulasi & kontrak menyulitkan...')">C 7</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 7 (Tindakan Preventif 7)',
-                             'Bangun roster yang patuh aturan jam kerja & kelelahan sesuai ILO Code of Practice, plus MoU dengan serikat untuk skema fleksibel.')"
-                            >
-                              PM 7
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 7','Bangun roster yang patuh aturan...')">PM 7</div>
                           </li>
                         </ul>
                       </li>
@@ -479,190 +397,72 @@
           </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- ====================== KANAN — AP2 ======================= -->
-        <!-- ========================================================= -->
         <div class="column">
           <div class="column-title">Aktivitas Pemeriksaan 2</div>
 
           <div class="tree">
             <ul>
               <li>
-                <!-- ROOT -->
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Pemeriksaan 2',
-                 'Verifikasi Roster & Deployment per shift (termasuk update flexible roster)')"
-                >
-                  AP 2
-                </div>
-
+                <div class="node purple" onclick="showModal('Aktivitas Pemeriksaan 2','Verifikasi Roster & Deployment per shift...')">AP 2</div>
                 <ul>
-                  <!-- ================= RISK 3 ================= -->
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 3 (Risiko 3)',
-                     'Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing & mis-allocation)')"
-                    >
-                      R 3
-                    </div>
-
+                    <div class="node yellow" onclick="showModal('Risk 3 (Risiko 3)','Mismatch kebutuhan–ketersediaan personel/alat...')">R 3</div>
                     <ul>
-                      <!-- C5 → PM5 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 5 (Penyebab 5)',
-                         'Data/peramalan beban kerja tidak akurat atau belum tersinkron')"
-                        >
-                          C 5
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 5 (Penyebab 5)','Data/peramalan beban kerja tidak akurat...')">C 5</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 5 (Tindakan Preventif 5)',
-                             'Sinkronkan TOS ke engine roster otomatis sebelum H-12 lalu freeze roster')"
-                            >
-                              PM 5
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 5','Sinkronkan TOS ke engine roster otomatis...')">PM 5</div>
                           </li>
                         </ul>
                       </li>
-
-                      <!-- C6 → PM6 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 6 (Penyebab 6)',
-                         'Absensi mendadak tidak tertangani dan tidak ada pool cadangan')"
-                        >
-                          C 6
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 6 (Penyebab 6)','Absensi mendadak tidak tertangani...')">C 6</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 6 (Tindakan Preventif 6)',
-                             'Sediakan standby pool pada flexible roster (roving/multi-skill) tiap shift')"
-                            >
-                              PM 6
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 6','Sediakan standby pool pada flexible roster...')">PM 6</div>
                           </li>
                         </ul>
                       </li>
                     </ul>
                   </li>
-
-                  <!-- ================= RISK 4 ================= -->
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 4 (Risiko 4)',
-                     'Ketidakcocokan kompetensi/sertifikasi dengan penugasan')"
-                    >
-                      R 4
-                    </div>
-
+                    <div class="node yellow" onclick="showModal('Risk 4 (Risiko 4)','Ketidakcocokan kompetensi/sertifikasi...')">R 4</div>
                     <ul>
-                      <!-- C7 → PM7 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 7 (Penyebab 7)',
-                         'Penjadwalan tidak berbasis keterampilan/izin alat')"
-                        >
-                          C 7
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 7 (Penyebab 7)','Penjadwalan tidak berbasis keterampilan...')">C 7</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 7 (Tindakan Preventif 7)',
-                             'Aktifkan aturan skill/license lock di engine roster')"
-                            >
-                              PM 7
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 7','Aktifkan aturan skill/license lock...')">PM 7</div>
                           </li>
                         </ul>
                       </li>
-
-                      <!-- C8 → PM8 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 8 (Penyebab 8)',
-                         'Minimnya multi-skilling sehingga pengganti sangat terbatas')"
-                        >
-                          C 8
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 8 (Penyebab 8)','Minimnya multi-skilling sehingga pengganti terbatas')">C 8</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 8 (Tindakan Preventif 8)',
-                             'Program multi-skilling terjadwal + matriks kompetensi')"
-                            >
-                              PM 8
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 8','Program multi-skilling terjadwal...')">PM 8</div>
                           </li>
                         </ul>
                       </li>
                     </ul>
                   </li>
-
-                  <!-- ================= RISK 5 ================= -->
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 5 (Risiko 5)',
-                     'Kelelahan (fatigue) karena pola shift/roster yang tidak sehat')"
-                    >
-                      R 5
-                    </div>
-
+                    <div class="node yellow" onclick="showModal('Risk 5 (Risiko 5)','Kelelahan (fatigue) karena pola shift tidak sehat')">R 5</div>
                     <ul>
-                      <!-- C9 → PM9 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 9 (Penyebab 9)',
-                         'Rotasi shift tidak sehat (malam berturut-turut, jam panjang)')"
-                        >
-                          C 9
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 9 (Penyebab 9)','Rotasi shift tidak sehat (malam berturut-turut...)')">C 9</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 9 (Tindakan Preventif 9)',
-                             'Terapkan FRMS + batas jam kerja & rotasi sehat di engine roster')"
-                            >
-                              PM 9
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 9','Terapkan FRMS + batas jam kerja...')">PM 9</div>
                           </li>
                         </ul>
                       </li>
-
-                      <!-- C10 → PM10 -->
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 10 (Penyebab 10)',
-                         'Kekurangan personel → lembur berulang')"
-                        >
-                          C 10
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 10 (Penyebab 10)','Kekurangan personel → lembur berulang')">C 10</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 10 (Tindakan Preventif 10)',
-                             'Standby pool multi-skill per shift untuk tutup absen tanpa lembur')"
-                            >
-                              PM 10
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 10','Standby pool multi-skill per shift...')">PM 10</div>
                           </li>
                         </ul>
                       </li>
@@ -673,28 +473,12 @@
             </ul>
           </div>
         </div>
+
       </div>
     </div>
 
-    <!-- MODAL -->
-    <div class="modal-overlay" id="infoModal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalText"></p>
-      </div>
-    </div>
-
-    <!-- TABEL BESAR -->
     <div class="table-container">
-      <h2
-        style="
-          text-align: center;
-          margin-bottom: 25px;
-          font-weight: 700;
-          color: #126e80;
-        "
-      >
+      <h2 style="text-align: center; margin-bottom: 25px; font-weight: 700; color: #126e80;">
         Knowledge Base Aktivitas Terminal Teluk Lamong
       </h2>
 
@@ -713,9 +497,7 @@
             <th>Preventive Measure</th>
           </tr>
         </thead>
-
         <tbody>
-          <!-- AT 2 -->
           <tr>
             <td>AT 2</td>
             <td>Manning & Deployment</td>
@@ -728,7 +510,6 @@
             <td>PM5</td>
             <td>Integrasi attendance real-time</td>
           </tr>
-
           <tr>
             <td>AT 2</td>
             <td>Manning & Deployment</td>
@@ -741,7 +522,6 @@
             <td>PM6</td>
             <td>Workload balancing + sistem rekomendasi</td>
           </tr>
-
           <tr>
             <td>AT 2</td>
             <td>Manning & Deployment</td>
@@ -754,7 +534,6 @@
             <td>PM7</td>
             <td>Skill-based assignment</td>
           </tr>
-
           <tr>
             <td>AT 2</td>
             <td>Manning & Deployment</td>
@@ -771,6 +550,14 @@
       </table>
     </div>
 
+    <div class="modal-overlay" id="infoModal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle" style="color: #126e80; margin-top: 0;"></h2>
+        <p id="modalText" style="font-size: 15px; line-height: 1.6; color: #444;"></p>
+      </div>
+    </div>
+
     <script>
       function showModal(title, text) {
         document.getElementById("modalTitle").innerText = title;
@@ -780,6 +567,14 @@
 
       function closeModal() {
         document.getElementById("infoModal").classList.remove("modal-active");
+      }
+      
+      // Menutup modal jika klik di luar kotak
+      window.onclick = function(event) {
+        const modal = document.getElementById("infoModal");
+        if (event.target == modal) {
+            closeModal();
+        }
       }
     </script>
   </body>
