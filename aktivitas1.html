@@ -223,6 +223,47 @@
         transition: transform 0.3s ease;
       }
 
+      /* TABEL */
+      .table-container {
+        width: 90%;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+      }
+
+      .clean-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .clean-table th {
+        background: #126e80;
+        color: white;
+        font-weight: 600;
+        padding: 12px;
+        text-align: center;
+        border-bottom: 2px solid #0f5c6a;
+      }
+
+      .clean-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .clean-table tr:nth-child(even) {
+        background: #f5fbfc;
+      }
+
+      .clean-table tr:hover {
+        background: #e7f5f7;
+      }
+
       /* RESPONSIVE BREAKPOINTS */
       @media (max-width: 1600px) {
         .diagram-wrapper {
@@ -459,6 +500,117 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- TABEL BESAR -->
+    <div class="table-container">
+      <h2
+        style="
+          text-align: center;
+          margin-bottom: 25px;
+          font-weight: 700;
+          color: #126e80;
+        "
+      >
+        Knowledge Base Aktivitas Terminal Teluk Lamong
+      </h2>
+
+      <table class="clean-table">
+        <thead>
+          <tr>
+            <th>AT Code</th>
+            <th>Aktivitas Terminal</th>
+            <th>AA/AP Code</th>
+            <th>Aktivitas Admin/Pemeriksaan</th>
+            <th>Risk Code</th>
+            <th>Risk</th>
+            <th>Cause Code</th>
+            <th>Cause</th>
+            <th>PM Code</th>
+            <th>Preventive Measure</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AA 1</td>
+            <td>Menerbitkan Berth Plan terkonfirmasi</td>
+            <td>R1</td>
+            <td>Ketidakakuratan jadwal & posisi sandar</td>
+            <td>C1</td>
+            <td>ETA/ETD kapal tidak akurat</td>
+            <td>PM1</td>
+            <td>Just-in-Time Port Call + update ETA/ETD</td>
+          </tr>
+
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AA 1</td>
+            <td>Menerbitkan Berth Plan terkonfirmasi</td>
+            <td>R2</td>
+            <td>Ketidaksesuaian alokasi crane</td>
+            <td>C2</td>
+            <td>Status crane tidak real-time</td>
+            <td>PM2</td>
+            <td>Integrasi CMMS + condition monitoring</td>
+          </tr>
+
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>Verifikasi Vessel Schedule & Alokasi</td>
+            <td>R1</td>
+            <td>Berth conflict</td>
+            <td>C1</td>
+            <td>ETA/ETB tidak sinkron</td>
+            <td>PM1</td>
+            <td>Sinkronisasi otomatis ETA/ETB</td>
+          </tr>
+
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>Verifikasi Vessel Schedule</td>
+            <td>R1</td>
+            <td>Berth conflict</td>
+            <td>C2</td>
+            <td>Durasi operasi kapal meleset</td>
+            <td>PM2</td>
+            <td>Buffer time antar kapal</td>
+          </tr>
+
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>Verifikasi Vessel Schedule</td>
+            <td>R2</td>
+            <td>Ketidakcocokan kapal–dermaga</td>
+            <td>C3</td>
+            <td>Data teknis kapal tidak lengkap</td>
+            <td>PM3</td>
+            <td>Ship particulars checklist + hard validation</td>
+          </tr>
+
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>Verifikasi Vessel Schedule</td>
+            <td>R2</td>
+            <td>Ketidakcocokan kapal–dermaga</td>
+            <td>C4</td>
+            <td>Informasi dermaga tidak akurat</td>
+            <td>PM4</td>
+            <td>Berth capacity matrix + crane status</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <!-- MODAL -->
