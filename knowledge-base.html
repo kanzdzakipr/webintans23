@@ -149,18 +149,19 @@
       /* TABEL */
       .table-container {
         width: 90%;
-        margin: 60px auto;
+        max-width: 1200px;
+        margin: 0 auto 60px auto;
         background: #ffffff;
         padding: 30px;
         border-radius: 20px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         overflow-x: auto;
       }
 
       .clean-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 14px;
+        font-size: 13px;
         color: #333;
       }
 
@@ -171,20 +172,23 @@
         padding: 12px;
         text-align: center;
         border-bottom: 2px solid #0f5c6a;
+        white-space: nowrap;
       }
 
       .clean-table td {
         padding: 10px 12px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+      }
+      .clean-table td:first-child {
         text-align: center;
       }
 
       .clean-table tr:nth-child(even) {
-        background: #f5fbfc;
+        background: #f9fbfc;
       }
-
       .clean-table tr:hover {
-        background: #e7f5f7;
+        background: #f0f8fa;
       }
 
       @media (max-width: 900px) {
@@ -290,76 +294,127 @@
             <td>AA 1</td>
             <td>Menerbitkan Berth Plan terkonfirmasi</td>
             <td>R1</td>
-            <td>Ketidakakuratan jadwal & posisi sandar</td>
+            <td>
+              Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)
+            </td>
             <td>C1</td>
-            <td>ETA/ETD kapal tidak akurat</td>
+            <td>
+              ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian,
+              pilotage)
+            </td>
             <td>PM1</td>
-            <td>Just-in-Time Port Call + update ETA/ETD</td>
+            <td>
+              Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD
+              berkala via Inaportnet dan berbagi memakai data standar IMO
+              FAL.5/Circ.52, terhubung ke VTS/pandu
+            </td>
           </tr>
-
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AA 1</td>
             <td>Menerbitkan Berth Plan terkonfirmasi</td>
             <td>R2</td>
-            <td>Ketidaksesuaian alokasi crane</td>
+            <td>Ketidaksesuaian alokasi crane & kapasitas fasilitas</td>
             <td>C2</td>
-            <td>Status crane tidak real-time</td>
+            <td>
+              Ketersediaan crane/fasilitas tidak real-time
+              (breakdown/maintenance, overlap rel/jangkauan, batas daya)
+            </td>
             <td>PM2</td>
-            <td>Integrasi CMMS + condition monitoring</td>
+            <td>
+              Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS
+              agar status alat (operational/out-of-service) real-time; lengkapi
+              fitur keselamatan minimum (anemometer, tie-down, anti-collision)
+              untuk mengurangi downtime karena cuaca/gangguan.
+            </td>
           </tr>
-
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule & Alokasi</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
             <td>R1</td>
-            <td>Berth conflict</td>
+            <td>Konflik jadwal/berth conflict (double-booking)</td>
             <td>C1</td>
-            <td>ETA/ETB tidak sinkron</td>
+            <td>
+              Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA
+              Map–Inaportnet–shipping line/agent).
+            </td>
             <td>PM1</td>
-            <td>Sinkronisasi otomatis ETA/ETB</td>
+            <td>
+              Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30
+              menit) antara TOS/BA Map–Inaportnet–shipping line
+            </td>
           </tr>
-
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar. Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map
+              sebelum sandar.
+            </td>
             <td>R1</td>
-            <td>Berth conflict</td>
+            <td>Konflik jadwal/berth conflict (double-booking)</td>
             <td>C2</td>
-            <td>Durasi operasi kapal meleset</td>
+            <td>
+              Durasi operasi kapal sebelumnya meleset (overrun karena
+              produktivitas turun), sehingga window bertumpuk
+            </td>
             <td>PM2</td>
-            <td>Buffer time antar kapal</td>
+            <td>
+              Tambahkan buffer time antar kapal berbasis histori
+              produktivitas/tidal window pada penetapan window sandar
+            </td>
           </tr>
-
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
             <td>R2</td>
             <td>Ketidakcocokan kapal–dermaga</td>
             <td>C3</td>
-            <td>Data teknis kapal tidak lengkap</td>
+            <td>
+              Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft,
+              kebutuhan crane, special cargo) saat verifikasi
+            </td>
             <td>PM3</td>
-            <td>Ship particulars checklist + hard validation</td>
+            <td>
+              Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan
+              aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane
+              harus valid sebelum alokasi diproses)
+            </td>
           </tr>
-
           <tr>
             <td>AT 1</td>
             <td>Berth Allocation (BA)</td>
             <td>AP 1</td>
-            <td>Verifikasi Vessel Schedule</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
             <td>R2</td>
             <td>Ketidakcocokan kapal–dermaga</td>
             <td>C4</td>
-            <td>Informasi dermaga tidak akurat</td>
+            <td>
+              Informasi kondisi dermaga & peralatan tidak akurat (kedalaman
+              aktual, crane outage/jangkauan, batasan struktur)
+            </td>
             <td>PM4</td>
-            <td>Berth capacity matrix + crane status</td>
+            <td>
+              Update harian “berth capacity matrix” (kedalaman aktual & status
+              crane) terhubung ke BA Map dengan aturan no-allocate jika tidak
+              memenuhi batas
+            </td>
           </tr>
 
           <!-- AT 2 -->
@@ -367,52 +422,236 @@
             <td>AT 2</td>
             <td>Manning & Deployment</td>
             <td>AA 2</td>
-            <td>Menyusun jadwal manpower</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
             <td>R3</td>
-            <td>Kekurangan tenaga kerja</td>
-            <td>C5</td>
-            <td>Data kehadiran tidak akurat</td>
-            <td>PM5</td>
-            <td>Integrasi attendance real-time</td>
+            <td>Under-/Over-staffing & salah alokasi personel</td>
+            <td>C3</td>
+            <td>
+              Perkiraan beban kerja tidak akurat (jadwal kapal/CWP/forecast move
+              tidak sinkron)
+            </td>
+            <td>PM3</td>
+            <td>
+              Gunakan forecast berbasis BAPLIE final + historis move, lalu
+              simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.
+            </td>
           </tr>
-
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
+            <td>R3</td>
+            <td>Under-/Over-staffing & salah alokasi personel</td>
+            <td>C4</td>
+            <td>
+              Tidak ada/kurang update skills-matrix & sertifikasi, sehingga
+              penempatan tidak sesuai kompetensi
+            </td>
+            <td>PM4</td>
+            <td>
+              Terapkan skills-matrix formal dan program kompetensi/sertifikasi
+              operator sesuai pedoman keselamatan pelabuhan.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
+            <td>R3</td>
+            <td>Under-/Over-staffing & salah alokasi personel</td>
+            <td>C5</td>
+            <td>
+              Ketidakhadiran mendadak (sakit/izin) tidak tertangani real-time
+              karena tidak ada back-up pool
+            </td>
+            <td>PM5</td>
+            <td>
+              Siapkan reserve/on-call pool dan rencana workforce planning
+              berbasis skenario untuk menutup gap kehadiran.
+            </td>
+          </tr>
           <tr>
             <td>AT 2</td>
             <td>Manning & Deployment</td>
             <td>AA 2</td>
             <td>Menyusun jadwal manpower</td>
             <td>R4</td>
-            <td>Overwork / kelebihan beban</td>
+            <td>Roster kurang fleksibel terhadap ketidakpastian operasional</td>
             <td>C6</td>
             <td>Distribusi manpower tidak seimbang</td>
             <td>PM6</td>
             <td>Workload balancing + sistem rekomendasi</td>
           </tr>
-
           <tr>
             <td>AT 2</td>
             <td>Manning & Deployment</td>
-            <td>AP 2</td>
-            <td>Verifikasi kehadiran & kualifikasi</td>
-            <td>R3</td>
-            <td>Tenaga tidak kompeten masuk shift</td>
-            <td>C7</td>
-            <td>Kualifikasi skill tidak diverifikasi</td>
-            <td>PM7</td>
-            <td>Skill-based assignment</td>
-          </tr>
-
-          <tr>
-            <td>AT 2</td>
-            <td>Manning & Deployment</td>
-            <td>AP 2</td>
-            <td>Verifikasi kehadiran & kualifikasi</td>
+            <td>AA 2</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
             <td>R4</td>
-            <td>Overload tenaga kerja</td>
+            <td>Roster kurang fleksibel terhadap ketidakpastian operasional</td>
+            <td>C7</td>
+            <td>
+              Batasan regulasi & kontrak (jam kerja/overtime/aturan serikat)
+              menyulitkan penyesuaian cepat
+            </td>
+            <td>PM7</td>
+            <td>
+              Bangun roster yang patuh aturan jam kerja & kelelahan (fatigue)
+              sesuai ILO Code of Practice, plus MoU dengan serikat untuk skema
+              fleksibel.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R3</td>
+            <td>
+              Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing
+              & mis-allocation)
+            </td>
+            <td>C5</td>
+            <td>
+              Data/peramalan beban kerja tidak akurat atau belum tersinkron
+              (perubahan CWP/yard plan/ETA–volume belum masuk roster)
+            </td>
+            <td>PM5</td>
+            <td>
+              Sinkronkan TOS (CWP/yard plan & ETA-volume) ke engine roster
+              otomatis sebelum H-12 dan “freeze” roster
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R3</td>
+            <td>
+              Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing
+              & mis-allocation)
+            </td>
+            <td>C6</td>
+            <td>
+              Absensi/izin mendadak tidak tertangani dan tidak ada pool cadangan
+              (standby) yang siap
+            </td>
+            <td>PM6</td>
+            <td>
+              Sediakan standby pool pada flexible roster (roving/multi-skill)
+              yang terjadwal tiap shift
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R4</td>
+            <td>Ketidakcocokan kompetensi/sertifikasi dengan penugasan</td>
+            <td>C7</td>
+            <td>
+              Penjadwalan tidak berbasis keterampilan/izin alat (engine roster
+              tidak mengunci pairing skill–alat)
+            </td>
+            <td>PM7</td>
+            <td>
+              Aktifkan aturan “skill/license lock” di engine roster (assignment
+              gagal jika sertifikat/izin tidak valid)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R4</td>
+            <td>Ketidakcocokan kompetensi/sertifikasi dengan penugasan</td>
             <td>C8</td>
-            <td>Penggantian mendadak tanpa kontrol</td>
+            <td>
+              Minimnya multi-skilling sehingga pilihan pengganti bersertifikat
+              sangat terbatas
+            </td>
             <td>PM8</td>
-            <td>Otomatisasi approval penggantian</td>
+            <td>
+              Jalankan program multi-skilling terjadwal dan pelihara matriks
+              kompetensi sebagai acuan penugasan
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R5</td>
+            <td>
+              Kelelahan (fatigue) karena pola shift/roster yang tidak sehat atau
+              perubahan mendadak
+            </td>
+            <td>C9</td>
+            <td>
+              Rotasi shift tidak sehat (shift malam berturut-turut, jam kerja
+              panjang/lembur tinggi)
+            </td>
+            <td>PM9</td>
+            <td>
+              Terapkan FRMS + batas jam kerja & rotasi sehat (mis. max 2 shift
+              malam beruntun, rest ≥10–12 jam) yang dikunci di engine roster
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R5</td>
+            <td>
+              Kelelahan (fatigue) karena pola shift/roster yang tidak sehat atau
+              perubahan mendadak
+            </td>
+            <td>C10</td>
+            <td>
+              Kekurangan personel kronis mendorong lembur berulang untuk
+              mengejar target produktivitas
+            </td>
+            <td>PM10</td>
+            <td>
+              Sediakan standby pool multi-skill per shift (roving) untuk menutup
+              absen tanpa lembur berulang
+            </td>
           </tr>
 
           <!-- AT 3 -->
@@ -420,52 +659,157 @@
             <td>AT 3</td>
             <td>Ship Planner</td>
             <td>AA 3</td>
-            <td>Menyusun Rencana Operasi Kapal</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
             <td>R5</td>
-            <td>Mis-stow / salah penataan</td>
-            <td>C9</td>
-            <td>Data stowage tidak lengkap</td>
-            <td>PM9</td>
-            <td>Data validation + pre-check stowage</td>
+            <td>
+              Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE &
+              VGM)
+            </td>
+            <td>C8</td>
+            <td>
+              Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak
+              tersebar)
+            </td>
+            <td>PM8</td>
+            <td>
+              Terapkan kontrol versi & acknowledgement EDI (gunakan
+              APERAK/CONTRL) agar hanya versi terbaru yang dipakai.
+            </td>
           </tr>
-
           <tr>
             <td>AT 3</td>
             <td>Ship Planner</td>
             <td>AA 3</td>
-            <td>Menyusun Rencana Operasi Kapal</td>
-            <td>R6</td>
-            <td>Crane conflict</td>
-            <td>C10</td>
-            <td>Perhitungan jangkauan crane salah</td>
-            <td>PM10</td>
-            <td>Cranespace simulation</td>
-          </tr>
-
-          <tr>
-            <td>AT 3</td>
-            <td>Ship Planner</td>
-            <td>AP 3</td>
-            <td>Verifikasi rencana operasi</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
             <td>R5</td>
-            <td>Mis-stow</td>
-            <td>C11</td>
-            <td>Mismatch stowage plan vs manifest</td>
-            <td>PM11</td>
-            <td>Cross-check otomatis TOS–Manifest</td>
+            <td>
+              Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE &
+              VGM)
+            </td>
+            <td>C9</td>
+            <td>
+              Kualitas data buruk: salah bay/row/tier, size/type, atau VGM
+              belum/salah
+            </td>
+            <td>PM9</td>
+            <td>
+              Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM
+              sesuai SOLAS-VGM sebelum publish.
+            </td>
           </tr>
-
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
+            <td>R6</td>
+            <td>Interferensi antar quay crane karena CWP tidak optimal</td>
+            <td>C10</td>
+            <td>
+              Range kerja crane overlap (aturan non-crossing/jarak aman tidak
+              diterapkan)
+            </td>
+            <td>PM10</td>
+            <td>
+              Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing &
+              safety distance + validasi CWP sebelum publish
+            </td>
+          </tr>
           <tr>
             <td>AT 3</td>
             <td>Ship Planner</td>
             <td>AP 3</td>
-            <td>Verifikasi rencana operasi</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan i
+            </td>
             <td>R6</td>
-            <td>Crane conflict</td>
+            <td>
+              Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer,
+              VGM, data kapal)
+            </td>
+            <td>C11</td>
+            <td>
+              Kesalahan input/manual mapping (ISO size/type, reefer/DG flag,
+              container ID) atau VGM belum masuk saat cut-off
+            </td>
+            <td>PM11</td>
+            <td>
+              Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM
+              wajib ada—kalau tidak, blok rencana)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R6</td>
+            <td>
+              Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer,
+              VGM, data kapal)
+            </td>
             <td>C12</td>
-            <td>Crane spacing tidak sesuai</td>
+            <td>
+              Profil kapal (bay/vessel particulars) tidak mutakhir di library
+              TOS sehingga penomoran slot/kapasitas tidak cocok
+            </td>
             <td>PM12</td>
-            <td>Auto-spacing & safety margin</td>
+            <td>
+              Governansi master data kapal (update saat first call & sign-off
+              oleh shipping line; versi dikunci sebelum planning)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R7</td>
+            <td>
+              Bay Plan melanggar aturan keselamatan (stabilitas, batas
+              tumpuk/lashing, dan segregasi Dangerous Goods)
+            </td>
+            <td>C13</td>
+            <td>
+              Deklarasi Dangerous Goods/segregation code tidak lengkap/salah,
+              atau reefer/OOG tidak ditandai
+            </td>
+            <td>PM13</td>
+            <td>
+              IMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis
+              block jika tidak sesuai segregasi)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R7</td>
+            <td>
+              Bay Plan melanggar aturan keselamatan (stabilitas, batas
+              tumpuk/lashing, dan segregasi Dangerous Goods)
+            </td>
+            <td>C14</td>
+            <td>
+              Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan
+              dalam rule TOS saat menyusun rencana
+            </td>
+            <td>PM14</td>
+            <td>
+              Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP
+              (rencana tidak bisa dieksekusi sebelum lolos)
+            </td>
           </tr>
 
           <!-- AT 4 -->
@@ -473,52 +817,201 @@
             <td>AT 4</td>
             <td>Yard Planner</td>
             <td>AA 4</td>
-            <td>Menyusun yard plan</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
             <td>R7</td>
-            <td>Penumpukan tidak efisien</td>
-            <td>C13</td>
-            <td>Yard occupancy tidak real-time</td>
-            <td>PM13</td>
-            <td>Yard monitoring + occupancy mapping</td>
+            <td>
+              Penempatan/slotting yard tidak efisien jadi re-handle & alat
+              banyak jalan
+            </td>
+            <td>C11</td>
+            <td>
+              Stack map tidak pakai urutan pengambilan (delivery sequence/dwell
+              time/priority tidak dipertimbangkan)
+            </td>
+            <td>PM11</td>
+            <td>
+              Lakukan slotting berbasis sequence & dwell time untuk meminimalkan
+              re-handle
+            </td>
           </tr>
 
           <tr>
             <td>AT 4</td>
             <td>Yard Planner</td>
             <td>AA 4</td>
-            <td>Menyusun yard plan</td>
-            <td>R8</td>
-            <td>Overstay / blocking</td>
-            <td>C14</td>
-            <td>Perkiraan dwell time salah</td>
-            <td>PM14</td>
-            <td>Dwell time prediction</td>
-          </tr>
-
-          <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AP 4</td>
-            <td>Verifikasi yard plan</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
             <td>R7</td>
-            <td>Kepadatan yard</td>
+            <td>
+              Penempatan/slotting yard tidak efisien jadi re-handle & alat
+              banyak jalan
+            </td>
+            <td>C12</td>
+            <td>
+              Data kontainer di TOS tidak lengkap/akurat
+              (size/type/berat/reefer/DG/hold) saat planning
+            </td>
+            <td>PM12</td>
+            <td>
+              Aktifkan rule-based validation (termasuk VGM SOLAS) & gunakan MIG
+              BAPLIE/MOVINS terbaru saat planning
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R7</td>
+            <td>
+              Penempatan/slotting yard tidak efisien jadi re-handle & alat
+              banyak jalan
+            </td>
+            <td>C13</td>
+            <td>
+              Inventori yard tidak real-time (slot di sistem ≠ kondisi
+              lapangan), sehingga slot rencana ternyata terisi/terblokir
+            </td>
+            <td>PM13</td>
+            <td>
+              Pasang RFID/QR-based yard tracking + mandatory move confirmation
+              agar inventory TOS selalu mutakhir
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R8</td>
+            <td>
+              Tidak sinkron dengan arus truk/gate → blok macet & truck
+              turnaround time naik
+            </td>
+            <td>C14</td>
+            <td>
+              Perubahan/ketidakpastian jadwal kedatangan truk (TAS/ETA) tidak
+              masuk ke perencanaan
+            </td>
+            <td>PM14</td>
+            <td>
+              Terapkan Terminal Booking System (TBS) terintegrasi TOS untuk
+              meratakan kedatangan & memperkecil waiting time
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R8</td>
+            <td>
+              Tidak sinkron dengan arus truk/gate → blok macet & truck
+              turnaround time naik
+            </td>
             <td>C15</td>
-            <td>Data block capacity salah</td>
+            <td>
+              Beban pengambilan ditumpuk di blok yang sama pada jam yang sama
+              (kapasitas gate/alat tidak diperhitungkan)
+            </td>
             <td>PM15</td>
-            <td>Auto-capacity check</td>
+            <td>
+              Load-balancing per blok & time-window lewat aturan TAS/yard
+              (kapasitas gate & alat sebagai constraint)
+            </td>
           </tr>
 
           <tr>
             <td>AT 4</td>
             <td>Yard Planner</td>
             <td>AP 4</td>
-            <td>Verifikasi yard plan</td>
+            <td>
+              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
+              prediksinya
+            </td>
             <td>R8</td>
-            <td>Blocking</td>
+            <td>
+              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
+              re-handle
+            </td>
             <td>C16</td>
-            <td>Barang prioritas bercampur</td>
+            <td>
+              Produktivitas yard turun: breakdown alat/kurang operator sehingga
+              backlog menumpuk
+            </td>
             <td>PM16</td>
-            <td>Priority slot rules</td>
+            <td>
+              Siapkan standby plan operator & unit cadangan untuk hot-swap saat
+              downtime
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AP 4</td>
+            <td>
+              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
+              prediksinya
+            </td>
+            <td>R8</td>
+            <td>
+              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
+              re-handle
+            </td>
+            <td>C17</td>
+            <td>
+              Area efektif berkurang: blok ditutup (maintenance/No-Work Area)
+              atau dibatasi (zona reefer/DG) sehingga kepadatan naik
+            </td>
+            <td>PM17</td>
+            <td>
+              Aktifkan blok alternatif/overflow sementara & lakukan dynamic
+              zoning untuk rebalance kepadatan
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AP 4</td>
+            <td>
+              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
+              prediksinya
+            </td>
+            <td>R8</td>
+            <td>
+              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
+              re-handle
+            </td>
+            <td>C18</td>
+            <td>
+              Kebijakan stacking kurang tepat: tinggi tumpukan/slotting campur
+              (import-export-empty) menambah re-handle dan memperlambat
+              pengosongan blok
+            </td>
+            <td>PM18</td>
+            <td>
+              Kunci yard policy di TOS (tinggi tumpuk & blok khusus
+              import/export/empty) dengan rule-based slotting
+            </td>
           </tr>
 
           <!-- AT 5 -->
@@ -526,66 +1019,119 @@
             <td>AT 5</td>
             <td>Ship Talker</td>
             <td>AA 5</td>
-            <td>Koordinasi operasional kapal</td>
+            <td>
+              Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di
+              CWP/Bay Plan)
+            </td>
             <td>R9</td>
-            <td>Miss-communication</td>
-            <td>C17</td>
-            <td>Informasi tidak standar</td>
-            <td>PM17</td>
-            <td>Standard message template</td>
+            <td>Instruksi/komunikasi tidak jelas (radio/isyarat tangan)</td>
+            <td>C16</td>
+            <td>
+              Kualitas radio buruk/crosstalk atau noise sehingga pesan
+              terpotong/tertukar
+            </td>
+            <td>PM16</td>
+            <td>
+              Audit & peremajaan radio, kanal khusus operasi, dan fallback ke
+              hand-signals standar bila audio tidak andal
+            </td>
           </tr>
 
           <tr>
             <td>AT 5</td>
             <td>Ship Talker</td>
             <td>AA 5</td>
-            <td>Koordinasi operasional kapal</td>
+            <td>
+              Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di
+              CWP/Bay Plan)
+            </td>
             <td>R10</td>
-            <td>Keterlambatan instruksi</td>
-            <td>C18</td>
-            <td>Response time lambat</td>
-            <td>PM18</td>
-            <td>Auto-notification system</td>
+            <td>Tidak sinkron dengan CWP/Bay Plan terbaru (versi salah)</td>
+            <td>C17</td>
+            <td>
+              Rencana terbaru tidak dipublikasikan ke semua pihak/perangkat
+              (pakai file lama)
+            </td>
+            <td>PM17</td>
+            <td>
+              Terapkan PCS/TOS sebagai “single source of truth” + kontrol versi
+              & notifikasi otomatis saat ada revisi rencana
+            </td>
           </tr>
 
           <tr>
             <td>AT 5</td>
             <td>Ship Talker</td>
             <td>AP 5</td>
-            <td>Verifikasi instruksi kapal</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
             <td>R9</td>
-            <td>Instruksi tidak jelas</td>
+            <td>
+              Gagal komunikasi radio atau miskom (radio mati/salah kanal/tidak
+              cukup unit)
+            </td>
             <td>C19</td>
-            <td>Laporan manual rawan salah</td>
+            <td>
+              Gangguan cakupan & kebisingan: dead spot di area kerja,
+              headset/noise-cancelling tidak digunakan
+            </td>
             <td>PM19</td>
-            <td>Digital reporting form</td>
+            <td>
+              Petakan cakupan & pasang repeater di area dead spot, sekaligus
+              wajib headset untuk semua peran kritis
+            </td>
           </tr>
 
           <tr>
             <td>AT 5</td>
             <td>Ship Talker</td>
             <td>AP 5</td>
-            <td>Verifikasi instruksi kapal</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
             <td>R10</td>
-            <td>Keterlambatan info</td>
+            <td>
+              Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA
+              kadaluarsa) → interferensi crane & waktu tunggu
+            </td>
             <td>C20</td>
-            <
-            <td>Kapal tidak update status</td>
+            <td>
+              Perubahan rencana last-minute tidak tersosialisasi (tidak ada
+              cut-off & change control yang jelas)
+            </td>
             <td>PM20</td>
-            <td>Mandatory status update</td>
+            <td>
+              Terapkan cut-off & change control terpusat di TOS; revisi hanya
+              lewat tiket yang otomatis broadcast
+            </td>
           </tr>
 
           <tr>
             <td>AT 5</td>
             <td>Ship Talker</td>
             <td>AP 5</td>
-            <td>Verifikasi instruksi kapal</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
             <td>R10</td>
-            <td>Keterlambatan info</td>
+            <td>
+              Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA
+              kadaluarsa) → interferensi crane & waktu tunggu
+            </td>
             <td>C21</td>
-            <td>Perbedaan format pelaporan</td>
+            <td>
+              Distribusi rencana manual (print/WA) tanpa kontrol
+              versi/timestamp, sehingga tim memakai versi berbeda
+            </td>
             <td>PM21</td>
-            <td>Standardized code & terminology</td>
+            <td>
+              Gunakan satu sumber (TOS) dengan timestamp; bagikan tautan versi
+              live, bukan file cetak/WA
+            </td>
           </tr>
 
           <!-- AT 6 -->
@@ -593,52 +1139,119 @@
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AA 6</td>
-            <td>Koordinasi operasional yard</td>
+            <td>
+              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
+              alat & tim
+            </td>
             <td>R11</td>
-            <td>Instruksi salah</td>
-            <td>C22</td>
-            <td>Data block salah</td>
-            <td>PM22</td>
-            <td>Auto-verification yard block</td>
+            <td>Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh</td>
+            <td>C18</td>
+            <td>
+              Kualitas radio buruk/crosstalk sehingga pesan terpotong atau
+              tertukar
+            </td>
+            <td>PM18</td>
+            <td>
+              Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan
+              fallback ke hand-signals standar bila kualitas audio tidak memadai
+            </td>
           </tr>
 
           <tr>
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AA 6</td>
-            <td>Koordinasi yard</td>
+            <td>
+              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
+              alat & tim
+            </td>
             <td>R12</td>
-            <td>Keterlambatan instruksi</td>
-            <td>C23</td>
-            <td>Keterlambatan update posisi</td>
-            <td>PM23</td>
-            <td>Live position system</td>
+            <td>Dispatch tidak sinkron dengan rencana yard & arus truk/gate</td>
+            <td>C19</td>
+            <td>
+              Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher &
+              operator.
+            </td>
+            <td>PM19</td>
+            <td>
+              Gunakan Truck Appointment System terintegrasi TOS (time-window,
+              load-balancing) dengan notifikasi perubahan otomatis
+            </td>
           </tr>
 
           <tr>
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AP 6</td>
-            <td>Verifikasi pergerakan yard</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
             <td>R11</td>
-            <td>Instruksi salah</td>
-            <td>C24</td>
-            <td>Operator salah baca info</td>
-            <td>PM24</td>
-            <td>Dashboard info + highlight</td>
+            <td>
+              Salah hold/release sehingga kontainer yang masih “ditahan”
+              (Customs/Karantina/DG) terlepas atau sebaliknya
+            </td>
+            <td>C22</td>
+            <td>
+              Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS
+              (SPPB, pemeriksaan fisik, red/yellow lane)
+            </td>
+            <td>PM22</td>
+            <td>
+              Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB
+              tervalidasi di sistem
+            </td>
           </tr>
 
           <tr>
             <td>AT 6</td>
             <td>Yard Talker</td>
             <td>AP 6</td>
-            <td>Verifikasi pergerakan yard</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
+            <td>R11</td>
+            <td>
+              Salah hold/release sehingga kontainer yang masih “ditahan”
+              (Customs/Karantina/DG) terlepas atau sebaliknya
+            </td>
+            <td>C23</td>
+            <td>
+              Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah
+              scan STID/RFID)
+            </td>
+            <td>PM23</td>
+            <td>
+              Wajib double-scan (gate & yard) + verifikasi otomatis nomor
+              box↔B/L di TOS sebelum rilis
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 6</td>
+            <td>Yard Talker</td>
+            <td>AP 6</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
             <td>R12</td>
-            <td>Keterlambatan instruksi</td>
-            <td>C25</td>
-            <td>Komunikasi manual</td>
-            <td>PM25</td>
-            <td>Instant messaging terintegrasi TOS</td>
+            <td>
+              Lonjakan kemacetan karena bulk release atau last-minute hold →
+              yard padat & truck turn time melonjak
+            </td>
+            <td>C24</td>
+            <td>
+              Last-minute hold dari regulator/pelayaran (audit, dokumen kurang)
+              saat volume sudah siap keluar
+            </td>
+            <td>PM24</td>
+            <td>
+              Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance;
+              setelah cut-off perubahan wajib approval
+            </td>
           </tr>
         </tbody>
       </table>
