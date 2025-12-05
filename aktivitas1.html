@@ -15,7 +15,7 @@
         margin: 0;
         font-family: "Poppins", sans-serif;
         background: linear-gradient(#eef7ff, #eaf6ff);
-        overflow-x: hidden;
+        overflow-x: auto;
         min-height: 100vh;
       }
 
@@ -215,7 +215,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        overflow: hidden; /* biar tidak ada scroll */
+        overflow: auto; /* biar tidak ada scroll */
       }
 
       .diagram-wrapper {
@@ -297,7 +297,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 1','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage).')"
+                          onclick="showModal('Cause 1 (Penyebab 1)','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage).')"
                         >
                           C 1
                         </div>
@@ -326,7 +326,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 2','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya).')"
+                          onclick="showModal('Cause 2 (Penyebab 2)','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya).')"
                         >
                           C 2
                         </div>
@@ -376,7 +376,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 1','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
+                          onclick="showModal('Cause 1 (Penyebab 1)','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
                         >
                           C 1
                         </div>
@@ -394,7 +394,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 2','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk.')"
+                          onclick="showModal('Cause 2 (Penyebab 2)','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk.')"
                         >
                           C 2
                         </div>
@@ -423,7 +423,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 3','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi.')"
+                          onclick="showModal('Cause 3 (Penyebab 3)','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi.')"
                         >
                           C 3
                         </div>
@@ -441,7 +441,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 4','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur).')"
+                          onclick="showModal('Cause 4 (Penyebab 4)','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur).')"
                         >
                           C 4
                         </div>
