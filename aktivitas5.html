@@ -222,6 +222,47 @@
         transition: transform 0.3s ease;
       }
 
+      /* TABEL */
+      .table-container {
+        width: 90%;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+      }
+
+      .clean-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .clean-table th {
+        background: #126e80;
+        color: white;
+        font-weight: 600;
+        padding: 12px;
+        text-align: center;
+        border-bottom: 2px solid #0f5c6a;
+      }
+
+      .clean-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .clean-table tr:nth-child(even) {
+        background: #f5fbfc;
+      }
+
+      .clean-table tr:hover {
+        background: #e7f5f7;
+      }
+
       /* RESPONSIVE BREAKPOINTS */
       @media (max-width: 1600px) {
         .diagram-wrapper {
@@ -464,6 +505,106 @@
         <h2 id="modalTitle"></h2>
         <p id="modalText"></p>
       </div>
+    </div>
+
+    <!-- TABEL BESAR -->
+    <div class="table-container">
+      <h2
+        style="
+          text-align: center;
+          margin-bottom: 25px;
+          font-weight: 700;
+          color: #126e80;
+        "
+      >
+        Knowledge Base Aktivitas Terminal Teluk Lamong
+      </h2>
+
+      <table class="clean-table">
+        <thead>
+          <tr>
+            <th>AT Code</th>
+            <th>Aktivitas Terminal</th>
+            <th>AA/AP Code</th>
+            <th>Aktivitas Admin/Pemeriksaan</th>
+            <th>Risk Code</th>
+            <th>Risk</th>
+            <th>Cause Code</th>
+            <th>Cause</th>
+            <th>PM Code</th>
+            <th>Preventive Measure</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- AT 5 -->
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AA 5</td>
+            <td>Koordinasi operasional kapal</td>
+            <td>R9</td>
+            <td>Miss-communication</td>
+            <td>C17</td>
+            <td>Informasi tidak standar</td>
+            <td>PM17</td>
+            <td>Standard message template</td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AA 5</td>
+            <td>Koordinasi operasional kapal</td>
+            <td>R10</td>
+            <td>Keterlambatan instruksi</td>
+            <td>C18</td>
+            <td>Response time lambat</td>
+            <td>PM18</td>
+            <td>Auto-notification system</td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>Verifikasi instruksi kapal</td>
+            <td>R9</td>
+            <td>Instruksi tidak jelas</td>
+            <td>C19</td>
+            <td>Laporan manual rawan salah</td>
+            <td>PM19</td>
+            <td>Digital reporting form</td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>Verifikasi instruksi kapal</td>
+            <td>R10</td>
+            <td>Keterlambatan info</td>
+            <td>C20</td>
+            <
+            <td>Kapal tidak update status</td>
+            <td>PM20</td>
+            <td>Mandatory status update</td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>Verifikasi instruksi kapal</td>
+            <td>R10</td>
+            <td>Keterlambatan info</td>
+            <td>C21</td>
+            <td>Perbedaan format pelaporan</td>
+            <td>PM21</td>
+            <td>Standardized code & terminology</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script>

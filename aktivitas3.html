@@ -222,6 +222,47 @@
         transition: transform 0.3s ease;
       }
 
+      /* TABEL */
+      .table-container {
+        width: 90%;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+      }
+
+      .clean-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .clean-table th {
+        background: #126e80;
+        color: white;
+        font-weight: 600;
+        padding: 12px;
+        text-align: center;
+        border-bottom: 2px solid #0f5c6a;
+      }
+
+      .clean-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .clean-table tr:nth-child(even) {
+        background: #f5fbfc;
+      }
+
+      .clean-table tr:hover {
+        background: #e7f5f7;
+      }
+
       /* RESPONSIVE BREAKPOINTS */
       @media (max-width: 1600px) {
         .diagram-wrapper {
@@ -490,6 +531,92 @@
         <h2 id="modalTitle"></h2>
         <p id="modalText"></p>
       </div>
+    </div>
+
+    <!-- TABEL BESAR -->
+    <div class="table-container">
+      <h2
+        style="
+          text-align: center;
+          margin-bottom: 25px;
+          font-weight: 700;
+          color: #126e80;
+        "
+      >
+        Knowledge Base Aktivitas Terminal Teluk Lamong
+      </h2>
+
+      <table class="clean-table">
+        <thead>
+          <tr>
+            <th>AT Code</th>
+            <th>Aktivitas Terminal</th>
+            <th>AA/AP Code</th>
+            <th>Aktivitas Admin/Pemeriksaan</th>
+            <th>Risk Code</th>
+            <th>Risk</th>
+            <th>Cause Code</th>
+            <th>Cause</th>
+            <th>PM Code</th>
+            <th>Preventive Measure</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- AT 3 -->
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Menyusun Rencana Operasi Kapal</td>
+            <td>R5</td>
+            <td>Mis-stow / salah penataan</td>
+            <td>C9</td>
+            <td>Data stowage tidak lengkap</td>
+            <td>PM9</td>
+            <td>Data validation + pre-check stowage</td>
+          </tr>
+
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Menyusun Rencana Operasi Kapal</td>
+            <td>R6</td>
+            <td>Crane conflict</td>
+            <td>C10</td>
+            <td>Perhitungan jangkauan crane salah</td>
+            <td>PM10</td>
+            <td>Cranespace simulation</td>
+          </tr>
+
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>Verifikasi rencana operasi</td>
+            <td>R5</td>
+            <td>Mis-stow</td>
+            <td>C11</td>
+            <td>Mismatch stowage plan vs manifest</td>
+            <td>PM11</td>
+            <td>Cross-check otomatis TOS–Manifest</td>
+          </tr>
+
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>Verifikasi rencana operasi</td>
+            <td>R6</td>
+            <td>Crane conflict</td>
+            <td>C12</td>
+            <td>Crane spacing tidak sesuai</td>
+            <td>PM12</td>
+            <td>Auto-spacing & safety margin</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script>

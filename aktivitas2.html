@@ -241,6 +241,47 @@
         padding-bottom: 20px;
       }
 
+      /* TABEL */
+      .table-container {
+        width: 90%;
+        margin: 60px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+      }
+
+      .clean-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .clean-table th {
+        background: #126e80;
+        color: white;
+        font-weight: 600;
+        padding: 12px;
+        text-align: center;
+        border-bottom: 2px solid #0f5c6a;
+      }
+
+      .clean-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+      }
+
+      .clean-table tr:nth-child(even) {
+        background: #f5fbfc;
+      }
+
+      .clean-table tr:hover {
+        background: #e7f5f7;
+      }
+
       /* Mobile version: diagram diperkecil */
       @media (max-width: 900px) {
         .diagram-wrapper {
@@ -641,7 +682,93 @@
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <h2 id="modalTitle"></h2>
         <p id="modalText"></p>
-      </div
+      </div>
+    </div>
+
+    <!-- TABEL BESAR -->
+    <div class="table-container">
+      <h2
+        style="
+          text-align: center;
+          margin-bottom: 25px;
+          font-weight: 700;
+          color: #126e80;
+        "
+      >
+        Knowledge Base Aktivitas Terminal Teluk Lamong
+      </h2>
+
+      <table class="clean-table">
+        <thead>
+          <tr>
+            <th>AT Code</th>
+            <th>Aktivitas Terminal</th>
+            <th>AA/AP Code</th>
+            <th>Aktivitas Admin/Pemeriksaan</th>
+            <th>Risk Code</th>
+            <th>Risk</th>
+            <th>Cause Code</th>
+            <th>Cause</th>
+            <th>PM Code</th>
+            <th>Preventive Measure</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- AT 2 -->
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>Menyusun jadwal manpower</td>
+            <td>R3</td>
+            <td>Kekurangan tenaga kerja</td>
+            <td>C5</td>
+            <td>Data kehadiran tidak akurat</td>
+            <td>PM5</td>
+            <td>Integrasi attendance real-time</td>
+          </tr>
+
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>Menyusun jadwal manpower</td>
+            <td>R4</td>
+            <td>Overwork / kelebihan beban</td>
+            <td>C6</td>
+            <td>Distribusi manpower tidak seimbang</td>
+            <td>PM6</td>
+            <td>Workload balancing + sistem rekomendasi</td>
+          </tr>
+
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>Verifikasi kehadiran & kualifikasi</td>
+            <td>R3</td>
+            <td>Tenaga tidak kompeten masuk shift</td>
+            <td>C7</td>
+            <td>Kualifikasi skill tidak diverifikasi</td>
+            <td>PM7</td>
+            <td>Skill-based assignment</td>
+          </tr>
+
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>Verifikasi kehadiran & kualifikasi</td>
+            <td>R4</td>
+            <td>Overload tenaga kerja</td>
+            <td>C8</td>
+            <td>Penggantian mendadak tanpa kontrol</td>
+            <td>PM8</td>
+            <td>Otomatisasi approval penggantian</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
     <script>
