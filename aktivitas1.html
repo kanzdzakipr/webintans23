@@ -155,19 +155,17 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        /* Padding dan ukuran font dikurangi drastis agar mirip gambar */
-        padding: 15px 20px; 
-        min-width: 80px;
-        min-height: 50px;
-        
-        border-radius: 12px;
+        padding: 15px 20px; /* Padding lebih kecil */
+        border-radius: 10px;
         border: 2px solid #000;
-        font-size: 14px; /* Font lebih kecil */
+        font-size: 13px; /* Font lebih kecil */
         font-weight: 700;
+        min-width: 70px; /* Lebar minimal lebih kecil */
+        min-height: 40px;
         cursor: pointer;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
         transition: 0.2s;
-        background: white; /* Fallback */
+        background: white;
         position: relative;
         z-index: 2;
       }

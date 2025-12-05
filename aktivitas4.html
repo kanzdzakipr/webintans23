@@ -140,16 +140,22 @@
 
       /* Node */
       .node {
-        display: inline-block;
-        padding: 45px 30px;
-        border-radius: 15px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 20px; /* Padding lebih kecil */
+        border-radius: 10px;
         border: 2px solid #000;
-        font-size: 18px;
+        font-size: 13px; /* Font lebih kecil */
         font-weight: 700;
-        width: 100px;
+        min-width: 70px; /* Lebar minimal lebih kecil */
+        min-height: 40px;
         cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        transition: 0.3s;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        transition: 0.2s;
+        background: white;
+        position: relative;
+        z-index: 2;
       }
       .node:hover {
         transform: scale(1.05);
@@ -222,7 +228,7 @@
         transition: transform 0.3s ease;
       }
 
-        /* TABEL */
+      /* TABEL */
       .table-container {
         width: 90%;
         margin: 60px auto;
@@ -361,8 +367,11 @@
                       </div><ul><li><div class="node green" onclick="showModal('awokwko','isi')">PM 13</div></li></ul></li>
                     </ul>
                   </li>
+                  <li>
+                    
+                  </li>
 
-                  <!-- RISK 8 -->
+                  <!-- RISK 10 -->
                   <li>
                     <div
                       class="node yellow"
@@ -477,57 +486,57 @@
         </thead>
 
         <tbody>
-          <!-- AT 3 -->
+          <!-- AT 4 -->
           <tr>
-            <td>AT 3</td>
-            <td>Ship Planner</td>
-            <td>AA 3</td>
-            <td>Menyusun Rencana Operasi Kapal</td>
-            <td>R5</td>
-            <td>Mis-stow / salah penataan</td>
-            <td>C9</td>
-            <td>Data stowage tidak lengkap</td>
-            <td>PM9</td>
-            <td>Data validation + pre-check stowage</td>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>Menyusun yard plan</td>
+            <td>R7</td>
+            <td>Penumpukan tidak efisien</td>
+            <td>C13</td>
+            <td>Yard occupancy tidak real-time</td>
+            <td>PM13</td>
+            <td>Yard monitoring + occupancy mapping</td>
           </tr>
 
           <tr>
-            <td>AT 3</td>
-            <td>Ship Planner</td>
-            <td>AA 3</td>
-            <td>Menyusun Rencana Operasi Kapal</td>
-            <td>R6</td>
-            <td>Crane conflict</td>
-            <td>C10</td>
-            <td>Perhitungan jangkauan crane salah</td>
-            <td>PM10</td>
-            <td>Cranespace simulation</td>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>Menyusun yard plan</td>
+            <td>R8</td>
+            <td>Overstay / blocking</td>
+            <td>C14</td>
+            <td>Perkiraan dwell time salah</td>
+            <td>PM14</td>
+            <td>Dwell time prediction</td>
           </tr>
 
           <tr>
-            <td>AT 3</td>
-            <td>Ship Planner</td>
-            <td>AP 3</td>
-            <td>Verifikasi rencana operasi</td>
-            <td>R5</td>
-            <td>Mis-stow</td>
-            <td>C11</td>
-            <td>Mismatch stowage plan vs manifest</td>
-            <td>PM11</td>
-            <td>Cross-check otomatis TOS–Manifest</td>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AP 4</td>
+            <td>Verifikasi yard plan</td>
+            <td>R7</td>
+            <td>Kepadatan yard</td>
+            <td>C15</td>
+            <td>Data block capacity salah</td>
+            <td>PM15</td>
+            <td>Auto-capacity check</td>
           </tr>
 
           <tr>
-            <td>AT 3</td>
-            <td>Ship Planner</td>
-            <td>AP 3</td>
-            <td>Verifikasi rencana operasi</td>
-            <td>R6</td>
-            <td>Crane conflict</td>
-            <td>C12</td>
-            <td>Crane spacing tidak sesuai</td>
-            <td>PM12</td>
-            <td>Auto-spacing & safety margin</td>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AP 4</td>
+            <td>Verifikasi yard plan</td>
+            <td>R8</td>
+            <td>Blocking</td>
+            <td>C16</td>
+            <td>Barang prioritas bercampur</td>
+            <td>PM16</td>
+            <td>Priority slot rules</td>
           </tr>
         </tbody>
       </table>
