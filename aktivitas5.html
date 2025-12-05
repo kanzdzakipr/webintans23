@@ -231,18 +231,19 @@
       /* TABEL */
       .table-container {
         width: 90%;
-        margin: 60px auto;
+        max-width: 1200px;
+        margin: 0 auto 60px auto;
         background: #ffffff;
         padding: 30px;
         border-radius: 20px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         overflow-x: auto;
       }
 
       .clean-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 14px;
+        font-size: 13px;
         color: #333;
       }
 
@@ -253,20 +254,23 @@
         padding: 12px;
         text-align: center;
         border-bottom: 2px solid #0f5c6a;
+        white-space: nowrap;
       }
 
       .clean-table td {
         padding: 10px 12px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+      }
+      .clean-table td:first-child {
         text-align: center;
       }
 
       .clean-table tr:nth-child(even) {
-        background: #f5fbfc;
+        background: #f9fbfc;
       }
-
       .clean-table tr:hover {
-        background: #e7f5f7;
+        background: #f0f8fa;
       }
 
       /* RESPONSIVE BREAKPOINTS */
