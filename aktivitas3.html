@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aktivitas Administrasi & Pemeriksaan</title>
+    <title>Aktivitas Administrasi & Pemeriksaan 3</title>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -15,29 +15,29 @@
         margin: 0;
         font-family: "Poppins", sans-serif;
         background: linear-gradient(#eef7ff, #eaf6ff);
-        overflow-x: auto;
+        overflow-x: hidden; /* MENGHILANGKAN SCROLL HORIZONTAL */
         min-height: 100vh;
       }
 
       .navbar {
         width: 100%;
-        padding: 18px 45px;
+        padding: 15px 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: fixed;
         top: 0;
         z-index: 100;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(10px);
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
       }
 
       .nav-links a {
         margin-left: 25px;
         text-decoration: none;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 600;
         color: #222;
         transition: 0.3s;
@@ -47,28 +47,45 @@
       }
 
       .page-title {
-        margin-top: 130px;
+        margin-top: 100px;
         text-align: center;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 700;
         color: #333;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
       }
 
-      /* Wrapper dua kolom */
-      .diagram-wrapper {
-        min-width: 1400px; /* supaya tidak kepotong */
+      /* ========================================= */
+      /* CONTAINER UTAMA DIAGRAM (SCALE LOGIC)     */
+      /* ========================================= */
+      
+      .diagram-scale {
+        width: 100%;
         display: flex;
         justify-content: center;
-        gap: 70px;
+        overflow: visible; 
+        margin-bottom: 0px; 
+      }
+
+      .diagram-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 60px; /* Jarak antar kolom kiri dan kanan */
+        padding: 0 20px;
+        transform-origin: top center;
+        transition: transform 0.3s ease;
+        width: fit-content;
       }
 
       .column {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .column-title {
-        font-size: 28px;
+        font-size: 20px;
         font-weight: 700;
         margin-bottom: 20px;
         color: #333;
@@ -87,10 +104,11 @@
       .tree li {
         list-style-type: none;
         position: relative;
-        padding: 20px 10px 0 10px;
+        padding: 20px 5px 0 5px; /* Padding rapat */
         text-align: center;
       }
 
+      /* Garis Konektor */
       .tree li::before,
       .tree li::after {
         content: "";
@@ -138,40 +156,35 @@
         height: 20px;
       }
 
-      /* Node */
+      /* NODE (KOTAK) - DIPERKECIL */
       .node {
-        display: inline-block;
-        padding: 35px 30px;
-        border-radius: 15px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 20px; /* Padding lebih kecil */
+        border-radius: 10px;
         border: 2px solid #000;
-        font-size: 18px;
+        font-size: 13px; /* Font lebih kecil */
         font-weight: 700;
-        width: 90px;
+        min-width: 70px; /* Lebar minimal lebih kecil */
+        min-height: 40px;
         cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        transition: 0.3s;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+        transition: 0.2s;
+        background: white;
+        position: relative;
+        z-index: 2;
       }
+      
       .node:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
       }
 
-      .purple {
-        background: #126e80;
-        color: #fff;
-      }
-      .yellow {
-        background: #32a0b4;
-        color: #000;
-      }
-      .red {
-        background: #98dfe1;
-        color: #000;
-      }
-      .green {
-        background: #e0f7f8;
-        color: #000;
-      }
+      .purple { background: #126e80; color: #fff; }
+      .yellow { background: #32a0b4; color: #000; }
+      .red { background: #98dfe1; color: #000; }
+      .green { background: #e0f7f8; color: #000; }
 
       /* Modal */
       .modal-overlay {
@@ -190,12 +203,13 @@
       }
       .modal-content {
         background: white;
-        padding: 40px;
-        border-radius: 20px;
+        padding: 30px;
+        border-radius: 15px;
         max-width: 500px;
         width: 90%;
         text-align: center;
         position: relative;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
       }
       .close-btn {
         position: absolute;
@@ -203,6 +217,7 @@
         right: 15px;
         font-size: 24px;
         cursor: pointer;
+        color: #555;
       }
 
       .modal-active {
@@ -210,33 +225,22 @@
         opacity: 1;
       }
 
-      .diagram-scale {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        overflow: auto; /* biar tidak ada scroll */
-      }
-
-      .diagram-wrapper {
-        transform-origin: top center;
-        transition: transform 0.3s ease;
-      }
-
       /* TABEL */
       .table-container {
         width: 90%;
-        margin: 60px auto;
+        max-width: 1200px;
+        margin: 40px auto;
         background: #ffffff;
         padding: 30px;
         border-radius: 20px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         overflow-x: auto;
       }
 
       .clean-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 14px;
+        font-size: 13px;
         color: #333;
       }
 
@@ -247,52 +251,66 @@
         padding: 12px;
         text-align: center;
         border-bottom: 2px solid #0f5c6a;
+        white-space: nowrap;
       }
 
       .clean-table td {
         padding: 10px 12px;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+      }
+      .clean-table td:first-child { text-align: center; }
+      
+      .clean-table tr:nth-child(even) { background: #f9fbfc; }
+      .clean-table tr:hover { background: #f0f8fa; }
+
+      /* ================================================== */
+      /* RESPONSIVE SCALING (Agar muat di Laptop)           */
+      /* ================================================== */
+      
+      @media (min-width: 1601px) {
+        .diagram-wrapper { transform: scale(1); }
       }
 
-      .clean-table tr:nth-child(even) {
-        background: #f5fbfc;
-      }
-
-      .clean-table tr:hover {
-        background: #e7f5f7;
-      }
-
-      /* RESPONSIVE BREAKPOINTS */
       @media (max-width: 1600px) {
-        .diagram-wrapper {
-          transform: scale(0.95);
-        }
+        .diagram-wrapper { transform: scale(0.9); }
       }
 
-      @media (max-width: 1400px) {
-        .diagram-wrapper {
-          transform: scale(0.85);
+      @media (max-width: 1440px) {
+        .diagram-wrapper { 
+            transform: scale(0.8); 
+            gap: 40px; 
         }
+        .page-title { margin-top: 90px; margin-bottom: 10px; }
+        .diagram-scale { margin-bottom: -50px; } 
       }
 
-      @media (max-width: 1200px) {
+      @media (max-width: 1280px) {
+        .diagram-wrapper { 
+            transform: scale(0.7); 
+            gap: 30px;
+        }
+        .diagram-scale { margin-bottom: -100px; }
+      }
+
+      @media (max-width: 1024px) {
+        .diagram-wrapper { 
+            transform: scale(0.6); 
+            gap: 20px;
+        }
+        .diagram-scale { margin-bottom: -150px; }
+      }
+
+      @media (max-width: 768px) {
         .diagram-wrapper {
+          flex-direction: column;
           transform: scale(0.75);
+          gap: 50px;
         }
+        .diagram-scale { margin-bottom: -50px; }
+        .tree ul { padding-top: 10px; }
       }
 
-      @media (max-width: 1000px) {
-        .diagram-wrapper {
-          transform: scale(0.65);
-        }
-      }
-
-      @media (max-width: 850px) {
-        .diagram-wrapper {
-          transform: scale(0.55);
-        }
-      }
     </style>
   </head>
   <body>
@@ -303,71 +321,34 @@
       </div>
     </div>
 
-    <h1 class="page-title">Aktivitas Administrasi & Pemeriksaan</h1>
-
-    <!-- ========================= -->
-    <!-- WRAPPER KS: KIRI DAN KANAN -->
-    <!-- ========================= -->
+    <h1 class="page-title">Aktivitas Administrasi & Pemeriksaan 3</h1>
 
     <div class="diagram-scale">
       <div class="diagram-wrapper">
-        <!-- ========================== -->
-        <!-- KOLOM KIRI: ADMINISTRASI 1 -->
-        <!-- ========================== -->
         <div class="column">
           <div class="column-title">Aktivitas Administrasi 3</div>
 
           <div class="tree">
             <ul>
               <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Administrasi 3','Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS.')"
-                >
-                  AA 3
-                </div>
+                <div class="node purple" onclick="showModal('Aktivitas Administrasi 3','Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS.')">AA 3</div>
                 <ul>
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 5 (Risiko 5)','Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE & VGM)')"
-                    >
-                      R 5
-                    </div>
+                    <div class="node yellow" onclick="showModal('Risk 5 (Risiko 5)','Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE & VGM)')">R 5</div>
                     <ul>
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 8 (Penyebab 8)','Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak tersebar)')"
-                        >
-                          C 8
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 8 (Penyebab 8)','Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak tersebar)')">C 8</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 8 (Tindakan Preventif 8)','Terapkan kontrol versi & acknowledgement EDI (gunakan APERAK/CONTRL) agar hanya versi terbaru yang dipakai.')"
-                            >
-                              PM 8
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 8','Terapkan kontrol versi & acknowledgement EDI...')">PM 8</div>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 9 (Penyebab 9)','Kualitas data buruk: salah bay/row/tier, size/type, atau VGM belum/salah')"
-                        >
-                          C 9
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 9 (Penyebab 9)','Kualitas data buruk: salah bay/row/tier, size/type, atau VGM...')">C 9</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 9 (Tindakan Preventif 9)','Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM sesuai SOLAS-VGM sebelum publish.')"
-                            >
-                              PM 9
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 9','Aktifkan rule-based validation (bay/row/tier/type)...')">PM 9</div>
                           </li>
                         </ul>
                       </li>
@@ -375,28 +356,13 @@
                   </li>
 
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 6 (Risiko 6)','Interferensi antar quay crane karena CWP tidak optimal')"
-                    >
-                      R 6
-                    </div>
+                    <div class="node yellow" onclick="showModal('Risk 6 (Risiko 6)','Interferensi antar quay crane karena CWP tidak optimal')">R 6</div>
                     <ul>
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 10 (Penyebab 10)','Range kerja crane overlap (aturan non-crossing/jarak aman tidak diterapkan)')"
-                        >
-                          C 10
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 10 (Penyebab 10)','Range kerja crane overlap (aturan non-crossing...)')">C 10</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 10 (Tindakan Preventif 10)','Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing & safety distance + validasi CWP sebelum publish')"
-                            >
-                              PM 10
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 10','Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing...')">PM 10</div>
                           </li>
                         </ul>
                       </li>
@@ -408,63 +374,30 @@
           </div>
         </div>
 
-        <!-- ========================== -->
-        <!-- KOLOM KANAN: PEMERIKSAAN 1 -->
-        <!-- ========================== -->
         <div class="column">
           <div class="column-title">Aktivitas Pemeriksaan 3</div>
 
           <div class="tree">
             <ul>
               <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Pemeriksaan 3','Verifikasi data rencana di TOS (cek data/ship particular) serta rencana Bay Plan/CWP sebelum dibagikan')"
-                >
-                  AP 3
-                </div>
+                <div class="node purple" onclick="showModal('Aktivitas Pemeriksaan 3','Verifikasi data rencana di TOS (cek data/ship particular)...')">AP 3</div>
                 <ul>
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 6 (Risiko 6)','Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer, VGM, data kapal)')"
-                    >
-                      R 6
-                    </div>
+                    <div class="node yellow" onclick="showModal('Risk 6 (Risiko 6)','Data salah/tidak lengkap di TOS (manifest, ukuran, VGM...)')">R 6</div>
                     <ul>
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 11 (Penyebab 11)','Kesalahan input/manual mapping (ISO size/type, reefer/DG flag, container ID) atau VGM belum masuk saat cut-off')"
-                        >
-                          C 11
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 11 (Penyebab 11)','Kesalahan input/manual mapping atau VGM belum masuk...')">C 11</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 1 (Tindakan Preventif 1)','Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM wajib ada—kalau tidak, blok rencana)')"
-                            >
-                              PM 11
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 11','Hard-validation di TOS (ISO size/type & DG/reefer wajib benar...)')">PM 11</div>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 12 (Penyebab 12)','Profil kapal (bay/vessel particulars) tidak mutakhir di library TOS sehingga penomoran slot/kapasitas tidak cocok')"
-                        >
-                          C 12
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 12 (Penyebab 12)','Profil kapal tidak mutakhir di library TOS...')">C 12</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 12 (Tindakan Preventif 12)','Governansi master data kapal (update saat first call & sign-off oleh shipping line; versi dikunci sebelum planning)')"
-                            >
-                              PM 12
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 12','Governansi master data kapal (update saat first call...)')">PM 12</div>
                           </li>
                         </ul>
                       </li>
@@ -472,46 +405,21 @@
                   </li>
 
                   <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 7 (Risiko 7)','Bay Plan melanggar aturan keselamatan (stabilitas, batas tumpuk/lashing, dan segregasi Dangerous Goods)')"
-                    >
-                      R 7
-                    </div>
+                    <div class="node yellow" onclick="showModal('Risk 7 (Risiko 7)','Bay Plan melanggar aturan keselamatan (stabilitas, lashing, DG)')">R 7</div>
                     <ul>
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 13 (Penyebab 13)','Deklarasi Dangerous Goods/segregation code tidak lengkap/salah, atau reefer/OOG tidak ditandai')"
-                        >
-                          C 13
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 13 (Penyebab 13)','Deklarasi DG/segregation code tidak lengkap/salah...')">C 13</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 13 (Tindakan Preventif 13)','TIMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis block jika tidak sesuai segregasi)')"
-                            >
-                              PM 13
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 13','TIMDG rule engine di TOS (tag DG/reefer/OOG wajib...)')">PM 13</div>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 14 (Penyebab 14)','Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan dalam rule TOS saat menyusun rencana')"
-                        >
-                          C 14
-                        </div>
+                        <div class="node red" onclick="showModal('Cause 14 (Penyebab 14)','Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan...')">C 14</div>
                         <ul>
                           <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 14 (Tindakan Preventif 14)','Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP (rencana tidak bisa dieksekusi sebelum lolos)')"
-                            >
-                              PM 14
-                            </div>
+                            <div class="node green" onclick="showModal('Preventive Measure 14','Wajib loadicator check & CO approval sebelum rilis...')">PM 14</div>
                           </li>
                         </ul>
                       </li>
@@ -524,25 +432,9 @@
         </div>
       </div>
     </div>
-    <!-- MODAL -->
-    <div class="modal-overlay" id="infoModal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalText"></p>
-      </div>
-    </div>
 
-    <!-- TABEL BESAR -->
     <div class="table-container">
-      <h2
-        style="
-          text-align: center;
-          margin-bottom: 25px;
-          font-weight: 700;
-          color: #126e80;
-        "
-      >
+      <h2 style="text-align: center; margin-bottom: 25px; font-weight: 700; color: #126e80;">
         Knowledge Base Aktivitas Terminal Teluk Lamong
       </h2>
 
@@ -563,7 +455,6 @@
         </thead>
 
         <tbody>
-          <!-- AT 3 -->
           <tr>
             <td>AT 3</td>
             <td>Ship Planner</td>
@@ -576,7 +467,6 @@
             <td>PM9</td>
             <td>Data validation + pre-check stowage</td>
           </tr>
-
           <tr>
             <td>AT 3</td>
             <td>Ship Planner</td>
@@ -589,7 +479,6 @@
             <td>PM10</td>
             <td>Cranespace simulation</td>
           </tr>
-
           <tr>
             <td>AT 3</td>
             <td>Ship Planner</td>
@@ -602,7 +491,6 @@
             <td>PM11</td>
             <td>Cross-check otomatis TOS–Manifest</td>
           </tr>
-
           <tr>
             <td>AT 3</td>
             <td>Ship Planner</td>
@@ -619,6 +507,14 @@
       </table>
     </div>
 
+    <div class="modal-overlay" id="infoModal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle" style="color: #126e80; margin-top: 0;"></h2>
+        <p id="modalText" style="font-size: 15px; line-height: 1.6; color: #444;"></p>
+      </div>
+    </div>
+
     <script>
       function showModal(title, text) {
         document.getElementById("modalTitle").innerText = title;
@@ -628,6 +524,13 @@
 
       function closeModal() {
         document.getElementById("infoModal").classList.remove("modal-active");
+      }
+      
+      window.onclick = function(event) {
+        const modal = document.getElementById("infoModal");
+        if (event.target == modal) {
+            closeModal();
+        }
       }
     </script>
   </body>
