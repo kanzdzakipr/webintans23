@@ -367,7 +367,7 @@
               <li>
                 <div
                   class="node purple"
-                  onclick="showModal('Aktivitas Administrasi 3','Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS.')"
+                  onclick="showModal('Aktivitas Administrasi 3','Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS')"
                 >
                   AA 3
                 </div>
@@ -391,7 +391,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 8','Terapkan kontrol versi & acknowledgement EDI...')"
+                              onclick="showModal('Preventive Measure 8','Terapkan kontrol versi & acknowledgement EDI (gunakan APERAK/CONTRL) agar hanya versi terbaru yang dipakai.')"
                             >
                               PM 8
                             </div>
@@ -409,7 +409,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 9','Aktifkan rule-based validation (bay/row/tier/type)...')"
+                              onclick="showModal('Preventive Measure 9','Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM sesuai SOLAS-VGM sebelum publish.')"
                             >
                               PM 9
                             </div>
@@ -430,7 +430,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 10 (Penyebab 10)','Range kerja crane overlap (aturan non-crossing...)')"
+                          onclick="showModal('Cause 10 (Penyebab 10)','Range kerja crane overlap (aturan non-crossing/jarak aman tidak diterapkan)')"
                         >
                           C 10
                         </div>
@@ -438,7 +438,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 10','Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing...')"
+                              onclick="showModal('Preventive Measure 10','Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing & safety distance + validasi CWP sebelum publish')"
                             >
                               PM 10
                             </div>
@@ -469,7 +469,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 6 (Risiko 6)','Data salah/tidak lengkap di TOS (manifest, ukuran, VGM...)')"
+                      onclick="showModal('Risk 6 (Risiko 6)','Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer, VGM, data kapal)')"
                     >
                       R 6
                     </div>
@@ -477,7 +477,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 11 (Penyebab 11)','Kesalahan input/manual mapping atau VGM belum masuk...')"
+                          onclick="showModal('Cause 11 (Penyebab 11)','Kesalahan input/manual mapping (ISO size/type, reefer/DG flag, container ID) atau VGM belum masuk saat cut-off')"
                         >
                           C 11
                         </div>
@@ -485,7 +485,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 11','Hard-validation di TOS (ISO size/type & DG/reefer wajib benar...)')"
+                              onclick="showModal('Preventive Measure 11','Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM wajib ada—kalau tidak, blok rencana)')"
                             >
                               PM 11
                             </div>
@@ -495,7 +495,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 12 (Penyebab 12)','Profil kapal tidak mutakhir di library TOS...')"
+                          onclick="showModal('Cause 12 (Penyebab 12)','Profil kapal (bay/vessel particulars) tidak mutakhir di library TOS sehingga penomoran slot/kapasitas tidak cocok')"
                         >
                           C 12
                         </div>
@@ -503,7 +503,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 12','Governansi master data kapal (update saat first call...)')"
+                              onclick="showModal('Preventive Measure 12','Governansi master data kapal (update saat first call & sign-off oleh shipping line; versi dikunci sebelum planning)')"
                             >
                               PM 12
                             </div>
@@ -524,7 +524,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 13 (Penyebab 13)','Deklarasi DG/segregation code tidak lengkap/salah...')"
+                          onclick="showModal('Cause 13 (Penyebab 13)','Deklarasi Dangerous Goods/segregation code tidak lengkap/salah, atau reefer/OOG tidak ditandai')"
                         >
                           C 13
                         </div>
@@ -532,7 +532,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 13','TIMDG rule engine di TOS (tag DG/reefer/OOG wajib...)')"
+                              onclick="showModal('Preventive Measure 13','IMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis block jika tidak sesuai segregasi)')"
                             >
                               PM 13
                             </div>
@@ -542,7 +542,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 14 (Penyebab 14)','Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan...')"
+                          onclick="showModal('Cause 14 (Penyebab 14)','Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan dalam rule TOS saat menyusun rencana')"
                         >
                           C 14
                         </div>
@@ -550,7 +550,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 14','Wajib loadicator check & CO approval sebelum rilis...')"
+                              onclick="showModal('Preventive Measure 14','Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP (rencana tidak bisa dieksekusi sebelum lolos)')"
                             >
                               PM 14
                             </div>

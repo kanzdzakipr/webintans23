@@ -327,7 +327,7 @@
               <li>
                 <div
                   class="node purple"
-                  onclick="showModal('AA 4','Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di CWP/Bay Plan).')"
+                  onclick="showModal('AA 4','Menerbitkan Position Assignment/Stack Map final (inbound & outbound)')"
                 >
                   AA 4
                 </div>
@@ -337,7 +337,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 7 (Risiko 7)','RInstruksi/komunikasi tidak jelas (radio/isyarat tangan).')"
+                      onclick="showModal('Risk 7 (Risiko 7)','Penempatan/slotting yard tidak efisien jadi re-handle & alat banyak jalan.')"
                     >
                       R 7
                     </div>
@@ -345,7 +345,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 11 (Penyebab 11)','Kualitas radio buruk/crosstalk atau noise sehingga pesan terpotong/tertukar.')"
+                          onclick="showModal('Cause 11 (Penyebab 11)','Stack map tidak pakai urutan pengambilan (delivery sequence/dwell time/priority tidak dipertimbangkan)')"
                         >
                           C 11
                         </div>
@@ -353,7 +353,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('awik','isi')"
+                              onclick="showModal('Preventive Measure 11 (Tindakan Preventif 11)','Lakukan slotting berbasis sequence & dwell time untuk meminimalkan re-handle')"
                             >
                               PM 11
                             </div>
@@ -364,7 +364,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('awikwok','isi')"
+                          onclick="showModal('Cause 12 (Penyebab 12)','Data kontainer di TOS tidak lengkap/akurat (size/type/berat/reefer/DG/hold) saat planning')"
                         >
                           C 12
                         </div>
@@ -372,7 +372,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('awikwok','isi')"
+                              onclick="showModal('Preventive Measure 12 (Tindakan Preventif 12)','Aktifkan rule-based validation (termasuk VGM SOLAS) & gunakan MIG BAPLIE/MOVINS terbaru saat planning')"
                             >
                               PM 12
                             </div>
@@ -380,14 +380,17 @@
                         </ul>
                       </li>
                       <li>
-                        <div class="node red" onclick="showModal('apa','isi')">
+                        <div
+                          class="node red"
+                          onclick="showModal('Cause 13 (Penyebab 13)','Inventori yard tidak real-time (slot di sistem ≠ kondisi lapangan), sehingga slot rencana ternyata terisi/terblokir')"
+                        >
                           C 13
                         </div>
                         <ul>
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('awokwko','isi')"
+                              onclick="showModal('Preventive Measure 13 (Tindakan Preventif 13)','Pasang RFID/QR-based yard tracking + mandatory move confirmation agar inventory TOS selalu mutakhir')"
                             >
                               PM 13
                             </div>
@@ -401,7 +404,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 8 (Risiko 8)','Tidak sinkron dengan CWP/Bay Plan terbaru (versi salah).')"
+                      onclick="showModal('Risk 8 (Risiko 8)','Tidak sinkron dengan arus truk/gate → blok macet & truck turnaround time naik')"
                     >
                       R 8
                     </div>
@@ -409,7 +412,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('Cause 14 (Penyebab 14)','Rencana terbaru tidak dipublikasikan ke semua pihak/perangkat (pakai file lama).')"
+                          onclick="showModal('Cause 14 (Penyebab 14)','Perubahan/ketidakpastian jadwal kedatangan truk (TAS/ETA) tidak masuk ke perencanaan')"
                         >
                           C 14
                         </div>
@@ -417,7 +420,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('Preventive Measure 14 (Tindakan Preventif 14)','Terapkan PCS/TOS sebagai “single source of truth” + kontrol versi & notifikasi otomatis saat ada revisi rencana.')"
+                              onclick="showModal('Preventive Measure 14 (Tindakan Preventif 14)','Terapkan Terminal Booking System (TBS) terintegrasi TOS untuk meratakan kedatangan & memperkecil waiting time')"
                             >
                               PM 14
                             </div>
@@ -427,7 +430,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('apa gitu','isi')"
+                          onclick="showModal('Cause 15 (Penyebab 15)','Beban pengambilan ditumpuk di blok yang sama pada jam yang sama (kapasitas gate/alat tidak diperhitungkan)')"
                         >
                           C 15
                         </div>
@@ -435,7 +438,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('apa juduul','isi')"
+                              onclick="showModal('Preventive Measure 15 (Tindakan Preventif 15)','Load-balancing per blok & time-window lewat aturan TAS/yard (kapasitas gate & alat sebagai constraint)')"
                             >
                               PM 15
                             </div>
@@ -461,20 +464,23 @@
               <li>
                 <div
                   class="node purple"
-                  onclick="showModal('AP 4','Validasi perangkat & dokumen kerja sebelum mulai (device & validasi tools kerja; CWP/PA/Radio).')"
+                  onclick="showModal('AP 4','Validasi Open Stack dan Analisa YOR (kepadatan) termasuk prediksinya')"
                 >
                   AP 4
                 </div>
                 <ul>
                   <li>
-                    <div class="node yellow" onclick="showModal('isi r8','')">
+                    <div
+                      class="node yellow"
+                      onclick="showModal('Risk 8 (Resiko 8)','YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak re-handle')"
+                    >
                       R 8
                     </div>
                     <ul>
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('apa gitu','isi')"
+                          onclick="showModal('Cause 15 (Penyebab 15)','Imbalance arus: gate-out tertahan (hold BC/karantina) sementara gate-in terus mengalir; rollover muatan karena kapal terlambat')"
                         >
                           C 15
                         </div>
@@ -482,7 +488,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('apa gitu','isi')"
+                              onclick="showModal('Preventive Measure 15 (Tindakan Preventif 15)','Terapkan throttled release + truck appointment agar arus gate-out/gate-in seimbang')"
                             >
                               PM 15
                             </div>
@@ -492,7 +498,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('apa gitu','isi')"
+                          onclick="showModal('Cause 16 (Penyebab 16)','Produktivitas yard turun: breakdown alat/kurang operator sehingga backlog menumpuk')"
                         >
                           C 16
                         </div>
@@ -500,7 +506,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('apa gitu','isi')"
+                              onclick="showModal('Preventive Measure 16 (Tindakan Preventif)','Siapkan standby plan operator & unit cadangan untuk hot-swap saat downtime')"
                             >
                               PM 16
                             </div>
@@ -510,7 +516,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('apa gitu','isi')"
+                          onclick="showModal('Cause 17 (Penyebab 17)','Area efektif berkurang: blok ditutup (maintenance/No-Work Area) atau dibatasi (zona reefer/DG) sehingga kepadatan naik')"
                         >
                           C 17
                         </div>
@@ -518,7 +524,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('apa gitu','isi')"
+                              onclick="showModal('Preventive Measure 17 (Tindakan Preventif 17)','Aktifkan blok alternatif/overflow sementara & lakukan dynamic zoning untuk rebalance kepadatan')"
                             >
                               PM 17
                             </div>
@@ -528,7 +534,7 @@
                       <li>
                         <div
                           class="node red"
-                          onclick="showModal('apa gitu','isi')"
+                          onclick="showModal('Cause 18 (Penyebab 18)','Kebijakan stacking kurang tepat: tinggi tumpukan/slotting campur (import-export-empty) menambah re-handle dan memperlambat pengosongan blok')"
                         >
                           C 18
                         </div>
@@ -536,7 +542,7 @@
                           <li>
                             <div
                               class="node green"
-                              onclick="showModal('apa gitu','isi')"
+                              onclick="showModal('Preventive Measure 18 (Tindakan Preventif 18)','Kunci yard policy di TOS (tinggi tumpuk & blok khusus import/export/empty) dengan rule-based slotting')"
                             >
                               PM 18
                             </div>
