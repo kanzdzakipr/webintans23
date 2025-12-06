@@ -488,6 +488,125 @@
           left: 0;
         }
       } 
+      /* Chat Widget Styles */
+      .chat-widget-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      /* Avatar Image Wrapper */
+      .chat-avatar-wrapper {
+        width: 100px; /* Sesuaikan ukuran gambar */
+        height: 100px;
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+      }
+
+      .chat-avatar-wrapper:hover {
+        transform: scale(1.1);
+      }
+      
+      .chat-avatar-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /* Chat Box Popup */
+      .chat-box {
+        width: 350px;
+        height: 450px;
+        background-color: #1e1e1e; /* Warna Gelap */
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: 15px;
+        
+        /* Animasi Muncul */
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        transform-origin: bottom right;
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+
+      /* Saat chat aktif/open */
+      .chat-box.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: all;
+      }
+
+      /* Chat Header */
+      .chat-header {
+        background: #126e80; /* Warna Pelindo */
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
+      .chat-header h4 { margin: 0; font-size: 16px; font-weight: 600; }
+      .close-chat { cursor: pointer; font-size: 20px; font-weight: bold; }
+
+      /* Chat Body */
+      .chat-body {
+        flex: 1;
+        padding: 15px;
+        color: #ddd;
+        font-size: 14px;
+        overflow-y: auto;
+      }
+      .ai-msg {
+        background: #333;
+        padding: 10px;
+        border-radius: 10px 10px 10px 0;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      /* Chat Input */
+      .chat-input-area {
+        padding: 15px;
+        background: #252525;
+        display: flex;
+        gap: 10px;
+        border-top: 1px solid #333;
+      }
+      .chat-input-area input {
+        flex: 1;
+        background: #333;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        outline: none;
+      }
+      .chat-input-area button {
+        background: #126e80;
+        color: white;
+        border: none;
+        padding: 0 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      /* Responsif untuk Mobile */
+      @media (max-width: 600px) {
+        .chat-widget-container { bottom: 20px; right: 20px; }
+        .chat-avatar-wrapper { width: 80px; height: 80px; }
+        .chat-box { width: 300px; height: 400px; }
+      }
     </style>
   </head>
   <body>
@@ -1141,6 +1260,66 @@
           closeModal();
         }
       };
+    </script>
+    <div class="chat-widget-container">
+      
+      <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+          <h4>Pelindo AI Assistant</h4>
+          <span class="close-chat" onclick="toggleChat()">&times;</span>
+        </div>
+        <div class="chat-body">
+          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" placeholder="Tanya sesuatu..." />
+          <button>Kirim</button>
+        </div>
+      </div>
+
+      <div class="chat-avatar-wrapper" 
+           id="avatarWrapper" 
+           onclick="toggleChat()"
+           onmouseenter="onHoverAvatar()" 
+           onmouseleave="onLeaveAvatar()">
+        <img src="char_idle.png" id="avatarImg" alt="AI Avatar">
+      </div>
+
+    </div>
+
+    <script>
+      let isChatOpen = false;
+      const avatarImg = document.getElementById("avatarImg");
+      const chatBox = document.getElementById("chatBox");
+
+      // GANTI NAMA FILE DI SINI JIKA BERBEDA
+      const imgIdle = "char_idle.png";     // Gambar Diam
+      const imgHover = "char_hover.png";   // Gambar saat mouse di atas
+      const imgActive = "char_active.png"; // Gambar saat chat terbuka
+
+      function onHoverAvatar() {
+        if (!isChatOpen) {
+          avatarImg.src = imgHover;
+        }
+      }
+
+      function onLeaveAvatar() {
+        if (!isChatOpen) {
+          avatarImg.src = imgIdle;
+        }
+      }
+
+      function toggleChat() {
+        isChatOpen = !isChatOpen;
+        
+        if (isChatOpen) {
+          chatBox.classList.add("active");
+          avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
+        } else {
+          chatBox.classList.remove("active");
+          avatarImg.src = imgIdle; // Kembali diam
+        }
+      }
     </script>
   </body>
 </html>
