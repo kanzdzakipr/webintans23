@@ -102,10 +102,9 @@
       }
 
       .diagram-wrapper {
-        /* Menggunakan width fit-content agar terpusat */
         display: flex;
         justify-content: center;
-        gap: 80px; /* Jarak antar kolom kiri dan kanan */
+        gap: 80px; 
         padding: 0 20px;
         transform-origin: top center;
         transition: transform 0.3s ease;
@@ -273,7 +272,7 @@
         margin-bottom: 20px;
         color: #126e80;
       }
-      .Risk-mode .modal-title {
+      .risk-mode .modal-title {
         color: #000;
         font-size: 26px;
         margin-bottom: 30px;
@@ -336,14 +335,6 @@
       .clean-table tr:hover {
         background: #f0f8fa;
       }
-
-      /* ========================================= */
-      /* RESPONSIVE SCALING LOGIC (KUNCI UTAMA)    */
-      /* ========================================= */
-
-      /* Logika: Kita memaksa diagram mengecil (zoom out) 
-         agar muat di layar laptop standar tanpa scroll.
-      */
 
       /* Layar Besar (Desktop PC) > 1600px */
       @media (min-width: 1601px) {

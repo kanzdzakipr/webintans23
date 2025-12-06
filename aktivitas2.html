@@ -85,35 +85,30 @@
       }
 
       .page-title {
-        margin-top: 100px; /* Jarak atas dikurangi */
+        margin-top: 100px; 
         text-align: center;
-        font-size: 28px; /* Font judul diperkecil sedikit */
+        font-size: 28px; 
         font-weight: 700;
         color: #333;
         margin-bottom: 20px;
       }
 
-      /* ========================================= */
-      /* CONTAINER UTAMA DIAGRAM (SCALE LOGIC)     */
-      /* ========================================= */
-
+      /* Wrapper Diagram */
       .diagram-scale {
         width: 100%;
         display: flex;
         justify-content: center;
         overflow: visible;
-        /* Margin bottom negatif agar tidak ada ruang kosong besar di bawah saat di-scale */
         margin-bottom: 0px;
       }
 
       .diagram-wrapper {
         display: flex;
         justify-content: center;
-        gap: 60px; /* Jarak antar kolom kiri dan kanan */
+        gap: 60px; 
         padding: 0 20px;
-        transform-origin: top center; /* Titik pusat pengecilan dari atas tengah */
+        transform-origin: top center; 
         transition: transform 0.3s ease;
-        /* Memastikan lebar tidak memaksa scroll */
         width: fit-content;
       }
 
@@ -329,10 +324,6 @@
         background: #f0f8fa;
       }
 
-      /* ================================================== */
-      /* MEDIA QUERIES: ZOOM OUT OTOMATIS (RESPONSIVE)      */
-      /* ================================================== */
-
       /* Layar Besar (Desktop PC) */
       @media (min-width: 1601px) {
         .diagram-wrapper {
@@ -398,6 +389,105 @@
           padding-top: 10px;
         }
       }
+
+       /* Pastikan column atau tree memiliki posisi relative agar layer di atas bekerja */
+      .column {
+        position: relative; 
+      }
+      
+      /* Style Kotak Putus-Putus */
+      .dashed-box {
+        position: absolute;
+        left: 0%; /* Margin kiri */
+        width: 100%; /* Lebar kotak relatif terhadap kolom */
+        border: 2px dashed #ff5252; /* Warna Merah seperti gambar */
+        border-radius: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Style Teks Level */
+      .level-text {
+        position: absolute;
+        left: -70px; /* Geser ke kiri luar diagram */
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+        text-align: right;
+        width: 60px;
+        line-height: 1.2;
+      }
+      
+      /* Aktivitas Pemeriksaan */
+      /* Level 1 */
+      .ap-lvl-1-label { 
+        top: 210px; 
+        left: auto;        
+        right: -70px;      
+        text-align: left;
+      } 
+      .ap-box-lvl-1 {
+        top: 175px; /* Jarak dari atas */
+        height: 90px; /* Tinggi kotak */
+      }
+
+      /* Level 2 */
+      .ap-lvl-2-label { 
+        top: 325px; 
+        left: auto;        
+        right: -70px;      
+        text-align: left;
+      }
+      .ap-box-lvl-2 {
+        top: 290px;
+        height: 90px;
+      }
+
+      /* Level 3 */
+      .ap-lvl-3-label { 
+        top: 420px; 
+        left: auto;        
+        right: -70px;      
+        text-align: left;
+      }
+      .ap-box-lvl-3 {
+        top: 385px;
+        height: 90px;
+      }
+      
+      /* Aktivitas Administrasi */
+      /* Level 1 */
+      .aa-lvl-1-label { top: 210px; } 
+      .aa-box-lvl-1 {
+        top: 175px; /* Jarak dari atas */
+        height: 90px; /* Tinggi kotak */
+      }
+
+      /* Level 2 */
+      .aa-lvl-2-label { top: 325px; }
+      .aa-box-lvl-2 {
+        top: 290px;
+        height: 90px;
+      }
+
+      /* Level 3 */
+      .aa-lvl-3-label { top: 420px; }
+      .aa-box-lvl-3 {
+        top: 385px;
+        height: 90px;
+      }
+
+      /* Responsif Khusus untuk garis putus-putus di layar kecil */
+      @media (max-width: 850px) {
+        .level-text {
+          left: 0;
+          top: -20px !important; /* Pindah label ke atas kotak saat mobile */
+          text-align: left;
+        }
+        .box-lvl-2, .box-lvl-3, .box-lvl-4 {
+          width: 100%;
+          left: 0;
+        }
+      } 
     </style>
   </head>
   <body>
@@ -412,9 +502,21 @@
 
     <div class="diagram-scale">
       <div class="diagram-wrapper">
+        
         <div class="column">
-          <div class="column-title">Aktivitas Administrasi 2</div>
+          <div class="column-title">Aktivitas Administrasi 1</div>
 
+          <div class="level-layer">
+            <div class="level-text aa-lvl-1-label">Level 1</div>
+            <div class="dashed-box aa-box-lvl-1"></div>
+
+            <div class="level-text aa-lvl-2-label">Level 2</div>
+            <div class="dashed-box aa-box-lvl-2"></div>
+
+            <div class="level-text aa-lvl-3-label">Level 3</div>
+            <div class="dashed-box aa-box-lvl-3"></div>
+
+          </div>
           <div class="tree">
             <ul>
               <li>
@@ -544,6 +646,14 @@
         <div class="column">
           <div class="column-title">Aktivitas Pemeriksaan 2</div>
 
+          <div class="level-layer">
+            <div class="level-text ap-lvl-1-label">Level 1</div>
+            <div class="dashed-box ap-box-lvl-1"></div>
+            <div class="level-text ap-lvl-2-label">Level 2</div>
+            <div class="dashed-box ap-box-lvl-2"></div>
+            <div class="level-text ap-lvl-3-label">Level 3</div>
+            <div class="dashed-box ap-box-lvl-3"></div>
+          </div>
           <div class="tree">
             <ul>
               <li>
