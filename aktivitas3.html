@@ -15,7 +15,7 @@
         margin: 0;
         font-family: "Poppins", sans-serif;
         background: linear-gradient(#eef7ff, #eaf6ff);
-        overflow-x: hidden; /* MENGHILANGKAN SCROLL HORIZONTAL */
+        overflow-x: hidden; /* Mencegah scroll horizontal window utama */
         min-height: 100vh;
       }
 
@@ -33,7 +33,44 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
       }
+      .modal-body {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+        text-align: left;
+        justify-content: center;
+      }
+      /* Responsif untuk HP */
+      @media (max-width: 600px) {
+        .modal-body { flex-direction: column; align-items: center; }
+        .stats-container { width: 100%; justify-content: center; }
+        .desc-text { text-align: center; }
+      }
+      .stats-container {
+        display: none; /* Default disembunyikan */
+        gap: 15px;
+        flex-shrink: 0;
+      }
+      .stat-box {
+        background-color: #ffffff;
+        border-radius: 15px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .stat-label { font-size: 14px; font-weight: 600; margin-bottom: 5px; color: #000; }
+      .stat-value { font-size: 32px; font-weight: 700; color: #000; }
 
+      .desc-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #444;
+        width: 100%;
+      }
       .nav-links a {
         margin-left: 25px;
         text-decoration: none;
@@ -52,42 +89,36 @@
         font-size: 28px;
         font-weight: 700;
         color: #333;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
       }
 
-      /* ========================================= */
-      /* CONTAINER UTAMA DIAGRAM (SCALE LOGIC)     */
-      /* ========================================= */
-
+      /* Wrapper Diagram */
       .diagram-scale {
         width: 100%;
         display: flex;
         justify-content: center;
         overflow: visible;
-        margin-bottom: 0px;
+        margin-bottom: 50px;
       }
 
       .diagram-wrapper {
+        /* Menggunakan width fit-content agar terpusat */
         display: flex;
         justify-content: center;
-        gap: 60px; /* Jarak antar kolom kiri dan kanan */
+        gap: 80px; /* Jarak antar kolom kiri dan kanan */
         padding: 0 20px;
         transform-origin: top center;
         transition: transform 0.3s ease;
-        width: fit-content;
       }
 
       .column {
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
       }
 
       .column-title {
-        font-size: 20px;
+        font-size: 22px; /* Dikecilkan sedikit agar proporsional */
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         color: #333;
       }
 
@@ -104,7 +135,7 @@
       .tree li {
         list-style-type: none;
         position: relative;
-        padding: 20px 5px 0 5px; /* Padding rapat */
+        padding: 20px 10px 0 10px;
         text-align: center;
       }
 
@@ -116,7 +147,7 @@
         top: 0;
         right: 50%;
         border-top: 2px solid #555;
-        width: 50%;
+        width: 51%; /* Sedikit dilebihkan agar nyambung */
         height: 20px;
       }
       .tree li::after {
@@ -156,13 +187,17 @@
         height: 20px;
       }
 
-      /* NODE (KOTAK) - DIPERKECIL */
+      /* Node Styling - DIMENSI DIKECILKAN UNTUK LAPTOP */
       .node {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        padding: 15px 20px; /* Padding lebih kecil */
-        border-radius: 10px;
+        /* Padding dan ukuran font dikurangi drastis agar mirip gambar */
+        padding: 15px 20px;
+        min-width: 80px;
+        min-height: 50px;
+
+        border-radius: 12px;
         border: 2px solid #000;
         font-size: 13px; /* Font lebih kecil */
         font-weight: 700;
@@ -214,14 +249,34 @@
         transition: 0.3s ease;
       }
       .modal-content {
-        background: white;
+        background-color: #ffffff; /* Default Putih */
         padding: 30px;
-        border-radius: 15px;
-        max-width: 500px;
+        border-radius: 20px;
+        max-width: 600px;
         width: 90%;
         text-align: center;
         position: relative;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        color: #333;
+        transition: background-color 0.3s ease, max-width 0.3s ease;
+      }
+      /* 2. Tambahkan Class Khusus Mode Risk */
+      .modal-content.risk-mode {
+        background-color: #ffffff;
+        border-radius: 30px;
+        max-width: 700px; /* Lebih lebar */
+      }
+      .modal-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #126e80;
+      }
+      .Risk-mode .modal-title {
+        color: #000;
+        font-size: 26px;
+        margin-bottom: 30px;
       }
       .close-btn {
         position: absolute;
@@ -282,64 +337,58 @@
         background: #f0f8fa;
       }
 
-      /* ================================================== */
-      /* RESPONSIVE SCALING (Agar muat di Laptop)           */
-      /* ================================================== */
+      /* ========================================= */
+      /* RESPONSIVE SCALING LOGIC (KUNCI UTAMA)    */
+      /* ========================================= */
 
+      /* Logika: Kita memaksa diagram mengecil (zoom out) 
+         agar muat di layar laptop standar tanpa scroll.
+      */
+
+      /* Layar Besar (Desktop PC) > 1600px */
       @media (min-width: 1601px) {
         .diagram-wrapper {
           transform: scale(1);
         }
       }
 
+      /* Laptop Besar (1440px - 1600px) */
       @media (max-width: 1600px) {
         .diagram-wrapper {
           transform: scale(0.9);
         }
       }
 
+      /* Laptop Standar (1366px - 1440px) */
       @media (max-width: 1440px) {
         .diagram-wrapper {
           transform: scale(0.8);
-          gap: 40px;
+          gap: 50px; /* Rapatkan jarak antar kolom */
         }
         .page-title {
           margin-top: 90px;
           margin-bottom: 10px;
         }
-        .diagram-scale {
-          margin-bottom: -50px;
-        }
       }
 
+      /* Laptop Kecil / Tablet Landscape (1024px - 1366px) */
       @media (max-width: 1280px) {
         .diagram-wrapper {
-          transform: scale(0.7);
-          gap: 30px;
+          transform: scale(0.65);
+          gap: 40px;
         }
-        .diagram-scale {
-          margin-bottom: -100px;
-        }
-      }
-
-      @media (max-width: 1024px) {
-        .diagram-wrapper {
-          transform: scale(0.6);
-          gap: 20px;
-        }
-        .diagram-scale {
-          margin-bottom: -150px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .diagram-wrapper {
-          flex-direction: column;
-          transform: scale(0.75);
-          gap: 50px;
-        }
+        /* Compacting layout vertically */
         .diagram-scale {
           margin-bottom: -50px;
+        }
+      }
+
+      /* Tablet Portrait / Mobile */
+      @media (max-width: 850px) {
+        .diagram-wrapper {
+          flex-direction: column; /* Stack jadi atas bawah */
+          transform: scale(0.8);
+          gap: 50px;
         }
         .tree ul {
           padding-top: 10px;
@@ -375,7 +424,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 5 (Risiko 5)','Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE & VGM)')"
+                      onclick="showModal('Risk 5 (Risiko 5)','Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE & VGM)',2,4)"
                     >
                       R 5
                     </div>
@@ -422,7 +471,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 6 (Risiko 6)','Interferensi antar quay crane karena CWP tidak optimal')"
+                      onclick="showModal('Risk 6 (Risiko 6)','Interferensi antar quay crane karena CWP tidak optimal',2,3)"
                     >
                       R 6
                     </div>
@@ -461,7 +510,7 @@
               <li>
                 <div
                   class="node purple"
-                  onclick="showModal('Aktivitas Pemeriksaan 3','Verifikasi data rencana di TOS (cek data/ship particular)...')"
+                  onclick="showModal('Aktivitas Pemeriksaan 3','Verifikasi data rencana di TOS (cek data/ship particular) serta rencana Bay Plan/CWP sebelum dibagikan')"
                 >
                   AP 3
                 </div>
@@ -469,7 +518,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 6 (Risiko 6)','Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer, VGM, data kapal)')"
+                      onclick="showModal('Risk 6 (Risiko 6)','Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer, VGM, data kapal)',3,3)"
                     >
                       R 6
                     </div>
@@ -516,7 +565,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 7 (Risiko 7)','Bay Plan melanggar aturan keselamatan (stabilitas, lashing, DG)')"
+                      onclick="showModal('Risk 7 (Risiko 7)','Bay Plan melanggar aturan keselamatan (stabilitas, batas tumpuk/lashing, dan segregasi Dangerous Goods)',3,3)"
                     >
                       R 7
                     </div>
@@ -756,21 +805,56 @@
       </table>
     </div>
 
-    <div class="modal-overlay" id="infoModal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle" style="color: #126e80; margin-top: 0"></h2>
-        <p
-          id="modalText"
-          style="font-size: 15px; line-height: 1.6; color: #444"
-        ></p>
-      </div>
+<div class="modal-overlay" id="infoModal">
+  <div class="modal-content" id="modalContentBox">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    
+    <h2 id="modalTitle" class="modal-title">Judul</h2>
+    
+    <div class="modal-body">
+        <div class="stats-container" id="statsContainer">
+            <div class="stat-box">
+                <span class="stat-label">Likelihood</span>
+                <span class="stat-value" id="valLikelihood">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Severity</span>
+                <span class="stat-value" id="valSeverity">0</span>
+            </div>
+        </div>
+
+        <div class="desc-text">
+            <p id="modalText">Deskripsi...</p>
+        </div>
     </div>
+  </div>
+</div>
 
     <script>
-      function showModal(title, text) {
+      function showModal(title, text, likelihood, severity) {
+        // 1. Set Teks Judul & Deskripsi
         document.getElementById("modalTitle").innerText = title;
         document.getElementById("modalText").innerText = text;
+
+        const modalContent = document.getElementById("modalContentBox");
+        const statsContainer = document.getElementById("statsContainer");
+
+        // 2. Cek apakah ini Node Risk (punya likelihood & severity)
+        if (likelihood !== undefined && severity !== undefined) {
+            // --- Risk --
+            modalContent.classList.add("risk-mode"); 
+            statsContainer.style.display = "flex";      // Munculkan kotak angka
+            
+            // Isi angka
+            document.getElementById("valLikelihood").innerText = likelihood;
+            document.getElementById("valSeverity").innerText = severity;
+        } else {
+            // --- MODE BIASA (PUTIH) ---
+            modalContent.classList.remove("risk-mode"); // Hapus class hijau
+            statsContainer.style.display = "none";       // Sembunyikan kotak angka
+        }
+
+        // 3. Tampilkan Modal
         document.getElementById("infoModal").classList.add("modal-active");
       }
 
@@ -778,6 +862,7 @@
         document.getElementById("infoModal").classList.remove("modal-active");
       }
 
+      // Close modal when clicking outside box
       window.onclick = function (event) {
         const modal = document.getElementById("infoModal");
         if (event.target == modal) {

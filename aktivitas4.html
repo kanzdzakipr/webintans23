@@ -11,33 +11,70 @@
     />
 
     <style>
-      body {
+        body {
         margin: 0;
         font-family: "Poppins", sans-serif;
         background: linear-gradient(#eef7ff, #eaf6ff);
-        overflow-x: auto;
+        overflow-x: hidden; /* Mencegah scroll horizontal window utama */
         min-height: 100vh;
       }
 
       .navbar {
         width: 100%;
-        padding: 18px 45px;
+        padding: 15px 40px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: fixed;
         top: 0;
         z-index: 100;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(10px);
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
       }
+      .modal-body {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+        text-align: left;
+        justify-content: center;
+      }
+      /* Responsif untuk HP */
+      @media (max-width: 600px) {
+        .modal-body { flex-direction: column; align-items: center; }
+        .stats-container { width: 100%; justify-content: center; }
+        .desc-text { text-align: center; }
+      }
+      .stats-container {
+        display: none; /* Default disembunyikan */
+        gap: 15px;
+        flex-shrink: 0;
+      }
+      .stat-box {
+        background-color: #ffffff;
+        border-radius: 15px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+      .stat-label { font-size: 14px; font-weight: 600; margin-bottom: 5px; color: #000; }
+      .stat-value { font-size: 32px; font-weight: 700; color: #000; }
 
+      .desc-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #444;
+        width: 100%;
+      }
       .nav-links a {
         margin-left: 25px;
         text-decoration: none;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 600;
         color: #222;
         transition: 0.3s;
@@ -47,20 +84,31 @@
       }
 
       .page-title {
-        margin-top: 130px;
+        margin-top: 100px;
         text-align: center;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 700;
         color: #333;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
       }
 
-      /* Wrapper dua kolom */
-      .diagram-wrapper {
-        min-width: 1400px; /* supaya tidak kepotong */
+      /* Wrapper Diagram */
+      .diagram-scale {
+        width: 100%;
         display: flex;
         justify-content: center;
-        gap: 70px;
+        overflow: visible;
+        margin-bottom: 50px;
+      }
+
+      .diagram-wrapper {
+        /* Menggunakan width fit-content agar terpusat */
+        display: flex;
+        justify-content: center;
+        gap: 80px; /* Jarak antar kolom kiri dan kanan */
+        padding: 0 20px;
+        transform-origin: top center;
+        transition: transform 0.3s ease;
       }
 
       .column {
@@ -68,9 +116,9 @@
       }
 
       .column-title {
-        font-size: 28px;
+        font-size: 22px; /* Dikecilkan sedikit agar proporsional */
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         color: #333;
       }
 
@@ -91,6 +139,7 @@
         text-align: center;
       }
 
+      /* Garis Konektor */
       .tree li::before,
       .tree li::after {
         content: "";
@@ -98,7 +147,7 @@
         top: 0;
         right: 50%;
         border-top: 2px solid #555;
-        width: 50%;
+        width: 51%; /* Sedikit dilebihkan agar nyambung */
         height: 20px;
       }
       .tree li::after {
@@ -138,13 +187,17 @@
         height: 20px;
       }
 
-      /* Node */
+      /* Node Styling - DIMENSI DIKECILKAN UNTUK LAPTOP */
       .node {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        padding: 15px 20px; /* Padding lebih kecil */
-        border-radius: 10px;
+        /* Padding dan ukuran font dikurangi drastis agar mirip gambar */
+        padding: 15px 20px;
+        min-width: 80px;
+        min-height: 50px;
+
+        border-radius: 12px;
         border: 2px solid #000;
         font-size: 13px; /* Font lebih kecil */
         font-weight: 700;
@@ -157,9 +210,10 @@
         position: relative;
         z-index: 2;
       }
+
       .node:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
       }
 
       .purple {
@@ -195,13 +249,34 @@
         transition: 0.3s ease;
       }
       .modal-content {
-        background: white;
-        padding: 40px;
+        background-color: #ffffff; /* Default Putih */
+        padding: 30px;
         border-radius: 20px;
-        max-width: 500px;
+        max-width: 600px;
         width: 90%;
         text-align: center;
         position: relative;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        color: #333;
+        transition: background-color 0.3s ease, max-width 0.3s ease;
+      }
+      /* 2. Tambahkan Class Khusus Mode Risk */
+      .modal-content.risk-mode {
+        background-color: #ffffff;
+        border-radius: 30px;
+        max-width: 700px; /* Lebih lebar */
+      }
+      .modal-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #126e80;
+      }
+      .Risk-mode .modal-title {
+        color: #000;
+        font-size: 26px;
+        margin-bottom: 30px;
       }
       .close-btn {
         position: absolute;
@@ -209,23 +284,12 @@
         right: 15px;
         font-size: 24px;
         cursor: pointer;
+        color: #555;
       }
 
       .modal-active {
         display: flex;
         opacity: 1;
-      }
-
-      .diagram-scale {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        overflow: auto; /* biar tidak ada scroll */
-      }
-
-      .diagram-wrapper {
-        transform-origin: top center;
-        transition: transform 0.3s ease;
       }
 
       /* TABEL */
@@ -273,34 +337,61 @@
         background: #f0f8fa;
       }
 
-      /* RESPONSIVE BREAKPOINTS */
+      /* ========================================= */
+      /* RESPONSIVE SCALING LOGIC (KUNCI UTAMA)    */
+      /* ========================================= */
+
+      /* Logika: Kita memaksa diagram mengecil (zoom out) 
+         agar muat di layar laptop standar tanpa scroll.
+      */
+
+      /* Layar Besar (Desktop PC) > 1600px */
+      @media (min-width: 1601px) {
+        .diagram-wrapper {
+          transform: scale(1);
+        }
+      }
+
+      /* Laptop Besar (1440px - 1600px) */
       @media (max-width: 1600px) {
         .diagram-wrapper {
-          transform: scale(0.95);
+          transform: scale(0.9);
         }
       }
 
-      @media (max-width: 1400px) {
+      /* Laptop Standar (1366px - 1440px) */
+      @media (max-width: 1440px) {
         .diagram-wrapper {
-          transform: scale(0.85);
+          transform: scale(0.8);
+          gap: 50px; /* Rapatkan jarak antar kolom */
+        }
+        .page-title {
+          margin-top: 90px;
+          margin-bottom: 10px;
         }
       }
 
-      @media (max-width: 1200px) {
-        .diagram-wrapper {
-          transform: scale(0.75);
-        }
-      }
-
-      @media (max-width: 1000px) {
+      /* Laptop Kecil / Tablet Landscape (1024px - 1366px) */
+      @media (max-width: 1280px) {
         .diagram-wrapper {
           transform: scale(0.65);
+          gap: 40px;
+        }
+        /* Compacting layout vertically */
+        .diagram-scale {
+          margin-bottom: -50px;
         }
       }
 
+      /* Tablet Portrait / Mobile */
       @media (max-width: 850px) {
         .diagram-wrapper {
-          transform: scale(0.55);
+          flex-direction: column; /* Stack jadi atas bawah */
+          transform: scale(0.8);
+          gap: 50px;
+        }
+        .tree ul {
+          padding-top: 10px;
         }
       }
     </style>
@@ -341,7 +432,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 7 (Risiko 7)','Penempatan/slotting yard tidak efisien jadi re-handle & alat banyak jalan.')"
+                      onclick="showModal('Risk 7 (Risiko 7)','Penempatan/slotting yard tidak efisien jadi re-handle & alat banyak jalan.',2,4)"
                     >
                       R 7
                     </div>
@@ -404,11 +495,11 @@
                     </ul>
                   </li>
 
-                  <!-- RISK 10 -->
+                  <!-- RISK 08 -->
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 8 (Risiko 8)','Tidak sinkron dengan arus truk/gate → blok macet & truck turnaround time naik')"
+                      onclick="showModal('Risk 8 (Risiko 8)','Tidak sinkron dengan arus truk/gate → blok macet & truck turnaround time naik',4,4)"
                     >
                       R 8
                     </div>
@@ -476,7 +567,7 @@
                   <li>
                     <div
                       class="node yellow"
-                      onclick="showModal('Risk 8 (Resiko 8)','YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak re-handle')"
+                      onclick="showModal('Risk 8 (Resiko 8)','YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak re-handle',3,3)"
                     >
                       R 8
                     </div>
@@ -564,13 +655,30 @@
     </div>
 
     <!-- MODAL -->
-    <div class="modal-overlay" id="infoModal">
-      <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modalTitle"></h2>
-        <p id="modalText"></p>
-      </div>
+<div class="modal-overlay" id="infoModal">
+  <div class="modal-content" id="modalContentBox">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    
+    <h2 id="modalTitle" class="modal-title">Judul</h2>
+    
+    <div class="modal-body">
+        <div class="stats-container" id="statsContainer">
+            <div class="stat-box">
+                <span class="stat-label">Likelihood</span>
+                <span class="stat-value" id="valLikelihood">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Severity</span>
+                <span class="stat-value" id="valSeverity">0</span>
+            </div>
+        </div>
+
+        <div class="desc-text">
+            <p id="modalText">Deskripsi...</p>
+        </div>
     </div>
+  </div>
+</div>
 
     <!-- TABEL BESAR -->
     <div class="table-container">
@@ -808,15 +916,44 @@
     </div>
 
     <script>
-      function showModal(title, text) {
+      function showModal(title, text, likelihood, severity) {
+        // 1. Set Teks Judul & Deskripsi
         document.getElementById("modalTitle").innerText = title;
         document.getElementById("modalText").innerText = text;
+
+        const modalContent = document.getElementById("modalContentBox");
+        const statsContainer = document.getElementById("statsContainer");
+
+        // 2. Cek apakah ini Node Risk (punya likelihood & severity)
+        if (likelihood !== undefined && severity !== undefined) {
+            // --- Risk --
+            modalContent.classList.add("risk-mode"); 
+            statsContainer.style.display = "flex";      // Munculkan kotak angka
+            
+            // Isi angka
+            document.getElementById("valLikelihood").innerText = likelihood;
+            document.getElementById("valSeverity").innerText = severity;
+        } else {
+            // --- MODE BIASA (PUTIH) ---
+            modalContent.classList.remove("risk-mode"); // Hapus class hijau
+            statsContainer.style.display = "none";       // Sembunyikan kotak angka
+        }
+
+        // 3. Tampilkan Modal
         document.getElementById("infoModal").classList.add("modal-active");
       }
 
       function closeModal() {
         document.getElementById("infoModal").classList.remove("modal-active");
       }
+
+      // Close modal when clicking outside box
+      window.onclick = function (event) {
+        const modal = document.getElementById("infoModal");
+        if (event.target == modal) {
+          closeModal();
+        }
+      };
     </script>
   </body>
 </html>
