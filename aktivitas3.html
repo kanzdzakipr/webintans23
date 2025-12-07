@@ -1049,5 +1049,30 @@
         }
       }
     </script>
+<script>
+      function adjustZoomLevel() {
+        // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
+        const ratio = window.devicePixelRatio || 1;
+
+        // Jika rasio tidak 1 (berarti user pakai 125%, 150%, dll)
+        if (ratio !== 1) {
+          // Hitung nilai zoom kebalikannya
+          // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
+          const zoomValue = 1 / ratio;
+          
+          // Terapkan zoom ke seluruh body
+          document.body.style.zoom = zoomValue;
+        } else {
+          // Jika sudah 100%, biarkan normal
+          document.body.style.zoom = 1;
+        }
+      }
+
+      // Jalankan fungsi saat halaman pertama kali dimuat
+      adjustZoomLevel();
+
+      // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
+      window.addEventListener('resize', adjustZoomLevel);
+    </script>
   </body>
 </html>
