@@ -409,6 +409,122 @@
           padding-top: 10px;
         }
       }
+            .level-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Agar klik tembus ke node di depannya */
+        z-index: 0; /* Pastikan di belakang node */
+      }
+
+      /* Pastikan column atau tree memiliki posisi relative agar layer di atas bekerja */
+      .column {
+        position: relative;
+      }
+
+      /* Style Kotak Putus-Putus */
+      .dashed-box {
+        position: absolute;
+        left: 4%; /* Margin kiri */
+        width: 92%; /* Lebar kotak relatif terhadap kolom */
+        border: 2px dashed #ff5252; /* Warna Merah seperti gambar */
+        border-radius: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Style Teks Level */
+      .level-text {
+        position: absolute;
+        left: -70px; /* Geser ke kiri luar diagram */
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+        text-align: right;
+        width: 60px;
+        line-height: 1.2;
+      }
+
+      /* Aktivitas Pemeriksaan */
+      /* Level 1 */
+      .ap-lvl-1-label {
+        top: 215px;
+        left: auto;
+        right: -70px;
+        text-align: left;
+      }
+      .ap-box-lvl-1 {
+        top: 165px; /* Jarak dari atas */
+        height: 90px; /* Tinggi kotak */
+      }
+
+      /* Level 2 */
+      .ap-lvl-2-label {
+        top: 315px;
+        left: auto;
+        right: -70px;
+        text-align: left;
+      }
+      .ap-box-lvl-2 {
+        top: 280px;
+        height: 90px;
+      }
+
+      /* Level 3 */
+      .ap-lvl-3-label {
+        top: 410px;
+        left: auto;
+        right: -70px;
+        text-align: left;
+      }
+      .ap-box-lvl-3 {
+        top: 375px;
+        height: 90px;
+      }
+
+      /* Aktivitas Administrasi */
+      /* Level 1 */
+      .aa-lvl-1-label {
+        top: 215px;
+      }
+      .aa-box-lvl-1 {
+        top: 185px; /* Jarak dari atas */
+        height: 90px; /* Tinggi kotak */
+      }
+
+      /* Level 2 */
+      .aa-lvl-2-label {
+        top: 330px;
+      }
+      .aa-box-lvl-2 {
+        top: 300px;
+        height: 90px;
+      }
+
+      /* Level 3 */
+      .aa-lvl-3-label {
+        top: 430px;
+      }
+      .aa-box-lvl-3 {
+        top: 395px;
+        height: 90px;
+      }
+
+      /* Responsif Khusus untuk garis putus-putus di layar kecil */
+      @media (max-width: 850px) {
+        .level-text {
+          left: 0;
+          top: -20px !important; /* Pindah label ke atas kotak saat mobile */
+          text-align: left;
+        }
+        .box-lvl-2,
+        .box-lvl-3,
+        .box-lvl-4 {
+          width: 100%;
+          left: 0;
+        }
+      }
       /* Chat Widget Styles */
       .chat-widget-container {
         position: fixed;
@@ -538,19 +654,23 @@
       </div>
     </div>
 
-    <h1 class="page-title">Aktivitas Administrasi & Pemeriksaan</h1>
+    <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 4</h1>
 
-    <!-- ========================= -->
-    <!-- WRAPPER KS: KIRI DAN KANAN -->
-    <!-- ========================= -->
     <div class="diagram-scale">
       <div class="diagram-wrapper">
-        <!-- =========================== -->
-        <!-- KOLOM KIRI: ADMINISTRASI 4 -->
-        <!-- =========================== -->
         <div class="column">
           <div class="column-title">Aktivitas Administrasi 4</div>
 
+          <div class="level-layer">
+            <div class="level-text aa-lvl-1-label">Level 1</div>
+            <div class="dashed-box aa-box-lvl-1"></div>
+
+            <div class="level-text aa-lvl-2-label">Level 2</div>
+            <div class="dashed-box aa-box-lvl-2"></div>
+
+            <div class="level-text aa-lvl-3-label">Level 3</div>
+            <div class="dashed-box aa-box-lvl-3"></div>
+          </div>
           <div class="tree">
             <ul>
               <li>
@@ -682,12 +802,17 @@
           </div>
         </div>
 
-        <!-- ========================== -->
-        <!-- KOLOM KANAN: PEMERIKSAAN 4 -->
-        <!-- ========================== -->
         <div class="column">
           <div class="column-title">Aktivitas Pemeriksaan 4</div>
 
+          <div class="level-layer">
+            <div class="level-text ap-lvl-1-label">Level 1</div>
+            <div class="dashed-box ap-box-lvl-1"></div>
+            <div class="level-text ap-lvl-2-label">Level 2</div>
+            <div class="dashed-box ap-box-lvl-2"></div>
+            <div class="level-text ap-lvl-3-label">Level 3</div>
+            <div class="dashed-box ap-box-lvl-3"></div>
+          </div>
           <div class="tree">
             <ul>
               <li>
