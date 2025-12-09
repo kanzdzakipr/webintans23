@@ -1179,7 +1179,7 @@
         }
       }
     </script>
-<script>
+    <script>
       function adjustZoomLevel() {
         // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
         const ratio = window.devicePixelRatio || 1;
@@ -1189,7 +1189,7 @@
           // Hitung nilai zoom kebalikannya
           // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
           const zoomValue = 1 / ratio;
-          
+
           // Terapkan zoom ke seluruh body
           document.body.style.zoom = zoomValue;
         } else {
@@ -1202,7 +1202,7 @@
       adjustZoomLevel();
 
       // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
-      window.addEventListener('resize', adjustZoomLevel);
+      window.addEventListener("resize", adjustZoomLevel);
     </script>
   </body>
 </html>
