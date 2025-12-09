@@ -302,7 +302,37 @@
             min-height: 250px;
         }
       }
+      .swiper-button-next,
+      .swiper-button-prev {
+        background-color: rgba(0, 0, 0, 0.5); /* Latar belakang hitam transparan 50% */
+        width: 50px;  /* Ukuran area tombol */
+        height: 50px;
+        border-radius: 50%; /* Membuat tombol menjadi bulat */
+        color: #fff !important; /* Memastikan panah berwarna putih */
+        
+        /* Ini adalah Shadow/Bayangan yang Anda minta */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
+        
+        /* Agar panah pas di tengah lingkaran */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
+      /* Mengatur ukuran ikon panah di dalam tombol agar pas */
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 20px !important;
+        font-weight: bold;
+      }
+
+      /* Efek saat mouse diarahkan (Hover) */
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background-color: rgba(0, 0, 0, 0.8); /* Menjadi lebih gelap */
+        transform: scale(1.1); /* Sedikit membesar */
+        transition: all 0.3s ease;
+      }
     </style>
   </head>
   <body>
