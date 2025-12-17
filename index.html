@@ -333,6 +333,42 @@
         transform: scale(1.1); /* Sedikit membesar */
         transition: all 0.3s ease;
       }
+      /* --- MEDIA QUERY KHUSUS MOBILE (AGAR RAPI) --- */
+      @media (max-width: 900px) {
+      /* 1. Header Title: Ukuran font dikecilkan sedikit */
+      .header-title h1 {
+          font-size: 1.8rem;
+      }
+
+      /* 2. Content: Mengubah arah dari baris (row) ke kolom (column) */
+      .content {
+        flex-direction: column; /* INI KUNCINYA: Menumpuk gambar & teks */
+        align-items: center; 
+        width: 90%; 
+        gap: 30px; 
+        margin-top: 30px;
+      }
+
+      /* 3. Image Box: Gambar dibuat selebar layar HP */
+      .image-box {
+        width: 100%; 
+        max-width: 100%;
+        aspect-ratio: 16/9; /* Rasio standar video/HP agar tidak gepeng */
+      }
+
+      /* 4. Text Box: Teks menyesuaikan lebar */
+      .text-box {
+        width: 100%; 
+        max-width: 100%;
+        padding: 0 5px; 
+      }
+
+      /* 5. Judul Paragraf: Dibuat rata tengah agar manis */
+      .text-box h3 {
+          text-align: center; 
+          font-size: 1.6rem;
+      }
+    }
     </style>
   </head>
   <body>
@@ -347,34 +383,34 @@
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img src="1.webp" alt="Banner 1">
+                <img src="slidingphoto/1.webp" alt="Banner 1">
             </div>
             <div class="swiper-slide">
-                <img src="2.webp" alt="Banner 2">
+                <img src="slidingphoto/2.webp" alt="Banner 2">
             </div>
             <div class="swiper-slide">
-                <img src="3.webp" alt="Banner 3">
+                <img src="slidingphoto/3.webp" alt="Banner 3">
             </div>
             <div class="swiper-slide">
-                <img src="4.webp" alt="Banner 4">
+                <img src="slidingphoto/4.webp" alt="Banner 4">
             </div>
             <div class="swiper-slide">
-                <img src="5.webp" alt="Banner 5">
+                <img src="slidingphoto/5.webp" alt="Banner 5">
             </div>
             <div class="swiper-slide">
-                <img src="6.webp" alt="Banner 6">
+                <img src="slidingphoto/6.webp" alt="Banner 6">
             </div>
             <div class="swiper-slide">
-                <img src="7.webp" alt="Banner 7">
+                <img src="slidingphoto/7.webp" alt="Banner 7">
             </div>
             <div class="swiper-slide">
-                <img src="8.webp" alt="Banner 8">
+                <img src="slidingphoto/8.webp" alt="Banner 8">
             </div>
             <div class="swiper-slide">
-                <img src="9.webp" alt="Banner 9">
+                <img src="slidingphoto/9.webp" alt="Banner 9">
             </div>
             <div class="swiper-slide">
-                <img src="10.webp" alt="Banner 10">
+                <img src="slidingphoto/10.webp" alt="Banner 10">
             </div>
 
         </div>

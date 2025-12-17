@@ -407,14 +407,81 @@
       }
 
       /* Tablet Portrait / Mobile */
-      @media (max-width: 850px) {
-        .diagram-wrapper {
-          flex-direction: column; /* Stack jadi atas bawah */
-          transform: scale(0.8);
-          gap: 50px;
+      @media (max-width: 900px) {
+        /* 1. Judul & Wadah Utama */
+        .page-title { 
+            margin-top: 80px; 
+            font-size: 20px; 
         }
-        .tree ul {
-          padding-top: 10px;
+        .diagram-scale { 
+            overflow-x: hidden; 
+            padding-bottom: 20px; 
+        }
+        .diagram-wrapper {
+            transform: none !important; /* Matikan zoom out */
+            flex-direction: column; /* Susun Atas-Bawah */
+            align-items: center;
+            gap: 50px; 
+            width: 100%; 
+            padding: 0;
+        }
+
+        /* 2. Munculkan Garis Merah & Atur Gaya */
+        .level-layer { 
+            display: block !important; 
+        }
+        .dashed-box {
+            width: 94% !important; 
+            left: 3% !important;   
+            border-color: rgba(255, 82, 82, 0.4);
+        }
+        .level-text {
+            /* Pindahkan teks Level ke dalam kotak */
+            left: 15px !important;
+            right: auto !important;
+            text-align: left !important;
+            top: auto !important;
+            font-size: 12px;
+            color: #ff5252;
+            z-index: 5;
+        }
+
+        /* 3. ATUR POSISI KOTAK SECARA MANUAL (Agar Rapi di HP) */
+        .column {
+            width: 100%;
+            min-height: 600px; /* Ruang untuk kotak */
+            margin-bottom: 20px;
+        }
+
+        /* --- KOLOM ATAS (ADMINISTRASI) --- */
+        .aa-lvl-1-label { margin-top: 192px; position: absolute; }
+        .aa-box-lvl-1 { top: 185px !important; height: 80px !important; }
+
+        .aa-lvl-2-label { margin-top: 282px; position: absolute; }
+        .aa-box-lvl-2 { top: 275px !important; height: 80px !important; }
+
+        .aa-lvl-3-label { margin-top: 372px; position: absolute; }
+        .aa-box-lvl-3 { top: 365px !important; height: 80px !important; }
+
+        /* --- KOLOM BAWAH (PEMERIKSAAN) --- */
+        .ap-lvl-1-label { margin-top: 192px; position: absolute; }
+        .ap-box-lvl-1 { top: 185px !important; height: 80px !important; }
+
+        .ap-lvl-2-label { margin-top: 302px; position: absolute; }
+        .ap-box-lvl-2 { top: 295px !important; height: 80px !important; }
+
+        .ap-lvl-3-label { margin-top: 392px; position: absolute; }
+        .ap-box-lvl-3 { top: 385px !important; height: 80px !important; }
+
+        /* 4. Rapatkan Jarak Pohon */
+        .tree ul { padding-top: 20px; }
+        .tree li { padding: 20px 2px 0 2px; } 
+        
+        .node {
+            font-size: 11px;
+            padding: 8px;
+            min-height: 50px;
+            max-width: 130px;
         }
       }
       .level-layer {
