@@ -325,6 +325,30 @@
         .chat-avatar-wrapper { width: 80px; height: 80px; }
         .chat-box { width: 300px; height: 400px; }
       }
+/* --- TAMBAHAN KHUSUS MOBILE TEXT --- */
+      .mobile-hint {
+        display: none; /* Secara default disembunyikan (untuk laptop/PC) */
+      }
+
+      /* Saat layar di bawah 900px (Tampilan Tablet/HP) */
+      @media (max-width: 900px) {
+        .mobile-hint {
+          display: block; /* Munculkan teks */
+          margin-top: 15px;
+          padding-top: 10px;
+          border-top: 1px solid rgba(255,255,255, 0.3); /* Garis pemisah tipis */
+          font-size: 13px;
+          color: #e0f7fa; /* Warna teks agak terang agar kontras */
+          width: 100%;
+          text-align: center;
+          font-weight: 500;
+        }
+        
+        /* Opsional: Sedikit ubah padding box biar muat */
+        .kb-box {
+            padding-bottom: 20px;
+        }
+      }
     </style>
   </head>
 
@@ -344,36 +368,42 @@
         <div class="kb-title-text">Aktivitas Terminal 1</div>
         <div class="kb-desc">Berth Allocation (BA)</div>
         <img src="aset/berth allocation (BA).jpg" class="kb-img" />
+        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
       </a>
 
       <a href="aktivitas2.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 2</div>
         <div class="kb-desc">Manning & Deployment</div>
         <img src="aset/Manning & Deployment.png" class="kb-img" />
+        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
       </a>
 
       <a href="aktivitas3.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 3</div>
         <div class="kb-desc">Ship Planner</div>
         <img src="aset/Ship Planner.jpg" class="kb-img" />
+        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
       </a>
 
       <a href="aktivitas4.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 4</div>
         <div class="kb-desc">Yard Planner</div>
         <img src="aset/Yard Planner.jpg" class="kb-img" />
+        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
       </a>
 
       <a href="aktivitas5.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 5</div>
         <div class="kb-desc">Ship Talker</div>
         <img src="aset/Ship Talker.jpg" class="kb-img" />
+        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
       </a>
 
       <a href="aktivitas6.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 6</div>
         <div class="kb-desc">Yard Talker</div>
         <img src="aset/Yard Talker.jpg" class="kb-img" />
+        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
       </a>
     </div>
 
