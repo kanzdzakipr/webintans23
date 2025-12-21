@@ -9,7 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 
     <style>
       body {
@@ -138,7 +141,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
       }
 
       /* Avatar Image Wrapper */
@@ -147,13 +150,13 @@
         height: 100px;
         cursor: pointer;
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
       }
 
       .chat-avatar-wrapper:hover {
         transform: scale(1.1);
       }
-      
+
       .chat-avatar-wrapper img {
         width: 100%;
         height: 100%;
@@ -166,12 +169,12 @@
         height: 300px;
         background-color: #1e1e1e; /* Warna Gelap */
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: column;
         overflow: hidden;
         margin-bottom: 15px;
-        
+
         /* Animasi Muncul */
         opacity: 0;
         transform: translateY(20px) scale(0.95);
@@ -196,8 +199,16 @@
         align-items: center;
         color: white;
       }
-      .chat-header h4 { margin: 0; font-size: 16px; font-weight: 600; }
-      .close-chat { cursor: pointer; font-size: 20px; font-weight: bold; }
+      .chat-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .close-chat {
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
 
       /* Chat Body */
       .chat-body {
@@ -244,15 +255,24 @@
 
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
-        .chat-widget-container { bottom: 20px; right: 20px; }
-        .chat-avatar-wrapper { width: 80px; height: 80px; }
-        .chat-box { width: 300px; height: 400px; }
+        .chat-widget-container {
+          bottom: 20px;
+          right: 20px;
+        }
+        .chat-avatar-wrapper {
+          width: 80px;
+          height: 80px;
+        }
+        .chat-box {
+          width: 300px;
+          height: 400px;
+        }
       }
 
       /* Slider */
       .navbar {
         /* Ubah z-index agar navbar selalu di atas slider */
-        z-index: 100; 
+        z-index: 100;
       }
 
       /* Area pembungkus slider */
@@ -286,8 +306,8 @@
 
       /* Warna panah navigasi */
       :root {
-          --swiper-navigation-color: #ffffff;
-          --swiper-pagination-color: #00abf0;
+        --swiper-navigation-color: #ffffff;
+        --swiper-pagination-color: #00abf0;
       }
 
       /* PENTING: Ubah margin ini agar judul tidak terlalu jauh dari slider */
@@ -298,21 +318,26 @@
 
       @media (max-width: 900px) {
         .swiper.mySwiper {
-            height: 40vh;
-            min-height: 250px;
+          height: 40vh;
+          min-height: 250px;
         }
       }
       .swiper-button-next,
       .swiper-button-prev {
-        background-color: rgba(0, 0, 0, 0.5); /* Latar belakang hitam transparan 50% */
-        width: 50px;  /* Ukuran area tombol */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Latar belakang hitam transparan 50% */
+        width: 50px; /* Ukuran area tombol */
         height: 50px;
         border-radius: 50%; /* Membuat tombol menjadi bulat */
         color: #fff !important; /* Memastikan panah berwarna putih */
-        
+
         /* Ini adalah Shadow/Bayangan yang Anda minta */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
-        
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+
         /* Agar panah pas di tengah lingkaran */
         display: flex;
         justify-content: center;
@@ -335,40 +360,40 @@
       }
       /* --- MEDIA QUERY KHUSUS MOBILE (AGAR RAPI) --- */
       @media (max-width: 900px) {
-      /* 1. Header Title: Ukuran font dikecilkan sedikit */
-      .header-title h1 {
+        /* 1. Header Title: Ukuran font dikecilkan sedikit */
+        .header-title h1 {
           font-size: 1.8rem;
-      }
+        }
 
-      /* 2. Content: Mengubah arah dari baris (row) ke kolom (column) */
-      .content {
-        flex-direction: column; /* INI KUNCINYA: Menumpuk gambar & teks */
-        align-items: center; 
-        width: 90%; 
-        gap: 30px; 
-        margin-top: 30px;
-      }
+        /* 2. Content: Mengubah arah dari baris (row) ke kolom (column) */
+        .content {
+          flex-direction: column; /* INI KUNCINYA: Menumpuk gambar & teks */
+          align-items: center;
+          width: 90%;
+          gap: 30px;
+          margin-top: 30px;
+        }
 
-      /* 3. Image Box: Gambar dibuat selebar layar HP */
-      .image-box {
-        width: 100%; 
-        max-width: 100%;
-        aspect-ratio: 16/9; /* Rasio standar video/HP agar tidak gepeng */
-      }
+        /* 3. Image Box: Gambar dibuat selebar layar HP */
+        .image-box {
+          width: 100%;
+          max-width: 100%;
+          aspect-ratio: 16/9; /* Rasio standar video/HP agar tidak gepeng */
+        }
 
-      /* 4. Text Box: Teks menyesuaikan lebar */
-      .text-box {
-        width: 100%; 
-        max-width: 100%;
-        padding: 0 5px; 
-      }
+        /* 4. Text Box: Teks menyesuaikan lebar */
+        .text-box {
+          width: 100%;
+          max-width: 100%;
+          padding: 0 5px;
+        }
 
-      /* 5. Judul Paragraf: Dibuat rata tengah agar manis */
-      .text-box h3 {
-          text-align: center; 
+        /* 5. Judul Paragraf: Dibuat rata tengah agar manis */
+        .text-box h3 {
+          text-align: center;
           font-size: 1.6rem;
+        }
       }
-    }
     </style>
   </head>
   <body>
@@ -380,49 +405,54 @@
     </div>
 
     <div class="main-carousel-section">
-    <div class="swiper mySwiper">
+      <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <img src="slidingphoto/1.webp" alt="Banner 1">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/2.webp" alt="Banner 2">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/3.webp" alt="Banner 3">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/4.webp" alt="Banner 4">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/5.webp" alt="Banner 5">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/6.webp" alt="Banner 6">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/7.webp" alt="Banner 7">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/8.webp" alt="Banner 8">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/9.webp" alt="Banner 9">
-            </div>
-            <div class="swiper-slide">
-                <img src="slidingphoto/10.webp" alt="Banner 10">
-            </div>
-
+          <div class="swiper-slide">
+            <img src="slidingphoto/direksi.webp" alt="Direksi" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/1.webp" alt="Banner 1" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/2.webp" alt="Banner 2" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/3.webp" alt="Banner 3" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/4.webp" alt="Banner 4" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/5.webp" alt="Banner 5" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/6.webp" alt="Banner 6" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/7.webp" alt="Banner 7" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/8.webp" alt="Banner 8" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/9.webp" alt="Banner 9" />
+          </div>
+          <div class="swiper-slide">
+            <img src="slidingphoto/10.webp" alt="Banner 10" />
+          </div>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
+      </div>
     </div>
-</div>
 
     <div class="header-title">
       <h1><i>Knowledge Base</i> Aktivitas dan Risiko Operasional</h1>
-      <h2>PELINDO Terminal Petikemas Teluk Lamong dan Terminal Petikemas Makassar New Port</h2>
+      <h2>
+        PELINDO Terminal Petikemas Teluk Lamong dan Terminal Petikemas Makassar
+        New Port
+      </h2>
     </div>
 
     <div class="content">
@@ -447,14 +477,16 @@
       </div>
     </div>
     <div class="chat-widget-container">
-      
       <div class="chat-box" id="chatBox">
         <div class="chat-header">
           <h4>Pelindo AI Assistant</h4>
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body">
-          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
+          <div class="ai-msg">
+            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
+            bantu terkait operasional hari ini?
+          </div>
         </div>
         <div class="chat-input-area">
           <input type="text" placeholder="Tanya sesuatu..." />
@@ -462,14 +494,15 @@
         </div>
       </div>
 
-      <div class="chat-avatar-wrapper" 
-           id="avatarWrapper" 
-           onclick="toggleChat()"
-           onmouseenter="onHoverAvatar()" 
-           onmouseleave="onLeaveAvatar()">
-        <img src="char_idle.png" id="avatarImg" alt="AI Avatar">
+      <div
+        class="chat-avatar-wrapper"
+        id="avatarWrapper"
+        onclick="toggleChat()"
+        onmouseenter="onHoverAvatar()"
+        onmouseleave="onLeaveAvatar()"
+      >
+        <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
       </div>
-
     </div>
 
     <script>
@@ -478,8 +511,8 @@
       const chatBox = document.getElementById("chatBox");
 
       // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png";     // Gambar Diam
-      const imgHover = "char_hover.png";   // Gambar saat mouse di atas
+      const imgIdle = "char_idle.png"; // Gambar Diam
+      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
       const imgActive = "char_active.png"; // Gambar saat chat terbuka
 
       function onHoverAvatar() {
@@ -496,7 +529,7 @@
 
       function toggleChat() {
         isChatOpen = !isChatOpen;
-        
+
         if (isChatOpen) {
           chatBox.classList.add("active");
           avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
@@ -506,7 +539,7 @@
         }
       }
     </script>
-<script>
+    <script>
       function adjustZoomLevel() {
         // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
         const ratio = window.devicePixelRatio || 1;
@@ -516,7 +549,7 @@
           // Hitung nilai zoom kebalikannya
           // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
           const zoomValue = 1 / ratio;
-          
+
           // Terapkan zoom ke seluruh body
           document.body.style.zoom = zoomValue;
         } else {
@@ -529,29 +562,30 @@
       adjustZoomLevel();
 
       // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
-      window.addEventListener('resize', adjustZoomLevel);
+      window.addEventListener("resize", adjustZoomLevel);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 0,
-      loop: true,           // Agar bisa digeser terus menerus (infinite)
-      grabCursor: true,     // Kursor berubah jadi tangan saat hover
-      autoplay: {           // Otomatis geser sendiri
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-  </script>
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true, // Agar bisa digeser terus menerus (infinite)
+        grabCursor: true, // Kursor berubah jadi tangan saat hover
+        autoplay: {
+          // Otomatis geser sendiri
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
   </body>
 </html>
