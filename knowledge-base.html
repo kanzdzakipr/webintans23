@@ -58,7 +58,7 @@
       .nav-links a:hover {
         color: #0077cc;
       }
-      
+
       .title {
         margin-top: 130px;
         text-align: center;
@@ -215,7 +215,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
       }
 
       /* Avatar Image Wrapper */
@@ -224,13 +224,13 @@
         height: 100px;
         cursor: pointer;
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
       }
 
       .chat-avatar-wrapper:hover {
         transform: scale(1.1);
       }
-      
+
       .chat-avatar-wrapper img {
         width: 100%;
         height: 100%;
@@ -243,12 +243,12 @@
         height: 300px;
         background-color: #1e1e1e; /* Warna Gelap */
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: column;
         overflow: hidden;
         margin-bottom: 15px;
-        
+
         /* Animasi Muncul */
         opacity: 0;
         transform: translateY(20px) scale(0.95);
@@ -273,8 +273,16 @@
         align-items: center;
         color: white;
       }
-      .chat-header h4 { margin: 0; font-size: 16px; font-weight: 600; }
-      .close-chat { cursor: pointer; font-size: 20px; font-weight: bold; }
+      .chat-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .close-chat {
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
 
       /* Chat Body */
       .chat-body {
@@ -321,11 +329,20 @@
 
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
-        .chat-widget-container { bottom: 20px; right: 20px; }
-        .chat-avatar-wrapper { width: 80px; height: 80px; }
-        .chat-box { width: 300px; height: 400px; }
+        .chat-widget-container {
+          bottom: 20px;
+          right: 20px;
+        }
+        .chat-avatar-wrapper {
+          width: 80px;
+          height: 80px;
+        }
+        .chat-box {
+          width: 300px;
+          height: 400px;
+        }
       }
-/* --- TAMBAHAN KHUSUS MOBILE TEXT --- */
+      /* --- TAMBAHAN KHUSUS MOBILE TEXT --- */
       .mobile-hint {
         display: none; /* Secara default disembunyikan (untuk laptop/PC) */
       }
@@ -336,17 +353,17 @@
           display: block; /* Munculkan teks */
           margin-top: 15px;
           padding-top: 10px;
-          border-top: 1px solid rgba(255,255,255, 0.3); /* Garis pemisah tipis */
+          border-top: 1px solid rgba(255, 255, 255, 0.3); /* Garis pemisah tipis */
           font-size: 13px;
           color: #e0f7fa; /* Warna teks agak terang agar kontras */
           width: 100%;
           text-align: center;
           font-weight: 500;
         }
-        
+
         /* Opsional: Sedikit ubah padding box biar muat */
         .kb-box {
-            padding-bottom: 20px;
+          padding-bottom: 20px;
         }
       }
     </style>
@@ -368,42 +385,42 @@
         <div class="kb-title-text">Aktivitas Terminal 1</div>
         <div class="kb-desc">Berth Allocation (BA)</div>
         <img src="aset/berth allocation (BA).jpg" class="kb-img" />
-        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
+        <div class="mobile-hint">Berth Allocation (BA)</div>
       </a>
 
       <a href="aktivitas2.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 2</div>
         <div class="kb-desc">Manning & Deployment</div>
         <img src="aset/Manning & Deployment.png" class="kb-img" />
-        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
+        <div class="mobile-hint">Manning & Deployment</div>
       </a>
 
       <a href="aktivitas3.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 3</div>
         <div class="kb-desc">Ship Planner</div>
         <img src="aset/Ship Planner.jpg" class="kb-img" />
-        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
+        <div class="mobile-hint">Ship Planner</div>
       </a>
 
       <a href="aktivitas4.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 4</div>
         <div class="kb-desc">Yard Planner</div>
         <img src="aset/Yard Planner.jpg" class="kb-img" />
-        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
+        <div class="mobile-hint">Yard Planner</div>
       </a>
 
       <a href="aktivitas5.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 5</div>
         <div class="kb-desc">Ship Talker</div>
         <img src="aset/Ship Talker.jpg" class="kb-img" />
-        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
+        <div class="mobile-hint">Ship Talker</div>
       </a>
 
       <a href="aktivitas6.html" class="kb-box">
         <div class="kb-title-text">Aktivitas Terminal 6</div>
         <div class="kb-desc">Yard Talker</div>
         <img src="aset/Yard Talker.jpg" class="kb-img" />
-        <div class="mobile-hint">Aktivitas terminal ini merupakan bagian dari operational model yang berasal dari <b>planning and control</b>, yang berperan dalam memastikan kelancaran operasional terminal melalui pengelolaan dan pengawasan kegiatan yang terintegrasi.</div>
+        <div class="mobile-hint">Yard Talker</div>
       </a>
     </div>
 
@@ -1409,14 +1426,16 @@
     <div class="bottom-hill"></div>
 
     <div class="chat-widget-container">
-      
       <div class="chat-box" id="chatBox">
         <div class="chat-header">
           <h4>Pelindo AI Assistant</h4>
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body">
-          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
+          <div class="ai-msg">
+            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
+            bantu terkait operasional hari ini?
+          </div>
         </div>
         <div class="chat-input-area">
           <input type="text" placeholder="Tanya sesuatu..." />
@@ -1424,14 +1443,15 @@
         </div>
       </div>
 
-      <div class="chat-avatar-wrapper" 
-           id="avatarWrapper" 
-           onclick="toggleChat()"
-           onmouseenter="onHoverAvatar()" 
-           onmouseleave="onLeaveAvatar()">
-        <img src="char_idle.png" id="avatarImg" alt="AI Avatar">
+      <div
+        class="chat-avatar-wrapper"
+        id="avatarWrapper"
+        onclick="toggleChat()"
+        onmouseenter="onHoverAvatar()"
+        onmouseleave="onLeaveAvatar()"
+      >
+        <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
       </div>
-
     </div>
 
     <script>
@@ -1440,8 +1460,8 @@
       const chatBox = document.getElementById("chatBox");
 
       // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png";     // Gambar Diam
-      const imgHover = "char_hover.png";   // Gambar saat mouse di atas
+      const imgIdle = "char_idle.png"; // Gambar Diam
+      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
       const imgActive = "char_active.png"; // Gambar saat chat terbuka
 
       function onHoverAvatar() {
@@ -1458,7 +1478,7 @@
 
       function toggleChat() {
         isChatOpen = !isChatOpen;
-        
+
         if (isChatOpen) {
           chatBox.classList.add("active");
           avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
@@ -1468,7 +1488,7 @@
         }
       }
     </script>
-<script>
+    <script>
       function adjustZoomLevel() {
         // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
         const ratio = window.devicePixelRatio || 1;
@@ -1478,7 +1498,7 @@
           // Hitung nilai zoom kebalikannya
           // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
           const zoomValue = 1 / ratio;
-          
+
           // Terapkan zoom ke seluruh body
           document.body.style.zoom = zoomValue;
         } else {
@@ -1491,7 +1511,7 @@
       adjustZoomLevel();
 
       // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
-      window.addEventListener('resize', adjustZoomLevel);
+      window.addEventListener("resize", adjustZoomLevel);
     </script>
   </body>
 </html>
