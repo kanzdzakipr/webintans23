@@ -59,6 +59,61 @@
         color: #0077cc;
       }
 
+      /* RUNNING TEXT */
+      .running-text {
+        position: fixed;
+        top: 65px; /* tepat di bawah navbar */
+        left: 0;
+        width: 100%;
+        height: 35px;
+        background-color: #0077cc;
+        font-size: 22.5px;
+        font-weight: 700;
+        color: #fff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        z-index: 99;
+      }
+
+      .text-run {
+        position: absolute;
+        white-space: nowrap;
+        animation: runningText 20s linear infinite;
+      }
+
+      /* ANIMASI */
+      @keyframes runningText {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .navbar {
+          height: 60px;
+        }
+
+        .running-text {
+          top: 60px;
+          height: 26px;
+          font-size: 14px;
+        }
+
+        .main-carousel-section {
+          margin-top: 86px;
+        }
+      }
+
+      /* OPSIONAL: PAUSE SAAT HOVER */
+      .running-text:hover .text-run {
+        animation-play-state: paused;
+      }
+
       .modal-body {
         display: flex;
         align-items: flex-start;
@@ -115,8 +170,26 @@
         width: 100%;
       }
 
+      /* ===== OFFSET UNTUK NAVBAR + RUNNING TEXT ===== */
+      :root {
+        --navbar-height: 65px;
+        --running-text-height: 30px;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --navbar-height: 60px;
+          --running-text-height: 22px;
+        }
+      }
+
+      /* Wrapper konten utama */
+      .main-content {
+        padding-top: calc(var(--navbar-height) + var(--running-text-height));
+      }
+
+      /* Judul halaman */
       .page-title {
-        margin-top: 100px;
         text-align: center;
         font-size: 28px;
         font-weight: 700;
@@ -388,10 +461,6 @@
           transform: scale(0.8);
           gap: 50px; /* Rapatkan jarak antar kolom */
         }
-        .page-title {
-          margin-top: 90px;
-          margin-bottom: 10px;
-        }
       }
 
       /* Laptop Kecil / Tablet Landscape (1024px - 1366px) */
@@ -409,79 +478,116 @@
       /* Tablet Portrait / Mobile */
       @media (max-width: 900px) {
         /* 1. Judul & Wadah Utama */
-        .page-title { 
-            margin-top: 80px; 
-            font-size: 20px; 
-        }
-        .diagram-scale { 
-            overflow-x: hidden; 
-            padding-bottom: 20px; 
+
+        .diagram-scale {
+          overflow-x: hidden;
+          padding-bottom: 20px;
         }
         .diagram-wrapper {
-            transform: none !important; /* Matikan zoom out */
-            flex-direction: column; /* Susun Atas-Bawah */
-            align-items: center;
-            gap: 50px; 
-            width: 100%; 
-            padding: 0;
+          transform: none !important; /* Matikan zoom out */
+          flex-direction: column; /* Susun Atas-Bawah */
+          align-items: center;
+          gap: 50px;
+          width: 100%;
+          padding: 0;
         }
 
         /* 2. Munculkan Garis Merah & Atur Gaya */
-        .level-layer { 
-            display: block !important; 
+        .level-layer {
+          display: block !important;
         }
         .dashed-box {
-            width: 94% !important; 
-            left: 3% !important;   
-            border-color: rgba(255, 82, 82, 0.4);
+          width: 94% !important;
+          left: 3% !important;
+          border-color: rgba(255, 82, 82, 0.4);
         }
         .level-text {
-            /* Pindahkan teks Level ke dalam kotak */
-            left: 15px !important;
-            right: auto !important;
-            text-align: left !important;
-            top: auto !important;
-            font-size: 12px;
-            color: #ff5252;
-            z-index: 5;
+          /* Pindahkan teks Level ke dalam kotak */
+          left: 15px !important;
+          right: auto !important;
+          text-align: left !important;
+          top: auto !important;
+          font-size: 12px;
+          color: #ff5252;
+          z-index: 5;
         }
 
         /* 3. ATUR POSISI KOTAK SECARA MANUAL (Agar Rapi di HP) */
         .column {
-            width: 100%;
-            min-height: 600px; /* Ruang untuk kotak */
-            margin-bottom: 20px;
+          width: 100%;
+          min-height: 600px; /* Ruang untuk kotak */
+          margin-bottom: 20px;
         }
 
         /* --- KOLOM ATAS (ADMINISTRASI) --- */
-        .aa-lvl-1-label { margin-top: 192px; position: absolute; }
-        .aa-box-lvl-1 { top: 185px !important; height: 80px !important; }
+        .aa-lvl-1-label {
+          margin-top: 192px;
+          position: absolute;
+        }
+        .aa-box-lvl-1 {
+          top: 185px !important;
+          height: 80px !important;
+        }
 
-        .aa-lvl-2-label { margin-top: 282px; position: absolute; }
-        .aa-box-lvl-2 { top: 275px !important; height: 80px !important; }
+        .aa-lvl-2-label {
+          margin-top: 282px;
+          position: absolute;
+        }
+        .aa-box-lvl-2 {
+          top: 275px !important;
+          height: 80px !important;
+        }
 
-        .aa-lvl-3-label { margin-top: 372px; position: absolute; }
-        .aa-box-lvl-3 { top: 365px !important; height: 80px !important; }
+        .aa-lvl-3-label {
+          margin-top: 372px;
+          position: absolute;
+        }
+        .aa-box-lvl-3 {
+          top: 365px !important;
+          height: 80px !important;
+        }
 
         /* --- KOLOM BAWAH (PEMERIKSAAN) --- */
-        .ap-lvl-1-label { margin-top: 192px; position: absolute; }
-        .ap-box-lvl-1 { top: 185px !important; height: 80px !important; }
+        .ap-lvl-1-label {
+          margin-top: 192px;
+          position: absolute;
+        }
+        .ap-box-lvl-1 {
+          top: 185px !important;
+          height: 80px !important;
+        }
 
-        .ap-lvl-2-label { margin-top: 302px; position: absolute; }
-        .ap-box-lvl-2 { top: 295px !important; height: 80px !important; }
+        .ap-lvl-2-label {
+          margin-top: 302px;
+          position: absolute;
+        }
+        .ap-box-lvl-2 {
+          top: 295px !important;
+          height: 80px !important;
+        }
 
-        .ap-lvl-3-label { margin-top: 392px; position: absolute; }
-        .ap-box-lvl-3 { top: 385px !important; height: 80px !important; }
+        .ap-lvl-3-label {
+          margin-top: 392px;
+          position: absolute;
+        }
+        .ap-box-lvl-3 {
+          top: 385px !important;
+          height: 80px !important;
+        }
 
         /* 4. Rapatkan Jarak Pohon */
-        .tree ul { padding-top: 20px; }
-        .tree li { padding: 20px 2px 0 2px; } 
-        
+        .tree ul {
+          padding-top: 20px;
+        }
+        .tree li {
+          padding: 20px 2px 0 2px;
+        }
+
         .node {
-            font-size: 11px;
-            padding: 8px;
-            min-height: 50px;
-            max-width: 130px;
+          font-size: 11px;
+          padding: 8px;
+          min-height: 50px;
+          max-width: 130px;
         }
       }
       .level-layer {
@@ -746,213 +852,224 @@
       </div>
     </div>
 
-    <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 1</h1>
+    <div class="running-text">
+      <div class="text-run">
+        <p>
+          WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN, BEBERAPA FITUR MUNGKIN
+          MASIH BELUM TERSEDIA
+        </p>
+      </div>
+    </div>
 
-    <div class="diagram-scale">
-      <div class="diagram-wrapper">
-        <div class="column">
-          <div class="column-title">Aktivitas Administrasi 1</div>
+    <div class="main-content">
+      <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 1</h1>
 
-          <div class="level-layer">
-            <div class="level-text aa-lvl-1-label">Level 1</div>
-            <div class="dashed-box aa-box-lvl-1"></div>
+      <div class="diagram-scale">
+        <div class="diagram-wrapper">
+          <div class="column">
+            <div class="column-title">Aktivitas Administrasi 1</div>
 
-            <div class="level-text aa-lvl-2-label">Level 2</div>
-            <div class="dashed-box aa-box-lvl-2"></div>
+            <div class="level-layer">
+              <div class="level-text aa-lvl-1-label">Level 1</div>
+              <div class="dashed-box aa-box-lvl-1"></div>
 
-            <div class="level-text aa-lvl-3-label">Level 3</div>
-            <div class="dashed-box aa-box-lvl-3"></div>
+              <div class="level-text aa-lvl-2-label">Level 2</div>
+              <div class="dashed-box aa-box-lvl-2"></div>
+
+              <div class="level-text aa-lvl-3-label">Level 3</div>
+              <div class="dashed-box aa-box-lvl-3"></div>
+            </div>
+            <div class="tree">
+              <ul>
+                <li>
+                  <div
+                    class="node purple"
+                    onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi (posisi & waktu sandar dengan alokasi crane)')"
+                  >
+                    AA 1
+                  </div>
+                  <ul>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 1 (Risiko 1)','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)', 3, 4)"
+                      >
+                        R 1
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 1 (Penyebab 1)','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage)')"
+                          >
+                            C 1
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD berkala via Inaportnet dan berbagi memakai data standar IMO FAL.5/Circ.52, terhubung ke VTS/pandu')"
+                              >
+                                PM 1
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 2 (Risiko 2)','Ketidaksesuaian alokasi crane & kapasitas fasilitas', 2, 4)"
+                      >
+                        R 2
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 2 (Penyebab 2)','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya)')"
+                          >
+                            C 2
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS agar status alat (operational/out-of-service) real-time; lengkapi fitur keselamatan minimum (anemometer, tie-down, anti-collision) untuk mengurangi downtime karena cuaca/gangguan.')"
+                              >
+                                PM 2
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="tree">
-            <ul>
-              <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Administrasi 1','Menerbitkan Berth Plan terkonfirmasi (posisi & waktu sandar dengan alokasi crane)')"
-                >
-                  AA 1
-                </div>
-                <ul>
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 1 (Risiko 1)','Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)', 3, 4)"
-                    >
-                      R 1
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 1 (Penyebab 1)','ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian, pilotage)')"
-                        >
-                          C 1
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 1','Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD berkala via Inaportnet dan berbagi memakai data standar IMO FAL.5/Circ.52, terhubung ke VTS/pandu')"
-                            >
-                              PM 1
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
 
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 2 (Risiko 2)','Ketidaksesuaian alokasi crane & kapasitas fasilitas', 2, 4)"
-                    >
-                      R 2
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 2 (Penyebab 2)','Ketersediaan crane/fasilitas tidak real-time (breakdown/maintenance, overlap rel/jangkauan, batas daya)')"
-                        >
-                          C 2
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 2','Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS agar status alat (operational/out-of-service) real-time; lengkapi fitur keselamatan minimum (anemometer, tie-down, anti-collision) untuk mengurangi downtime karena cuaca/gangguan.')"
-                            >
-                              PM 2
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
+          <div class="column">
+            <div class="column-title">Aktivitas Pemeriksaan 1</div>
 
-        <div class="column">
-          <div class="column-title">Aktivitas Pemeriksaan 1</div>
+            <div class="level-layer">
+              <div class="level-text ap-lvl-1-label">Level 1</div>
+              <div class="dashed-box ap-box-lvl-1"></div>
+              <div class="level-text ap-lvl-2-label">Level 2</div>
+              <div class="dashed-box ap-box-lvl-2"></div>
+              <div class="level-text ap-lvl-3-label">Level 3</div>
+              <div class="dashed-box ap-box-lvl-3"></div>
+            </div>
+            <div class="tree">
+              <ul>
+                <li>
+                  <div
+                    class="node purple"
+                    onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')"
+                  >
+                    AP 1
+                  </div>
+                  <ul>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 1 (Risiko 1)','Konflik jadwal/berth conflict (double-booking)', 3, 3)"
+                      >
+                        R 1
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 1 (Penyebab 1)','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
+                          >
+                            C 1
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 1','Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30 menit) antara TOS/BA Map–Inaportnet–shipping line')"
+                              >
+                                PM 1
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 2 (Penyebab 2)','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk')"
+                          >
+                            C 2
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 2','Tambahkan buffer time antar kapal berbasis histori produktivitas/tidal window pada penetapan window sandar')"
+                              >
+                                PM 2
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
 
-          <div class="level-layer">
-            <div class="level-text ap-lvl-1-label">Level 1</div>
-            <div class="dashed-box ap-box-lvl-1"></div>
-            <div class="level-text ap-lvl-2-label">Level 2</div>
-            <div class="dashed-box ap-box-lvl-2"></div>
-            <div class="level-text ap-lvl-3-label">Level 3</div>
-            <div class="dashed-box ap-box-lvl-3"></div>
-          </div>
-          <div class="tree">
-            <ul>
-              <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Pemeriksaan 1','Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum sandar.')"
-                >
-                  AP 1
-                </div>
-                <ul>
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 1 (Risiko 1)','Konflik jadwal/berth conflict (double-booking)', 3, 3)"
-                    >
-                      R 1
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 1 (Penyebab 1)','Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA Map–Inaportnet–shipping line/agent).')"
-                        >
-                          C 1
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 1','Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30 menit) antara TOS/BA Map–Inaportnet–shipping line')"
-                            >
-                              PM 1
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 2 (Penyebab 2)','Durasi operasi kapal sebelumnya meleset (overrun karena produktivitas turun), sehingga window bertumpuk')"
-                        >
-                          C 2
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 2','Tambahkan buffer time antar kapal berbasis histori produktivitas/tidal window pada penetapan window sandar')"
-                            >
-                              PM 2
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 2 (Risiko 2)','Ketidakcocokan kapal–dermaga', 3, 4)"
-                    >
-                      R 2
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 3 (Penyebab 3)','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi')"
-                        >
-                          C 3
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 3','Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane harus valid sebelum alokasi diproses)')"
-                            >
-                              PM 3
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 4 (Penyebab 4)','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur)')"
-                        >
-                          C 4
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 4','Update harian “berth capacity matrix” (kedalaman aktual & status crane) terhubung ke BA Map dengan aturan no-allocate jika tidak memenuhi batas')"
-                            >
-                              PM 4
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 2 (Risiko 2)','Ketidakcocokan kapal–dermaga', 3, 4)"
+                      >
+                        R 2
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 3 (Penyebab 3)','Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft, kebutuhan crane, special cargo) saat verifikasi')"
+                          >
+                            C 3
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 3','Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane harus valid sebelum alokasi diproses)')"
+                              >
+                                PM 3
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 4 (Penyebab 4)','Informasi kondisi dermaga & peralatan tidak akurat (kedalaman aktual, crane outage/jangkauan, batasan struktur)')"
+                          >
+                            C 4
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 4','Update harian “berth capacity matrix” (kedalaman aktual & status crane) terhubung ke BA Map dengan aturan no-allocate jika tidak memenuhi batas')"
+                              >
+                                PM 4
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

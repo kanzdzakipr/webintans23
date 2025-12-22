@@ -11,7 +11,7 @@
     />
 
     <style>
-        body {
+      body {
         margin: 0;
         font-family: "Poppins", sans-serif;
         background: linear-gradient(#eef7ff, #eaf6ff);
@@ -59,6 +59,61 @@
         color: #0077cc;
       }
 
+      /* RUNNING TEXT */
+      .running-text {
+        position: fixed;
+        top: 65px; /* tepat di bawah navbar */
+        left: 0;
+        width: 100%;
+        height: 35px;
+        background-color: #0077cc;
+        font-size: 22.5px;
+        font-weight: 700;
+        color: #fff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        z-index: 99;
+      }
+
+      .text-run {
+        position: absolute;
+        white-space: nowrap;
+        animation: runningText 20s linear infinite;
+      }
+
+      /* ANIMASI */
+      @keyframes runningText {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .navbar {
+          height: 60px;
+        }
+
+        .running-text {
+          top: 60px;
+          height: 26px;
+          font-size: 14px;
+        }
+
+        .main-carousel-section {
+          margin-top: 86px;
+        }
+      }
+
+      /* OPSIONAL: PAUSE SAAT HOVER */
+      .running-text:hover .text-run {
+        animation-play-state: paused;
+      }
+
       .modal-body {
         display: flex;
         align-items: flex-start;
@@ -68,9 +123,17 @@
       }
       /* Responsif untuk HP */
       @media (max-width: 600px) {
-        .modal-body { flex-direction: column; align-items: center; }
-        .stats-container { width: 100%; justify-content: center; }
-        .desc-text { text-align: center; }
+        .modal-body {
+          flex-direction: column;
+          align-items: center;
+        }
+        .stats-container {
+          width: 100%;
+          justify-content: center;
+        }
+        .desc-text {
+          text-align: center;
+        }
       }
       .stats-container {
         display: none; /* Default disembunyikan */
@@ -86,13 +149,40 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      .stat-label { font-size: 14px; font-weight: 600; margin-bottom: 5px; color: #000; }
-      .stat-value { font-size: 32px; font-weight: 700; color: #000; }
+      .stat-label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #000;
+      }
+      .stat-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+      }
 
+      /* ===== OFFSET UNTUK NAVBAR + RUNNING TEXT ===== */
+      :root {
+        --navbar-height: 65px;
+        --running-text-height: 30px;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --navbar-height: 60px;
+          --running-text-height: 22px;
+        }
+      }
+
+      /* Wrapper konten utama */
+      .main-content {
+        padding-top: calc(var(--navbar-height) + var(--running-text-height));
+      }
+
+      /* Judul halaman */
       .page-title {
-        margin-top: 100px;
         text-align: center;
         font-size: 28px;
         font-weight: 700;
@@ -373,10 +463,6 @@
           transform: scale(0.8);
           gap: 50px; /* Rapatkan jarak antar kolom */
         }
-        .page-title {
-          margin-top: 90px;
-          margin-bottom: 10px;
-        }
       }
 
       /* Laptop Kecil / Tablet Landscape (1024px - 1366px) */
@@ -394,79 +480,123 @@
       /* Mobile - Stack Vertikal */
       @media (max-width: 900px) {
         /* 1. Judul & Container */
-        .page-title { margin-top: 80px; font-size: 20px; }
-        .diagram-scale { overflow-x: hidden; padding-bottom: 20px; margin-bottom: 0; }
-        
+        .diagram-scale {
+          overflow-x: hidden;
+          padding-bottom: 20px;
+          margin-bottom: 0;
+        }
+
         .diagram-wrapper {
-            transform: none !important; /* Matikan zoom out */
-            flex-direction: column; /* Susun Atas-Bawah */
-            align-items: center;
-            gap: 50px; 
-            width: 100%; 
-            padding: 0;
+          transform: none !important; /* Matikan zoom out */
+          flex-direction: column; /* Susun Atas-Bawah */
+          align-items: center;
+          gap: 50px;
+          width: 100%;
+          padding: 0;
         }
 
         /* 2. Munculkan Garis Merah & Atur Gaya */
-        .level-layer { display: block !important; }
-        
-        .dashed-box {
-            width: 94% !important; 
-            left: 3% !important;   
-            border-color: rgba(255, 82, 82, 0.4);
+        .level-layer {
+          display: block !important;
         }
-        
+
+        .dashed-box {
+          width: 94% !important;
+          left: 3% !important;
+          border-color: rgba(255, 82, 82, 0.4);
+        }
+
         .level-text {
-            left: 15px !important;
-            right: auto !important;
-            text-align: left !important;
-            top: auto !important;
-            font-size: 12px;
-            color: #ff5252;
-            z-index: 5;
+          left: 15px !important;
+          right: auto !important;
+          text-align: left !important;
+          top: auto !important;
+          font-size: 12px;
+          color: #ff5252;
+          z-index: 5;
         }
 
         /* 3. ATUR POSISI KOTAK SECARA MANUAL (KHUSUS AKTIVITAS 2) */
         .column {
-            width: 100%;
-            min-height: 700px; /* Lebih tinggi karena isinya banyak */
-            margin-bottom: 20px;
+          width: 100%;
+          min-height: 700px; /* Lebih tinggi karena isinya banyak */
+          margin-bottom: 20px;
         }
 
         /* --- KOLOM ATAS (ADMINISTRASI 2) --- */
         /* Level 1 (AA2) */
-        .aa-lvl-1-label { margin-top: 185px; position: absolute; }
-        .aa-box-lvl-1 { top: 178px !important; height: 80px !important; }
+        .aa-lvl-1-label {
+          margin-top: 185px;
+          position: absolute;
+        }
+        .aa-box-lvl-1 {
+          top: 178px !important;
+          height: 80px !important;
+        }
 
-        .aa-lvl-2-label { margin-top: 295px; position: absolute; }
-        .aa-box-lvl-2 { top: 288px !important; height: 80px !important; }
+        .aa-lvl-2-label {
+          margin-top: 295px;
+          position: absolute;
+        }
+        .aa-box-lvl-2 {
+          top: 288px !important;
+          height: 80px !important;
+        }
 
-        .aa-lvl-3-label { margin-top: 385px; position: absolute; }
-        .aa-box-lvl-3 { top: 378px !important; height: 80px !important; }
+        .aa-lvl-3-label {
+          margin-top: 385px;
+          position: absolute;
+        }
+        .aa-box-lvl-3 {
+          top: 378px !important;
+          height: 80px !important;
+        }
 
         /* --- KOLOM BAWAH (PEMERIKSAAN) --- */
-        .ap-lvl-1-label { margin-top: 185px; position: absolute; }
-        .ap-box-lvl-1 { top: 178px !important; height: 80px !important; }
+        .ap-lvl-1-label {
+          margin-top: 185px;
+          position: absolute;
+        }
+        .ap-box-lvl-1 {
+          top: 178px !important;
+          height: 80px !important;
+        }
 
-        .ap-lvl-2-label { margin-top: 295px; position: absolute; }
-        .ap-box-lvl-2 { top: 288px !important; height: 80px !important; }
+        .ap-lvl-2-label {
+          margin-top: 295px;
+          position: absolute;
+        }
+        .ap-box-lvl-2 {
+          top: 288px !important;
+          height: 80px !important;
+        }
 
-        .ap-lvl-3-label { margin-top: 385px; position: absolute; }
-        .ap-box-lvl-3 { top: 378px !important; height: 80px !important; }
-
+        .ap-lvl-3-label {
+          margin-top: 385px;
+          position: absolute;
+        }
+        .ap-box-lvl-3 {
+          top: 378px !important;
+          height: 80px !important;
+        }
 
         /* 4. Rapatkan Jarak Pohon */
-        .tree ul { padding-top: 20px; }
-        .tree li { padding: 20px 2px 0 2px; } 
-        
+        .tree ul {
+          padding-top: 20px;
+        }
+        .tree li {
+          padding: 20px 2px 0 2px;
+        }
+
         .node {
-            font-size: 11px;
-            padding: 8px;
-            min-height: 50px;
-            max-width: 130px;
+          font-size: 11px;
+          padding: 8px;
+          min-height: 50px;
+          max-width: 130px;
         }
       }
 
-            .level-layer {
+      .level-layer {
         position: absolute;
         top: 0;
         left: 0;
@@ -591,7 +721,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
       }
 
       /* Avatar Image Wrapper */
@@ -600,13 +730,13 @@
         height: 100px;
         cursor: pointer;
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
       }
 
       .chat-avatar-wrapper:hover {
         transform: scale(1.1);
       }
-      
+
       .chat-avatar-wrapper img {
         width: 100%;
         height: 100%;
@@ -619,12 +749,12 @@
         height: 300px;
         background-color: #1e1e1e; /* Warna Gelap */
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: column;
         overflow: hidden;
         margin-bottom: 15px;
-        
+
         /* Animasi Muncul */
         opacity: 0;
         transform: translateY(20px) scale(0.95);
@@ -649,8 +779,16 @@
         align-items: center;
         color: white;
       }
-      .chat-header h4 { margin: 0; font-size: 16px; font-weight: 600; }
-      .close-chat { cursor: pointer; font-size: 20px; font-weight: bold; }
+      .chat-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .close-chat {
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
 
       /* Chat Body */
       .chat-body {
@@ -697,9 +835,18 @@
 
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
-        .chat-widget-container { bottom: 20px; right: 20px; }
-        .chat-avatar-wrapper { width: 80px; height: 80px; }
-        .chat-box { width: 300px; height: 400px; }
+        .chat-widget-container {
+          bottom: 20px;
+          right: 20px;
+        }
+        .chat-avatar-wrapper {
+          width: 80px;
+          height: 80px;
+        }
+        .chat-box {
+          width: 300px;
+          height: 400px;
+        }
       }
     </style>
   </head>
@@ -711,235 +858,245 @@
       </div>
     </div>
 
-    <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 6</h1>
+    <div class="running-text">
+      <div class="text-run">
+        <p>
+          WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN, BEBERAPA FITUR MUNGKIN
+          MASIH BELUM TERSEDIA
+        </p>
+      </div>
+    </div>
+    <div class="main-content">
+      <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 6</h1>
 
-    <div class="diagram-scale">
-      <div class="diagram-wrapper">
-        <div class="column">
-          <div class="column-title">Aktivitas Administrasi 6</div>
+      <div class="diagram-scale">
+        <div class="diagram-wrapper">
+          <div class="column">
+            <div class="column-title">Aktivitas Administrasi 6</div>
 
-          <div class="level-layer">
-            <div class="level-text aa-lvl-1-label">Level 1</div>
-            <div class="dashed-box aa-box-lvl-1"></div>
+            <div class="level-layer">
+              <div class="level-text aa-lvl-1-label">Level 1</div>
+              <div class="dashed-box aa-box-lvl-1"></div>
 
-            <div class="level-text aa-lvl-2-label">Level 2</div>
-            <div class="dashed-box aa-box-lvl-2"></div>
+              <div class="level-text aa-lvl-2-label">Level 2</div>
+              <div class="dashed-box aa-box-lvl-2"></div>
 
-            <div class="level-text aa-lvl-3-label">Level 3</div>
-            <div class="dashed-box aa-box-lvl-3"></div>
+              <div class="level-text aa-lvl-3-label">Level 3</div>
+              <div class="dashed-box aa-box-lvl-3"></div>
+            </div>
+            <div class="tree">
+              <ul>
+                <li>
+                  <div
+                    class="node purple"
+                    onclick="showModal('AA 6','Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke alat & tim')"
+                  >
+                    AA 6
+                  </div>
+
+                  <ul>
+                    <!-- RISK 11 -->
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 11 (Risiko 11)','Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh.',2,3)"
+                      >
+                        R 11
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 18 (Penyebab 18)','Kualitas radio buruk/crosstalk sehingga pesan terpotong atau tertukar.')"
+                          >
+                            C 18
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 18 (tindakan Preventif 18)','Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan fallback ke hand-signals standar bila kualitas audio tidak memadai.')"
+                              >
+                                PM 18
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+
+                    <!-- RISK 12 -->
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 12 (Risiko 12)','Dispatch tidak sinkron dengan rencana yard & arus truk/gate.',2,4)"
+                      >
+                        R 12
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 19 (Penyebab 19)','Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher & operator.')"
+                          >
+                            C 19
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 19 (Tindakan Preventif 19)','Gunakan Truck Appointment System terintegrasi TOS (time-window, load-balancing) dengan notifikasi perubahan otomatis.')"
+                              >
+                                PM 19
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="tree">
-            <ul>
-              <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('AA 6','Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke alat & tim')"
-                >
-                  AA 6
-                </div>
 
-                <ul>
-                  <!-- RISK 11 -->
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 11 (Risiko 11)','Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh.',2,3)"
-                    >
-                      R 11
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 18 (Penyebab 18)','Kualitas radio buruk/crosstalk sehingga pesan terpotong atau tertukar.')"
-                        >
-                          C 18
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 18 (tindakan Preventif 18)','Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan fallback ke hand-signals standar bila kualitas audio tidak memadai.')"
-                            >
-                              PM 18
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
+          <div class="column">
+            <div class="column-title">Aktivitas Pemeriksaan 6</div>
 
-                  <!-- RISK 12 -->
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 12 (Risiko 12)','Dispatch tidak sinkron dengan rencana yard & arus truk/gate.',2,4)"
-                    >
-                      R 12
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 19 (Penyebab 19)','Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher & operator.')"
-                        >
-                          C 19
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 19 (Tindakan Preventif 19)','Gunakan Truck Appointment System terintegrasi TOS (time-window, load-balancing) dengan notifikasi perubahan otomatis.')"
-                            >
-                              PM 19
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
+            <div class="level-layer">
+              <div class="level-text ap-lvl-1-label">Level 1</div>
+              <div class="dashed-box ap-box-lvl-1"></div>
+              <div class="level-text ap-lvl-2-label">Level 2</div>
+              <div class="dashed-box ap-box-lvl-2"></div>
+              <div class="level-text ap-lvl-3-label">Level 3</div>
+              <div class="dashed-box ap-box-lvl-3"></div>
+            </div>
+            <div class="tree">
+              <ul>
+                <li>
+                  <div
+                    class="node purple"
+                    onclick="showModal('AP 6','Kontrol alokasi di yard termasuk keputusan hold & release saat operasi')"
+                  >
+                    AP 6
+                  </div>
 
-        <div class="column">
-          <div class="column-title">Aktivitas Pemeriksaan 6</div>
+                  <ul>
+                    <!-- RISK 11 -->
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 11 (Risiko 11)','Salah hold/release sehingga kontainer yang masih “ditahan” (Customs/Karantina/DG) terlepas atau sebaliknya.',4,4)"
+                      >
+                        R 11
+                      </div>
+                      <ul>
+                        <!-- CAUSE 22 -->
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 22 (Penyebab 22)','Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS (SPPB, pemeriksaan fisik, red/yellow lane).')"
+                          >
+                            C 22
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 22 (Tindakan Preventif 22)','Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB tervalidasi di sistem.')"
+                              >
+                                PM 22
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
 
-          <div class="level-layer">
-            <div class="level-text ap-lvl-1-label">Level 1</div>
-            <div class="dashed-box ap-box-lvl-1"></div>
-            <div class="level-text ap-lvl-2-label">Level 2</div>
-            <div class="dashed-box ap-box-lvl-2"></div>
-            <div class="level-text ap-lvl-3-label">Level 3</div>
-            <div class="dashed-box ap-box-lvl-3"></div>
-          </div>
-          <div class="tree">
-            <ul>
-              <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('AP 6','Kontrol alokasi di yard termasuk keputusan hold & release saat operasi')"
-                >
-                  AP 6
-                </div>
+                        <!-- CAUSE 23 -->
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 23 (Penyebab 23)','Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah scan STID/RFID).')"
+                          >
+                            C 23
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 23 (Tindakan Preventif 23)','Wajib double-scan (gate & yard) + verifikasi otomatis nomor box↔B/L di TOS sebelum rilis.')"
+                              >
+                                PM 23
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
 
-                <ul>
-                  <!-- RISK 11 -->
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 11 (Risiko 11)','Salah hold/release sehingga kontainer yang masih “ditahan” (Customs/Karantina/DG) terlepas atau sebaliknya.',4,4)"
-                    >
-                      R 11
-                    </div>
-                    <ul>
-                      <!-- CAUSE 22 -->
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 22 (Penyebab 22)','Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS (SPPB, pemeriksaan fisik, red/yellow lane).')"
-                        >
-                          C 22
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 22 (Tindakan Preventif 22)','Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB tervalidasi di sistem.')"
-                            >
-                              PM 22
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <!-- CAUSE 23 -->
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 23 (Penyebab 23)','Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah scan STID/RFID).')"
-                        >
-                          C 23
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 23 (Tindakan Preventif 23)','Wajib double-scan (gate & yard) + verifikasi otomatis nomor box↔B/L di TOS sebelum rilis.')"
-                            >
-                              PM 23
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <!-- RISK 12 -->
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 12 (Risiko 12)','Lonjakan kemacetan karena bulk release atau last-minute hold → yard padat & truck turn time melonjak.',3,4)"
-                    >
-                      R 12
-                    </div>
-                    <ul>
-                      <!-- CAUSE 24 -->
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 24 (Penyebab 24)','Last-minute hold dari regulator/pelayaran (audit, dokumen kurang) saat volume sudah siap keluar.')"
-                        >
-                          C 24
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 24 (Tindakan Preventif 24)','Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance; setelah cut-off perubahan wajib approval.')"
-                            >
-                              PM 24
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+                    <!-- RISK 12 -->
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 12 (Risiko 12)','Lonjakan kemacetan karena bulk release atau last-minute hold → yard padat & truck turn time melonjak.',3,4)"
+                      >
+                        R 12
+                      </div>
+                      <ul>
+                        <!-- CAUSE 24 -->
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 24 (Penyebab 24)','Last-minute hold dari regulator/pelayaran (audit, dokumen kurang) saat volume sudah siap keluar.')"
+                          >
+                            C 24
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 24 (Tindakan Preventif 24)','Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance; setelah cut-off perubahan wajib approval.')"
+                              >
+                                PM 24
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- MODAL -->
-<div class="modal-overlay" id="infoModal">
-  <div class="modal-content" id="modalContentBox">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    
-    <h2 id="modalTitle" class="modal-title">Judul</h2>
-    
-    <div class="modal-body">
-        <div class="stats-container" id="statsContainer">
-            <div class="stat-box">
-                <span class="stat-label">Likelihood</span>
-                <span class="stat-value" id="valLikelihood">0</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-label">Severity</span>
-                <span class="stat-value" id="valSeverity">0</span>
-            </div>
-        </div>
+    <div class="modal-overlay" id="infoModal">
+      <div class="modal-content" id="modalContentBox">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
 
-        <div class="desc-text">
+        <h2 id="modalTitle" class="modal-title">Judul</h2>
+
+        <div class="modal-body">
+          <div class="stats-container" id="statsContainer">
+            <div class="stat-box">
+              <span class="stat-label">Likelihood</span>
+              <span class="stat-value" id="valLikelihood">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Severity</span>
+              <span class="stat-value" id="valSeverity">0</span>
+            </div>
+          </div>
+
+          <div class="desc-text">
             <p id="modalText">Deskripsi...</p>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <!-- TABEL BESAR -->
     <div class="table-container">
@@ -1105,17 +1262,17 @@
 
         // 2. Cek apakah ini Node Risk (punya likelihood & severity)
         if (likelihood !== undefined && severity !== undefined) {
-            // --- Risk --
-            modalContent.classList.add("risk-mode"); 
-            statsContainer.style.display = "flex";      // Munculkan kotak angka
-            
-            // Isi angka
-            document.getElementById("valLikelihood").innerText = likelihood;
-            document.getElementById("valSeverity").innerText = severity;
+          // --- Risk --
+          modalContent.classList.add("risk-mode");
+          statsContainer.style.display = "flex"; // Munculkan kotak angka
+
+          // Isi angka
+          document.getElementById("valLikelihood").innerText = likelihood;
+          document.getElementById("valSeverity").innerText = severity;
         } else {
-            // --- MODE BIASA (PUTIH) ---
-            modalContent.classList.remove("risk-mode"); // Hapus class hijau
-            statsContainer.style.display = "none";       // Sembunyikan kotak angka
+          // --- MODE BIASA (PUTIH) ---
+          modalContent.classList.remove("risk-mode"); // Hapus class hijau
+          statsContainer.style.display = "none"; // Sembunyikan kotak angka
         }
 
         // 3. Tampilkan Modal
@@ -1135,14 +1292,16 @@
       };
     </script>
     <div class="chat-widget-container">
-      
       <div class="chat-box" id="chatBox">
         <div class="chat-header">
           <h4>Pelindo AI Assistant</h4>
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body">
-          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
+          <div class="ai-msg">
+            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
+            bantu terkait operasional hari ini?
+          </div>
         </div>
         <div class="chat-input-area">
           <input type="text" placeholder="Tanya sesuatu..." />
@@ -1150,14 +1309,15 @@
         </div>
       </div>
 
-      <div class="chat-avatar-wrapper" 
-           id="avatarWrapper" 
-           onclick="toggleChat()"
-           onmouseenter="onHoverAvatar()" 
-           onmouseleave="onLeaveAvatar()">
-        <img src="char_idle.png" id="avatarImg" alt="AI Avatar">
+      <div
+        class="chat-avatar-wrapper"
+        id="avatarWrapper"
+        onclick="toggleChat()"
+        onmouseenter="onHoverAvatar()"
+        onmouseleave="onLeaveAvatar()"
+      >
+        <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
       </div>
-
     </div>
 
     <script>
@@ -1166,8 +1326,8 @@
       const chatBox = document.getElementById("chatBox");
 
       // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png";     // Gambar Diam
-      const imgHover = "char_hover.png";   // Gambar saat mouse di atas
+      const imgIdle = "char_idle.png"; // Gambar Diam
+      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
       const imgActive = "char_active.png"; // Gambar saat chat terbuka
 
       function onHoverAvatar() {
@@ -1184,7 +1344,7 @@
 
       function toggleChat() {
         isChatOpen = !isChatOpen;
-        
+
         if (isChatOpen) {
           chatBox.classList.add("active");
           avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
@@ -1194,7 +1354,7 @@
         }
       }
     </script>
-<script>
+    <script>
       function adjustZoomLevel() {
         // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
         const ratio = window.devicePixelRatio || 1;
@@ -1204,7 +1364,7 @@
           // Hitung nilai zoom kebalikannya
           // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
           const zoomValue = 1 / ratio;
-          
+
           // Terapkan zoom ke seluruh body
           document.body.style.zoom = zoomValue;
         } else {
@@ -1217,7 +1377,7 @@
       adjustZoomLevel();
 
       // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
-      window.addEventListener('resize', adjustZoomLevel);
+      window.addEventListener("resize", adjustZoomLevel);
     </script>
   </body>
 </html>

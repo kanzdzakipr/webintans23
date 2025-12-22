@@ -19,7 +19,6 @@
         min-height: 100vh;
       }
 
-
       .navbar {
         width: 100%;
         padding: 1.2rem 3vw;
@@ -60,6 +59,61 @@
         color: #0077cc;
       }
 
+      /* RUNNING TEXT */
+      .running-text {
+        position: fixed;
+        top: 65px; /* tepat di bawah navbar */
+        left: 0;
+        width: 100%;
+        height: 35px;
+        background-color: #0077cc;
+        font-size: 22.5px;
+        font-weight: 700;
+        color: #fff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        z-index: 99;
+      }
+
+      .text-run {
+        position: absolute;
+        white-space: nowrap;
+        animation: runningText 20s linear infinite;
+      }
+
+      /* ANIMASI */
+      @keyframes runningText {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .navbar {
+          height: 60px;
+        }
+
+        .running-text {
+          top: 60px;
+          height: 26px;
+          font-size: 14px;
+        }
+
+        .main-carousel-section {
+          margin-top: 86px;
+        }
+      }
+
+      /* OPSIONAL: PAUSE SAAT HOVER */
+      .running-text:hover .text-run {
+        animation-play-state: paused;
+      }
+
       .modal-body {
         display: flex;
         align-items: flex-start;
@@ -69,9 +123,17 @@
       }
       /* Responsif untuk HP */
       @media (max-width: 600px) {
-        .modal-body { flex-direction: column; align-items: center; }
-        .stats-container { width: 100%; justify-content: center; }
-        .desc-text { text-align: center; }
+        .modal-body {
+          flex-direction: column;
+          align-items: center;
+        }
+        .stats-container {
+          width: 100%;
+          justify-content: center;
+        }
+        .desc-text {
+          text-align: center;
+        }
       }
       .stats-container {
         display: none; /* Default disembunyikan */
@@ -87,10 +149,19 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-      .stat-label { font-size: 14px; font-weight: 600; margin-bottom: 5px; color: #000; }
-      .stat-value { font-size: 32px; font-weight: 700; color: #000; }
+      .stat-label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #000;
+      }
+      .stat-value {
+        font-size: 32px;
+        font-weight: 700;
+        color: #000;
+      }
 
       .desc-text {
         font-size: 15px;
@@ -99,13 +170,31 @@
         width: 100%;
       }
 
+      /* ===== OFFSET UNTUK NAVBAR + RUNNING TEXT ===== */
+      :root {
+        --navbar-height: 65px;
+        --running-text-height: 30px;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --navbar-height: 60px;
+          --running-text-height: 22px;
+        }
+      }
+
+      /* Wrapper konten utama */
+      .main-content {
+        padding-top: calc(var(--navbar-height) + var(--running-text-height));
+      }
+
+      /* Judul halaman */
       .page-title {
-        margin-top: 100px; 
         text-align: center;
-        font-size: 28px; 
+        font-size: 28px;
         font-weight: 700;
         color: #333;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
       }
 
       /* Wrapper Diagram */
@@ -120,9 +209,9 @@
       .diagram-wrapper {
         display: flex;
         justify-content: center;
-        gap: 60px; 
+        gap: 60px;
         padding: 0 20px;
-        transform-origin: top center; 
+        transform-origin: top center;
         transition: transform 0.3s ease;
         width: fit-content;
       }
@@ -359,10 +448,6 @@
           transform: scale(0.8);
           gap: 40px;
         }
-        .page-title {
-          margin-top: 90px;
-          margin-bottom: 10px;
-        }
         .diagram-scale {
           margin-bottom: -50px;
         } /* Menarik tabel ke atas */
@@ -393,83 +478,128 @@
       /* Mobile - Stack Vertikal */
       @media (max-width: 900px) {
         /* 1. Judul & Container */
-        .page-title { margin-top: 80px; font-size: 20px; }
-        .diagram-scale { overflow-x: hidden; padding-bottom: 20px; margin-bottom: 0; }
-        
+
+        .diagram-scale {
+          overflow-x: hidden;
+          padding-bottom: 20px;
+          margin-bottom: 0;
+        }
+
         .diagram-wrapper {
-            transform: none !important; /* Matikan zoom out */
-            flex-direction: column; /* Susun Atas-Bawah */
-            align-items: center;
-            gap: 50px; 
-            width: 100%; 
-            padding: 0;
+          transform: none !important; /* Matikan zoom out */
+          flex-direction: column; /* Susun Atas-Bawah */
+          align-items: center;
+          gap: 50px;
+          width: 100%;
+          padding: 0;
         }
 
         /* 2. Munculkan Garis Merah & Atur Gaya */
-        .level-layer { display: block !important; }
-        
-        .dashed-box {
-            width: 94% !important; 
-            left: 3% !important;   
-            border-color: rgba(255, 82, 82, 0.4);
+        .level-layer {
+          display: block !important;
         }
-        
+
+        .dashed-box {
+          width: 94% !important;
+          left: 3% !important;
+          border-color: rgba(255, 82, 82, 0.4);
+        }
+
         .level-text {
-            left: 15px !important;
-            right: auto !important;
-            text-align: left !important;
-            top: auto !important;
-            font-size: 12px;
-            color: #ff5252;
-            z-index: 5;
+          left: 15px !important;
+          right: auto !important;
+          text-align: left !important;
+          top: auto !important;
+          font-size: 12px;
+          color: #ff5252;
+          z-index: 5;
         }
 
         /* 3. ATUR POSISI KOTAK SECARA MANUAL (KHUSUS AKTIVITAS 2) */
         .column {
-            width: 100%;
-            min-height: 700px; /* Lebih tinggi karena isinya banyak */
-            margin-bottom: 20px;
+          width: 100%;
+          min-height: 700px; /* Lebih tinggi karena isinya banyak */
+          margin-bottom: 20px;
         }
 
         /* --- KOLOM ATAS (ADMINISTRASI 2) --- */
         /* Level 1 (AA2) */
-        .aa-lvl-1-label { margin-top: 185px; position: absolute; }
-        .aa-box-lvl-1 { top: 178px !important; height: 80px !important; }
+        .aa-lvl-1-label {
+          margin-top: 185px;
+          position: absolute;
+        }
+        .aa-box-lvl-1 {
+          top: 178px !important;
+          height: 80px !important;
+        }
 
-        .aa-lvl-2-label { margin-top: 295px; position: absolute; }
-        .aa-box-lvl-2 { top: 288px !important; height: 80px !important; }
+        .aa-lvl-2-label {
+          margin-top: 295px;
+          position: absolute;
+        }
+        .aa-box-lvl-2 {
+          top: 288px !important;
+          height: 80px !important;
+        }
 
-        .aa-lvl-3-label { margin-top: 385px; position: absolute; }
-        .aa-box-lvl-3 { top: 378px !important; height: 80px !important; }
+        .aa-lvl-3-label {
+          margin-top: 385px;
+          position: absolute;
+        }
+        .aa-box-lvl-3 {
+          top: 378px !important;
+          height: 80px !important;
+        }
 
         /* --- KOLOM BAWAH (PEMERIKSAAN) --- */
-        .ap-lvl-1-label { margin-top: 185px; position: absolute; }
-        .ap-box-lvl-1 { top: 178px !important; height: 80px !important; }
+        .ap-lvl-1-label {
+          margin-top: 185px;
+          position: absolute;
+        }
+        .ap-box-lvl-1 {
+          top: 178px !important;
+          height: 80px !important;
+        }
 
-        .ap-lvl-2-label { margin-top: 295px; position: absolute; }
-        .ap-box-lvl-2 { top: 288px !important; height: 80px !important; }
+        .ap-lvl-2-label {
+          margin-top: 295px;
+          position: absolute;
+        }
+        .ap-box-lvl-2 {
+          top: 288px !important;
+          height: 80px !important;
+        }
 
-        .ap-lvl-3-label { margin-top: 385px; position: absolute; }
-        .ap-box-lvl-3 { top: 378px !important; height: 80px !important; }
-
+        .ap-lvl-3-label {
+          margin-top: 385px;
+          position: absolute;
+        }
+        .ap-box-lvl-3 {
+          top: 378px !important;
+          height: 80px !important;
+        }
 
         /* 4. Rapatkan Jarak Pohon */
-        .tree ul { padding-top: 20px; }
-        .tree li { padding: 20px 2px 0 2px; } 
-        
+        .tree ul {
+          padding-top: 20px;
+        }
+        .tree li {
+          padding: 20px 2px 0 2px;
+        }
+
         .node {
-            font-size: 11px;
-            padding: 8px;
-            min-height: 50px;
-            max-width: 130px;
+          font-size: 11px;
+          padding: 8px;
+          min-height: 50px;
+          max-width: 130px;
         }
       }
 
-       /* Pastikan column atau tree memiliki posisi relative agar layer di atas bekerja */
+      /* Pastikan column atau tree memiliki posisi relative agar layer di atas bekerja */
       .column {
-        position: relative; 
+        position: relative;
       }
-      
+
       /* Style Kotak Putus-Putus */
       .dashed-box {
         position: absolute;
@@ -491,25 +621,25 @@
         width: 60px;
         line-height: 1.2;
       }
-      
+
       /* Aktivitas Pemeriksaan */
       /* Level 1 */
-      .ap-lvl-1-label { 
-        top: 210px; 
-        left: auto;        
-        right: -70px;      
+      .ap-lvl-1-label {
+        top: 210px;
+        left: auto;
+        right: -70px;
         text-align: left;
-      } 
+      }
       .ap-box-lvl-1 {
         top: 175px; /* Jarak dari atas */
         height: 90px; /* Tinggi kotak */
       }
 
       /* Level 2 */
-      .ap-lvl-2-label { 
-        top: 325px; 
-        left: auto;        
-        right: -70px;      
+      .ap-lvl-2-label {
+        top: 325px;
+        left: auto;
+        right: -70px;
         text-align: left;
       }
       .ap-box-lvl-2 {
@@ -518,34 +648,40 @@
       }
 
       /* Level 3 */
-      .ap-lvl-3-label { 
-        top: 420px; 
-        left: auto;        
-        right: -70px;      
+      .ap-lvl-3-label {
+        top: 420px;
+        left: auto;
+        right: -70px;
         text-align: left;
       }
       .ap-box-lvl-3 {
         top: 385px;
         height: 90px;
       }
-      
+
       /* Aktivitas Administrasi */
       /* Level 1 */
-      .aa-lvl-1-label { top: 210px; } 
+      .aa-lvl-1-label {
+        top: 210px;
+      }
       .aa-box-lvl-1 {
         top: 175px; /* Jarak dari atas */
         height: 90px; /* Tinggi kotak */
       }
 
       /* Level 2 */
-      .aa-lvl-2-label { top: 325px; }
+      .aa-lvl-2-label {
+        top: 325px;
+      }
       .aa-box-lvl-2 {
         top: 290px;
         height: 90px;
       }
 
       /* Level 3 */
-      .aa-lvl-3-label { top: 420px; }
+      .aa-lvl-3-label {
+        top: 420px;
+      }
       .aa-box-lvl-3 {
         top: 385px;
         height: 90px;
@@ -558,11 +694,13 @@
           top: -20px !important; /* Pindah label ke atas kotak saat mobile */
           text-align: left;
         }
-        .box-lvl-2, .box-lvl-3, .box-lvl-4 {
+        .box-lvl-2,
+        .box-lvl-3,
+        .box-lvl-4 {
           width: 100%;
           left: 0;
         }
-      } 
+      }
       /* Chat Widget Styles */
       .chat-widget-container {
         position: fixed;
@@ -572,7 +710,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
       }
 
       /* Avatar Image Wrapper */
@@ -581,13 +719,13 @@
         height: 100px;
         cursor: pointer;
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
       }
 
       .chat-avatar-wrapper:hover {
         transform: scale(1.1);
       }
-      
+
       .chat-avatar-wrapper img {
         width: 100%;
         height: 100%;
@@ -600,12 +738,12 @@
         height: 300px;
         background-color: #1e1e1e; /* Warna Gelap */
         border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: column;
         overflow: hidden;
         margin-bottom: 15px;
-        
+
         /* Animasi Muncul */
         opacity: 0;
         transform: translateY(20px) scale(0.95);
@@ -630,8 +768,16 @@
         align-items: center;
         color: white;
       }
-      .chat-header h4 { margin: 0; font-size: 16px; font-weight: 600; }
-      .close-chat { cursor: pointer; font-size: 20px; font-weight: bold; }
+      .chat-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .close-chat {
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
 
       /* Chat Body */
       .chat-body {
@@ -678,9 +824,18 @@
 
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
-        .chat-widget-container { bottom: 20px; right: 20px; }
-        .chat-avatar-wrapper { width: 80px; height: 80px; }
-        .chat-box { width: 300px; height: 400px; }
+        .chat-widget-container {
+          bottom: 20px;
+          right: 20px;
+        }
+        .chat-avatar-wrapper {
+          width: 80px;
+          height: 80px;
+        }
+        .chat-box {
+          width: 300px;
+          height: 400px;
+        }
       }
     </style>
   </head>
@@ -692,313 +847,322 @@
       </div>
     </div>
 
-    <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 2</h1>
+    <div class="running-text">
+      <div class="text-run">
+        <p>
+          WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN, BEBERAPA FITUR MUNGKIN
+          MASIH BELUM TERSEDIA
+        </p>
+      </div>
+    </div>
 
-    <div class="diagram-scale">
-      <div class="diagram-wrapper">
-        
-        <div class="column">
-          <div class="column-title">Aktivitas Administrasi 2</div>
+    <div class="main-content">
+      <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 2</h1>
 
-          <div class="level-layer">
-            <div class="level-text aa-lvl-1-label">Level 1</div>
-            <div class="dashed-box aa-box-lvl-1"></div>
+      <div class="diagram-scale">
+        <div class="diagram-wrapper">
+          <div class="column">
+            <div class="column-title">Aktivitas Administrasi 2</div>
 
-            <div class="level-text aa-lvl-2-label">Level 2</div>
-            <div class="dashed-box aa-box-lvl-2"></div>
+            <div class="level-layer">
+              <div class="level-text aa-lvl-1-label">Level 1</div>
+              <div class="dashed-box aa-box-lvl-1"></div>
 
-            <div class="level-text aa-lvl-3-label">Level 3</div>
-            <div class="dashed-box aa-box-lvl-3"></div>
+              <div class="level-text aa-lvl-2-label">Level 2</div>
+              <div class="dashed-box aa-box-lvl-2"></div>
 
+              <div class="level-text aa-lvl-3-label">Level 3</div>
+              <div class="dashed-box aa-box-lvl-3"></div>
+            </div>
+            <div class="tree">
+              <ul>
+                <li>
+                  <div
+                    class="node purple"
+                    onclick="showModal('Aktivitas Administrasi 2','Menerbitkan Roster & Deployment per shift (termasuk update flexible roster)')"
+                  >
+                    AA 2
+                  </div>
+                  <ul>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 3 (Risiko 3)','Under-/Over-staffing & salah alokasi personel', 3, 4)"
+                      >
+                        R 3
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 3 (Penyebab 3)','Perkiraan beban kerja tidak akurat (jadwal kapal/CWP/forecast move tidak sinkron)')"
+                          >
+                            C 3
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 3 (Tindakan Preventif 3)','Gunakan forecast berbasis BAPLIE final + historis move, lalu simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.')"
+                              >
+                                PM 3
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 4 (Penyebab 4)','Tidak ada/kurang update skills-matrix & sertifikasi, sehingga penempatan tidak sesuai kompetensi')"
+                          >
+                            C 4
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 4 (Tindakan Preventif 4)','Terapkan skills-matrix formal dan program kompetensi/sertifikasi operator sesuai pedoman keselamatan pelabuhan.')"
+                              >
+                                PM 4
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 5 (Penyebab 5)','Ketidakhadiran mendadak (sakit/izin) tidak tertangani real-time karena tidak ada back-up pool')"
+                          >
+                            C 5
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 5 (Tindakan Preventif 5)','Siapkan reserve/on-call pool dan rencana workforce planning berbasis skenario untuk menutup gap kehadiran.')"
+                              >
+                                PM 5
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 4 (Risiko 4)','Roster kurang fleksibel terhadap ketidakpastian operasional', 2, 3)"
+                      >
+                        R 4
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 6 (Penyebab 6)','Roster kaku (fixed shift tanpa buffer/on-call/multi-skilling)')"
+                          >
+                            C 6
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 6 (Tindakan Preventif 6)','Terapkan flexible rostering (buffer shift, multi-skilling) sebagai bagian dari perencanaan tenaga kerja pelabuhan.')"
+                              >
+                                PM 6
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 7 (Penyebab 7)','Batasan regulasi & kontrak (jam kerja/overtime/aturan serikat) menyulitkan penyesuaian cepat')"
+                          >
+                            C 7
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 7 (Tindakan Preventif 7)','Bangun roster yang patuh aturan jam kerja & kelelahan (fatigue) sesuai ILO Code of Practice, plus MoU dengan serikat untuk skema fleksibel.')"
+                              >
+                                PM 7
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="tree">
-            <ul>
-              <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Administrasi 2','Menerbitkan Roster & Deployment per shift (termasuk update flexible roster)')"
-                >
-                  AA 2
-                </div>
-                <ul>
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 3 (Risiko 3)','Under-/Over-staffing & salah alokasi personel', 3, 4)"
-                    >
-                      R 3
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 3 (Penyebab 3)','Perkiraan beban kerja tidak akurat (jadwal kapal/CWP/forecast move tidak sinkron)')"
-                        >
-                          C 3
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 3 (Tindakan Preventif 3)','Gunakan forecast berbasis BAPLIE final + historis move, lalu simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.')"
-                            >
-                              PM 3
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 4 (Penyebab 4)','Tidak ada/kurang update skills-matrix & sertifikasi, sehingga penempatan tidak sesuai kompetensi')"
-                        >
-                          C 4
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 4 (Tindakan Preventif 4)','Terapkan skills-matrix formal dan program kompetensi/sertifikasi operator sesuai pedoman keselamatan pelabuhan.')"
-                            >
-                              PM 4
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 5 (Penyebab 5)','Ketidakhadiran mendadak (sakit/izin) tidak tertangani real-time karena tidak ada back-up pool')"
-                        >
-                          C 5
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 5 (Tindakan Preventif 5)','Siapkan reserve/on-call pool dan rencana workforce planning berbasis skenario untuk menutup gap kehadiran.')"
-                            >
-                              PM 5
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 4 (Risiko 4)','Roster kurang fleksibel terhadap ketidakpastian operasional', 2, 3)"
-                    >
-                      R 4
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 6 (Penyebab 6)','Roster kaku (fixed shift tanpa buffer/on-call/multi-skilling)')"
-                        >
-                          C 6
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 6 (Tindakan Preventif 6)','Terapkan flexible rostering (buffer shift, multi-skilling) sebagai bagian dari perencanaan tenaga kerja pelabuhan.')"
-                            >
-                              PM 6
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 7 (Penyebab 7)','Batasan regulasi & kontrak (jam kerja/overtime/aturan serikat) menyulitkan penyesuaian cepat')"
-                        >
-                          C 7
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 7 (Tindakan Preventif 7)','Bangun roster yang patuh aturan jam kerja & kelelahan (fatigue) sesuai ILO Code of Practice, plus MoU dengan serikat untuk skema fleksibel.')"
-                            >
-                              PM 7
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
 
-        <div class="column">
-          <div class="column-title">Aktivitas Pemeriksaan 2</div>
+          <div class="column">
+            <div class="column-title">Aktivitas Pemeriksaan 2</div>
 
-          <div class="level-layer">
-            <div class="level-text ap-lvl-1-label">Level 1</div>
-            <div class="dashed-box ap-box-lvl-1"></div>
-            <div class="level-text ap-lvl-2-label">Level 2</div>
-            <div class="dashed-box ap-box-lvl-2"></div>
-            <div class="level-text ap-lvl-3-label">Level 3</div>
-            <div class="dashed-box ap-box-lvl-3"></div>
-          </div>
-          <div class="tree">
-            <ul>
-              <li>
-                <div
-                  class="node purple"
-                  onclick="showModal('Aktivitas Pemeriksaan 2','Verifikasi Roster & Deployment per shift (termasuk update flexible roster)')"
-                >
-                  AP 2
-                </div>
-                <ul>
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 3 (Risiko 3)','Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing & mis-allocation)', 4, 3)"
-                    >
-                      R 3
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 5 (Penyebab 5)','Data/peramalan beban kerja tidak akurat atau belum tersinkron (perubahan CWP/yard plan/ETA–volume belum masuk roster)')"
-                        >
-                          C 5
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 5 (Tindakan Preventif 5)','Sinkronkan TOS (CWP/yard plan & ETA-volume) ke engine roster otomatis sebelum H-12 dan “freeze” roster')"
-                            >
-                              PM 5
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 6 (Penyebab 6)','Absensi/izin mendadak tidak tertangani dan tidak ada pool cadangan (standby) yang siap')"
-                        >
-                          C 6
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 6 (Tindakan Preventif 6)','Sediakan standby pool pada flexible roster (roving/multi-skill) yang terjadwal tiap shift')"
-                            >
-                              PM 6
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 4 (Risiko 4)','Ketidakcocokan kompetensi/sertifikasi dengan penugasan', 3, 4)"
-                    >
-                      R 4
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 7 (Penyebab 7)','Penjadwalan tidak berbasis keterampilan/izin alat (engine roster tidak mengunci pairing skill–alat)')"
-                        >
-                          C 7
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 7 (Tindakan Preventif 7)','Aktifkan aturan “skill/license lock” di engine roster (assignment gagal jika sertifikat/izin tidak valid)')"
-                            >
-                              PM 7
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 8 (Penyebab 8)','Minimnya multi-skilling sehingga pilihan pengganti bersertifikat sangat terbatas')"
-                        >
-                          C 8
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 8 (Tindakan Preventif 8)','Jalankan program multi-skilling terjadwal dan pelihara matriks kompetensi sebagai acuan penugasan')"
-                            >
-                              PM 8
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div
-                      class="node yellow"
-                      onclick="showModal('Risk 5 (Risiko 5)','Kelelahan (fatigue) karena pola shift/roster yang tidak sehat atau perubahan mendadak', 3, 3)"
-                    >
-                      R 5
-                    </div>
-                    <ul>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 9 (Penyebab 9)','Rotasi shift tidak sehat (shift malam berturut-turut, jam kerja panjang/lembur tinggi)')"
-                        >
-                          C 9
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 9 (Tindakan Preventif 9)','Terapkan FRMS + batas jam kerja & rotasi sehat (mis. max 2 shift malam beruntun, rest ≥10–12 jam) yang dikunci di engine roster')"
-                            >
-                              PM 9
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <div
-                          class="node red"
-                          onclick="showModal('Cause 10 (Penyebab 10)','Kekurangan personel kronis mendorong lembur berulang untuk mengejar target produktivitas')"
-                        >
-                          C 10
-                        </div>
-                        <ul>
-                          <li>
-                            <div
-                              class="node green"
-                              onclick="showModal('Preventive Measure 10 (Tindakan Preventif 10)','Sediakan standby pool multi-skill per shift (roving) untuk menutup absen tanpa lembur berulang')"
-                            >
-                              PM 10
-                            </div>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+            <div class="level-layer">
+              <div class="level-text ap-lvl-1-label">Level 1</div>
+              <div class="dashed-box ap-box-lvl-1"></div>
+              <div class="level-text ap-lvl-2-label">Level 2</div>
+              <div class="dashed-box ap-box-lvl-2"></div>
+              <div class="level-text ap-lvl-3-label">Level 3</div>
+              <div class="dashed-box ap-box-lvl-3"></div>
+            </div>
+            <div class="tree">
+              <ul>
+                <li>
+                  <div
+                    class="node purple"
+                    onclick="showModal('Aktivitas Pemeriksaan 2','Verifikasi Roster & Deployment per shift (termasuk update flexible roster)')"
+                  >
+                    AP 2
+                  </div>
+                  <ul>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 3 (Risiko 3)','Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing & mis-allocation)', 4, 3)"
+                      >
+                        R 3
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 5 (Penyebab 5)','Data/peramalan beban kerja tidak akurat atau belum tersinkron (perubahan CWP/yard plan/ETA–volume belum masuk roster)')"
+                          >
+                            C 5
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 5 (Tindakan Preventif 5)','Sinkronkan TOS (CWP/yard plan & ETA-volume) ke engine roster otomatis sebelum H-12 dan “freeze” roster')"
+                              >
+                                PM 5
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 6 (Penyebab 6)','Absensi/izin mendadak tidak tertangani dan tidak ada pool cadangan (standby) yang siap')"
+                          >
+                            C 6
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 6 (Tindakan Preventif 6)','Sediakan standby pool pada flexible roster (roving/multi-skill) yang terjadwal tiap shift')"
+                              >
+                                PM 6
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 4 (Risiko 4)','Ketidakcocokan kompetensi/sertifikasi dengan penugasan', 3, 4)"
+                      >
+                        R 4
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 7 (Penyebab 7)','Penjadwalan tidak berbasis keterampilan/izin alat (engine roster tidak mengunci pairing skill–alat)')"
+                          >
+                            C 7
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 7 (Tindakan Preventif 7)','Aktifkan aturan “skill/license lock” di engine roster (assignment gagal jika sertifikat/izin tidak valid)')"
+                              >
+                                PM 7
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 8 (Penyebab 8)','Minimnya multi-skilling sehingga pilihan pengganti bersertifikat sangat terbatas')"
+                          >
+                            C 8
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 8 (Tindakan Preventif 8)','Jalankan program multi-skilling terjadwal dan pelihara matriks kompetensi sebagai acuan penugasan')"
+                              >
+                                PM 8
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 5 (Risiko 5)','Kelelahan (fatigue) karena pola shift/roster yang tidak sehat atau perubahan mendadak', 3, 3)"
+                      >
+                        R 5
+                      </div>
+                      <ul>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 9 (Penyebab 9)','Rotasi shift tidak sehat (shift malam berturut-turut, jam kerja panjang/lembur tinggi)')"
+                          >
+                            C 9
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 9 (Tindakan Preventif 9)','Terapkan FRMS + batas jam kerja & rotasi sehat (mis. max 2 shift malam beruntun, rest ≥10–12 jam) yang dikunci di engine roster')"
+                              >
+                                PM 9
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 10 (Penyebab 10)','Kekurangan personel kronis mendorong lembur berulang untuk mengejar target produktivitas')"
+                          >
+                            C 10
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 10 (Tindakan Preventif 10)','Sediakan standby pool multi-skill per shift (roving) untuk menutup absen tanpa lembur berulang')"
+                              >
+                                PM 10
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -1271,30 +1435,30 @@
       </table>
     </div>
 
-<div class="modal-overlay" id="infoModal">
-  <div class="modal-content" id="modalContentBox">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    
-    <h2 id="modalTitle" class="modal-title">Judul</h2>
-    
-    <div class="modal-body">
-        <div class="stats-container" id="statsContainer">
-            <div class="stat-box">
-                <span class="stat-label">Likelihood</span>
-                <span class="stat-value" id="valLikelihood">0</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-label">Severity</span>
-                <span class="stat-value" id="valSeverity">0</span>
-            </div>
-        </div>
+    <div class="modal-overlay" id="infoModal">
+      <div class="modal-content" id="modalContentBox">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
 
-        <div class="desc-text">
+        <h2 id="modalTitle" class="modal-title">Judul</h2>
+
+        <div class="modal-body">
+          <div class="stats-container" id="statsContainer">
+            <div class="stat-box">
+              <span class="stat-label">Likelihood</span>
+              <span class="stat-value" id="valLikelihood">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Severity</span>
+              <span class="stat-value" id="valSeverity">0</span>
+            </div>
+          </div>
+
+          <div class="desc-text">
             <p id="modalText">Deskripsi...</p>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <script>
       function showModal(title, text, likelihood, severity) {
@@ -1307,17 +1471,17 @@
 
         // 2. Cek apakah ini Node Risk (punya likelihood & severity)
         if (likelihood !== undefined && severity !== undefined) {
-            // --- Risk --
-            modalContent.classList.add("risk-mode"); 
-            statsContainer.style.display = "flex";      // Munculkan kotak angka
-            
-            // Isi angka
-            document.getElementById("valLikelihood").innerText = likelihood;
-            document.getElementById("valSeverity").innerText = severity;
+          // --- Risk --
+          modalContent.classList.add("risk-mode");
+          statsContainer.style.display = "flex"; // Munculkan kotak angka
+
+          // Isi angka
+          document.getElementById("valLikelihood").innerText = likelihood;
+          document.getElementById("valSeverity").innerText = severity;
         } else {
-            // --- MODE BIASA (PUTIH) ---
-            modalContent.classList.remove("risk-mode"); // Hapus class hijau
-            statsContainer.style.display = "none";       // Sembunyikan kotak angka
+          // --- MODE BIASA (PUTIH) ---
+          modalContent.classList.remove("risk-mode"); // Hapus class hijau
+          statsContainer.style.display = "none"; // Sembunyikan kotak angka
         }
 
         // 3. Tampilkan Modal
@@ -1337,14 +1501,16 @@
       };
     </script>
     <div class="chat-widget-container">
-      
       <div class="chat-box" id="chatBox">
         <div class="chat-header">
           <h4>Pelindo AI Assistant</h4>
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body">
-          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
+          <div class="ai-msg">
+            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
+            bantu terkait operasional hari ini?
+          </div>
         </div>
         <div class="chat-input-area">
           <input type="text" placeholder="Tanya sesuatu..." />
@@ -1352,14 +1518,15 @@
         </div>
       </div>
 
-      <div class="chat-avatar-wrapper" 
-           id="avatarWrapper" 
-           onclick="toggleChat()"
-           onmouseenter="onHoverAvatar()" 
-           onmouseleave="onLeaveAvatar()">
-        <img src="char_idle.png" id="avatarImg" alt="AI Avatar">
+      <div
+        class="chat-avatar-wrapper"
+        id="avatarWrapper"
+        onclick="toggleChat()"
+        onmouseenter="onHoverAvatar()"
+        onmouseleave="onLeaveAvatar()"
+      >
+        <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
       </div>
-
     </div>
 
     <script>
@@ -1368,8 +1535,8 @@
       const chatBox = document.getElementById("chatBox");
 
       // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png";     // Gambar Diam
-      const imgHover = "char_hover.png";   // Gambar saat mouse di atas
+      const imgIdle = "char_idle.png"; // Gambar Diam
+      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
       const imgActive = "char_active.png"; // Gambar saat chat terbuka
 
       function onHoverAvatar() {
@@ -1386,7 +1553,7 @@
 
       function toggleChat() {
         isChatOpen = !isChatOpen;
-        
+
         if (isChatOpen) {
           chatBox.classList.add("active");
           avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
@@ -1396,7 +1563,7 @@
         }
       }
     </script>
-<script>
+    <script>
       function adjustZoomLevel() {
         // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
         const ratio = window.devicePixelRatio || 1;
@@ -1406,7 +1573,7 @@
           // Hitung nilai zoom kebalikannya
           // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
           const zoomValue = 1 / ratio;
-          
+
           // Terapkan zoom ke seluruh body
           document.body.style.zoom = zoomValue;
         } else {
@@ -1419,7 +1586,7 @@
       adjustZoomLevel();
 
       // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
-      window.addEventListener('resize', adjustZoomLevel);
+      window.addEventListener("resize", adjustZoomLevel);
     </script>
   </body>
 </html>
