@@ -191,6 +191,99 @@
           max-width: 570px;
         }
       }
+
+      .property-card {
+        position: relative;
+        width: 320px;
+        height: 420px;
+        border-radius: 20px;
+        overflow: hidden;
+        cursor: pointer;
+
+        background: #000;
+        will-change: transform;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .property-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Overlay bawah */
+      .card-overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 18px 20px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+
+        transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Text */
+      .type-text {
+        font-size: 18px;
+        font-weight: 600;
+        color: #222;
+      }
+
+      /* Panah */
+      .arrow-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1.5px solid #222;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 22px;
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ===== HOVER STATE ===== */
+      .property-card:hover {
+        transform: translateY(-14px);
+        box-shadow: 0 24px 45px rgba(0, 0, 0, 0.25);
+      }
+
+      .property-card:hover img {
+        transform: scale(1.12);
+      }
+
+      .property-card:hover .card-overlay {
+        background: rgba(255, 255, 255, 0.8);
+      }
+
+      .property-card:hover .arrow-btn {
+        transform: translateX(6px);
+        background: #222;
+        color: #fff;
+      }
+
+      .card-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        margin: 60px auto;
+      }
+
       /* Chat Widget Styles */
       .chat-widget-container {
         position: fixed;
@@ -542,6 +635,41 @@
           Indonesia bagian timur. Kami berkomitmen menghadirkan pelayanan
           terbaik untuk memperkuat posisi Indonesia sebagai poros maritim dunia.
         </p>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="image-box">
+        <img src="aset/terminal.jpg" alt="Gambar TPK New Makassar" />
+      </div>
+
+      <div class="text-box">
+        <h3>TPK New Makassar</h3>
+        <p>
+          Makassar, ibu kota Sulawesi Selatan, merupakan salah satu pusat
+          pertumbuhan ekonomi utama di Indonesia timur. Dengan beroperasinya
+          Makassar New Port pada 2024, kota ini semakin berkembang sebagai
+          gerbang utama arus barang di Indonesia Timur.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-wrapper">
+      <div class="property-card">
+        <img src="slidingphoto/1.webp" alt="Type 5" />
+
+        <div class="card-overlay">
+          <span class="type-text">Type 5</span>
+          <div class="arrow-btn">›</div>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="slidingphoto/2.webp" alt="Type 6" />
+        <div class="card-overlay">
+          <span class="type-text">Type 6</span>
+          <div class="arrow-btn">›</div>
+        </div>
       </div>
     </div>
 
