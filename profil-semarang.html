@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aktivitas Terminal</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(#eef7ff, #eaf6ff);
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      .navbar {
+        width: 100%;
+        padding: 1.2rem 3vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar a:hover,
+      .navbar a.active {
+        border-style: solid;
+        border-top: #222;
+        border-right: #222;
+        border-left: #222;
+        color: #00abf0;
+      }
+
+      .nav-links {
+        margin-right: 70px;
+      }
+
+      .nav-links a {
+        margin-left: 25px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #0077cc;
+      }
+
+      /* RUNNING TEXT */
+      .running-text {
+        position: fixed;
+        top: 65px; /* tepat di bawah navbar */
+        left: 0;
+        width: 100%;
+        height: 35px;
+        background-color: #0077cc;
+        font-size: 22.5px;
+        font-weight: 700;
+        color: #fff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        z-index: 99;
+      }
+
+      .text-run {
+        position: absolute;
+        white-space: nowrap;
+        animation: runningText 20s linear infinite;
+      }
+
+      /* ANIMASI */
+      @keyframes runningText {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .navbar {
+          height: 60px;
+        }
+
+        .running-text {
+          top: 80px;
+          height: 26px;
+          font-size: 14px;
+        }
+
+        .main-carousel-section {
+          margin-top: 86px;
+        }
+      }
+
+      /* OPSIONAL: PAUSE SAAT HOVER */
+      .running-text:hover .text-run {
+        animation-play-state: paused;
+      }
+
+      .title {
+        margin-top: 130px;
+        text-align: center;
+        font-size: 50px;
+        font-weight: 700;
+        color: #333;
+      }
+
+      .title-2 {
+        margin-top: 0;
+        margin-left: 200px;
+        margin-right: 200px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 400;
+        color: #333;
+      }
+
+      /* GRID */
+      .kb-container {
+        width: 85%;
+        margin: 50px auto 100px auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        align-items: start;
+      }
+
+      /* BOX */
+      .kb-box {
+        background: #126e80;
+        padding: 30px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .kb-box:hover {
+        transform: translateY(-5px);
+        background: #126e80;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .kb-img {
+        width: 100%;
+        border-radius: 15px;
+        margin-top: 15px;
+        display: block;
+
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.9s ease;
+      }
+      .kb-box:hover .kb-img {
+        max-height: 400px;
+        opacity: 1;
+      }
+
+      .kb-title-text {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 0;
+        text-align: center;
+      }
+
+      .kb-desc {
+        background: #ffffff;
+        color: #555;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.6;
+        text-align: center;
+        border-radius: 15px;
+        width: 100%;
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
+        padding: 0 15px;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        box-sizing: border-box;
+      }
+
+      .kb-box:hover .kb-desc {
+        max-height: 300px;
+        opacity: 1;
+        margin-top: 20px;
+        padding: 20px 15px;
+      }
+
+      /* TABEL */
+      .table-container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto 60px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        overflow-x: auto;
+      }
+
+      .clean-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        color: #333;
+      }
+
+      .clean-table th {
+        background: #126e80;
+        color: white;
+        font-weight: 600;
+        padding: 12px;
+        text-align: center;
+        border-bottom: 2px solid #0f5c6a;
+        white-space: nowrap;
+      }
+
+      .clean-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+      }
+      .clean-table td:first-child {
+        text-align: center;
+      }
+
+      .clean-table tr:nth-child(even) {
+        background: #f9fbfc;
+      }
+      .clean-table tr:hover {
+        background: #f0f8fa;
+      }
+
+      @media (max-width: 900px) {
+        .kb-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .bottom-hill {
+        width: 100%;
+        height: 250px;
+        background: url("hill.svg") no-repeat center bottom;
+        background-size: cover;
+        position: fixed;
+        bottom: 0;
+        z-index: -1;
+      }
+      /* Chat Widget Styles */
+      .chat-widget-container {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Avatar Image Wrapper */
+      .chat-avatar-wrapper {
+        width: 100px; /* Sesuaikan ukuran gambar */
+        height: 100px;
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+      }
+
+      .chat-avatar-wrapper:hover {
+        transform: scale(1.1);
+      }
+
+      .chat-avatar-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /* Chat Box Popup */
+      .chat-box {
+        width: 300px;
+        height: 300px;
+        background-color: #1e1e1e; /* Warna Gelap */
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        /* Animasi Muncul */
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        transform-origin: bottom right;
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+
+      /* Saat chat aktif/open */
+      .chat-box.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: all;
+      }
+
+      /* Chat Header */
+      .chat-header {
+        background: #126e80; /* Warna Pelindo */
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
+      .chat-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .close-chat {
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      /* Chat Body */
+      .chat-body {
+        flex: 1;
+        padding: 15px;
+        color: #ddd;
+        font-size: 14px;
+        overflow-y: auto;
+      }
+      .ai-msg {
+        background: #333;
+        padding: 10px;
+        border-radius: 10px 10px 10px 0;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+
+      /* Chat Input */
+      .chat-input-area {
+        padding: 15px;
+        background: #252525;
+        display: flex;
+        gap: 10px;
+        border-top: 1px solid #333;
+      }
+      .chat-input-area input {
+        flex: 1;
+        background: #333;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+        outline: none;
+      }
+      .chat-input-area button {
+        background: #126e80;
+        color: white;
+        border: none;
+        padding: 0 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      /* Responsif untuk Mobile */
+      @media (max-width: 600px) {
+        .chat-widget-container {
+          bottom: 20px;
+          right: 20px;
+        }
+        .chat-avatar-wrapper {
+          width: 80px;
+          height: 80px;
+        }
+        .chat-box {
+          width: 300px;
+          height: 400px;
+        }
+      }
+      /* --- TAMBAHAN KHUSUS MOBILE TEXT --- */
+      .mobile-hint {
+        display: none; /* Secara default disembunyikan (untuk laptop/PC) */
+      }
+
+      /* Saat layar di bawah 900px (Tampilan Tablet/HP) */
+      @media (max-width: 900px) {
+        .mobile-hint {
+          display: block; /* Munculkan teks */
+          margin-top: 15px;
+          padding-top: 10px;
+          border-top: 1px solid rgba(255, 255, 255, 0.3); /* Garis pemisah tipis */
+          font-size: 13px;
+          color: black; /* Warna teks agak terang agar kontras */
+          width: 100%;
+          text-align: center;
+          font-weight: 500;
+          background: #ffffff;
+          border-radius: 15px;
+          box-sizing: border-box;
+        }
+
+        /* Opsional: Sedikit ubah padding box biar muat */
+        .kb-box {
+          padding-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="knowledge-base.html">Knowledge Base</a>
+        <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
+        <a href="profil-surabaya.html">Profil TPK Teluk Lamong Surabaya</a>
+        <a href="profil-semarang.html" class="active">Profil TPK Semarang</a>
+        <a href="profil-makassar.html">Profil TPK Makassar New Port</a>
+      </div>
+    </div>
+
+    <div class="running-text">
+      <div class="text-run">
+        <p>
+          WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN, BEBERAPA FITUR MUNGKIN
+          MASIH BELUM TERSEDIA
+        </p>
+      </div>
+    </div>
+
+    <h1 class="title">AKTIVITAS TERMINAL</h1>
+    <h2 class="title-2">
+      Aktivitas terminal ini merupakan bagian dari operational model yang
+      berasal dari planning and control, yang berperan dalam memastikan
+      kelancaran operasional terminal melalui pengelolaan dan pengawasan
+      kegiatan yang terintegrasi.
+    </h2>
+
+    <!-- GRID BOXES -->
+    <div class="kb-container">
+      <a href="aktivitas1.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 1</div>
+        <div class="kb-desc">Berth Allocation (BA)</div>
+        <img src="aset/berth allocation (BA).jpg" class="kb-img" />
+        <div class="mobile-hint">Berth Allocation (BA)</div>
+      </a>
+
+      <a href="aktivitas2.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 2</div>
+        <div class="kb-desc">Manning & Deployment</div>
+        <img src="aset/Manning & Deployment.png" class="kb-img" />
+        <div class="mobile-hint">Manning & Deployment</div>
+      </a>
+
+      <a href="aktivitas3.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 3</div>
+        <div class="kb-desc">Ship Planner</div>
+        <img src="aset/Ship Planner.jpg" class="kb-img" />
+        <div class="mobile-hint">Ship Planner</div>
+      </a>
+
+      <a href="aktivitas4.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 4</div>
+        <div class="kb-desc">Yard Planner</div>
+        <img src="aset/Yard Planner.jpg" class="kb-img" />
+        <div class="mobile-hint">Yard Planner</div>
+      </a>
+
+      <a href="aktivitas5.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 5</div>
+        <div class="kb-desc">Ship Talker</div>
+        <img src="aset/Ship Talker.jpg" class="kb-img" />
+        <div class="mobile-hint">Ship Talker</div>
+      </a>
+
+      <a href="aktivitas6.html" class="kb-box">
+        <div class="kb-title-text">Aktivitas Terminal 6</div>
+        <div class="kb-desc">Yard Talker</div>
+        <img src="aset/Yard Talker.jpg" class="kb-img" />
+        <div class="mobile-hint">Yard Talker</div>
+      </a>
+    </div>
+
+    <!-- TABEL BESAR -->
+    <div class="table-container">
+      <h2
+        style="
+          text-align: center;
+          margin-bottom: 25px;
+          font-weight: 700;
+          color: #126e80;
+        "
+      >
+        Knowledge Base Aktivitas Terminal Teluk Lamong
+      </h2>
+
+      <table class="clean-table">
+        <thead>
+          <tr>
+            <th>AT Code</th>
+            <th>Aktivitas Terminal</th>
+            <th>AA/AP Code</th>
+            <th>Aktivitas Admin/Pemeriksaan</th>
+            <th>Risk Code</th>
+            <th>Risk</th>
+            <th>Cause Code</th>
+            <th>Cause</th>
+            <th>PM Code</th>
+            <th>Preventive Measure</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AA 1</td>
+            <td>Menerbitkan Berth Plan terkonfirmasi</td>
+            <td>R1</td>
+            <td>
+              Ketidakakuratan jadwal & posisi sandar (Berth mis-allocation)
+            </td>
+            <td>C1</td>
+            <td>
+              ETA/ETD kapal tidak akurat/tidak real-time (cuaca, antrian,
+              pilotage)
+            </td>
+            <td>PM1</td>
+            <td>
+              Terapkan Just-in-Time (JIT) Port Call: kewajiban update ETA/ETD
+              berkala via Inaportnet dan berbagi memakai data standar IMO
+              FAL.5/Circ.52, terhubung ke VTS/pandu
+            </td>
+          </tr>
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AA 1</td>
+            <td>Menerbitkan Berth Plan terkonfirmasi</td>
+            <td>R2</td>
+            <td>Ketidaksesuaian alokasi crane & kapasitas fasilitas</td>
+            <td>C2</td>
+            <td>
+              Ketersediaan crane/fasilitas tidak real-time
+              (breakdown/maintenance, overlap rel/jangkauan, batas daya)
+            </td>
+            <td>PM2</td>
+            <td>
+              Integrasikan CMMS + condition monitoring (acu ISO 12482) ke TOS
+              agar status alat (operational/out-of-service) real-time; lengkapi
+              fitur keselamatan minimum (anemometer, tie-down, anti-collision)
+              untuk mengurangi downtime karena cuaca/gangguan.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
+            <td>R1</td>
+            <td>Konflik jadwal/berth conflict (double-booking)</td>
+            <td>C1</td>
+            <td>
+              Update ETA/ETB terlambat atau tidak sinkron antar sistem (TOS/BA
+              Map–Inaportnet–shipping line/agent).
+            </td>
+            <td>PM1</td>
+            <td>
+              Aktifkan sinkronisasi otomatis + alert deviasi ETA/ETB (≥15–30
+              menit) antara TOS/BA Map–Inaportnet–shipping line
+            </td>
+          </tr>
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar. Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map
+              sebelum sandar.
+            </td>
+            <td>R1</td>
+            <td>Konflik jadwal/berth conflict (double-booking)</td>
+            <td>C2</td>
+            <td>
+              Durasi operasi kapal sebelumnya meleset (overrun karena
+              produktivitas turun), sehingga window bertumpuk
+            </td>
+            <td>PM2</td>
+            <td>
+              Tambahkan buffer time antar kapal berbasis histori
+              produktivitas/tidal window pada penetapan window sandar
+            </td>
+          </tr>
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
+            <td>R2</td>
+            <td>Ketidakcocokan kapal–dermaga</td>
+            <td>C3</td>
+            <td>
+              Data teknis kapal tidak lengkap/terbaru (LOA, beam, draft,
+              kebutuhan crane, special cargo) saat verifikasi
+            </td>
+            <td>PM3</td>
+            <td>
+              Wajibkan pre-berthing ship particulars checklist H-24/H-12 dan
+              aktifkan “hard-validation” di TOS (LOA/beam/draft/kebutuhan crane
+              harus valid sebelum alokasi diproses)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 1</td>
+            <td>Berth Allocation (BA)</td>
+            <td>AP 1</td>
+            <td>
+              Verifikasi Vessel Schedule & Alokasi Dermaga pada BA Map sebelum
+              sandar.
+            </td>
+            <td>R2</td>
+            <td>Ketidakcocokan kapal–dermaga</td>
+            <td>C4</td>
+            <td>
+              Informasi kondisi dermaga & peralatan tidak akurat (kedalaman
+              aktual, crane outage/jangkauan, batasan struktur)
+            </td>
+            <td>PM4</td>
+            <td>
+              Update harian “berth capacity matrix” (kedalaman aktual & status
+              crane) terhubung ke BA Map dengan aturan no-allocate jika tidak
+              memenuhi batas
+            </td>
+          </tr>
+
+          <!-- AT 2 -->
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
+            <td>R3</td>
+            <td>Under-/Over-staffing & salah alokasi personel</td>
+            <td>C3</td>
+            <td>
+              Perkiraan beban kerja tidak akurat (jadwal kapal/CWP/forecast move
+              tidak sinkron)
+            </td>
+            <td>PM3</td>
+            <td>
+              Gunakan forecast berbasis BAPLIE final + historis move, lalu
+              simulasikan CWP dan perbarui rolling saat ada perubahan jadwal.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
+            <td>R3</td>
+            <td>Under-/Over-staffing & salah alokasi personel</td>
+            <td>C4</td>
+            <td>
+              Tidak ada/kurang update skills-matrix & sertifikasi, sehingga
+              penempatan tidak sesuai kompetensi
+            </td>
+            <td>PM4</td>
+            <td>
+              Terapkan skills-matrix formal dan program kompetensi/sertifikasi
+              operator sesuai pedoman keselamatan pelabuhan.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
+            <td>R3</td>
+            <td>Under-/Over-staffing & salah alokasi personel</td>
+            <td>C5</td>
+            <td>
+              Ketidakhadiran mendadak (sakit/izin) tidak tertangani real-time
+              karena tidak ada back-up pool
+            </td>
+            <td>PM5</td>
+            <td>
+              Siapkan reserve/on-call pool dan rencana workforce planning
+              berbasis skenario untuk menutup gap kehadiran.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>Menyusun jadwal manpower</td>
+            <td>R4</td>
+            <td>Roster kurang fleksibel terhadap ketidakpastian operasional</td>
+            <td>C6</td>
+            <td>Distribusi manpower tidak seimbang</td>
+            <td>PM6</td>
+            <td>Workload balancing + sistem rekomendasi</td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AA 2</td>
+            <td>
+              Menerbitkan Roster & Deployment per shift (termasuk update
+              flexible roster)
+            </td>
+            <td>R4</td>
+            <td>Roster kurang fleksibel terhadap ketidakpastian operasional</td>
+            <td>C7</td>
+            <td>
+              Batasan regulasi & kontrak (jam kerja/overtime/aturan serikat)
+              menyulitkan penyesuaian cepat
+            </td>
+            <td>PM7</td>
+            <td>
+              Bangun roster yang patuh aturan jam kerja & kelelahan (fatigue)
+              sesuai ILO Code of Practice, plus MoU dengan serikat untuk skema
+              fleksibel.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R3</td>
+            <td>
+              Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing
+              & mis-allocation)
+            </td>
+            <td>C5</td>
+            <td>
+              Data/peramalan beban kerja tidak akurat atau belum tersinkron
+              (perubahan CWP/yard plan/ETA–volume belum masuk roster)
+            </td>
+            <td>PM5</td>
+            <td>
+              Sinkronkan TOS (CWP/yard plan & ETA-volume) ke engine roster
+              otomatis sebelum H-12 dan “freeze” roster
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R3</td>
+            <td>
+              Mismatch kebutuhan–ketersediaan personel/alat (under/over-staffing
+              & mis-allocation)
+            </td>
+            <td>C6</td>
+            <td>
+              Absensi/izin mendadak tidak tertangani dan tidak ada pool cadangan
+              (standby) yang siap
+            </td>
+            <td>PM6</td>
+            <td>
+              Sediakan standby pool pada flexible roster (roving/multi-skill)
+              yang terjadwal tiap shift
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R4</td>
+            <td>Ketidakcocokan kompetensi/sertifikasi dengan penugasan</td>
+            <td>C7</td>
+            <td>
+              Penjadwalan tidak berbasis keterampilan/izin alat (engine roster
+              tidak mengunci pairing skill–alat)
+            </td>
+            <td>PM7</td>
+            <td>
+              Aktifkan aturan “skill/license lock” di engine roster (assignment
+              gagal jika sertifikat/izin tidak valid)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R4</td>
+            <td>Ketidakcocokan kompetensi/sertifikasi dengan penugasan</td>
+            <td>C8</td>
+            <td>
+              Minimnya multi-skilling sehingga pilihan pengganti bersertifikat
+              sangat terbatas
+            </td>
+            <td>PM8</td>
+            <td>
+              Jalankan program multi-skilling terjadwal dan pelihara matriks
+              kompetensi sebagai acuan penugasan
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R5</td>
+            <td>
+              Kelelahan (fatigue) karena pola shift/roster yang tidak sehat atau
+              perubahan mendadak
+            </td>
+            <td>C9</td>
+            <td>
+              Rotasi shift tidak sehat (shift malam berturut-turut, jam kerja
+              panjang/lembur tinggi)
+            </td>
+            <td>PM9</td>
+            <td>
+              Terapkan FRMS + batas jam kerja & rotasi sehat (mis. max 2 shift
+              malam beruntun, rest ≥10–12 jam) yang dikunci di engine roster
+            </td>
+          </tr>
+          <tr>
+            <td>AT 2</td>
+            <td>Manning & Deployment</td>
+            <td>AP 2</td>
+            <td>
+              Verifikasi Roster & Deployment per shift (termasuk update flexible
+              roster)
+            </td>
+            <td>R5</td>
+            <td>
+              Kelelahan (fatigue) karena pola shift/roster yang tidak sehat atau
+              perubahan mendadak
+            </td>
+            <td>C10</td>
+            <td>
+              Kekurangan personel kronis mendorong lembur berulang untuk
+              mengejar target produktivitas
+            </td>
+            <td>PM10</td>
+            <td>
+              Sediakan standby pool multi-skill per shift (roving) untuk menutup
+              absen tanpa lembur berulang
+            </td>
+          </tr>
+
+          <!-- AT 3 -->
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
+            <td>R5</td>
+            <td>
+              Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE &
+              VGM)
+            </td>
+            <td>C8</td>
+            <td>
+              Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak
+              tersebar)
+            </td>
+            <td>PM8</td>
+            <td>
+              Terapkan kontrol versi & acknowledgement EDI (gunakan
+              APERAK/CONTRL) agar hanya versi terbaru yang dipakai.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
+            <td>R5</td>
+            <td>
+              Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE &
+              VGM)
+            </td>
+            <td>C9</td>
+            <td>
+              Kualitas data buruk: salah bay/row/tier, size/type, atau VGM
+              belum/salah
+            </td>
+            <td>PM9</td>
+            <td>
+              Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM
+              sesuai SOLAS-VGM sebelum publish.
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
+            <td>R6</td>
+            <td>Interferensi antar quay crane karena CWP tidak optimal</td>
+            <td>C10</td>
+            <td>
+              Range kerja crane overlap (aturan non-crossing/jarak aman tidak
+              diterapkan)
+            </td>
+            <td>PM10</td>
+            <td>
+              Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing &
+              safety distance + validasi CWP sebelum publish
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan i
+            </td>
+            <td>R6</td>
+            <td>
+              Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer,
+              VGM, data kapal)
+            </td>
+            <td>C11</td>
+            <td>
+              Kesalahan input/manual mapping (ISO size/type, reefer/DG flag,
+              container ID) atau VGM belum masuk saat cut-off
+            </td>
+            <td>PM11</td>
+            <td>
+              Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM
+              wajib ada—kalau tidak, blok rencana)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R6</td>
+            <td>
+              Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer,
+              VGM, data kapal)
+            </td>
+            <td>C12</td>
+            <td>
+              Profil kapal (bay/vessel particulars) tidak mutakhir di library
+              TOS sehingga penomoran slot/kapasitas tidak cocok
+            </td>
+            <td>PM12</td>
+            <td>
+              Governansi master data kapal (update saat first call & sign-off
+              oleh shipping line; versi dikunci sebelum planning)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R7</td>
+            <td>
+              Bay Plan melanggar aturan keselamatan (stabilitas, batas
+              tumpuk/lashing, dan segregasi Dangerous Goods)
+            </td>
+            <td>C13</td>
+            <td>
+              Deklarasi Dangerous Goods/segregation code tidak lengkap/salah,
+              atau reefer/OOG tidak ditandai
+            </td>
+            <td>PM13</td>
+            <td>
+              IMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis
+              block jika tidak sesuai segregasi)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R7</td>
+            <td>
+              Bay Plan melanggar aturan keselamatan (stabilitas, batas
+              tumpuk/lashing, dan segregasi Dangerous Goods)
+            </td>
+            <td>C14</td>
+            <td>
+              Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan
+              dalam rule TOS saat menyusun rencana
+            </td>
+            <td>PM14</td>
+            <td>
+              Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP
+              (rencana tidak bisa dieksekusi sebelum lolos)
+            </td>
+          </tr>
+
+          <!-- AT 4 -->
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R7</td>
+            <td>
+              Penempatan/slotting yard tidak efisien jadi re-handle & alat
+              banyak jalan
+            </td>
+            <td>C11</td>
+            <td>
+              Stack map tidak pakai urutan pengambilan (delivery sequence/dwell
+              time/priority tidak dipertimbangkan)
+            </td>
+            <td>PM11</td>
+            <td>
+              Lakukan slotting berbasis sequence & dwell time untuk meminimalkan
+              re-handle
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R7</td>
+            <td>
+              Penempatan/slotting yard tidak efisien jadi re-handle & alat
+              banyak jalan
+            </td>
+            <td>C12</td>
+            <td>
+              Data kontainer di TOS tidak lengkap/akurat
+              (size/type/berat/reefer/DG/hold) saat planning
+            </td>
+            <td>PM12</td>
+            <td>
+              Aktifkan rule-based validation (termasuk VGM SOLAS) & gunakan MIG
+              BAPLIE/MOVINS terbaru saat planning
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R7</td>
+            <td>
+              Penempatan/slotting yard tidak efisien jadi re-handle & alat
+              banyak jalan
+            </td>
+            <td>C13</td>
+            <td>
+              Inventori yard tidak real-time (slot di sistem ≠ kondisi
+              lapangan), sehingga slot rencana ternyata terisi/terblokir
+            </td>
+            <td>PM13</td>
+            <td>
+              Pasang RFID/QR-based yard tracking + mandatory move confirmation
+              agar inventory TOS selalu mutakhir
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R8</td>
+            <td>
+              Tidak sinkron dengan arus truk/gate → blok macet & truck
+              turnaround time naik
+            </td>
+            <td>C14</td>
+            <td>
+              Perubahan/ketidakpastian jadwal kedatangan truk (TAS/ETA) tidak
+              masuk ke perencanaan
+            </td>
+            <td>PM14</td>
+            <td>
+              Terapkan Terminal Booking System (TBS) terintegrasi TOS untuk
+              meratakan kedatangan & memperkecil waiting time
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AA 4</td>
+            <td>
+              Menerbitkan Position Assignment/Stack Map final (inbound &
+              outbound)
+            </td>
+            <td>R8</td>
+            <td>
+              Tidak sinkron dengan arus truk/gate → blok macet & truck
+              turnaround time naik
+            </td>
+            <td>C15</td>
+            <td>
+              Beban pengambilan ditumpuk di blok yang sama pada jam yang sama
+              (kapasitas gate/alat tidak diperhitungkan)
+            </td>
+            <td>PM15</td>
+            <td>
+              Load-balancing per blok & time-window lewat aturan TAS/yard
+              (kapasitas gate & alat sebagai constraint)
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AP 4</td>
+            <td>
+              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
+              prediksinya
+            </td>
+            <td>R8</td>
+            <td>
+              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
+              re-handle
+            </td>
+            <td>C16</td>
+            <td>
+              Produktivitas yard turun: breakdown alat/kurang operator sehingga
+              backlog menumpuk
+            </td>
+            <td>PM16</td>
+            <td>
+              Siapkan standby plan operator & unit cadangan untuk hot-swap saat
+              downtime
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AP 4</td>
+            <td>
+              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
+              prediksinya
+            </td>
+            <td>R8</td>
+            <td>
+              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
+              re-handle
+            </td>
+            <td>C17</td>
+            <td>
+              Area efektif berkurang: blok ditutup (maintenance/No-Work Area)
+              atau dibatasi (zona reefer/DG) sehingga kepadatan naik
+            </td>
+            <td>PM17</td>
+            <td>
+              Aktifkan blok alternatif/overflow sementara & lakukan dynamic
+              zoning untuk rebalance kepadatan
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 4</td>
+            <td>Yard Planner</td>
+            <td>AP 4</td>
+            <td>
+              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
+              prediksinya
+            </td>
+            <td>R8</td>
+            <td>
+              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
+              re-handle
+            </td>
+            <td>C18</td>
+            <td>
+              Kebijakan stacking kurang tepat: tinggi tumpukan/slotting campur
+              (import-export-empty) menambah re-handle dan memperlambat
+              pengosongan blok
+            </td>
+            <td>PM18</td>
+            <td>
+              Kunci yard policy di TOS (tinggi tumpuk & blok khusus
+              import/export/empty) dengan rule-based slotting
+            </td>
+          </tr>
+
+          <!-- AT 5 -->
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AA 5</td>
+            <td>
+              Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di
+              CWP/Bay Plan)
+            </td>
+            <td>R9</td>
+            <td>Instruksi/komunikasi tidak jelas (radio/isyarat tangan)</td>
+            <td>C16</td>
+            <td>
+              Kualitas radio buruk/crosstalk atau noise sehingga pesan
+              terpotong/tertukar
+            </td>
+            <td>PM16</td>
+            <td>
+              Audit & peremajaan radio, kanal khusus operasi, dan fallback ke
+              hand-signals standar bila audio tidak andal
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AA 5</td>
+            <td>
+              Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di
+              CWP/Bay Plan)
+            </td>
+            <td>R10</td>
+            <td>Tidak sinkron dengan CWP/Bay Plan terbaru (versi salah)</td>
+            <td>C17</td>
+            <td>
+              Rencana terbaru tidak dipublikasikan ke semua pihak/perangkat
+              (pakai file lama)
+            </td>
+            <td>PM17</td>
+            <td>
+              Terapkan PCS/TOS sebagai “single source of truth” + kontrol versi
+              & notifikasi otomatis saat ada revisi rencana
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
+            <td>R9</td>
+            <td>
+              Gagal komunikasi radio atau miskom (radio mati/salah kanal/tidak
+              cukup unit)
+            </td>
+            <td>C19</td>
+            <td>
+              Gangguan cakupan & kebisingan: dead spot di area kerja,
+              headset/noise-cancelling tidak digunakan
+            </td>
+            <td>PM19</td>
+            <td>
+              Petakan cakupan & pasang repeater di area dead spot, sekaligus
+              wajib headset untuk semua peran kritis
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
+            <td>R10</td>
+            <td>
+              Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA
+              kadaluarsa) → interferensi crane & waktu tunggu
+            </td>
+            <td>C20</td>
+            <td>
+              Perubahan rencana last-minute tidak tersosialisasi (tidak ada
+              cut-off & change control yang jelas)
+            </td>
+            <td>PM20</td>
+            <td>
+              Terapkan cut-off & change control terpusat di TOS; revisi hanya
+              lewat tiket yang otomatis broadcast
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
+            <td>R10</td>
+            <td>
+              Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA
+              kadaluarsa) → interferensi crane & waktu tunggu
+            </td>
+            <td>C21</td>
+            <td>
+              Distribusi rencana manual (print/WA) tanpa kontrol
+              versi/timestamp, sehingga tim memakai versi berbeda
+            </td>
+            <td>PM21</td>
+            <td>
+              Gunakan satu sumber (TOS) dengan timestamp; bagikan tautan versi
+              live, bukan file cetak/WA
+            </td>
+          </tr>
+
+          <!-- AT 6 -->
+          <tr>
+            <td>AT 6</td>
+            <td>Yard Talker</td>
+            <td>AA 6</td>
+            <td>
+              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
+              alat & tim
+            </td>
+            <td>R11</td>
+            <td>Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh</td>
+            <td>C18</td>
+            <td>
+              Kualitas radio buruk/crosstalk sehingga pesan terpotong atau
+              tertukar
+            </td>
+            <td>PM18</td>
+            <td>
+              Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan
+              fallback ke hand-signals standar bila kualitas audio tidak memadai
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 6</td>
+            <td>Yard Talker</td>
+            <td>AA 6</td>
+            <td>
+              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
+              alat & tim
+            </td>
+            <td>R12</td>
+            <td>Dispatch tidak sinkron dengan rencana yard & arus truk/gate</td>
+            <td>C19</td>
+            <td>
+              Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher &
+              operator.
+            </td>
+            <td>PM19</td>
+            <td>
+              Gunakan Truck Appointment System terintegrasi TOS (time-window,
+              load-balancing) dengan notifikasi perubahan otomatis
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 6</td>
+            <td>Yard Talker</td>
+            <td>AP 6</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
+            <td>R11</td>
+            <td>
+              Salah hold/release sehingga kontainer yang masih “ditahan”
+              (Customs/Karantina/DG) terlepas atau sebaliknya
+            </td>
+            <td>C22</td>
+            <td>
+              Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS
+              (SPPB, pemeriksaan fisik, red/yellow lane)
+            </td>
+            <td>PM22</td>
+            <td>
+              Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB
+              tervalidasi di sistem
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 6</td>
+            <td>Yard Talker</td>
+            <td>AP 6</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
+            <td>R11</td>
+            <td>
+              Salah hold/release sehingga kontainer yang masih “ditahan”
+              (Customs/Karantina/DG) terlepas atau sebaliknya
+            </td>
+            <td>C23</td>
+            <td>
+              Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah
+              scan STID/RFID)
+            </td>
+            <td>PM23</td>
+            <td>
+              Wajib double-scan (gate & yard) + verifikasi otomatis nomor
+              box↔B/L di TOS sebelum rilis
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 6</td>
+            <td>Yard Talker</td>
+            <td>AP 6</td>
+            <td>
+              Kontrol alokasi di yard termasuk keputusan hold & release saat
+              operasi
+            </td>
+            <td>R12</td>
+            <td>
+              Lonjakan kemacetan karena bulk release atau last-minute hold →
+              yard padat & truck turn time melonjak
+            </td>
+            <td>C24</td>
+            <td>
+              Last-minute hold dari regulator/pelayaran (audit, dokumen kurang)
+              saat volume sudah siap keluar
+            </td>
+            <td>PM24</td>
+            <td>
+              Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance;
+              setelah cut-off perubahan wajib approval
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bottom-hill"></div>
+
+    <div class="chat-widget-container">
+      <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+          <h4>Pelindo AI Assistant</h4>
+          <span class="close-chat" onclick="toggleChat()">&times;</span>
+        </div>
+        <div class="chat-body">
+          <div class="ai-msg">
+            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
+            bantu terkait operasional hari ini?
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" placeholder="Tanya sesuatu..." />
+          <button>Kirim</button>
+        </div>
+      </div>
+
+      <div
+        class="chat-avatar-wrapper"
+        id="avatarWrapper"
+        onclick="toggleChat()"
+        onmouseenter="onHoverAvatar()"
+        onmouseleave="onLeaveAvatar()"
+      >
+        <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
+      </div>
+    </div>
+
+    <script>
+      let isChatOpen = false;
+      const avatarImg = document.getElementById("avatarImg");
+      const chatBox = document.getElementById("chatBox");
+
+      // GANTI NAMA FILE DI SINI JIKA BERBEDA
+      const imgIdle = "char_idle.png"; // Gambar Diam
+      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
+      const imgActive = "char_active.png"; // Gambar saat chat terbuka
+
+      function onHoverAvatar() {
+        if (!isChatOpen) {
+          avatarImg.src = imgHover;
+        }
+      }
+
+      function onLeaveAvatar() {
+        if (!isChatOpen) {
+          avatarImg.src = imgIdle;
+        }
+      }
+
+      function toggleChat() {
+        isChatOpen = !isChatOpen;
+
+        if (isChatOpen) {
+          chatBox.classList.add("active");
+          avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
+        } else {
+          chatBox.classList.remove("active");
+          avatarImg.src = imgIdle; // Kembali diam
+        }
+      }
+    </script>
+    <script>
+      function adjustZoomLevel() {
+        // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
+        const ratio = window.devicePixelRatio || 1;
+
+        // Jika rasio tidak 1 (berarti user pakai 125%, 150%, dll)
+        if (ratio !== 1) {
+          // Hitung nilai zoom kebalikannya
+          // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
+          const zoomValue = 1 / ratio;
+
+          // Terapkan zoom ke seluruh body
+          document.body.style.zoom = zoomValue;
+        } else {
+          // Jika sudah 100%, biarkan normal
+          document.body.style.zoom = 1;
+        }
+      }
+
+      // Jalankan fungsi saat halaman pertama kali dimuat
+      adjustZoomLevel();
+
+      // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
+      window.addEventListener("resize", adjustZoomLevel);
+    </script>
+  </body>
+</html>
