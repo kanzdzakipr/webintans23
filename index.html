@@ -17,6 +17,11 @@
     />
 
     <style>
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
       .network-section {
         display: grid;
         grid-template-columns: 45% 55%;
@@ -1217,24 +1222,24 @@
         </div>
         <section class="highlights">
           <div class="highlight-card">
-            <h3>Standarisasi Nasional</h3>
-            <p>
+            <h3 id="typing-title">Standarisasi Nasional</h3>
+            <p id="typing-title-4">
               Penerapan standar operasional terminal yang terintegrasi di
               seluruh jaringan.
             </p>
           </div>
 
           <div class="highlight-card">
-            <h3>Transformasi Digital</h3>
-            <p>
+            <h3 id="typing-title-2">Transformasi Digital</h3>
+            <p id="typing-title-5">
               Pengembangan teknologi untuk meningkatkan efisiensi layanan dan
               operasional.
             </p>
           </div>
 
           <div class="highlight-card">
-            <h3>World Class Terminal</h3>
-            <p>
+            <h3 id="typing-title-3">World Class Terminal</h3>
+            <p id="typing-title-6">
               Komitmen menjadi operator terminal berkelas dunia yang kompetitif.
             </p>
           </div>
@@ -1349,6 +1354,40 @@
       </div>
     </div>
 
+    <script>
+      function createTypingEffect(elementId, speed = 80, delay = 0) {
+        const element = document.getElementById(elementId);
+
+        if (!element) return;
+
+        const originalText = element.textContent;
+
+        element.textContent = "";
+
+        setTimeout(() => {
+          let i = 0;
+
+          function type() {
+            if (i < originalText.length) {
+              element.textContent += originalText.charAt(i);
+              i++;
+              setTimeout(type, speed);
+            }
+          }
+
+          type();
+        }, delay);
+      }
+
+      window.addEventListener("load", () => {
+        createTypingEffect("typing-title", 80, 500);
+        createTypingEffect("typing-title-2", 80, 500);
+        createTypingEffect("typing-title-3", 80, 500);
+        createTypingEffect("typing-title-4", 80, 1500);
+        createTypingEffect("typing-title-5", 80, 1500);
+        createTypingEffect("typing-title-6", 80, 1500);
+      });
+    </script>
     <script>
       let isChatOpen = false;
       const avatarImg = document.getElementById("avatarImg");
