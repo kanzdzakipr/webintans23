@@ -15,6 +15,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     <style>
       @keyframes blink {
@@ -145,7 +149,6 @@
 
         background: rgba(255, 255, 255, 0.08);
       }
-
       .mission-box {
         margin-top: 50px;
       }
@@ -351,6 +354,14 @@
         overflow: hidden;
 
         position: relative;
+      }
+      .stat-icon {
+        margin-bottom: 25px;
+      }
+
+      .stat-icon i {
+        font-size: 42px;
+        color: rgba(255, 255, 255, 0.95);
       }
 
       .stat-card::before {
@@ -1201,21 +1212,33 @@
 
         <div class="stats-grid reveal">
           <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-anchor"></i>
+            </div>
             <h2 class="counter" data-target="30">0</h2>
             <span>Total Terminal</span>
           </div>
 
           <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-ship"></i>
+            </div>
             <h2 class="counter" data-target="19">0</h2>
             <span>Terminal Kelolaan</span>
           </div>
 
           <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-building"></i>
+            </div>
             <h2 class="counter" data-target="7">0</h2>
             <span>Anak Perusahaan</span>
           </div>
 
           <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
             <h2 class="counter" data-target="12.4">0</h2>
             <span>Juta TEUs Per Tahun</span>
           </div>
