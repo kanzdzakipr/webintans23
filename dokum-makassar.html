@@ -9,6 +9,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
       body {
@@ -43,11 +45,11 @@
       }
 
       .nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
-}
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
+      }
 
       .nav-links a {
         margin-left: 25px;
@@ -85,8 +87,7 @@
         animation: runningText 20s linear infinite;
       }
 
-      /* --- DROPDOWN NAVBAR STYLES --- */
-.dropdown {
+      .dropdown {
   position: relative;
   display: flex; /* Ganti dari inline-block menjadi flex */
   align-items: center; /* Pastikan konten di dalamnya sejajar */
@@ -467,83 +468,6 @@
         font-weight: 600;
       }
 
-      /* --- DAFTAR ISI SCROLLABLE --- */
-      .toc-container {
-        width: 85%;
-        max-width: 900px;
-        margin: 30px auto 50px auto; /* Margin atas disesuaikan dengan navbar & running text */
-        background: #ffffff;
-        border-radius: 15px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        overflow: hidden;
-      }
-
-      .toc-header {
-        background: #126e80;
-        color: #ffffff;
-        padding: 15px 25px;
-        font-size: 20px;
-        font-weight: 600;
-        text-align: center;
-      }
-
-      .toc-content {
-        max-height: 450px; /* Batas tinggi sebelum bisa di-scroll */
-        overflow-y: auto;
-        padding: 20px 25px;
-      }
-
-      .toc-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .toc-list li {
-        margin-bottom: 5px;
-      }
-
-      .toc-list a {
-        text-decoration: none;
-        color: #333;
-        font-size: 15px;
-        display: block;
-        padding: 8px 12px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        border-left: 4px solid transparent;
-      }
-
-      .toc-list a:hover {
-        background: #f0f8fa;
-        color: #126e80;
-        border-left: 4px solid #126e80;
-        font-weight: 500;
-      }
-
-      /* Indentasi untuk sub-menu (1.1, 1.2, dll) */
-      .toc-sub a {
-        margin-left: 25px;
-        font-size: 14px;
-        color: #555;
-      }
-
-      /* Custom Scrollbar agar lebih estetik */
-      .toc-content::-webkit-scrollbar {
-        width: 8px;
-      }
-      .toc-content::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-      }
-      .toc-content::-webkit-scrollbar-thumb {
-        background: #126e80;
-        border-radius: 10px;
-      }
-      .toc-content::-webkit-scrollbar-thumb:hover {
-        background: #0f5c6a;
-      }
-
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
         .chat-widget-container {
@@ -586,7 +510,329 @@
           padding-bottom: 20px;
         }
       }
+      
+      /* --- TAMBAHAN CSS PROFIL MAKASSAR --- */
+      .page-title {
+        margin-top: 130px;
+        text-align: center;
+        font-size: 40px;
+        font-weight: 700;
+        color: #333;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #126e80;
+        margin: 40px 0 20px;
+      }
+
+      /* Kinerja Container */
+      .metrics-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+      }
+
+      .metric-card {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 29%; /* Diubah agar memakan 45% lebar layar */
+        min-width: 300px;
+        border-top: 5px solid #126e80;
+      }
+
+      .metric-card h3 {
+        margin: 0;
+        color: #555;
+        font-size: 18px;
+      }
+
+      .metric-card p {
+        font-size: 36px;
+        font-weight: bold;
+        color: #126e80;
+        margin: 10px 0 0;
+      }
+
+      /* Layout Image Container */
+      .layout-container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto 50px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .layout-container img {
+        width: 100%;
+        border-radius: 10px;
+        display: block;
+      }
+
+      /* Grid 2 Kolom untuk Layout Bersampingan */
+      .layout-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      /* Placeholder Gambar */
+      .placeholder-img {
+        background: #eef7ff;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        color: #126e80;
+        font-size: 18px;
+        font-weight: 600;
+        border: 2px dashed #126e80;
+        text-align: center;
+        padding: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .layout-grid-2 {
+          grid-template-columns: 1fr; /* Jadi satu kolom di HP */
+        }
+        .placeholder-img {
+          height: 250px;
+        }
+        .metric-card {
+          width: 100%; /* Menjadi 1 baris penuh di HP */
+        }
+      }
+
+      /* --- CSS UNTUK KARTU TERMINAL (Meniru image_c96400.jpg) --- */
+      .terminal-card {
+        background: #2b456b; /* Warna biru gelap */
+        color: white;
+        border-radius: 15px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .terminal-header {
+        background: #ffcc00; /* Warna kuning Pelindo */
+        color: #000;
+        text-align: center;
+        padding: 12px;
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .terminal-img-placeholder {
+        background: #eef7ff;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #126e80;
+        font-size: 16px;
+        font-weight: 600;
+        border-bottom: 3px solid #2b456b;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .terminal-info {
+        padding: 20px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .info-grid-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .info-section h4 {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .info-section ul {
+        margin: 5px 0 0 0;
+        padding-left: 20px;
+      }
+
+      .info-section .no-bullet {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .terminal-capacity {
+        text-align: center;
+        margin-top: 25px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .text-yellow {
+        color: #ffcc00;
+      }
+
+      /* --- CSS UNTUK RINGKASAN PERSENTASE DI DALAM CARD --- */
+      .summary-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .summary-sub-card {
+        background: #f0f7f8; /* Warna latar sangat muda */
+        border: 1px solid #d1e3e5;
+        border-radius: 12px;
+        padding: 10px 15px;
+        min-width: 120px;
+        text-align: center;
+      }
+
+      .summary-sub-card .label {
+        display: block;
+        font-size: 12px;
+        color: #555;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .summary-sub-card .value {
+        display: block;
+        font-size: 20px;
+        font-weight: 700;
+        color: #126e80; /* Biru Pelindo */
+      }
+
+      .value.t2 {
+        color: #d4aa00; /* Kuning gelap untuk T2 agar teks terbaca jelas */
+      }
+
+      @media (max-width: 768px) {
+        .info-grid-inner {
+          grid-template-columns: 1fr; /* Jadi 1 kolom di HP untuk rincian teks */
+        }
+      }
+
+      /* --- HERO SECTION FULL WIDTH & FLOATING CARD FIX --- */
+      .hero-section {
+        position: relative;
+        /* Memaksa lebar penuh dari ujung kiri ke kanan layar */
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        /* Menetapkan tinggi pasti agar container tidak 'collapse' dan card tidak naik ke atas */
+        height: 500px; 
+        margin-bottom: 60px;
+        background: #f8f9fa; /* Warna dasar jika gambar telat dimuat */
+      }
+
+      .hero-swiper {
+        width: 100%;
+        height: 100%; /* Mengikuti tinggi hero-section (500px) */
+      }
+
+      .hero-swiper .swiper-slide {
+        border: none !important;
+        background: transparent;
+      }
+
+      /* Memastikan gambar mengembang sempurna */
+      .hero-swiper .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+
+      /* Overlay Text Card Styling */
+      .hero-info-card {
+        position: absolute;
+        bottom: 40px; /* Patokan jarak pasti dari bawah gambar */
+        left: 50%;
+        transform: translateX(-50%); /* Menengahkan posisi horizontal */
+        width: 85%;
+        max-width: 900px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 25px 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        /* z-index diturunkan ke 2 agar otomatis berada di bawah menu navigasi website (sticky menu) saat di-scroll */
+        z-index: 2; 
+        border-top: 5px solid #ffcc00;
+        text-align: center;
+      }
+
+      .hero-info-card p {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* Posisi Titik Indikator / Pagination di dalam Card */
+      .hero-info-card .swiper-pagination {
+        position: relative; 
+        bottom: 0 !important;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+      }
+
+      .swiper-pagination-bullet {
+        background: #cccccc !important;
+        opacity: 0.6;
+        width: 10px;
+        height: 10px;
+        margin: 0 5px !important;
+        transition: all 0.3s ease;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: #126e80 !important;
+        opacity: 1;
+        transform: scale(1.3);
+      }
+
+      /* Penyesuaian untuk Layar Handphone */
+      @media (max-width: 768px) {
+        .hero-section {
+          height: 450px;
+        }
+        .hero-info-card {
+          bottom: 25px;
+          width: 92%;
+          padding: 20px;
+        }
+        .hero-info-card p {
+          font-size: 14px;
+          text-align: justify;
+        }
+      }
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body>
@@ -594,23 +840,23 @@
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a href="knowledge-base.html">Knowledge Base</a>
-        <a href="#" class="active">Alur Penanganan Proses Petikemas</a>
+        <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
         <div class="dropdown">
-      <a href="#" class="dropbtn">Profil TPK ▾</a>
-      <div class="dropdown-content">
-        <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
-        <a href="profil-semarang.html">Semarang</a>
-        <a href="profil-makassar.html">Makassar New Port</a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <a href="#" class="dropbtn">Dokumentasi ▾</a>
-      <div class="dropdown-content">
-        <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
-        <a href="dokum-semarang.html">Semarang</a>
-        <a href="dokum-makassar.html">Makassar New Port</a>
-      </div>
-    </div>
+          <a href="#">Profil TPK ▾</a>
+          <div class="dropdown-content">
+            <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="profil-semarang.html">Semarang</a>
+            <a href="profil-makassar.html">Makassar New Port</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="active">Dokumentasi ▾</a>
+          <div class="dropdown-content">
+            <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="dokum-semarang.html">Semarang</a>
+            <a href="#" class="active">Makassar New Port</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -621,70 +867,8 @@
           MASIH BELUM TERSEDIA
         </p>
       </div>
-    </div>
-
-    <h1 class="title">ALUR PENANGANAN PROSES PETIKEMAS</h1>
-    <h2 class="title-2">
-      Berikut adalah alur penanganan proses petikemas di Terminal Teluk Lamong
-      yang dapat membantu Anda memahami langkah-langkah operasional yang
-      dilakukan setiap harinya.
-    </h2>
-
-        <div class="toc-container">
-      <div class="toc-header">
-        Daftar Isi Alur Penanganan
-      </div>
-      <div class="toc-content">
-        <ul class="toc-list">
-          <li><a href="#proses-pemuatan">1. Proses Pemuatan</a></li>
-          <li class="toc-sub"><a href="#1-1">1.1 Rencana Penyandaran dan Pembuatan Rencana Alokasi Penumpukan</a></li>
-          <li class="toc-sub"><a href="#1-2">1.2 Request Receiving dan Proses Pembayaran</a></li>
-          <li class="toc-sub"><a href="#1-3">1.3 Prosedur Penerimaan petikemas di gate (Receiving)</a></li>
-          <li class="toc-sub"><a href="#1-4">1.4 Penumpukan di Lapangan</a></li>
-          <li class="toc-sub"><a href="#1-5">1.5 Penerimaan Data SI dan Pembuatan Pre-Plan</a></li>
-          <li class="toc-sub"><a href="#1-6">1.6 Pembuatan Rencana Muat, CWP dan Sequence</a></li>
-          <li class="toc-sub"><a href="#1-7">1.7 Rencana Penambatan Kapal</a></li>
-          <li class="toc-sub"><a href="#1-9">1.9 Proses Pengambilan petikemas di Lapangan untuk kegiatan pemuatan</a></li>
-          <li class="toc-sub"><a href="#1-10">1.10 Pengiriman Muatan Dari Lapangan Ke Dermaga</a></li>
-          <li class="toc-sub"><a href="#1-11">1.11 Operasi Pemuatan</a></li>
-          <li class="toc-sub"><a href="#1-12">1.12 Truk Keluar Dari Terminal</a></li>
-          <li class="toc-sub"><a href="#1-13">1.13 Prosedur Pre Gate In (Receiving)</a></li>
-
-          <li><a href="#proses-pembongkaran">2. Proses Pembongkaran</a></li>
-          <li class="toc-sub"><a href="#2-1">2.1 Permintaan Sandar dan Penerimaan Data Bongkar</a></li>
-          <li class="toc-sub"><a href="#2-2">2.2 Pembuatan Rencana Bongkar</a></li>
-          <li class="toc-sub"><a href="#2-4">2.4 Operasi Pembongkaran</a></li>
-          <li class="toc-sub"><a href="#2-5">2.5 Transfer petikemas Dari Dermaga Ke Lapangan</a></li>
-          <li class="toc-sub"><a href="#2-6">2.6 Operasi Di Lapangan Penumpukan</a></li>
-          <li class="toc-sub"><a href="#2-7">2.7 Request Delivery Dan Pembayaran</a></li>
-          <li class="toc-sub"><a href="#2-8">2.8 Truk Masuk Untuk Pengambilan petikemas (Delivery)</a></li>
-          <li class="toc-sub"><a href="#2-9">2.9 Pengambilan petikemas Di Lapangan</a></li>
-          <li class="toc-sub"><a href="#2-10">2.10 Pengeluaran petikemas Dari Terminal</a></li>
-          <li class="toc-sub"><a href="#2-11">2.11 Prosedur Pre Gate In (Delivery)</a></li>
-
-          <li><a href="#prosedur-3">3. Prosedur Pelayanan Batal Muat</a></li>
-          <li><a href="#prosedur-4">4. Prosedur Pelayanan Batal Muat Diatas Kapal ke CY</a></li>
-          <li><a href="#prosedur-5">5. Prosedur Pelayanan Batal Muat Delivery</a></li>
-          <li><a href="#prosedur-6">6. Prosedur Pelayanan Alih kapal</a></li>
-          <li><a href="#prosedur-7">7. Prosedur Pelayanan petikemas Reefer (Bongkar)</a></li>
-          <li><a href="#prosedur-8">8. Prosedur Pelayanan petikemas Reefer (Muat)</a></li>
-          <li><a href="#prosedur-9">9. Prosedur Pelayanan Petikemas Transhipment(Bongkar)</a></li>
-          <li><a href="#prosedur-10">10. Prosedur Pelayanan Petikemas Transhipment(Muat)</a></li>
-          <li><a href="#prosedur-11">11. Prosedur Pelayanan petikemas Dangerous Goods (DG) Bongkar</a></li>
-          <li><a href="#prosedur-12">12. Prosedur Pelayanan petikemas Dangerous Goods (DG) Muat</a></li>
-          <li><a href="#prosedur-13">13. Prosedur Pelayanan Uncontainerized (UC) Bongkar ..</a></li>
-          <li><a href="#prosedur-14">14. Prosedur Pelayanan Uncontainerized (UC) Bongkar .</a></li>
-          <li><a href="#prosedur-15">15. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
-          <li><a href="#prosedur-16">16. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
-          <li><a href="#prosedur-17">17. Prosedur Pelayanan Overbrengen ( OB / PLP )</a></li>
-          <li><a href="#prosedur-18">18. Prosedur Pelayanan Behandle</a></li>
-          <li><a href="#prosedur-19">19. Prosedur Pelayanan Gerakan Ekstra</a></li>
-          <li><a href="#prosedur-20">20. Prosedur Pelayanan Shifting</a></li>
-          <li><a href="#prosedur-21">21. Prosedur Pelayanan Buka & Tutup Palka</a></li>
-        </ul>
-      </div>
-    </div>
-
+    </div>    
+    
     <div class="bottom-hill"></div>
 
     <div class="chat-widget-container">
@@ -774,6 +958,121 @@
 
       // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
       window.addEventListener("resize", adjustZoomLevel);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- GRAFIK BOR ---
+        const ctxBor = document.getElementById('borChart').getContext('2d');
+        new Chart(ctxBor, {
+          type: 'bar',
+          data: {
+            labels: ['2023', '2024', '2025 (YTD)'], // Tahun
+            datasets: [
+              {
+                label: 'Terminal 1 (%)',
+                data: [29.80, 35.88, 28.99],
+                backgroundColor: '#126e80', // Biru Pelindo
+                borderRadius: 4
+              },
+              {
+                label: 'Terminal 2 (%)',
+                data: [38.90, 31.70, 27.85],
+                backgroundColor: '#ffcc00', // Kuning Pelindo
+                borderRadius: 4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'bottom' },
+              tooltip: {
+                callbacks: {
+                  label: function(context) { return context.parsed.y + '%'; }
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 60, // Maksimal persentase
+                title: {
+                  display: true,
+                  text: 'Persentase (%)',
+                  font: { size: 16, weight: 'bold' }, // Judul sumbu Y lebih besar
+                  color: '#126e80',
+                  padding: { bottom: 10 }
+                }
+              }
+            }
+          }
+        });
+
+        // --- GRAFIK YOR ---
+        const ctxYor = document.getElementById('yorChart').getContext('2d');
+        new Chart(ctxYor, {
+          type: 'bar',
+          data: {
+            labels: ['2023', '2024', '2025 (YTD)'],
+            datasets: [
+              {
+                label: 'Terminal 1 (%)',
+                data: [43.17, 44.50, 44.81],
+                backgroundColor: '#126e80',
+                borderRadius: 4
+              },
+              {
+                label: 'Terminal 2 (%)',
+                data: [47.32, 41.11, 43.59],
+                backgroundColor: '#ffcc00',
+                borderRadius: 4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'bottom' },
+              tooltip: {
+                callbacks: {
+                  label: function(context) { return context.parsed.y + '%'; }
+                }
+              }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 60,
+                title: {
+                  display: true,
+                  text: 'Persentase (%)',
+                  font: { size: 16, weight: 'bold' },
+                  color: '#126e80',
+                  padding: { bottom: 10 }
+                }
+              }
+            }
+          }
+        });
+      });
+    </script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- SCRIPT AKTIVASI SWIPER -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Inisialisasi Swiper Hero
+        const heroSwiper = new Swiper('.hero-swiper', {
+          loop: true, // Mengulang dari awal jika slide habis
+          autoplay: {
+            delay: 4000, // Durasi tiap slide (4 detik)
+            disableOnInteraction: false, // Tetap autoplay meski user menyentuh layar
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true, // Titik navigasi bisa diklik
+          },
+        });
+      });
     </script>
   </body>
 </html>
