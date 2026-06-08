@@ -19,6 +19,14 @@
         min-height: 100vh;
       }
 
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(#eef7ff, #eaf6ff);
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
       .navbar {
         width: 100%;
         padding: 1.2rem 3vw;
@@ -43,8 +51,11 @@
       }
 
       .nav-links {
-        margin-right: 70px;
-      }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
+}
 
       .nav-links a {
         margin-left: 25px;
@@ -73,7 +84,7 @@
         overflow: hidden;
         display: flex;
         align-items: center;
-        z-index: 99;
+        z-index: 0;
       }
 
       .text-run {
@@ -99,7 +110,7 @@
         }
 
         .running-text {
-          top: 60px;
+          top: 80px;
           height: 26px;
           font-size: 14px;
         }
@@ -173,20 +184,19 @@
       /* ===== OFFSET UNTUK NAVBAR + RUNNING TEXT ===== */
       :root {
         --navbar-height: 65px;
-        --running-text-height: 35px;
+        --running-text-height: 30px;
       }
 
       @media (max-width: 768px) {
         :root {
           --navbar-height: 60px;
-          --running-text-height: 26px;
+          --running-text-height: 22px;
         }
       }
 
+      /* Wrapper konten utama */
       .main-content {
-        padding-top: calc(
-          var(--navbar-height) + var(--running-text-height) + 12px
-        );
+        padding-top: calc(var(--navbar-height) + var(--running-text-height));
       }
 
       /* Judul halaman */
@@ -443,14 +453,6 @@
         background: #f0f8fa;
       }
 
-      /* ========================================= */
-      /* RESPONSIVE SCALING LOGIC (KUNCI UTAMA)    */
-      /* ========================================= */
-
-      /* Logika: Kita memaksa diagram mengecil (zoom out)
-         agar muat di layar laptop standar tanpa scroll.
-      */
-
       /* Layar Besar (Desktop PC) > 1600px */
       @media (min-width: 1601px) {
         .diagram-wrapper {
@@ -566,8 +568,8 @@
           position: absolute;
         }
         .ap-box-lvl-1 {
-          top: 160px !important;
-          height: 82px !important;
+          top: 178px !important;
+          height: 80px !important;
         }
 
         .ap-lvl-2-label {
@@ -575,8 +577,8 @@
           position: absolute;
         }
         .ap-box-lvl-2 {
-          top: 267px !important;
-          height: 82px !important;
+          top: 288px !important;
+          height: 80px !important;
         }
 
         .ap-lvl-3-label {
@@ -584,8 +586,8 @@
           position: absolute;
         }
         .ap-box-lvl-3 {
-          top: 358px !important;
-          height: 82px !important;
+          top: 378px !important;
+          height: 80px !important;
         }
 
         /* 4. Rapatkan Jarak Pohon */
@@ -621,8 +623,8 @@
       /* Style Kotak Putus-Putus */
       .dashed-box {
         position: absolute;
-        left: 4%; /* Margin kiri */
-        width: 92%; /* Lebar kotak relatif terhadap kolom */
+        left: 5%; /* Margin kiri */
+        width: 90%; /* Lebar kotak relatif terhadap kolom */
         border: 2px dashed #ff5252; /* Warna Merah seperti gambar */
         border-radius: 20px;
         box-sizing: border-box;
@@ -649,32 +651,32 @@
         text-align: left;
       }
       .ap-box-lvl-1 {
-        top: 165px; /* Jarak dari atas */
+        top: 185px; /* Jarak dari atas */
         height: 90px; /* Tinggi kotak */
       }
 
       /* Level 2 */
       .ap-lvl-2-label {
-        top: 315px;
+        top: 325px;
         left: auto;
         right: -70px;
         text-align: left;
       }
       .ap-box-lvl-2 {
         top: 280px;
-        height: 90px;
+        height: 100px;
       }
 
       /* Level 3 */
       .ap-lvl-3-label {
-        top: 410px;
+        top: 415px;
         left: auto;
         right: -70px;
         text-align: left;
       }
       .ap-box-lvl-3 {
-        top: 375px;
-        height: 90px;
+        top: 380px;
+        height: 100px;
       }
 
       /* Aktivitas Administrasi */
@@ -689,19 +691,19 @@
 
       /* Level 2 */
       .aa-lvl-2-label {
-        top: 330px;
+        top: 320px;
       }
       .aa-box-lvl-2 {
-        top: 300px;
+        top: 280px;
         height: 90px;
       }
 
       /* Level 3 */
       .aa-lvl-3-label {
-        top: 430px;
+        top: 410px;
       }
       .aa-box-lvl-3 {
-        top: 395px;
+        top: 375px;
         height: 90px;
       }
 
@@ -840,6 +842,77 @@
         font-weight: 600;
       }
 
+      /* --- DROPDOWN NAVBAR STYLES --- */
+.dropdown {
+  position: relative;
+  display: flex; /* Ganti dari inline-block menjadi flex */
+  align-items: center; /* Pastikan konten di dalamnya sejajar */
+}
+
+.dropdown .dropbtn {
+  text-decoration: none;
+  font-weight: 600;
+  color: #222;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+/* Mengatur wadah menu dropdown yang disembunyikan secara default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  min-width: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+  
+  /* --- INI YANG DIUBAH --- */
+  top: 100%; 
+  padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
+  /* ----------------------- */
+  
+  left: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border-top: 20px solid transparent; 
+  background-clip: padding-box;
+}
+
+/* Mengatur tautan di dalam dropdown */
+.dropdown-content a {
+  color: #222;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+  text-align: left;
+  border: none !important; /* Mencegah border dari navbar utama muncul */
+}
+
+/* Efek hover untuk tautan di dalam dropdown */
+.dropdown-content a:hover {
+  background-color: #f1f8fc;
+  color: #00abf0;
+}
+
+/* Memunculkan dropdown saat area dropdown dihover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Animasi halus saat dropdown muncul */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
         .chat-widget-container {
@@ -860,8 +933,25 @@
   <body>
     <div class="navbar">
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="knowledge-base.html">Knowledge Base</a>
+        <a href="../index.html">Home</a>
+        <a href="../knowledge-base.html">Knowledge Base</a>
+        <a href="../alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Profil TPK ▾</a>
+          <div class="dropdown-content">
+          <a href="../profil-surabaya.html">Teluk Lamong Surabaya</a>
+          <a href="../profil-semarang.html">Semarang</a>
+          <a href="../profil-makassar.html">Makassar New Port</a>
+          </div>
+        </div>
+        <div class="dropdown">
+      <a href="#" class="dropbtn">Dokumentasi ▾</a>
+      <div class="dropdown-content">
+        <a href="../dokum-surabaya.html">Teluk Lamong Surabaya</a>
+        <a href="../dokum-semarang.html">Semarang</a>
+        <a href="../dokum-makassar.html">Makassar New Port</a>
+      </div>
+    </div>
       </div>
     </div>
 
@@ -873,14 +963,13 @@
         </p>
       </div>
     </div>
-
     <div class="main-content">
-      <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 4</h1>
+      <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 5</h1>
 
       <div class="diagram-scale">
         <div class="diagram-wrapper">
           <div class="column">
-            <div class="column-title">Aktivitas Administrasi 4</div>
+            <div class="column-title">Aktivitas Administrasi 5</div>
 
             <div class="level-layer">
               <div class="level-text aa-lvl-1-label">Level 1</div>
@@ -897,72 +986,35 @@
                 <li>
                   <div
                     class="node purple"
-                    onclick="showModal('AA 4','Menerbitkan Position Assignment/Stack Map final (inbound & outbound)')"
+                    onclick="showModal('AA 5','Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di CWP/Bay Plan)')"
                   >
-                    AA 4
+                    AA 5
                   </div>
 
                   <ul>
-                    <!-- RISK 7 -->
+                    <!-- RISK 9 -->
                     <li>
                       <div
                         class="node yellow"
-                        onclick="showModal('Risk 7 (Risiko 7)','Penempatan/slotting yard tidak efisien jadi re-handle & alat banyak jalan.',2,4)"
+                        onclick="showModal('Risk 9 (Risiko 9)','Instruksi/komunikasi tidak jelas (radio/isyarat tangan)',2,3)"
                       >
-                        R 7
+                        R 9
                       </div>
                       <ul>
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 11 (Penyebab 11)','Stack map tidak pakai urutan pengambilan (delivery sequence/dwell time/priority tidak dipertimbangkan)')"
+                            onclick="showModal('Cause 16 (Penyebab 16)','Kualitas radio buruk/crosstalk atau noise sehingga pesan terpotong/tertukar.')"
                           >
-                            C 11
+                            C 16
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 11 (Tindakan Preventif 11)','Lakukan slotting berbasis sequence & dwell time untuk meminimalkan re-handle')"
+                                onclick="showModal('Preventive Measure 16 (Tindakan Preventif 16)','Audit & peremajaan radio, kanal khusus operasi, dan fallback ke hand-signals standar bila audio tidak andal.')"
                               >
-                                PM 11
-                              </div>
-                            </li>
-                          </ul>
-                        </li>
-
-                        <li>
-                          <div
-                            class="node red"
-                            onclick="showModal('Cause 12 (Penyebab 12)','Data kontainer di TOS tidak lengkap/akurat (size/type/berat/reefer/DG/hold) saat planning')"
-                          >
-                            C 12
-                          </div>
-                          <ul>
-                            <li>
-                              <div
-                                class="node green"
-                                onclick="showModal('Preventive Measure 12 (Tindakan Preventif 12)','Aktifkan rule-based validation (termasuk VGM SOLAS) & gunakan MIG BAPLIE/MOVINS terbaru saat planning')"
-                              >
-                                PM 12
-                              </div>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <div
-                            class="node red"
-                            onclick="showModal('Cause 13 (Penyebab 13)','Inventori yard tidak real-time (slot di sistem ≠ kondisi lapangan), sehingga slot rencana ternyata terisi/terblokir')"
-                          >
-                            C 13
-                          </div>
-                          <ul>
-                            <li>
-                              <div
-                                class="node green"
-                                onclick="showModal('Preventive Measure 13 (Tindakan Preventif 13)','Pasang RFID/QR-based yard tracking + mandatory move confirmation agar inventory TOS selalu mutakhir')"
-                              >
-                                PM 13
+                                PM 16
                               </div>
                             </li>
                           </ul>
@@ -970,47 +1022,29 @@
                       </ul>
                     </li>
 
-                    <!-- RISK 08 -->
+                    <!-- RISK 10 -->
                     <li>
                       <div
                         class="node yellow"
-                        onclick="showModal('Risk 8 (Risiko 8)','Tidak sinkron dengan arus truk/gate → blok macet & truck turnaround time naik',4,4)"
+                        onclick="showModal('Risk 10 (Risiko 10)','Tidak sinkron dengan CWP/Bay Plan terbaru (versi salah).',4,4)"
                       >
-                        R 8
+                        R 10
                       </div>
                       <ul>
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 14 (Penyebab 14)','Perubahan/ketidakpastian jadwal kedatangan truk (TAS/ETA) tidak masuk ke perencanaan')"
+                            onclick="showModal('Cause 17 (Penyebab 17)','Rencana terbaru tidak dipublikasikan ke semua pihak/perangkat (pakai file lama).')"
                           >
-                            C 14
+                            C 17
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 14 (Tindakan Preventif 14)','Terapkan Terminal Booking System (TBS) terintegrasi TOS untuk meratakan kedatangan & memperkecil waiting time')"
+                                onclick="showModal('Preventive Measure 17 (Tindakan Preventif 17)','Terapkan PCS/TOS sebagai “single source of truth” + kontrol versi & notifikasi otomatis saat ada revisi rencana.')"
                               >
-                                PM 14
-                              </div>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <div
-                            class="node red"
-                            onclick="showModal('Cause 15 (Penyebab 15)','Beban pengambilan ditumpuk di blok yang sama pada jam yang sama (kapasitas gate/alat tidak diperhitungkan)')"
-                          >
-                            C 15
-                          </div>
-                          <ul>
-                            <li>
-                              <div
-                                class="node green"
-                                onclick="showModal('Preventive Measure 15 (Tindakan Preventif 15)','Load-balancing per blok & time-window lewat aturan TAS/yard (kapasitas gate & alat sebagai constraint)')"
-                              >
-                                PM 15
+                                PM 17
                               </div>
                             </li>
                           </ul>
@@ -1024,7 +1058,7 @@
           </div>
 
           <div class="column">
-            <div class="column-title">Aktivitas Pemeriksaan 4</div>
+            <div class="column-title">Aktivitas Pemeriksaan 5</div>
 
             <div class="level-layer">
               <div class="level-text ap-lvl-1-label">Level 1</div>
@@ -1039,87 +1073,87 @@
                 <li>
                   <div
                     class="node purple"
-                    onclick="showModal('AP 4','Validasi Open Stack dan Analisa YOR (kepadatan) termasuk prediksinya')"
+                    onclick="showModal('AP 5','Validasi perangkat & dokumen kerja sebelum mulai (device & validasi tools kerja; CWP/PA/Radio)')"
                   >
-                    AP 4
+                    AP 5
                   </div>
+
                   <ul>
+                    <!-- RISK 9 -->
                     <li>
                       <div
                         class="node yellow"
-                        onclick="showModal('Risk 8 (Resiko 8)','YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak re-handle',3,3)"
+                        onclick="showModal('Risk 9 (Risiko 9)','Gagal komunikasi radio atau miskom (radio mati/salah kanal/tidak cukup unit)',4,4)"
                       >
-                        R 8
+                        R 9
                       </div>
                       <ul>
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 15 (Penyebab 15)','Imbalance arus: gate-out tertahan (hold BC/karantina) sementara gate-in terus mengalir; rollover muatan karena kapal terlambat')"
+                            onclick="showModal('Cause 19 (Penyebab 19)','Gangguan cakupan & kebisingan: dead spot di area kerja, headset/noise-cancelling tidak digunakan.')"
                           >
-                            C 15
+                            C 19
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 15 (Tindakan Preventif 15)','Terapkan throttled release + truck appointment agar arus gate-out/gate-in seimbang')"
+                                onclick="showModal('Preventive Measure 19 (Tindakan Preventif 19)','Petakan cakupan & pasang repeater di area dead spot, sekaligus wajib headset untuk semua peran kritis.')"
                               >
-                                PM 15
+                                PM 19
                               </div>
                             </li>
                           </ul>
                         </li>
+                      </ul>
+                    </li>
+
+                    <!-- RISK 10 -->
+                    <li>
+                      <div
+                        class="node yellow"
+                        onclick="showModal('Risk 10 (Risiko 10)','Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA kadaluarsa) → interferensi crane & waktu tunggu.',4,4)"
+                      >
+                        R 10
+                      </div>
+
+                      <ul>
+                        <!-- CAUSE 20 -->
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 16 (Penyebab 16)','Produktivitas yard turun: breakdown alat/kurang operator sehingga backlog menumpuk')"
+                            onclick="showModal('Cause 20 (Penyebab 20)','Perubahan rencana last-minute tidak tersosialisasi (tidak ada cut-off & change control yang jelas).')"
                           >
-                            C 16
+                            C 20
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 16 (Tindakan Preventif 16)','Siapkan standby plan operator & unit cadangan untuk hot-swap saat downtime')"
+                                onclick="showModal('Preventive Measure 20 (Tindakan Preventif 20)','Terapkan cut-off & change control terpusat di TOS; revisi hanya lewat tiket yang otomatis broadcast.')"
                               >
-                                PM 16
+                                PM 20
                               </div>
                             </li>
                           </ul>
                         </li>
+
+                        <!-- CAUSE 21 -->
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 17 (Penyebab 17)','Area efektif berkurang: blok ditutup (maintenance/No-Work Area) atau dibatasi (zona reefer/DG) sehingga kepadatan naik')"
+                            onclick="showModal('Cause 21 (Penyebab 21)','Distribusi rencana manual (print/WA) tanpa kontrol versi/timestamp, sehingga tim memakai versi berbeda.')"
                           >
-                            C 17
+                            C 21
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 17 (Tindakan Preventif 17)','Aktifkan blok alternatif/overflow sementara & lakukan dynamic zoning untuk rebalance kepadatan')"
+                                onclick="showModal('Preventive Measure 21 (Tindakan Preventif 21)','Gunakan satu sumber (TOS) dengan timestamp; bagikan tautan versi live, bukan file cetak/WA.')"
                               >
-                                PM 17
-                              </div>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <div
-                            class="node red"
-                            onclick="showModal('Cause 18 (Penyebab 18)','Kebijakan stacking kurang tepat: tinggi tumpukan/slotting campur (import-export-empty) menambah re-handle dan memperlambat pengosongan blok')"
-                          >
-                            C 18
-                          </div>
-                          <ul>
-                            <li>
-                              <div
-                                class="node green"
-                                onclick="showModal('Preventive Measure 18 (Tindakan Preventif 18)','Kunci yard policy di TOS (tinggi tumpuk & blok khusus import/export/empty) dengan rule-based slotting')"
-                              >
-                                PM 18
+                                PM 21
                               </div>
                             </li>
                           </ul>
@@ -1133,29 +1167,29 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- MODAL -->
-    <div class="modal-overlay" id="infoModal">
-      <div class="modal-content" id="modalContentBox">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
+      <!-- MODAL -->
+      <div class="modal-overlay" id="infoModal">
+        <div class="modal-content" id="modalContentBox">
+          <span class="close-btn" onclick="closeModal()">&times;</span>
 
-        <h2 id="modalTitle" class="modal-title">Judul</h2>
+          <h2 id="modalTitle" class="modal-title">Judul</h2>
 
-        <div class="modal-body">
-          <div class="stats-container" id="statsContainer">
-            <div class="stat-box">
-              <span class="stat-label">Likelihood</span>
-              <span class="stat-value" id="valLikelihood">0</span>
+          <div class="modal-body">
+            <div class="stats-container" id="statsContainer">
+              <div class="stat-box">
+                <span class="stat-label">Likelihood</span>
+                <span class="stat-value" id="valLikelihood">0</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">Severity</span>
+                <span class="stat-value" id="valSeverity">0</span>
+              </div>
             </div>
-            <div class="stat-box">
-              <span class="stat-label">Severity</span>
-              <span class="stat-value" id="valSeverity">0</span>
-            </div>
-          </div>
 
-          <div class="desc-text">
-            <p id="modalText">Deskripsi...</p>
+            <div class="desc-text">
+              <p id="modalText">Deskripsi...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1191,205 +1225,123 @@
         </thead>
 
         <tbody>
-          <!-- AT 4 -->
+          <!-- AT 5 -->
           <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AA 4</td>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AA 5</td>
             <td>
-              Menerbitkan Position Assignment/Stack Map final (inbound &
-              outbound)
+              Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di
+              CWP/Bay Plan)
             </td>
-            <td>R7</td>
-            <td>
-              Penempatan/slotting yard tidak efisien jadi re-handle & alat
-              banyak jalan
-            </td>
-            <td>C11</td>
-            <td>
-              Stack map tidak pakai urutan pengambilan (delivery sequence/dwell
-              time/priority tidak dipertimbangkan)
-            </td>
-            <td>PM11</td>
-            <td>
-              Lakukan slotting berbasis sequence & dwell time untuk meminimalkan
-              re-handle
-            </td>
-          </tr>
-
-          <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AA 4</td>
-            <td>
-              Menerbitkan Position Assignment/Stack Map final (inbound &
-              outbound)
-            </td>
-            <td>R7</td>
-            <td>
-              Penempatan/slotting yard tidak efisien jadi re-handle & alat
-              banyak jalan
-            </td>
-            <td>C12</td>
-            <td>
-              Data kontainer di TOS tidak lengkap/akurat
-              (size/type/berat/reefer/DG/hold) saat planning
-            </td>
-            <td>PM12</td>
-            <td>
-              Aktifkan rule-based validation (termasuk VGM SOLAS) & gunakan MIG
-              BAPLIE/MOVINS terbaru saat planning
-            </td>
-          </tr>
-
-          <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AA 4</td>
-            <td>
-              Menerbitkan Position Assignment/Stack Map final (inbound &
-              outbound)
-            </td>
-            <td>R7</td>
-            <td>
-              Penempatan/slotting yard tidak efisien jadi re-handle & alat
-              banyak jalan
-            </td>
-            <td>C13</td>
-            <td>
-              Inventori yard tidak real-time (slot di sistem ≠ kondisi
-              lapangan), sehingga slot rencana ternyata terisi/terblokir
-            </td>
-            <td>PM13</td>
-            <td>
-              Pasang RFID/QR-based yard tracking + mandatory move confirmation
-              agar inventory TOS selalu mutakhir
-            </td>
-          </tr>
-
-          <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AA 4</td>
-            <td>
-              Menerbitkan Position Assignment/Stack Map final (inbound &
-              outbound)
-            </td>
-            <td>R8</td>
-            <td>
-              Tidak sinkron dengan arus truk/gate → blok macet & truck
-              turnaround time naik
-            </td>
-            <td>C14</td>
-            <td>
-              Perubahan/ketidakpastian jadwal kedatangan truk (TAS/ETA) tidak
-              masuk ke perencanaan
-            </td>
-            <td>PM14</td>
-            <td>
-              Terapkan Terminal Booking System (TBS) terintegrasi TOS untuk
-              meratakan kedatangan & memperkecil waiting time
-            </td>
-          </tr>
-
-          <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AA 4</td>
-            <td>
-              Menerbitkan Position Assignment/Stack Map final (inbound &
-              outbound)
-            </td>
-            <td>R8</td>
-            <td>
-              Tidak sinkron dengan arus truk/gate → blok macet & truck
-              turnaround time naik
-            </td>
-            <td>C15</td>
-            <td>
-              Beban pengambilan ditumpuk di blok yang sama pada jam yang sama
-              (kapasitas gate/alat tidak diperhitungkan)
-            </td>
-            <td>PM15</td>
-            <td>
-              Load-balancing per blok & time-window lewat aturan TAS/yard
-              (kapasitas gate & alat sebagai constraint)
-            </td>
-          </tr>
-
-          <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AP 4</td>
-            <td>
-              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
-              prediksinya
-            </td>
-            <td>R8</td>
-            <td>
-              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
-              re-handle
-            </td>
+            <td>R9</td>
+            <td>Instruksi/komunikasi tidak jelas (radio/isyarat tangan)</td>
             <td>C16</td>
             <td>
-              Produktivitas yard turun: breakdown alat/kurang operator sehingga
-              backlog menumpuk
+              Kualitas radio buruk/crosstalk atau noise sehingga pesan
+              terpotong/tertukar
             </td>
             <td>PM16</td>
             <td>
-              Siapkan standby plan operator & unit cadangan untuk hot-swap saat
-              downtime
+              Audit & peremajaan radio, kanal khusus operasi, dan fallback ke
+              hand-signals standar bila audio tidak andal
             </td>
           </tr>
 
           <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AP 4</td>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AA 5</td>
             <td>
-              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
-              prediksinya
+              Mengeluarkan instruksi mulai kerja sisi kapal (sesuai rencana di
+              CWP/Bay Plan)
             </td>
-            <td>R8</td>
-            <td>
-              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
-              re-handle
-            </td>
+            <td>R10</td>
+            <td>Tidak sinkron dengan CWP/Bay Plan terbaru (versi salah)</td>
             <td>C17</td>
             <td>
-              Area efektif berkurang: blok ditutup (maintenance/No-Work Area)
-              atau dibatasi (zona reefer/DG) sehingga kepadatan naik
+              Rencana terbaru tidak dipublikasikan ke semua pihak/perangkat
+              (pakai file lama)
             </td>
             <td>PM17</td>
             <td>
-              Aktifkan blok alternatif/overflow sementara & lakukan dynamic
-              zoning untuk rebalance kepadatan
+              Terapkan PCS/TOS sebagai “single source of truth” + kontrol versi
+              & notifikasi otomatis saat ada revisi rencana
             </td>
           </tr>
 
           <tr>
-            <td>AT 4</td>
-            <td>Yard Planner</td>
-            <td>AP 4</td>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
             <td>
-              Validasi Open Stack dan Analisa YOR (kepadatan) termasuk
-              prediksinya
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
             </td>
-            <td>R8</td>
+            <td>R9</td>
             <td>
-              YOR terlalu tinggi (yard “terlalu penuh”) → kemacetan & banyak
-              re-handle
+              Gagal komunikasi radio atau miskom (radio mati/salah kanal/tidak
+              cukup unit)
             </td>
-            <td>C18</td>
+            <td>C19</td>
             <td>
-              Kebijakan stacking kurang tepat: tinggi tumpukan/slotting campur
-              (import-export-empty) menambah re-handle dan memperlambat
-              pengosongan blok
+              Gangguan cakupan & kebisingan: dead spot di area kerja,
+              headset/noise-cancelling tidak digunakan
             </td>
-            <td>PM18</td>
+            <td>PM19</td>
             <td>
-              Kunci yard policy di TOS (tinggi tumpuk & blok khusus
-              import/export/empty) dengan rule-based slotting
+              Petakan cakupan & pasang repeater di area dead spot, sekaligus
+              wajib headset untuk semua peran kritis
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
+            <td>R10</td>
+            <td>
+              Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA
+              kadaluarsa) → interferensi crane & waktu tunggu
+            </td>
+            <td>C20</td>
+            <td>
+              Perubahan rencana last-minute tidak tersosialisasi (tidak ada
+              cut-off & change control yang jelas)
+            </td>
+            <td>PM20</td>
+            <td>
+              Terapkan cut-off & change control terpusat di TOS; revisi hanya
+              lewat tiket yang otomatis broadcast
+            </td>
+          </tr>
+
+          <tr>
+            <td>AT 5</td>
+            <td>Ship Talker</td>
+            <td>AP 5</td>
+            <td>
+              Validasi perangkat & dokumen kerja sebelum mulai (device &
+              validasi tools kerja; CWP/PA/Radio)
+            </td>
+            <td>R10</td>
+            <td>
+              Rencana kerja yang dibagikan tidak tepat/versinya salah (CWP/PA
+              kadaluarsa) → interferensi crane & waktu tunggu
+            </td>
+            <td>C21</td>
+            <td>
+              Distribusi rencana manual (print/WA) tanpa kontrol
+              versi/timestamp, sehingga tim memakai versi berbeda
+            </td>
+            <td>PM21</td>
+            <td>
+              Gunakan satu sumber (TOS) dengan timestamp; bagikan tautan versi
+              live, bukan file cetak/WA
             </td>
           </tr>
         </tbody>
@@ -1461,7 +1413,7 @@
         onmouseenter="onHoverAvatar()"
         onmouseleave="onLeaveAvatar()"
       >
-        <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
+        <img src="../char_idle.png" id="avatarImg" alt="AI Avatar" />
       </div>
     </div>
 
@@ -1471,9 +1423,9 @@
       const chatBox = document.getElementById("chatBox");
 
       // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png"; // Gambar Diam
-      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
-      const imgActive = "char_active.png"; // Gambar saat chat terbuka
+      const imgIdle = "../char_idle.png"; // Gambar Diam
+      const imgHover = "../char_hover.png"; // Gambar saat mouse di atas
+      const imgActive = "../char_active.png"; // Gambar saat chat terbuka
 
       function onHoverAvatar() {
         if (!isChatOpen) {
