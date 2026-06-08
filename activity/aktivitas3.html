@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aktivitas Administrasi & Pemeriksaan</title>
+    <title>Aktivitas Administrasi & Pemeriksaan 3</title>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -16,6 +16,14 @@
         font-family: "Poppins", sans-serif;
         background: linear-gradient(#eef7ff, #eaf6ff);
         overflow-x: hidden; /* Mencegah scroll horizontal window utama */
+        min-height: 100vh;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(#eef7ff, #eaf6ff);
+        overflow-x: hidden;
         min-height: 100vh;
       }
 
@@ -43,8 +51,11 @@
       }
 
       .nav-links {
-        margin-right: 70px;
-      }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
+}
 
       .nav-links a {
         margin-left: 25px;
@@ -73,7 +84,7 @@
         overflow: hidden;
         display: flex;
         align-items: center;
-        z-index: 99;
+        z-index: 0;
       }
 
       .text-run {
@@ -99,7 +110,7 @@
         }
 
         .running-text {
-          top: 60px;
+          top: 80px;
           height: 26px;
           font-size: 14px;
         }
@@ -163,11 +174,89 @@
         color: #000;
       }
 
+      .desc-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #444;
+        width: 100%;
+      }
+
       /* ===== OFFSET UNTUK NAVBAR + RUNNING TEXT ===== */
       :root {
         --navbar-height: 65px;
         --running-text-height: 30px;
       }
+
+      /* --- DROPDOWN NAVBAR STYLES --- */
+.dropdown {
+  position: relative;
+  display: flex; /* Ganti dari inline-block menjadi flex */
+  align-items: center; /* Pastikan konten di dalamnya sejajar */
+}
+
+.dropdown .dropbtn {
+  text-decoration: none;
+  font-weight: 600;
+  color: #222;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+/* Mengatur wadah menu dropdown yang disembunyikan secara default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  min-width: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+  
+  /* --- INI YANG DIUBAH --- */
+  top: 100%; 
+  padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
+  /* ----------------------- */
+  
+  left: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border-top: 20px solid transparent; 
+  background-clip: padding-box;
+}
+
+/* Mengatur tautan di dalam dropdown */
+.dropdown-content a {
+  color: #222;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+  text-align: left;
+  border: none !important; /* Mencegah border dari navbar utama muncul */
+}
+
+/* Efek hover untuk tautan di dalam dropdown */
+.dropdown-content a:hover {
+  background-color: #f1f8fc;
+  color: #00abf0;
+}
+
+/* Memunculkan dropdown saat area dropdown dihover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Animasi halus saat dropdown muncul */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
       @media (max-width: 768px) {
         :root {
@@ -435,14 +524,6 @@
         background: #f0f8fa;
       }
 
-      /* ========================================= */
-      /* RESPONSIVE SCALING LOGIC (KUNCI UTAMA)    */
-      /* ========================================= */
-
-      /* Logika: Kita memaksa diagram mengecil (zoom out) 
-         agar muat di layar laptop standar tanpa scroll.
-      */
-
       /* Layar Besar (Desktop PC) > 1600px */
       @media (min-width: 1601px) {
         .diagram-wrapper {
@@ -595,7 +676,6 @@
           max-width: 130px;
         }
       }
-
       .level-layer {
         position: absolute;
         top: 0;
@@ -632,11 +712,10 @@
         width: 60px;
         line-height: 1.2;
       }
-
       /* Aktivitas Pemeriksaan */
       /* Level 1 */
       .ap-lvl-1-label {
-        top: 215px;
+        top: 220px;
         left: auto;
         right: -70px;
         text-align: left;
@@ -648,32 +727,32 @@
 
       /* Level 2 */
       .ap-lvl-2-label {
-        top: 320px;
+        top: 335px;
         left: auto;
         right: -70px;
         text-align: left;
       }
       .ap-box-lvl-2 {
-        top: 285px;
-        height: 95px;
+        top: 300px;
+        height: 90px;
       }
 
       /* Level 3 */
       .ap-lvl-3-label {
-        top: 410px;
+        top: 425px;
         left: auto;
         right: -70px;
         text-align: left;
       }
       .ap-box-lvl-3 {
-        top: 380px;
-        height: 95px;
+        top: 395px;
+        height: 90px;
       }
 
       /* Aktivitas Administrasi */
       /* Level 1 */
       .aa-lvl-1-label {
-        top: 215px;
+        top: 220px;
       }
       .aa-box-lvl-1 {
         top: 185px; /* Jarak dari atas */
@@ -686,18 +765,17 @@
       }
       .aa-box-lvl-2 {
         top: 280px;
-        height: 90px;
+        height: 100px;
       }
 
       /* Level 3 */
       .aa-lvl-3-label {
-        top: 410px;
+        top: 420px;
       }
       .aa-box-lvl-3 {
-        top: 375px;
-        height: 90px;
+        top: 379px;
+        height: 100px;
       }
-
       /* Responsif Khusus untuk garis putus-putus di layar kecil */
       @media (max-width: 850px) {
         .level-text {
@@ -853,8 +931,17 @@
   <body>
     <div class="navbar">
       <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="knowledge-base.html">Knowledge Base</a>
+        <a href="../index.html">Home</a>
+        <a href="../knowledge-base.html">Knowledge Base</a>
+        <a href="../alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Profil TPK ▾</a>
+          <div class="dropdown-content">
+          <a href="../profil-surabaya.html">Teluk Lamong Surabaya</a>
+          <a href="../profil-semarang.html">Semarang</a>
+          <a href="../profil-makassar.html">Makassar New Port</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -866,13 +953,14 @@
         </p>
       </div>
     </div>
+
     <div class="main-content">
-      <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 6</h1>
+      <h1 class="page-title">AKTIVITAS ADMINISTRASI & PEMERIKSAAN 3</h1>
 
       <div class="diagram-scale">
         <div class="diagram-wrapper">
           <div class="column">
-            <div class="column-title">Aktivitas Administrasi 6</div>
+            <div class="column-title">Aktivitas Administrasi 3</div>
 
             <div class="level-layer">
               <div class="level-text aa-lvl-1-label">Level 1</div>
@@ -889,35 +977,51 @@
                 <li>
                   <div
                     class="node purple"
-                    onclick="showModal('AA 6','Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke alat & tim')"
+                    onclick="showModal('Aktivitas Administrasi 3','Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS')"
                   >
-                    AA 6
+                    AA 3
                   </div>
-
                   <ul>
-                    <!-- RISK 11 -->
                     <li>
                       <div
                         class="node yellow"
-                        onclick="showModal('Risk 11 (Risiko 11)','Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh.',2,3)"
+                        onclick="showModal('Risk 5 (Risiko 5)','Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE & VGM)',2,4)"
                       >
-                        R 11
+                        R 5
                       </div>
                       <ul>
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 18 (Penyebab 18)','Kualitas radio buruk/crosstalk sehingga pesan terpotong atau tertukar.')"
+                            onclick="showModal('Cause 8 (Penyebab 8)','Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak tersebar)')"
                           >
-                            C 18
+                            C 8
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 18 (tindakan Preventif 18)','Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan fallback ke hand-signals standar bila kualitas audio tidak memadai.')"
+                                onclick="showModal('Preventive Measure 8 (Tindakan Preventif 8)','Terapkan kontrol versi & acknowledgement EDI (gunakan APERAK/CONTRL) agar hanya versi terbaru yang dipakai.')"
                               >
-                                PM 18
+                                PM 8
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 9 (Penyebab 9)','Kualitas data buruk: salah bay/row/tier, size/type, atau VGM...')"
+                          >
+                            C 9
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 9 (Tindakan Preventif 9)','Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM sesuai SOLAS-VGM sebelum publish.')"
+                              >
+                                PM 9
                               </div>
                             </li>
                           </ul>
@@ -925,29 +1029,28 @@
                       </ul>
                     </li>
 
-                    <!-- RISK 12 -->
                     <li>
                       <div
                         class="node yellow"
-                        onclick="showModal('Risk 12 (Risiko 12)','Dispatch tidak sinkron dengan rencana yard & arus truk/gate.',2,4)"
+                        onclick="showModal('Risk 6 (Risiko 6)','Interferensi antar quay crane karena CWP tidak optimal',2,3)"
                       >
-                        R 12
+                        R 6
                       </div>
                       <ul>
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 19 (Penyebab 19)','Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher & operator.')"
+                            onclick="showModal('Cause 10 (Penyebab 10)','Range kerja crane overlap (aturan non-crossing/jarak aman tidak diterapkan)')"
                           >
-                            C 19
+                            C 10
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 19 (Tindakan Preventif 19)','Gunakan Truck Appointment System terintegrasi TOS (time-window, load-balancing) dengan notifikasi perubahan otomatis.')"
+                                onclick="showModal('Preventive Measure 10 (Tindakan Preventif 10)','Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing & safety distance + validasi CWP sebelum publish')"
                               >
-                                PM 19
+                                PM 10
                               </div>
                             </li>
                           </ul>
@@ -961,7 +1064,7 @@
           </div>
 
           <div class="column">
-            <div class="column-title">Aktivitas Pemeriksaan 6</div>
+            <div class="column-title">Aktivitas Pemeriksaan 3</div>
 
             <div class="level-layer">
               <div class="level-text ap-lvl-1-label">Level 1</div>
@@ -976,56 +1079,51 @@
                 <li>
                   <div
                     class="node purple"
-                    onclick="showModal('AP 6','Kontrol alokasi di yard termasuk keputusan hold & release saat operasi')"
+                    onclick="showModal('Aktivitas Pemeriksaan 3','Verifikasi data rencana di TOS (cek data/ship particular) serta rencana Bay Plan/CWP sebelum dibagikan')"
                   >
-                    AP 6
+                    AP 3
                   </div>
-
                   <ul>
-                    <!-- RISK 11 -->
                     <li>
                       <div
                         class="node yellow"
-                        onclick="showModal('Risk 11 (Risiko 11)','Salah hold/release sehingga kontainer yang masih “ditahan” (Customs/Karantina/DG) terlepas atau sebaliknya.',4,4)"
+                        onclick="showModal('Risk 6 (Risiko 6)','Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer, VGM, data kapal)',3,3)"
                       >
-                        R 11
+                        R 6
                       </div>
                       <ul>
-                        <!-- CAUSE 22 -->
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 22 (Penyebab 22)','Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS (SPPB, pemeriksaan fisik, red/yellow lane).')"
+                            onclick="showModal('Cause 11 (Penyebab 11)','Kesalahan input/manual mapping (ISO size/type, reefer/DG flag, container ID) atau VGM belum masuk saat cut-off')"
                           >
-                            C 22
+                            C 11
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 22 (Tindakan Preventif 22)','Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB tervalidasi di sistem.')"
+                                onclick="showModal('Preventive Measure 11 (Tindakan Preventif 11)','Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM wajib ada—kalau tidak, blok rencana)')"
                               >
-                                PM 22
+                                PM 11
                               </div>
                             </li>
                           </ul>
                         </li>
-
-                        <!-- CAUSE 23 -->
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 23 (Penyebab 23)','Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah scan STID/RFID).')"
+                            onclick="showModal('Cause 12 (Penyebab 12)','Profil kapal (bay/vessel particulars) tidak mutakhir di library TOS sehingga penomoran slot/kapasitas tidak cocok')"
                           >
-                            C 23
+                            C 12
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 23 (Tindakan Preventif 23)','Wajib double-scan (gate & yard) + verifikasi otomatis nomor box↔B/L di TOS sebelum rilis.')"
+                                onclick="showModal('Preventive Measure 12 (Tindakan Preventif 12)','Governansi master data kapal (update saat first call & sign-off oleh shipping line; versi dikunci sebelum planning)')"
                               >
-                                PM 23
+                                PM 12
                               </div>
                             </li>
                           </ul>
@@ -1033,30 +1131,46 @@
                       </ul>
                     </li>
 
-                    <!-- RISK 12 -->
                     <li>
                       <div
                         class="node yellow"
-                        onclick="showModal('Risk 12 (Risiko 12)','Lonjakan kemacetan karena bulk release atau last-minute hold → yard padat & truck turn time melonjak.',3,4)"
+                        onclick="showModal('Risk 7 (Risiko 7)','Bay Plan melanggar aturan keselamatan (stabilitas, batas tumpuk/lashing, dan segregasi Dangerous Goods)',3,3)"
                       >
-                        R 12
+                        R 7
                       </div>
                       <ul>
-                        <!-- CAUSE 24 -->
                         <li>
                           <div
                             class="node red"
-                            onclick="showModal('Cause 24 (Penyebab 24)','Last-minute hold dari regulator/pelayaran (audit, dokumen kurang) saat volume sudah siap keluar.')"
+                            onclick="showModal('Cause 13 (Penyebab 13)','Deklarasi Dangerous Goods/segregation code tidak lengkap/salah, atau reefer/OOG tidak ditandai')"
                           >
-                            C 24
+                            C 13
                           </div>
                           <ul>
                             <li>
                               <div
                                 class="node green"
-                                onclick="showModal('Preventive Measure 24 (Tindakan Preventif 24)','Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance; setelah cut-off perubahan wajib approval.')"
+                                onclick="showModal('Preventive Measure 13 (Tindakan Preventif 13)','IMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis block jika tidak sesuai segregasi)')"
                               >
-                                PM 24
+                                PM 13
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <div
+                            class="node red"
+                            onclick="showModal('Cause 14 (Penyebab 14)','Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan dalam rule TOS saat menyusun rencana')"
+                          >
+                            C 14
+                          </div>
+                          <ul>
+                            <li>
+                              <div
+                                class="node green"
+                                onclick="showModal('Preventive Measure 14 (Tindakan Preventif 14)','Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP (rencana tidak bisa dieksekusi sebelum lolos)')"
+                              >
+                                PM 14
                               </div>
                             </li>
                           </ul>
@@ -1072,33 +1186,6 @@
       </div>
     </div>
 
-    <!-- MODAL -->
-    <div class="modal-overlay" id="infoModal">
-      <div class="modal-content" id="modalContentBox">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-
-        <h2 id="modalTitle" class="modal-title">Judul</h2>
-
-        <div class="modal-body">
-          <div class="stats-container" id="statsContainer">
-            <div class="stat-box">
-              <span class="stat-label">Likelihood</span>
-              <span class="stat-value" id="valLikelihood">0</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-label">Severity</span>
-              <span class="stat-value" id="valSeverity">0</span>
-            </div>
-          </div>
-
-          <div class="desc-text">
-            <p id="modalText">Deskripsi...</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- TABEL BESAR -->
     <div class="table-container">
       <h2
         style="
@@ -1128,127 +1215,189 @@
         </thead>
 
         <tbody>
-          <!-- AT 6 -->
           <tr>
-            <td>AT 6</td>
-            <td>Yard Talker</td>
-            <td>AA 6</td>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
+            <td>R5</td>
             <td>
-              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
-              alat & tim
+              Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE &
+              VGM)
             </td>
-            <td>R11</td>
-            <td>Instruksi/dispatch tidak jelas jadi salah ambil/salah taruh</td>
-            <td>C18</td>
+            <td>C8</td>
             <td>
-              Kualitas radio buruk/crosstalk sehingga pesan terpotong atau
-              tertukar
+              Versi file tidak sinkron (publish BAPLIE lama/terbaru tidak
+              tersebar)
             </td>
-            <td>PM18</td>
+            <td>PM8</td>
             <td>
-              Audit & peremajaan perangkat radio + kanal khusus operasi; siapkan
-              fallback ke hand-signals standar bila kualitas audio tidak memadai
+              Terapkan kontrol versi & acknowledgement EDI (gunakan
+              APERAK/CONTRL) agar hanya versi terbaru yang dipakai.
             </td>
           </tr>
-
           <tr>
-            <td>AT 6</td>
-            <td>Yard Talker</td>
-            <td>AA 6</td>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
+            <td>R5</td>
             <td>
-              Mengeluarkan dispatch job yard (receiving/delivery/rehandle) ke
-              alat & tim
+              Data stowage keliru/kurang lengkap saat dipublikasikan (BAPLIE &
+              VGM)
             </td>
-            <td>R12</td>
-            <td>Dispatch tidak sinkron dengan rencana yard & arus truk/gate</td>
-            <td>C19</td>
+            <td>C9</td>
             <td>
-              Perubahan TAS/ETA truk tidak tersosialisasi ke dispatcher &
-              operator.
+              Kualitas data buruk: salah bay/row/tier, size/type, atau VGM
+              belum/salah
             </td>
-            <td>PM19</td>
+            <td>PM9</td>
             <td>
-              Gunakan Truck Appointment System terintegrasi TOS (time-window,
-              load-balancing) dengan notifikasi perubahan otomatis
+              Aktifkan rule-based validation (bay/row/tier/type) dan cek VGM
+              sesuai SOLAS-VGM sebelum publish.
             </td>
           </tr>
-
           <tr>
-            <td>AT 6</td>
-            <td>Yard Talker</td>
-            <td>AP 6</td>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AA 3</td>
+            <td>Mempublikasikan Bay Plan + Crane Work Plan (CWP) di TOS</td>
+            <td>R6</td>
+            <td>Interferensi antar quay crane karena CWP tidak optimal</td>
+            <td>C10</td>
             <td>
-              Kontrol alokasi di yard termasuk keputusan hold & release saat
-              operasi
+              Range kerja crane overlap (aturan non-crossing/jarak aman tidak
+              diterapkan)
             </td>
-            <td>R11</td>
+            <td>PM10</td>
             <td>
-              Salah hold/release sehingga kontainer yang masih “ditahan”
-              (Customs/Karantina/DG) terlepas atau sebaliknya
-            </td>
-            <td>C22</td>
-            <td>
-              Status kepabeanan/karantina tidak tersinkron antara INSW/BC–TOS
-              (SPPB, pemeriksaan fisik, red/yellow lane)
-            </td>
-            <td>PM22</td>
-            <td>
-              Integrasi API INSW–TOS dengan aturan auto-hold sampai SPPB
-              tervalidasi di sistem
+              Terapkan penjadwalan QCSP di TOS dengan kendala non-crossing &
+              safety distance + validasi CWP sebelum publish
             </td>
           </tr>
-
           <tr>
-            <td>AT 6</td>
-            <td>Yard Talker</td>
-            <td>AP 6</td>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
             <td>
-              Kontrol alokasi di yard termasuk keputusan hold & release saat
-              operasi
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan i
             </td>
-            <td>R11</td>
+            <td>R6</td>
             <td>
-              Salah hold/release sehingga kontainer yang masih “ditahan”
-              (Customs/Karantina/DG) terlepas atau sebaliknya
+              Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer,
+              VGM, data kapal)
             </td>
-            <td>C23</td>
+            <td>C11</td>
             <td>
-              Mapping identitas kontainer keliru (nomor box/B/L mismatch, salah
-              scan STID/RFID)
+              Kesalahan input/manual mapping (ISO size/type, reefer/DG flag,
+              container ID) atau VGM belum masuk saat cut-off
             </td>
-            <td>PM23</td>
+            <td>PM11</td>
             <td>
-              Wajib double-scan (gate & yard) + verifikasi otomatis nomor
-              box↔B/L di TOS sebelum rilis
+              Hard-validation di TOS (ISO size/type & DG/reefer wajib benar; VGM
+              wajib ada—kalau tidak, blok rencana)
             </td>
           </tr>
-
           <tr>
-            <td>AT 6</td>
-            <td>Yard Talker</td>
-            <td>AP 6</td>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
             <td>
-              Kontrol alokasi di yard termasuk keputusan hold & release saat
-              operasi
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
             </td>
-            <td>R12</td>
+            <td>R6</td>
             <td>
-              Lonjakan kemacetan karena bulk release atau last-minute hold →
-              yard padat & truck turn time melonjak
+              Data salah/tidak lengkap di TOS (manifest, ukuran/tipe kontainer,
+              VGM, data kapal)
             </td>
-            <td>C24</td>
+            <td>C12</td>
             <td>
-              Last-minute hold dari regulator/pelayaran (audit, dokumen kurang)
-              saat volume sudah siap keluar
+              Profil kapal (bay/vessel particulars) tidak mutakhir di library
+              TOS sehingga penomoran slot/kapasitas tidak cocok
             </td>
-            <td>PM24</td>
+            <td>PM12</td>
             <td>
-              Tetapkan pre-release cut-off (H-24/H-6) + checklist clearance;
-              setelah cut-off perubahan wajib approval
+              Governansi master data kapal (update saat first call & sign-off
+              oleh shipping line; versi dikunci sebelum planning)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R7</td>
+            <td>
+              Bay Plan melanggar aturan keselamatan (stabilitas, batas
+              tumpuk/lashing, dan segregasi Dangerous Goods)
+            </td>
+            <td>C13</td>
+            <td>
+              Deklarasi Dangerous Goods/segregation code tidak lengkap/salah,
+              atau reefer/OOG tidak ditandai
+            </td>
+            <td>PM13</td>
+            <td>
+              IMDG rule engine di TOS (tag DG/reefer/OOG wajib; rencana otomatis
+              block jika tidak sesuai segregasi)
+            </td>
+          </tr>
+          <tr>
+            <td>AT 3</td>
+            <td>Ship Planner</td>
+            <td>AP 3</td>
+            <td>
+              Verifikasi data rencana di TOS (cek data/ship particular) serta
+              rencana Bay Plan/CWP sebelum dibagikan
+            </td>
+            <td>R7</td>
+            <td>
+              Bay Plan melanggar aturan keselamatan (stabilitas, batas
+              tumpuk/lashing, dan segregasi Dangerous Goods)
+            </td>
+            <td>C14</td>
+            <td>
+              Batasan stabilitas/trim/GM dari Chief Officer tidak diterapkan
+              dalam rule TOS saat menyusun rencana
+            </td>
+            <td>PM14</td>
+            <td>
+              Wajib loadicator check & CO approval sebelum rilis Bay Plan/CWP
+              (rencana tidak bisa dieksekusi sebelum lolos)
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="modal-overlay" id="infoModal">
+      <div class="modal-content" id="modalContentBox">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+
+        <h2 id="modalTitle" class="modal-title">Judul</h2>
+
+        <div class="modal-body">
+          <div class="stats-container" id="statsContainer">
+            <div class="stat-box">
+              <span class="stat-label">Likelihood</span>
+              <span class="stat-value" id="valLikelihood">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Severity</span>
+              <span class="stat-value" id="valSeverity">0</span>
+            </div>
+          </div>
+
+          <div class="desc-text">
+            <p id="modalText">Deskripsi...</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -1316,7 +1465,7 @@
         onmouseenter="onHoverAvatar()"
         onmouseleave="onLeaveAvatar()"
       >
-        <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
+        <img src="../char_idle.png" id="avatarImg" alt="AI Avatar" />
       </div>
     </div>
 
@@ -1326,9 +1475,9 @@
       const chatBox = document.getElementById("chatBox");
 
       // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png"; // Gambar Diam
-      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
-      const imgActive = "char_active.png"; // Gambar saat chat terbuka
+      const imgIdle = "../char_idle.png"; // Gambar Diam
+      const imgHover = "../char_hover.png"; // Gambar saat mouse di atas
+      const imgActive = "../char_active.png"; // Gambar saat chat terbuka
 
       function onHoverAvatar() {
         if (!isChatOpen) {
