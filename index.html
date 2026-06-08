@@ -235,6 +235,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 18px;
+        align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
       }
 
       .nav-links a {
@@ -1039,7 +1040,8 @@
       /* --- DROPDOWN NAVBAR STYLES --- */
 .dropdown {
   position: relative;
-  display: inline-block;
+  display: flex; /* Ganti dari inline-block menjadi flex */
+  align-items: center; /* Pastikan konten di dalamnya sejajar */
 }
 
 .dropdown .dropbtn {
