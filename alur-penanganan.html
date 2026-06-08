@@ -5,586 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aktivitas Terminal</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
-      body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        background: linear-gradient(#eef7ff, #eaf6ff);
-        overflow-x: hidden;
-        min-height: 100vh;
-      }
+      body { margin: 0; font-family: "Poppins", sans-serif; background: linear-gradient(#eef7ff, #eaf6ff); overflow-x: hidden; min-height: 100vh; }
 
-      .navbar {
-        width: 100%;
-        padding: 1.2rem 3vw;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-      }
-
-      .navbar a:hover,
-      .navbar a.active {
-        border-style: solid;
-        border-top: #222;
-        border-right: #222;
-        border-left: #222;
-        color: #00abf0;
-      }
-
-      .nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
-}
-
-      .nav-links a {
-        margin-left: 25px;
-        text-decoration: none;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #222;
-        transition: 0.3s;
-      }
-
-      .nav-links a:hover {
-        color: #0077cc;
-      }
+      /* NAVBAR & DROPDOWN */
+      .navbar { width: 100%; padding: 1.2rem 3vw; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; z-index: 10; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05); }
+      .navbar a:hover, .navbar a.active { border-style: solid; border-top: #222; border-right: #222; border-left: #222; color: #00abf0; }
+      .nav-links { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+      .nav-links a { margin-left: 25px; text-decoration: none; font-size: 1.1rem; font-weight: 600; color: #222; transition: 0.3s; }
+      .nav-links a:hover { color: #0077cc; }
+      .dropdown { position: relative; display: flex; align-items: center; }
+      .dropdown .dropbtn { text-decoration: none; font-weight: 600; color: #222; transition: 0.3s; display: inline-block; }
+      .dropdown-content { display: none; position: absolute; background-color: rgba(255, 255, 255, 0.95); min-width: 250px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); z-index: 101; top: 100%; padding-top: 10px; left: 0; border-radius: 8px; overflow: hidden; border-top: 20px solid transparent; background-clip: padding-box; }
+      .dropdown-content a { color: #222; padding: 12px 16px; text-decoration: none; display: block; font-size: 15px; text-align: left; border: none !important; }
+      .dropdown-content a:hover { background-color: #f1f8fc; color: #00abf0; }
+      .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
       /* RUNNING TEXT */
-      .running-text {
-        position: fixed;
-        top: 65px; /* tepat di bawah navbar */
-        left: 0;
-        width: 100%;
-        height: 35px;
-        background-color: #0077cc;
-        font-size: 22.5px;
-        font-weight: 700;
-        color: #fff;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        z-index: 0;
-      }
+      .running-text { position: fixed; top: 65px; left: 0; width: 100%; height: 35px; background-color: #0077cc; font-size: 22.5px; font-weight: 700; color: #fff; overflow: hidden; display: flex; align-items: center; z-index: 0; }
+      .text-run { position: absolute; white-space: nowrap; animation: runningText 20s linear infinite; }
+      @keyframes runningText { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+      .running-text:hover .text-run { animation-play-state: paused; }
 
-      .text-run {
-        position: absolute;
-        white-space: nowrap;
-        animation: runningText 20s linear infinite;
-      }
+      /* HEADER TITLE */
+      .title { margin-top: 130px; text-align: center; font-size: 50px; font-weight: 700; color: #333; }
+      .title-2 { margin-top: 0; margin-left: 200px; margin-right: 200px; text-align: center; font-size: 20px; font-weight: 400; color: #333; }
 
-      /* --- DROPDOWN NAVBAR STYLES --- */
-.dropdown {
-  position: relative;
-  display: flex; /* Ganti dari inline-block menjadi flex */
-  align-items: center; /* Pastikan konten di dalamnya sejajar */
-}
+      /* DAFTAR ISI */
+      .toc-container { width: 85%; max-width: 900px; margin: 30px auto 50px auto; background: #ffffff; border-radius: 15px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); overflow: hidden; }
+      .toc-header { background: #126e80; color: #ffffff; padding: 15px 25px; font-size: 20px; font-weight: 600; text-align: center; }
+      .toc-content { max-height: 500px; overflow-y: auto; padding: 20px 25px; }
+      .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+      .toc-list { list-style: none; padding: 0; margin: 0; }
+      .toc-list li { margin-bottom: 5px; }
+      .toc-list a { text-decoration: none; color: #333; font-size: 15px; display: block; padding: 8px 12px; border-radius: 8px; transition: all 0.3s ease; border-left: 4px solid transparent; }
+      .toc-list a:hover { background: #f0f8fa; color: #126e80; border-left: 4px solid #126e80; font-weight: 500; }
+      .toc-sub { position: relative; }
+      .toc-sub::before { content: ""; position: absolute; top: -12px; bottom: 50%; left: 12px; width: 15px; border-left: 2px solid #a4ced6; border-bottom: 2px solid #a4ced6; border-bottom-left-radius: 6px; }
+      .toc-sub a { margin-left: 35px; font-size: 14px; color: #555; }
+      .toc-content::-webkit-scrollbar { width: 8px; }
+      .toc-content::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+      .toc-content::-webkit-scrollbar-thumb { background: #126e80; border-radius: 10px; }
 
-.dropdown .dropbtn {
-  text-decoration: none;
-  font-weight: 600;
-  color: #222;
-  transition: 0.3s;
-  display: inline-block;
-}
+      /* MODAL 1 (POPUP UTAMA) */
+      .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; flex-direction: column; }
+      .modal-content { max-width: 90%; max-height: 80vh; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); object-fit: contain; background: #fff; }
+      @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+      .close-modal { position: absolute; top: 20px; right: 40px; color: #fff; font-size: 45px; font-weight: bold; cursor: pointer; transition: 0.3s ease; z-index: 2010; }
+      .close-modal:hover { color: #00abf0; transform: scale(1.2); }
+      #caption { margin-top: 15px; color: #fff; font-size: 18px; font-weight: 600; text-align: center; max-width: 80%; }
 
-/* Mengatur wadah menu dropdown yang disembunyikan secara default */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  min-width: 250px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 101;
-  
-  /* --- INI YANG DIUBAH --- */
-  top: 100%; 
-  padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
-  /* ----------------------- */
-  
-  left: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  /* Trik jembatan transparan agar tidak hilang saat di-hover */
-  border-top: 20px solid transparent; 
-  background-clip: padding-box;
-}
-
-/* Mengatur tautan di dalam dropdown */
-.dropdown-content a {
-  color: #222;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 15px;
-  text-align: left;
-  border: none !important; /* Mencegah border dari navbar utama muncul */
-}
-
-/* Efek hover untuk tautan di dalam dropdown */
-.dropdown-content a:hover {
-  background-color: #f1f8fc;
-  color: #00abf0;
-}
-
-/* Memunculkan dropdown saat area dropdown dihover */
-.dropdown:hover .dropdown-content {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-/* Animasi halus saat dropdown muncul */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-      /* ANIMASI */
-      @keyframes runningText {
-        from {
-          transform: translateX(100%);
-        }
-        to {
-          transform: translateX(-100%);
-        }
-      }
-
-      /* RESPONSIVE */
-      @media (max-width: 768px) {
-        .navbar {
-          height: 60px;
-        }
-
-        .running-text {
-          top: 80px;
-          height: 26px;
-          font-size: 14px;
-        }
-
-        .main-carousel-section {
-          margin-top: 86px;
-        }
-      }
-
-      /* OPSIONAL: PAUSE SAAT HOVER */
-      .running-text:hover .text-run {
-        animation-play-state: paused;
-      }
-
-      .title {
-        margin-top: 130px;
-        text-align: center;
-        font-size: 50px;
-        font-weight: 700;
-        color: #333;
-      }
-
-      .title-2 {
-        margin-top: 0;
-        margin-left: 200px;
-        margin-right: 200px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: 400;
-        color: #333;
-      }
-
-      /* GRID */
-      .kb-container {
-        width: 85%;
-        margin: 50px auto 100px auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        align-items: start;
-      }
-
-      /* BOX */
-      .kb-box {
-        background: #126e80;
-        padding: 30px 20px;
-        border-radius: 25px;
-        text-decoration: none;
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-      }
-
-      .kb-box:hover {
-        transform: translateY(-5px);
-        background: #126e80;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      }
-
-      .kb-img {
-        width: 100%;
-        border-radius: 15px;
-        margin-top: 15px;
-        display: block;
-
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: all 0.9s ease;
-      }
-      .kb-box:hover .kb-img {
-        max-height: 400px;
-        opacity: 1;
-      }
-
-      .kb-title-text {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 0;
-        text-align: center;
-      }
-
-      .kb-desc {
-        background: #ffffff;
-        color: #555;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.6;
-        text-align: center;
-        border-radius: 15px;
-        width: 100%;
-        max-height: 0;
-        opacity: 0;
-        margin-top: 0;
-        padding: 0 15px;
-        overflow: hidden;
-        transition: all 0.5s ease;
-        box-sizing: border-box;
-      }
-
-      .kb-box:hover .kb-desc {
-        max-height: 300px;
-        opacity: 1;
-        margin-top: 20px;
-        padding: 20px 15px;
-      }
-
-      /* TABEL */
-      .table-container {
+      /* --- INTERACTIVE FLOWCHART WRAPPER & HOTSPOTS --- */
+      .flowchart-wrapper {
+        position: relative;
         width: 90%;
-        max-width: 1200px;
-        margin: 0 auto 60px auto;
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        overflow-x: auto;
+        max-width: 1100px;
+        animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
-
-      .clean-table {
+      .flowchart-wrapper img {
         width: 100%;
-        border-collapse: collapse;
-        font-size: 13px;
-        color: #333;
-      }
-
-      .clean-table th {
-        background: #126e80;
-        color: white;
-        font-weight: 600;
-        padding: 12px;
-        text-align: center;
-        border-bottom: 2px solid #0f5c6a;
-        white-space: nowrap;
-      }
-
-      .clean-table td {
-        padding: 10px 12px;
-        border-bottom: 1px solid #eee;
-        text-align: left;
-      }
-      .clean-table td:first-child {
-        text-align: center;
-      }
-
-      .clean-table tr:nth-child(even) {
-        background: #f9fbfc;
-      }
-      .clean-table tr:hover {
-        background: #f0f8fa;
-      }
-
-      @media (max-width: 900px) {
-        .kb-container {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .bottom-hill {
-        width: 100%;
-        height: 250px;
-        background: url("hill.svg") no-repeat center bottom;
-        background-size: cover;
-        position: fixed;
-        bottom: 0;
-        z-index: -1;
-      }
-      /* Chat Widget Styles */
-      .chat-widget-container {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        font-family: "Poppins", sans-serif;
-      }
-
-      /* Avatar Image Wrapper */
-      .chat-avatar-wrapper {
-        width: 100px; /* Sesuaikan ukuran gambar */
-        height: 100px;
-        cursor: pointer;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
-      }
-
-      .chat-avatar-wrapper:hover {
-        transform: scale(1.1);
-      }
-
-      .chat-avatar-wrapper img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      /* Chat Box Popup */
-      .chat-box {
-        width: 300px;
-        height: 300px;
-        background-color: #1e1e1e; /* Warna Gelap */
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        margin-bottom: 15px;
-
-        /* Animasi Muncul */
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-        transform-origin: bottom right;
-        transition: all 0.3s ease;
-        pointer-events: none;
-      }
-
-      /* Saat chat aktif/open */
-      .chat-box.active {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: all;
-      }
-
-      /* Chat Header */
-      .chat-header {
-        background: #126e80; /* Warna Pelindo */
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: white;
-      }
-      .chat-header h4 {
-        margin: 0;
-        font-size: 16px;
-        font-weight: 600;
-      }
-      .close-chat {
-        cursor: pointer;
-        font-size: 20px;
-        font-weight: bold;
-      }
-
-      /* Chat Body */
-      .chat-body {
-        flex: 1;
-        padding: 15px;
-        color: #ddd;
-        font-size: 14px;
-        overflow-y: auto;
-      }
-      .ai-msg {
-        background: #333;
-        padding: 10px;
-        border-radius: 10px 10px 10px 0;
-        margin-bottom: 10px;
-        line-height: 1.4;
-      }
-
-      /* Chat Input */
-      .chat-input-area {
-        padding: 15px;
-        background: #252525;
-        display: flex;
-        gap: 10px;
-        border-top: 1px solid #333;
-      }
-      .chat-input-area input {
-        flex: 1;
-        background: #333;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        color: white;
-        outline: none;
-      }
-      .chat-input-area button {
-        background: #126e80;
-        color: white;
-        border: none;
-        padding: 0 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 600;
-      }
-
-      /* --- DAFTAR ISI SCROLLABLE --- */
-      .toc-container {
-        width: 85%;
-        max-width: 900px;
-        margin: 30px auto 50px auto; /* Margin atas disesuaikan dengan navbar & running text */
-        background: #ffffff;
-        border-radius: 15px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        overflow: hidden;
-      }
-
-      .toc-header {
-        background: #126e80;
-        color: #ffffff;
-        padding: 15px 25px;
-        font-size: 20px;
-        font-weight: 600;
-        text-align: center;
-      }
-
-      .toc-content {
-        max-height: 450px; /* Batas tinggi sebelum bisa di-scroll */
-        overflow-y: auto;
-        padding: 20px 25px;
-      }
-
-      .toc-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .toc-list li {
-        margin-bottom: 5px;
-      }
-
-      .toc-list a {
-        text-decoration: none;
-        color: #333;
-        font-size: 15px;
+        height: auto;
         display: block;
-        padding: 8px 12px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        border-left: 4px solid transparent;
-      }
-
-      .toc-list a:hover {
-        background: #f0f8fa;
-        color: #126e80;
-        border-left: 4px solid #126e80;
-        font-weight: 500;
-      }
-
-      /* Indentasi untuk sub-menu (1.1, 1.2, dll) */
-      .toc-sub a {
-        margin-left: 25px;
-        font-size: 14px;
-        color: #555;
-      }
-
-      /* Custom Scrollbar agar lebih estetik */
-      .toc-content::-webkit-scrollbar {
-        width: 8px;
-      }
-      .toc-content::-webkit-scrollbar-track {
-        background: #f1f1f1;
         border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
       }
-      .toc-content::-webkit-scrollbar-thumb {
-        background: #126e80;
-        border-radius: 10px;
+      .hotspot {
+        position: absolute;
+        cursor: pointer;
+        border-radius: 6px;
+        background: rgba(0, 171, 240, 0); 
+        transition: all 0.2s ease;
+        z-index: 10;
       }
-      .toc-content::-webkit-scrollbar-thumb:hover {
-        background: #0f5c6a;
+      .hotspot:hover {
+        background: rgba(0, 171, 240, 0.35); 
+        border: 2px solid #00abf0;
+        box-shadow: 0 0 15px rgba(0, 171, 240, 0.8);
+        transform: scale(1.05);
       }
 
-      /* Responsif untuk Mobile */
+      /* MODAL 2 (NESTED POPUP SUBBAB DETAIL) */
+      .modal-dua { display: none; position: fixed; z-index: 2050; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); align-items: center; justify-content: center; }
+      .modal-dua-content { background-color: #fff; padding: 25px 30px; border-radius: 15px; max-width: 1250px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: left; position: relative; }
+      .modal-dua-content h3 { color: #126e80; margin-top: 0; margin-bottom: 15px; text-align: center; font-size: 22px; }
+      .modal-dua-content img { width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+      .modal-dua-content p { color: #444; line-height: 1.6; font-size: 15px; white-space: pre-line; background: #f8fbfd; padding: 15px; border-radius: 8px; border-left: 4px solid #00abf0; }
+      .close-modal-dua { position: absolute; top: 15px; right: 20px; color: #333; font-size: 35px; font-weight: bold; cursor: pointer; transition: 0.3s ease; z-index: 2060;}
+      .close-modal-dua:hover { color: #e74c3c; }
+
+      .bottom-hill { width: 100%; height: 250px; background: url("hill.svg") no-repeat center bottom; background-size: cover; position: fixed; bottom: 0; z-index: -1; }
+
+      /* Chat Widget Styles */
+      .chat-widget-container { position: fixed; bottom: 30px; right: 30px; z-index: 1000; display: flex; flex-direction: column; align-items: flex-end; font-family: "Poppins", sans-serif; }
+      .chat-avatar-wrapper { width: 100px; height: 100px; cursor: pointer; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2)); }
+      .chat-avatar-wrapper:hover { transform: scale(1.1); }
+      .chat-avatar-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+      .chat-box { width: 300px; height: 300px; background-color: #1e1e1e; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; overflow: hidden; margin-bottom: 15px; opacity: 0; transform: translateY(20px) scale(0.95); transform-origin: bottom right; transition: all 0.3s ease; pointer-events: none; }
+      .chat-box.active { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+      .chat-header { background: #126e80; padding: 15px; display: flex; justify-content: space-between; align-items: center; color: white; }
+      .chat-header h4 { margin: 0; font-size: 16px; font-weight: 600; }
+      .close-chat { cursor: pointer; font-size: 20px; font-weight: bold; }
+      .chat-body { flex: 1; padding: 15px; color: #ddd; font-size: 14px; overflow-y: auto; }
+      .ai-msg { background: #333; padding: 10px; border-radius: 10px 10px 10px 0; margin-bottom: 10px; line-height: 1.4; }
+      .chat-input-area { padding: 15px; background: #252525; display: flex; gap: 10px; border-top: 1px solid #333; }
+      .chat-input-area input { flex: 1; background: #333; border: none; padding: 10px; border-radius: 5px; color: white; outline: none; }
+      .chat-input-area button { background: #126e80; color: white; border: none; padding: 0 15px; border-radius: 5px; cursor: pointer; font-weight: 600; }
+
+      /* RESPONSIVE CSS */
+      @media (max-width: 768px) {
+        .navbar { height: 60px; }
+        .running-text { top: 80px; height: 26px; font-size: 14px; }
+        .toc-grid { grid-template-columns: 1fr; gap: 0; }
+      }
       @media (max-width: 600px) {
-        .chat-widget-container {
-          bottom: 20px;
-          right: 20px;
-        }
-        .chat-avatar-wrapper {
-          width: 80px;
-          height: 80px;
-        }
-        .chat-box {
-          width: 300px;
-          height: 400px;
-        }
-      }
-      /* --- TAMBAHAN KHUSUS MOBILE TEXT --- */
-      .mobile-hint {
-        display: none; /* Secara default disembunyikan (untuk laptop/PC) */
-      }
-
-      /* Saat layar di bawah 900px (Tampilan Tablet/HP) */
-      @media (max-width: 900px) {
-        .mobile-hint {
-          display: block; /* Munculkan teks */
-          margin-top: 15px;
-          padding-top: 10px;
-          border-top: 1px solid rgba(255, 255, 255, 0.3); /* Garis pemisah tipis */
-          font-size: 13px;
-          color: black; /* Warna teks agak terang agar kontras */
-          width: 100%;
-          text-align: center;
-          font-weight: 500;
-          background: #ffffff;
-          border-radius: 15px;
-          box-sizing: border-box;
-        }
-
-        /* Opsional: Sedikit ubah padding box biar muat */
-        .kb-box {
-          padding-bottom: 20px;
-        }
+        .chat-widget-container { bottom: 20px; right: 20px; }
+        .chat-avatar-wrapper { width: 80px; height: 80px; }
+        .chat-box { width: 300px; height: 400px; }
       }
     </style>
   </head>
@@ -596,89 +135,128 @@
         <a href="knowledge-base.html">Knowledge Base</a>
         <a href="#" class="active">Alur Penanganan Proses Petikemas</a>
         <div class="dropdown">
-      <a href="#" class="dropbtn">Profil TPK ▾</a>
-      <div class="dropdown-content">
-        <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
-        <a href="profil-semarang.html">Semarang</a>
-        <a href="profil-makassar.html">Makassar New Port</a>
-      </div>
-    </div>
+          <a href="#" class="dropbtn">Profil TPK ▾</a>
+          <div class="dropdown-content">
+            <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="profil-semarang.html">Semarang</a>
+            <a href="profil-makassar.html">Makassar New Port</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="running-text">
-      <div class="text-run">
-        <p>
-          WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN, BEBERAPA FITUR MUNGKIN
-          MASIH BELUM TERSEDIA
-        </p>
-      </div>
+      <div class="text-run"><p>WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN, BEBERAPA FITUR MUNGKIN MASIH BELUM TERSEDIA</p></div>
     </div>
 
     <h1 class="title">ALUR PENANGANAN PROSES PETIKEMAS</h1>
-    <h2 class="title-2">
-      Berikut adalah alur penanganan proses petikemas di Terminal Teluk Lamong
-      yang dapat membantu Anda memahami langkah-langkah operasional yang
-      dilakukan setiap harinya.
-    </h2>
+    <h2 class="title-2">Berikut adalah alur penanganan proses petikemas di Terminal Teluk Lamong yang dapat membantu Anda memahami langkah-langkah operasional yang dilakukan setiap harinya.</h2>
 
-        <div class="toc-container">
-      <div class="toc-header">
-        Daftar Isi Alur Penanganan
-      </div>
+    <div class="toc-container">
+      <div class="toc-header">Daftar Isi Alur Penanganan</div>
       <div class="toc-content">
-        <ul class="toc-list">
-          <li><a href="#proses-pemuatan">1. Proses Pemuatan</a></li>
-          <li class="toc-sub"><a href="#1-1">1.1 Rencana Penyandaran dan Pembuatan Rencana Alokasi Penumpukan</a></li>
-          <li class="toc-sub"><a href="#1-2">1.2 Request Receiving dan Proses Pembayaran</a></li>
-          <li class="toc-sub"><a href="#1-3">1.3 Prosedur Penerimaan petikemas di gate (Receiving)</a></li>
-          <li class="toc-sub"><a href="#1-4">1.4 Penumpukan di Lapangan</a></li>
-          <li class="toc-sub"><a href="#1-5">1.5 Penerimaan Data SI dan Pembuatan Pre-Plan</a></li>
-          <li class="toc-sub"><a href="#1-6">1.6 Pembuatan Rencana Muat, CWP dan Sequence</a></li>
-          <li class="toc-sub"><a href="#1-7">1.7 Rencana Penambatan Kapal</a></li>
-          <li class="toc-sub"><a href="#1-9">1.9 Proses Pengambilan petikemas di Lapangan untuk kegiatan pemuatan</a></li>
-          <li class="toc-sub"><a href="#1-10">1.10 Pengiriman Muatan Dari Lapangan Ke Dermaga</a></li>
-          <li class="toc-sub"><a href="#1-11">1.11 Operasi Pemuatan</a></li>
-          <li class="toc-sub"><a href="#1-12">1.12 Truk Keluar Dari Terminal</a></li>
-          <li class="toc-sub"><a href="#1-13">1.13 Prosedur Pre Gate In (Receiving)</a></li>
+        <div class="toc-grid">
+          
+          <ul class="toc-list">
+            <li><a href="#proses-pemuatan">1. Proses Pemuatan</a></li>
+            <li class="toc-sub"><a href="#1-1">1.1 Rencana Penyandaran dan Pembuatan Rencana Alokasi Penumpukan</a></li>
+            <li class="toc-sub"><a href="#1-2">1.2 Request Receiving dan Proses Pembayaran</a></li>
+            <li class="toc-sub"><a href="#1-3">1.3 Prosedur Penerimaan petikemas di gate (Receiving)</a></li>
+            <li class="toc-sub"><a href="#1-4">1.4 Penumpukan di Lapangan</a></li>
+            <li class="toc-sub"><a href="#1-5">1.5 Penerimaan Data SI dan Pembuatan Pre-Plan</a></li>
+            <li class="toc-sub"><a href="#1-6">1.6 Pembuatan Rencana Muat, CWP dan Sequence</a></li>
+            <li class="toc-sub"><a href="#1-7">1.7 Rencana Penambatan Kapal</a></li>
+            <li class="toc-sub"><a href="#1-9">1.9 Proses Pengambilan petikemas di Lapangan untuk kegiatan pemuatan</a></li>
+            <li class="toc-sub"><a href="#1-10">1.10 Pengiriman Muatan Dari Lapangan Ke Dermaga</a></li>
+            <li class="toc-sub"><a href="#1-11">1.11 Operasi Pemuatan</a></li>
+            <li class="toc-sub"><a href="#1-12">1.12 Truk Keluar Dari Terminal</a></li>
+            <li class="toc-sub"><a href="#1-13">1.13 Prosedur Pre Gate In (Receiving)</a></li>
 
-          <li><a href="#proses-pembongkaran">2. Proses Pembongkaran</a></li>
-          <li class="toc-sub"><a href="#2-1">2.1 Permintaan Sandar dan Penerimaan Data Bongkar</a></li>
-          <li class="toc-sub"><a href="#2-2">2.2 Pembuatan Rencana Bongkar</a></li>
-          <li class="toc-sub"><a href="#2-4">2.4 Operasi Pembongkaran</a></li>
-          <li class="toc-sub"><a href="#2-5">2.5 Transfer petikemas Dari Dermaga Ke Lapangan</a></li>
-          <li class="toc-sub"><a href="#2-6">2.6 Operasi Di Lapangan Penumpukan</a></li>
-          <li class="toc-sub"><a href="#2-7">2.7 Request Delivery Dan Pembayaran</a></li>
-          <li class="toc-sub"><a href="#2-8">2.8 Truk Masuk Untuk Pengambilan petikemas (Delivery)</a></li>
-          <li class="toc-sub"><a href="#2-9">2.9 Pengambilan petikemas Di Lapangan</a></li>
-          <li class="toc-sub"><a href="#2-10">2.10 Pengeluaran petikemas Dari Terminal</a></li>
-          <li class="toc-sub"><a href="#2-11">2.11 Prosedur Pre Gate In (Delivery)</a></li>
+            <li><a href="#proses-pembongkaran">2. Proses Pembongkaran</a></li>
+            <li class="toc-sub"><a href="#2-1">2.1 Permintaan Sandar dan Penerimaan Data Bongkar</a></li>
+            <li class="toc-sub"><a href="#2-2">2.2 Pembuatan Rencana Bongkar</a></li>
+            <li class="toc-sub"><a href="#2-4">2.4 Operasi Pembongkaran</a></li>
+            <li class="toc-sub"><a href="#2-5">2.5 Transfer petikemas Dari Dermaga Ke Lapangan</a></li>
+            <li class="toc-sub"><a href="#2-6">2.6 Operasi Di Lapangan Penumpukan</a></li>
+            <li class="toc-sub"><a href="#2-7">2.7 Request Delivery Dan Pembayaran</a></li>
+            <li class="toc-sub"><a href="#2-8">2.8 Truk Masuk Untuk Pengambilan petikemas (Delivery)</a></li>
+            <li class="toc-sub"><a href="#2-9">2.9 Pengambilan petikemas Di Lapangan</a></li>
+            <li class="toc-sub"><a href="#2-10">2.10 Pengeluaran petikemas Dari Terminal</a></li>
+            <li class="toc-sub"><a href="#2-11">2.11 Prosedur Pre Gate In (Delivery)</a></li>
+          </ul>
 
-          <li><a href="#prosedur-3">3. Prosedur Pelayanan Batal Muat</a></li>
-          <li><a href="#prosedur-4">4. Prosedur Pelayanan Batal Muat Diatas Kapal ke CY</a></li>
-          <li><a href="#prosedur-5">5. Prosedur Pelayanan Batal Muat Delivery</a></li>
-          <li><a href="#prosedur-6">6. Prosedur Pelayanan Alih kapal</a></li>
-          <li><a href="#prosedur-7">7. Prosedur Pelayanan petikemas Reefer (Bongkar)</a></li>
-          <li><a href="#prosedur-8">8. Prosedur Pelayanan petikemas Reefer (Muat)</a></li>
-          <li><a href="#prosedur-9">9. Prosedur Pelayanan Petikemas Transhipment(Bongkar)</a></li>
-          <li><a href="#prosedur-10">10. Prosedur Pelayanan Petikemas Transhipment(Muat)</a></li>
-          <li><a href="#prosedur-11">11. Prosedur Pelayanan petikemas Dangerous Goods (DG) Bongkar</a></li>
-          <li><a href="#prosedur-12">12. Prosedur Pelayanan petikemas Dangerous Goods (DG) Muat</a></li>
-          <li><a href="#prosedur-13">13. Prosedur Pelayanan Uncontainerized (UC) Bongkar ..</a></li>
-          <li><a href="#prosedur-14">14. Prosedur Pelayanan Uncontainerized (UC) Bongkar .</a></li>
-          <li><a href="#prosedur-15">15. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
-          <li><a href="#prosedur-16">16. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
-          <li><a href="#prosedur-17">17. Prosedur Pelayanan Overbrengen ( OB / PLP )</a></li>
-          <li><a href="#prosedur-18">18. Prosedur Pelayanan Behandle</a></li>
-          <li><a href="#prosedur-19">19. Prosedur Pelayanan Gerakan Ekstra</a></li>
-          <li><a href="#prosedur-20">20. Prosedur Pelayanan Shifting</a></li>
-          <li><a href="#prosedur-21">21. Prosedur Pelayanan Buka & Tutup Palka</a></li>
-        </ul>
+          <ul class="toc-list">
+            <li><a href="#prosedur-3">3. Prosedur Pelayanan Batal Muat</a></li>
+            <li><a href="#prosedur-4">4. Prosedur Pelayanan Batal Muat Diatas Kapal ke CY</a></li>
+            <li><a href="#prosedur-5">5. Prosedur Pelayanan Batal Muat Delivery</a></li>
+            <li><a href="#prosedur-6">6. Prosedur Pelayanan Alih kapal</a></li>
+            <li><a href="#prosedur-7">7. Prosedur Pelayanan petikemas Reefer (Bongkar)</a></li>
+            <li><a href="#prosedur-8">8. Prosedur Pelayanan petikemas Reefer (Muat)</a></li>
+            <li><a href="#prosedur-9">9. Prosedur Pelayanan Petikemas Transhipment(Bongkar)</a></li>
+            <li><a href="#prosedur-10">10. Prosedur Pelayanan Petikemas Transhipment(Muat)</a></li>
+            <li><a href="#prosedur-11">11. Prosedur Pelayanan petikemas Dangerous Goods (DG) Bongkar</a></li>
+            <li><a href="#prosedur-12">12. Prosedur Pelayanan petikemas Dangerous Goods (DG) Muat</a></li>
+            <li><a href="#prosedur-13">13. Prosedur Pelayanan Uncontainerized (UC) Bongkar ..</a></li>
+            <li><a href="#prosedur-14">14. Prosedur Pelayanan Uncontainerized (UC) Bongkar .</a></li>
+            <li><a href="#prosedur-15">15. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
+            <li><a href="#prosedur-16">16. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
+            <li><a href="#prosedur-17">17. Prosedur Pelayanan Overbrengen ( OB / PLP )</a></li>
+            <li><a href="#prosedur-18">18. Prosedur Pelayanan Behandle</a></li>
+            <li><a href="#prosedur-19">19. Prosedur Pelayanan Gerakan Ekstra</a></li>
+            <li><a href="#prosedur-20">20. Prosedur Pelayanan Shifting</a></li>
+            <li><a href="#prosedur-21">21. Prosedur Pelayanan Buka & Tutup Palka</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+      <span class="close-modal" id="closeModalBtn">&times;</span>
+      <h3 id="caption"></h3>
+
+      <img class="modal-content" id="modalImage" alt="Bagan Penanganan" style="display: none;" />
+
+      <div id="flowBab1" class="flowchart-wrapper" style="display: none;">
+        <img src="aset proses penanganan/proses-pemuatan.webp" alt="Flowchart Pemuatan" />
+        <div class="hotspot" onclick="bukaSubBab('1-1')" style="top: 23%; left: 13%; width: 10.5%; height: 12.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-2')" style="top: 38%; left: 23.5%; width: 9.5%; height: 11.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-3')" style="top: 51%; left: 34%; width: 9.5%; height: 11.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-4')" style="top: 65%; left: 42.5%; width: 9.5%; height: 11%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-5')" style="top: 24%; left: 33.5%; width: 10%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-6')" style="top: 23%; left: 47%; width: 9%; height: 13%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-7')" style="top: 77.5%; left: 50.5%; width: 7.5%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-8')" style="top: 77.5%; left: 58.5%; width: 7.5%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-9')" style="top: 77.5%; left: 67%; width: 8.5%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-10')" style="top: 77.5%; left: 76%; width: 8.5%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-11')" style="top: 77.5%; left: 85%; width: 7.5%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('1-12')" style="top: 49.5%; left: 89%; width: 7%; height: 12.5%;"></div>
+      </div>
+
+      <div id="flowBab2" class="flowchart-wrapper" style="display: none;">
+        <img src="aset proses penanganan/proses-pembongkaran.webp" alt="Flowchart Pembongkaran" />
+        <div class="hotspot" onclick="bukaSubBab('2-1')" style="top: 22%; left: 12.5%; width: 10.5%; height: 12.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-2')" style="top: 22%; left: 24%; width: 10%; height: 12.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-3')" style="top: 78%; left: 34.5%; width: 10%; height: 12.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-4')" style="top: 78%; left: 45.5%; width: 9.5%; height: 12.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-5')" style="top: 78%; left: 55.5%; width: 9%; height: 12.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-6')" style="top: 64%; left: 55.5%; width: 9%; height: 12.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-7')" style="top: 22%; left: 65.5%; width: 9%; height: 11.5%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-8')" style="top: 50.5%; left: 75%; width: 9.5%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-9')" style="top: 65%; left: 75%; width: 9.5%; height: 12%;"></div>
+        <div class="hotspot" onclick="bukaSubBab('2-10')" style="top: 50.5%; left: 85%; width: 9.5%; height: 12%;"></div>
+      </div>
+    </div>
+
+    <div id="modalKedua" class="modal-dua">
+      <span class="close-modal-dua" id="closeModalDuaBtn">&times;</span>
+      <div class="modal-dua-content">
+        <h3 id="judulModalDua">Judul Sub-Bab</h3>
+        <img id="imgModalDua" src="" alt="Gambar Sub-bab" />
+        <p id="teksModalDua">Deskripsi tambahan akan muncul di sini.</p>
       </div>
     </div>
 
     <div class="bottom-hill"></div>
-
     <div class="chat-widget-container">
       <div class="chat-box" id="chatBox">
         <div class="chat-header">
@@ -686,86 +264,163 @@
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body">
-          <div class="ai-msg">
-            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
-            bantu terkait operasional hari ini?
-          </div>
+          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
         </div>
         <div class="chat-input-area">
           <input type="text" placeholder="Tanya sesuatu..." />
           <button>Kirim</button>
         </div>
       </div>
-
-      <div
-        class="chat-avatar-wrapper"
-        id="avatarWrapper"
-        onclick="toggleChat()"
-        onmouseenter="onHoverAvatar()"
-        onmouseleave="onLeaveAvatar()"
-      >
+      <div class="chat-avatar-wrapper" id="avatarWrapper" onclick="toggleChat()" onmouseenter="onHoverAvatar()" onmouseleave="onLeaveAvatar()">
         <img src="char_idle.png" id="avatarImg" alt="AI Avatar" />
       </div>
     </div>
 
     <script>
+      // WIDGET CHAT & ZOOM LAYER
       let isChatOpen = false;
       const avatarImg = document.getElementById("avatarImg");
       const chatBox = document.getElementById("chatBox");
+      const imgIdle = "char_idle.png"; const imgHover = "char_hover.png"; const imgActive = "char_active.png"; 
 
-      // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png"; // Gambar Diam
-      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
-      const imgActive = "char_active.png"; // Gambar saat chat terbuka
-
-      function onHoverAvatar() {
-        if (!isChatOpen) {
-          avatarImg.src = imgHover;
-        }
-      }
-
-      function onLeaveAvatar() {
-        if (!isChatOpen) {
-          avatarImg.src = imgIdle;
-        }
-      }
-
+      function onHoverAvatar() { if (!isChatOpen) { avatarImg.src = imgHover; } }
+      function onLeaveAvatar() { if (!isChatOpen) { avatarImg.src = imgIdle; } }
       function toggleChat() {
         isChatOpen = !isChatOpen;
-
-        if (isChatOpen) {
-          chatBox.classList.add("active");
-          avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
-        } else {
-          chatBox.classList.remove("active");
-          avatarImg.src = imgIdle; // Kembali diam
-        }
+        if (isChatOpen) { chatBox.classList.add("active"); avatarImg.src = imgActive; } 
+        else { chatBox.classList.remove("active"); avatarImg.src = imgIdle; }
       }
-    </script>
-    <script>
       function adjustZoomLevel() {
-        // Mendapatkan rasio skala laptop saat ini (misal 1.25 untuk 125%)
         const ratio = window.devicePixelRatio || 1;
+        document.body.style.zoom = ratio !== 1 ? 1 / ratio : 1;
+      }
+      adjustZoomLevel(); window.addEventListener("resize", adjustZoomLevel);
 
-        // Jika rasio tidak 1 (berarti user pakai 125%, 150%, dll)
-        if (ratio !== 1) {
-          // Hitung nilai zoom kebalikannya
-          // Contoh: Jika 125% (1.25), maka zoom = 1 / 1.25 = 0.8 (80%)
-          const zoomValue = 1 / ratio;
+      // DOM ELEMENTS MODAL
+      const modal = document.getElementById("imageModal");
+      const captionText = document.getElementById("caption");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      
+      const modalImg = document.getElementById("modalImage");
+      const flowBab1 = document.getElementById("flowBab1");
+      const flowBab2 = document.getElementById("flowBab2");
 
-          // Terapkan zoom ke seluruh body
-          document.body.style.zoom = zoomValue;
-        } else {
-          // Jika sudah 100%, biarkan normal
-          document.body.style.zoom = 1;
+      const modalKedua = document.getElementById("modalKedua");
+      const closeModalDuaBtn = document.getElementById("closeModalDuaBtn");
+      const judulModalDua = document.getElementById("judulModalDua");
+      const imgModalDua = document.getElementById("imgModalDua");
+      const teksModalDua = document.getElementById("teksModalDua");
+
+      // DATABASE DESKRIPSI SUB-BAB
+      const dataSubBab = {
+        // BAB 1
+        "1-1": { title: "1.1 Rencana Penyandaran", desc: "📌 Area: Planning & Control\n\nRequest penyandaran dan pembuatan rencana alokasi penumpukan petikemas." },
+        "1-2": { title: "1.2 Request Receiving", desc: "📌 Area: Billing\n\nProses administrasi billing untuk request receiving dan pembayarannya." },
+        "1-3": { title: "1.3 Penerimaan di Gate", desc: "📌 Area: Gate\n\nProsedur penerimaan fisik dan sistem petikemas saat memasuki area gate terminal." },
+        "1-4": { title: "1.4 Penumpukan Lapangan", desc: "📌 Area: Lapangan Penumpukan\n\nProses pengarahan dan penempatan petikemas ke blok lapangan penumpukan yang telah direncanakan." },
+        "1-5": { title: "1.5 Data SI & Pre-plan", desc: "📌 Area: Planning & Control\n\nPenerimaan data SI (Shipping Instruction) dan pembuatan pre-plan muat kapal." },
+        "1-6": { title: "1.6 CWP & Sequence", desc: "📌 Area: Planning & Control\n\nPembuatan detail rencana muat, Crane Working Profile (CWP), dan urutan (sequence) pemuatan." },
+        "1-7": { title: "1.7 Rencana Penambatan", desc: "Perencanaan penentuan titik lokasi dan posisi tambat kapal di Dermaga." },
+        "1-8": { title: "1.8 Kapal Sandar", desc: "📌 Area: Dermaga\n\nProses fisik kapal bersandar di dermaga sesuai dengan rencana penambatan." },
+        "1-9": { title: "1.9 Ambil dari Lapangan", desc: "📌 Area: Lapangan Penumpukan\n\nProses lift-on pengambilan petikemas dari lapangan ke atas armada (truk) untuk persiapan muat." },
+        "1-10": { title: "1.10 Kirim ke Dermaga", desc: "Pergerakan truk pembawa muatan bergerak dari Lapangan Penumpukan menuju area Dermaga." },
+        "1-11": { title: "1.11 Operasi Pemuatan", desc: "📌 Area: Dermaga\n\nProses lift-off menggunakan alat (crane) untuk memuat petikemas dari dermaga naik ke atas kapal." },
+        "1-12": { title: "1.12 Truk Keluar Gate", desc: "📌 Area: Gate\n\nTruk yang telah selesai melakukan aktivitas pengiriman muatan bergerak keluar melalui gate terminal." },
+        
+        // BAB 2
+        "2-1": { title: "2.1 Permintaan Sandar & Data", desc: "📌 Area: Planning & Control\n\nProses penerimaan permintaan sandar dan penerimaan data bongkar kapal." },
+        "2-2": { title: "2.2 Rencana Bongkar", desc: "📌 Area: Planning & Control\n\nPembuatan rencana bongkar petikemas dari kapal." },
+        "2-3": { title: "2.3 Kapal Sandar", desc: "📌 Area: Dermaga\n\nKapal bersandar di dermaga siap untuk proses operasi pembongkaran." },
+        "2-4": { title: "2.4 Operasi Pembongkaran", desc: "📌 Area: Dermaga\n\nPelaksanaan operasi pembongkaran petikemas dari atas kapal ke dermaga." },
+        "2-5": { title: "2.5 Transfer ke Lapangan", desc: "📌 Area: Dermaga -> Lapangan Penumpukan\n\nTransfer atau pemindahan petikemas dari dermaga menuju area lapangan penumpukan." },
+        "2-6": { title: "2.6 Operasi Penumpukan", desc: "📌 Area: Lapangan Penumpukan\n\nOperasi penerimaan dan penempatan petikemas di blok lapangan penumpukan." },
+        "2-7": { title: "2.7 Request Delivery & Bayar", desc: "📌 Area: Billing\n\nProses administrasi request delivery oleh pengguna jasa yang dilanjutkan dengan proses pembayaran." },
+        "2-8": { title: "2.8 Truk Masuk (Delivery)", desc: "📌 Area: Gate\n\nTruk dari luar masuk melewati gate untuk melakukan kegiatan pengambilan petikemas." },
+        "2-9": { title: "2.9 Pengambilan Lapangan", desc: "📌 Area: Lapangan Penumpukan\n\nProses pengambilan petikemas di lapangan (lift on) untuk dimuat ke atas truk delivery." },
+        "2-10": { title: "2.10 Pengeluaran dari Terminal", desc: "📌 Area: Gate\n\nTruk yang telah bermuatan petikemas keluar meninggalkan terminal melalui fasilitas gate out." }
+      };
+
+      // FUNGSI MEMBUKA POPUP SUB-BAB (FOTO + TEKS)
+      function bukaSubBab(idTarget) {
+        if(dataSubBab[idTarget]) {
+            judulModalDua.innerText = dataSubBab[idTarget].title;
+            teksModalDua.innerText = dataSubBab[idTarget].desc;
+            
+            // Panggil Foto spesifik sesuai ID
+            imgModalDua.src = "aset proses penanganan/" + idTarget + ".webp";
+            
+            // Jika foto gagal dimuat (belum ada fotonya di folder)
+            imgModalDua.onerror = function() {
+              this.src = "https://via.placeholder.com/800x450.png?text=Gambar+Belum+Tersedia";
+            };
+
+            modalKedua.style.display = "flex";
         }
       }
 
-      // Jalankan fungsi saat halaman pertama kali dimuat
-      adjustZoomLevel();
+      // FUNGSI KLIK DAFTAR ISI (TOC)
+      const tocLinks = document.querySelectorAll(".toc-list a");
+      tocLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault(); 
+          const title = this.innerText;
+          const targetId = this.getAttribute("href").replace("#", "");
 
-      // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
-      window.addEventListener("resize", adjustZoomLevel);
+          // Cek Jika yang diklik adalah Link Sub-bab (Punya data di Object dataSubBab)
+          if(dataSubBab[targetId] !== undefined) {
+             bukaSubBab(targetId); // Langsung buka Popup Modal Kedua!
+          } 
+          // Jika yang diklik adalah BAB UTAMA (Bab 1, Bab 2, dll)
+          else {
+            modal.style.display = "flex";
+            captionText.innerText = title;
+
+            // Reset Display semua kontainer gambar
+            modalImg.style.display = "none";
+            flowBab1.style.display = "none";
+            flowBab2.style.display = "none";
+
+            // Kondisi 1: BAB 1 (Pemuatan)
+            if (targetId === "proses-pemuatan") {
+              flowBab1.style.display = "block";
+            } 
+            // Kondisi 2: BAB 2 (Pembongkaran)
+            else if (targetId === "proses-pembongkaran") {
+              flowBab2.style.display = "block";
+            } 
+            // Kondisi 3: BAB 3 ke atas (Gambar Standar)
+            else {
+              modalImg.style.display = "block";
+              modalImg.src = "aset proses penanganan/" + targetId + ".webp"; 
+
+              modalImg.onerror = function () {
+                this.src = "https://via.placeholder.com/800x450.png?text=Gambar+Belum+Tersedia";
+                captionText.innerText = title + " (Foto Belum Diunggah)";
+              };
+            }
+          }
+        });
+      });
+
+      // LOGIKA MENUTUP SEMUA MODAL
+      closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+        modalKedua.style.display = "none";
+      });
+
+      closeModalDuaBtn.addEventListener("click", function () {
+        modalKedua.style.display = "none"; 
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+          modalKedua.style.display = "none";
+        }
+        if (event.target === modalKedua) {
+          modalKedua.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>
