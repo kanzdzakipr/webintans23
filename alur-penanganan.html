@@ -467,6 +467,83 @@
         font-weight: 600;
       }
 
+      /* --- DAFTAR ISI SCROLLABLE --- */
+      .toc-container {
+        width: 85%;
+        max-width: 900px;
+        margin: 30px auto 50px auto; /* Margin atas disesuaikan dengan navbar & running text */
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+
+      .toc-header {
+        background: #126e80;
+        color: #ffffff;
+        padding: 15px 25px;
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .toc-content {
+        max-height: 450px; /* Batas tinggi sebelum bisa di-scroll */
+        overflow-y: auto;
+        padding: 20px 25px;
+      }
+
+      .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .toc-list li {
+        margin-bottom: 5px;
+      }
+
+      .toc-list a {
+        text-decoration: none;
+        color: #333;
+        font-size: 15px;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+
+      .toc-list a:hover {
+        background: #f0f8fa;
+        color: #126e80;
+        border-left: 4px solid #126e80;
+        font-weight: 500;
+      }
+
+      /* Indentasi untuk sub-menu (1.1, 1.2, dll) */
+      .toc-sub a {
+        margin-left: 25px;
+        font-size: 14px;
+        color: #555;
+      }
+
+      /* Custom Scrollbar agar lebih estetik */
+      .toc-content::-webkit-scrollbar {
+        width: 8px;
+      }
+      .toc-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      .toc-content::-webkit-scrollbar-thumb {
+        background: #126e80;
+        border-radius: 10px;
+      }
+      .toc-content::-webkit-scrollbar-thumb:hover {
+        background: #0f5c6a;
+      }
+
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
         .chat-widget-container {
@@ -535,6 +612,68 @@
           WEBSITE INI MASIH DALAM TAHAP PENGEMBANGAN, BEBERAPA FITUR MUNGKIN
           MASIH BELUM TERSEDIA
         </p>
+      </div>
+    </div>
+
+    <h1 class="title">ALUR PENANGANAN PROSES PETIKEMAS</h1>
+    <h2 class="title-2">
+      Berikut adalah alur penanganan proses petikemas di Terminal Teluk Lamong
+      yang dapat membantu Anda memahami langkah-langkah operasional yang
+      dilakukan setiap harinya.
+    </h2>
+
+        <div class="toc-container">
+      <div class="toc-header">
+        Daftar Isi Alur Penanganan
+      </div>
+      <div class="toc-content">
+        <ul class="toc-list">
+          <li><a href="#proses-pemuatan">1. Proses Pemuatan</a></li>
+          <li class="toc-sub"><a href="#1-1">1.1 Rencana Penyandaran dan Pembuatan Rencana Alokasi Penumpukan</a></li>
+          <li class="toc-sub"><a href="#1-2">1.2 Request Receiving dan Proses Pembayaran</a></li>
+          <li class="toc-sub"><a href="#1-3">1.3 Prosedur Penerimaan petikemas di gate (Receiving)</a></li>
+          <li class="toc-sub"><a href="#1-4">1.4 Penumpukan di Lapangan</a></li>
+          <li class="toc-sub"><a href="#1-5">1.5 Penerimaan Data SI dan Pembuatan Pre-Plan</a></li>
+          <li class="toc-sub"><a href="#1-6">1.6 Pembuatan Rencana Muat, CWP dan Sequence</a></li>
+          <li class="toc-sub"><a href="#1-7">1.7 Rencana Penambatan Kapal</a></li>
+          <li class="toc-sub"><a href="#1-9">1.9 Proses Pengambilan petikemas di Lapangan untuk kegiatan pemuatan</a></li>
+          <li class="toc-sub"><a href="#1-10">1.10 Pengiriman Muatan Dari Lapangan Ke Dermaga</a></li>
+          <li class="toc-sub"><a href="#1-11">1.11 Operasi Pemuatan</a></li>
+          <li class="toc-sub"><a href="#1-12">1.12 Truk Keluar Dari Terminal</a></li>
+          <li class="toc-sub"><a href="#1-13">1.13 Prosedur Pre Gate In (Receiving)</a></li>
+
+          <li><a href="#proses-pembongkaran">2. Proses Pembongkaran</a></li>
+          <li class="toc-sub"><a href="#2-1">2.1 Permintaan Sandar dan Penerimaan Data Bongkar</a></li>
+          <li class="toc-sub"><a href="#2-2">2.2 Pembuatan Rencana Bongkar</a></li>
+          <li class="toc-sub"><a href="#2-4">2.4 Operasi Pembongkaran</a></li>
+          <li class="toc-sub"><a href="#2-5">2.5 Transfer petikemas Dari Dermaga Ke Lapangan</a></li>
+          <li class="toc-sub"><a href="#2-6">2.6 Operasi Di Lapangan Penumpukan</a></li>
+          <li class="toc-sub"><a href="#2-7">2.7 Request Delivery Dan Pembayaran</a></li>
+          <li class="toc-sub"><a href="#2-8">2.8 Truk Masuk Untuk Pengambilan petikemas (Delivery)</a></li>
+          <li class="toc-sub"><a href="#2-9">2.9 Pengambilan petikemas Di Lapangan</a></li>
+          <li class="toc-sub"><a href="#2-10">2.10 Pengeluaran petikemas Dari Terminal</a></li>
+          <li class="toc-sub"><a href="#2-11">2.11 Prosedur Pre Gate In (Delivery)</a></li>
+
+          <li><a href="#prosedur-3">3. Prosedur Pelayanan Batal Muat</a></li>
+          <li><a href="#prosedur-4">4. Prosedur Pelayanan Batal Muat Diatas Kapal ke CY</a></li>
+          <li><a href="#prosedur-5">5. Prosedur Pelayanan Batal Muat Delivery</a></li>
+          <li><a href="#prosedur-6">6. Prosedur Pelayanan Alih kapal</a></li>
+          <li><a href="#prosedur-7">7. Prosedur Pelayanan petikemas Reefer (Bongkar)</a></li>
+          <li><a href="#prosedur-8">8. Prosedur Pelayanan petikemas Reefer (Muat)</a></li>
+          <li><a href="#prosedur-9">9. Prosedur Pelayanan Petikemas Transhipment(Bongkar)</a></li>
+          <li><a href="#prosedur-10">10. Prosedur Pelayanan Petikemas Transhipment(Muat)</a></li>
+          <li><a href="#prosedur-11">11. Prosedur Pelayanan petikemas Dangerous Goods (DG) Bongkar</a></li>
+          <li><a href="#prosedur-12">12. Prosedur Pelayanan petikemas Dangerous Goods (DG) Muat</a></li>
+          <li><a href="#prosedur-13">13. Prosedur Pelayanan Uncontainerized (UC) Bongkar ..</a></li>
+          <li><a href="#prosedur-14">14. Prosedur Pelayanan Uncontainerized (UC) Bongkar .</a></li>
+          <li><a href="#prosedur-15">15. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
+          <li><a href="#prosedur-16">16. Prosedur Pelayanan petikemas Out of Gauge (OOG) Bongkar</a></li>
+          <li><a href="#prosedur-17">17. Prosedur Pelayanan Overbrengen ( OB / PLP )</a></li>
+          <li><a href="#prosedur-18">18. Prosedur Pelayanan Behandle</a></li>
+          <li><a href="#prosedur-19">19. Prosedur Pelayanan Gerakan Ekstra</a></li>
+          <li><a href="#prosedur-20">20. Prosedur Pelayanan Shifting</a></li>
+          <li><a href="#prosedur-21">21. Prosedur Pelayanan Buka & Tutup Palka</a></li>
+        </ul>
       </div>
     </div>
 
