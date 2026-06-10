@@ -235,6 +235,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 18px;
+        align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
       }
 
       .nav-links a {
@@ -1093,10 +1094,18 @@
       }
 
       /* --- DROPDOWN NAVBAR STYLES --- */
+<<<<<<< HEAD
       .dropdown {
         position: relative;
         display: inline-block;
       }
+=======
+.dropdown {
+  position: relative;
+  display: flex; /* Ganti dari inline-block menjadi flex */
+  align-items: center; /* Pastikan konten di dalamnya sejajar */
+}
+>>>>>>> 55337d0225388d36e944186c4d32b1d468215ca6
 
       .dropdown .dropbtn {
         text-decoration: none;
@@ -1255,6 +1264,7 @@
     </style>
   </head>
   <body>
+<<<<<<< HEAD
     <div class="navbar">
       <div class="nav-links">
         <a href="index.html" class="active">Home</a>
@@ -1271,6 +1281,33 @@
         </div>
       </div>
     </div>
+=======
+  <div class="navbar">
+    <div class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="knowledge-base.html">Knowledge Base</a>
+      <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
+    
+    <div class="dropdown">
+      <a href="#" class="dropbtn">Profil TPK ▾</a>
+      <div class="dropdown-content">
+        <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
+        <a href="profil-semarang.html">Semarang</a>
+        <a href="profil-makassar.html">Makassar New Port</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#" class="dropbtn">Dokumentasi ▾</a>
+      <div class="dropdown-content">
+        <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
+        <a href="dokum-semarang.html">Semarang</a>
+        <a href="dokum-makassar.html">Makassar New Port</a>
+      </div>
+    </div>
+  </div>
+</div>
+>>>>>>> 55337d0225388d36e944186c4d32b1d468215ca6
 
     <div class="running-text">
       <div class="text-run">

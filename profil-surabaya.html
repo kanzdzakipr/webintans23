@@ -43,8 +43,11 @@
       }
 
       .nav-links {
-        margin-right: 70px;
-      }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
+}
 
       .nav-links a {
         margin-left: 25px;
@@ -73,7 +76,7 @@
         overflow: hidden;
         display: flex;
         align-items: center;
-        z-index: 99;
+        z-index: 0;
       }
 
       .text-run {
@@ -81,6 +84,78 @@
         white-space: nowrap;
         animation: runningText 20s linear infinite;
       }
+
+      /* --- DROPDOWN NAVBAR STYLES --- */
+.dropdown {
+  position: relative;
+  display: flex; /* Ganti dari inline-block menjadi flex */
+  align-items: center; /* Pastikan konten di dalamnya sejajar */
+}
+
+.dropdown .dropbtn {
+  text-decoration: none;
+  font-weight: 600;
+  color: #222;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+/* Mengatur wadah menu dropdown yang disembunyikan secara default */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  min-width: 250px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+  
+  /* --- INI YANG DIUBAH --- */
+  top: 100%; 
+  padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
+  /* ----------------------- */
+  
+  left: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  /* Trik jembatan transparan agar tidak hilang saat di-hover */
+  border-top: 20px solid transparent; 
+  background-clip: padding-box;
+}
+
+/* Mengatur tautan di dalam dropdown */
+.dropdown-content a {
+  color: #222;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+  text-align: left;
+  border: none !important; /* Mencegah border dari navbar utama muncul */
+}
+
+/* Efek hover untuk tautan di dalam dropdown */
+.dropdown-content a:hover {
+  background-color: #f1f8fc;
+  color: #00abf0;
+}
+
+/* Memunculkan dropdown saat area dropdown dihover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Animasi halus saat dropdown muncul */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
       /* ANIMASI */
       @keyframes runningText {
@@ -443,9 +518,22 @@
         <a href="index.html">Home</a>
         <a href="knowledge-base.html">Knowledge Base</a>
         <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
-        <a href="profil-surabaya.html" class="active">Profil TPK Teluk Lamong Surabaya</a>
-        <a href="profil-semarang.html">Profil TPK Semarang</a>
-        <a href="profil-makassar.html">Profil TPK Makassar New Port</a>
+        <div class="dropdown">
+          <a href="#" class="active">Profil TPK ▾</a>
+          <div class="dropdown-content">
+            <a href="#" class="active">Teluk Lamong Surabaya</a>
+            <a href="profil-semarang.html">Semarang</a>
+            <a href="profil-makassar.html">Makassar New Port</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Dokumentasi ▾</a>
+          <div class="dropdown-content">
+            <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="dokum-semarang.html">Semarang</a>
+            <a href="dokum-makassar.html">Makassar New Port</a>
+          </div>
+        </div>
       </div>
     </div>
 
