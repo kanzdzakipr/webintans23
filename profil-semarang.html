@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -45,10 +45,10 @@
       }
 
       .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
       }
 
       .nav-links a {
@@ -87,76 +87,77 @@
         animation: runningText 20s linear infinite;
       }
 
+      /* --- DROPDOWN NAVBAR STYLES --- */
       .dropdown {
-  position: relative;
-  display: flex; /* Ganti dari inline-block menjadi flex */
-  align-items: center; /* Pastikan konten di dalamnya sejajar */
-}
+        position: relative;
+        display: flex; /* Ganti dari inline-block menjadi flex */
+        align-items: center; /* Pastikan konten di dalamnya sejajar */
+      }
 
-.dropdown .dropbtn {
-  text-decoration: none;
-  font-weight: 600;
-  color: #222;
-  transition: 0.3s;
-  display: inline-block;
-}
+      .dropdown .dropbtn {
+        text-decoration: none;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+        display: inline-block;
+      }
 
-/* Mengatur wadah menu dropdown yang disembunyikan secara default */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  min-width: 250px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 101;
-  
-  /* --- INI YANG DIUBAH --- */
-  top: 100%; 
-  padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
-  /* ----------------------- */
-  
-  left: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  /* Trik jembatan transparan agar tidak hilang saat di-hover */
-  border-top: 20px solid transparent; 
-  background-clip: padding-box;
-}
+      /* Mengatur wadah menu dropdown yang disembunyikan secara default */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.95);
+        min-width: 250px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 101;
 
-/* Mengatur tautan di dalam dropdown */
-.dropdown-content a {
-  color: #222;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 15px;
-  text-align: left;
-  border: none !important; /* Mencegah border dari navbar utama muncul */
-}
+        /* --- INI YANG DIUBAH --- */
+        top: 100%;
+        padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
+        /* ----------------------- */
 
-/* Efek hover untuk tautan di dalam dropdown */
-.dropdown-content a:hover {
-  background-color: #f1f8fc;
-  color: #00abf0;
-}
+        left: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        /* Trik jembatan transparan agar tidak hilang saat di-hover */
+        border-top: 20px solid transparent;
+        background-clip: padding-box;
+      }
 
-/* Memunculkan dropdown saat area dropdown dihover */
-.dropdown:hover .dropdown-content {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
+      /* Mengatur tautan di dalam dropdown */
+      .dropdown-content a {
+        color: #222;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 15px;
+        text-align: left;
+        border: none !important; /* Mencegah border dari navbar utama muncul */
+      }
 
-/* Animasi halus saat dropdown muncul */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      /* Efek hover untuk tautan di dalam dropdown */
+      .dropdown-content a:hover {
+        background-color: #f1f8fc;
+        color: #00abf0;
+      }
+
+      /* Memunculkan dropdown saat area dropdown dihover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      /* Animasi halus saat dropdown muncul */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
       /* ANIMASI */
       @keyframes runningText {
