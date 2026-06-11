@@ -532,6 +532,11 @@
           font-size: 14px;
           z-index: 0;
         }
+
+        .logout-btn {
+          padding: 6px 12px;
+          font-size: 10px;
+        }
       }
 
       /* OPSIONAL: PAUSE SAAT HOVER */
@@ -1152,6 +1157,29 @@
         animation: fadeIn 0.3s ease;
       }
 
+      /* --- TOMBOL LOGOUT POJOK KANAN --- */
+      .logout-btn {
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
+        padding: 8px 18px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Jarak antara ikon dan teks */
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+      }
+
+      .logout-btn:hover {
+        background-color: #bd2130; /* Merah lebih gelap saat di-hover */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+        color: #fff !important; /* Memastikan teks tetap putih */
+      }
+
       /* Animasi halus saat dropdown muncul */
       @keyframes fadeIn {
         from {
@@ -1255,24 +1283,6 @@
     </style>
   </head>
   <body>
-<<<<<<< HEAD
-    <div class="navbar">
-      <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="knowledge-base.html">Knowledge Base</a>
-        <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
-
-        <div class="dropdown">
-          <a href="#" class="dropbtn">Profil TPK ▾</a>
-          <div class="dropdown-content">
-            <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
-            <a href="profil-semarang.html">Semarang</a>
-            <a href="profil-makassar.html">Makassar New Port</a>
-          </div>
-        </div>
-      </div>
-    </div>
-=======
   <div class="navbar">
     <div class="nav-links">
       <a href="#" class="active">Home</a>
@@ -1296,9 +1306,10 @@
         <a href="dokum-makassar.html">Makassar New Port</a>
       </div>
     </div>
-  </div>
+  </div> <a href="index.html" class="logout-btn">
+    <i class="fa-solid fa-right-from-bracket"></i> Logout
+  </a>
 </div>
->>>>>>> 55337d0225388d36e944186c4d32b1d468215ca6
 
     <div class="running-text">
       <div class="text-run">

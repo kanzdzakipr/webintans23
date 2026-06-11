@@ -85,6 +85,29 @@
         animation: runningText 20s linear infinite;
       }
 
+      /* --- TOMBOL LOGOUT POJOK KANAN --- */
+      .logout-btn {
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
+        padding: 8px 18px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Jarak antara ikon dan teks */
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+      }
+
+      .logout-btn:hover {
+        background-color: #bd2130; /* Merah lebih gelap saat di-hover */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+        color: #fff !important; /* Memastikan teks tetap putih */
+      }
+
       /* ANIMASI */
       @keyframes runningText {
         from {
@@ -109,6 +132,11 @@
 
         .main-carousel-section {
           margin-top: 86px;
+        }
+
+        .logout-btn {
+          padding: 6px 12px;
+          font-size: 10px;
         }
       }
 
@@ -533,7 +561,9 @@
       </div>
     </div>
     </div>
-      </div>
+      </div> <a href="index.html" class="logout-btn">
+    <i class="fa-solid fa-right-from-bracket"></i> Logout
+  </a>
     </div>
 
     <div class="running-text">
