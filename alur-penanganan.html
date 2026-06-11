@@ -6,29 +6,235 @@
     <title>Aktivitas Terminal</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
 
     <style>
-      body { margin: 0; font-family: "Poppins", sans-serif; background: linear-gradient(#eef7ff, #eaf6ff); overflow-x: hidden; min-height: 100vh; }
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #edf1f5;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
 
       /* NAVBAR & DROPDOWN */
-      .navbar { width: 100%; padding: 1.2rem 3vw; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; z-index: 10; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05); }
-      .navbar a:hover, .navbar a.active { border-style: solid; border-top: #222; border-right: #222; border-left: #222; color: #00abf0; }
-      .nav-links { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-      .nav-links a { margin-left: 25px; text-decoration: none; font-size: 1.1rem; font-weight: 600; color: #222; transition: 0.3s; }
-      .nav-links a:hover { color: #0077cc; }
-      .dropdown { position: relative; display: flex; align-items: center; }
-      .dropdown .dropbtn { text-decoration: none; font-weight: 600; color: #222; transition: 0.3s; display: inline-block; }
-      .dropdown-content { display: none; position: absolute; background-color: rgba(255, 255, 255, 0.95); min-width: 250px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); z-index: 101; top: 100%; padding-top: 10px; left: 0; border-radius: 8px; overflow: hidden; border-top: 20px solid transparent; background-clip: padding-box; }
-      .dropdown-content a { color: #222; padding: 12px 16px; text-decoration: none; display: block; font-size: 15px; text-align: left; border: none !important; }
-      .dropdown-content a:hover { background-color: #f1f8fc; color: #00abf0; }
-      .dropdown:hover .dropdown-content { display: block; animation: fadeIn 0.3s ease; }
-      @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1.2rem 3vw;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        height: 68px;
+        z-index: 1000;
+      }
+
+      .navbar a:hover,
+      .navbar a.active {
+        border-style: solid;
+        border-top: #222;
+        border-right: #222;
+        border-left: #222;
+        color: #00abf0;
+      }
+
+      .nav-links {
+        margin-right: 70px;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
+      }
+
+      .nav-links a {
+        margin-left: 0;
+      }
+      .nav-links a {
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #0077cc;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown {
+        position: relative;
+        display: flex; /* Ganti dari inline-block menjadi flex */
+        align-items: center; /* Pastikan konten di dalamnya sejajar */
+      }
+
+      .dropdown .dropbtn {
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+        display: inline-block;
+      }
+
+      /* Mengatur wadah menu dropdown yang disembunyikan secara default */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.95);
+        min-width: 200px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 101;
+        /* Trik jembatan transparan agar tidak hilang saat di-hover */
+        border-top: 20px solid transparent;
+        background-clip: padding-box;
+
+        /* --- INI YANG DIUBAH --- */
+        top: 100%;
+        padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
+        /* ----------------------- */
+
+        left: 0;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      /* Mengatur tautan di dalam dropdown */
+      .dropdown-content a {
+        color: #222;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 11px;
+        text-align: left;
+        border: none !important; /* Mencegah border dari navbar utama muncul */
+      }
+
+      /* Efek hover untuk tautan di dalam dropdown */
+      .dropdown-content a:hover {
+        background-color: #f1f8fc;
+        color: #00abf0;
+      }
+
+      /* Memunculkan dropdown saat area dropdown dihover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      /* Animasi halus saat dropdown muncul */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
       /* RUNNING TEXT */
-      .running-text { position: fixed; top: 65px; left: 0; width: 100%; height: 35px; background-color: #0077cc; font-size: 22.5px; font-weight: 700; color: #fff; overflow: hidden; display: flex; align-items: center; z-index: 0; }
-      .text-run { position: absolute; white-space: nowrap; animation: runningText 20s linear infinite; }
-      @keyframes runningText { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
-      .running-text:hover .text-run { animation-play-state: paused; }
+      .running-text {
+        position: fixed;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        height: 35px;
+        z-index: 0;
+        background-color: #0077cc;
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        z-index: 0;
+      }
+
+      .text-run {
+        position: absolute;
+        white-space: nowrap;
+        animation: runningText 20s linear infinite;
+      }
+
+      .logout-btn {
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
+        padding: 8px 18px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Jarak antara ikon dan teks */
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+      }
+
+      .logout-btn:hover {
+        background-color: #bd2130; /* Merah lebih gelap saat di-hover */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+        color: #fff !important; /* Memastikan teks tetap putih */
+      }
+
+      /* ANIMASI */
+      @keyframes runningText {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        .navbar {
+          height: 60px;
+        }
+
+        .running-text {
+          top: 80px;
+          height: 26px;
+          font-size: 14px;
+        }
+
+        .logout-btn {
+          padding: 6px 12px;
+          font-size: 10px;
+        }
+      }
+
+      /* OPSIONAL: PAUSE SAAT HOVER */
+      .running-text:hover .text-run {
+        animation-play-state: paused;
+      }
 
       /* HEADER TITLE */
       .title { margin-top: 130px; text-align: center; font-size: 50px; font-weight: 700; color: #333; }
@@ -113,28 +319,6 @@
       .chat-input-area { padding: 15px; background: #252525; display: flex; gap: 10px; border-top: 1px solid #333; }
       .chat-input-area input { flex: 1; background: #333; border: none; padding: 10px; border-radius: 5px; color: white; outline: none; }
       .chat-input-area button { background: #126e80; color: white; border: none; padding: 0 15px; border-radius: 5px; cursor: pointer; font-weight: 600; }
-
-      .logout-btn {
-        text-decoration: none;
-        font-size: 11px;
-        font-weight: 700;
-        color: #fff;
-        background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
-        padding: 8px 18px;
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px; /* Jarak antara ikon dan teks */
-        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
-      }
-
-      .logout-btn:hover {
-        background-color: #bd2130; /* Merah lebih gelap saat di-hover */
-        transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
-        color: #fff !important; /* Memastikan teks tetap putih */
-      }
 
       /* RESPONSIVE CSS */
       @media (max-width: 768px) {
@@ -323,11 +507,6 @@
         if (isChatOpen) { chatBox.classList.add("active"); avatarImg.src = imgActive; } 
         else { chatBox.classList.remove("active"); avatarImg.src = imgIdle; }
       }
-      function adjustZoomLevel() {
-        const ratio = window.devicePixelRatio || 1;
-        document.body.style.zoom = ratio !== 1 ? 1 / ratio : 1;
-      }
-      adjustZoomLevel(); window.addEventListener("resize", adjustZoomLevel);
 
       // DOM ELEMENTS MODAL
       const modal = document.getElementById("imageModal");
