@@ -565,7 +565,7 @@
       /* Layout Image Container */
       .layout-container {
         width: 90%;
-        max-width: 1200px;
+        max-width: 900px;
         margin: 0 auto 50px auto;
         background: #ffffff;
         padding: 30px;
@@ -949,10 +949,8 @@
     <div class="layout-container">
       <h2 class="section-title" style="margin-top:0;">Layout Terminal Petikemas</h2>
       
-      <!-- Menggunakan Grid 2 Kolom dari CSS sebelumnya -->
-      <div class="layout-grid-2">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
         
-        <!-- KARTU TERMINAL 1 -->
         <div class="terminal-card" style="border: 2px solid #126e80; border-radius: 15px;">
           <h3 class="terminal-header" style="margin: 0;">Terminal 1</h3>
           
@@ -976,14 +974,13 @@
               <div class="info-section">
                 <h4>Peralatan:</h4>
                 <ul class="no-bullet">
-                  <li>CC : 6 unit</li>
-                  <li>RTG : 27 unit (20 Automated)</li>
+                  <li>CC : 5 unit (1 unit ex.MTS)</li>
+                  <li>RTG : 17 unit</li>
                   <li>RS : 5 unit</li>
-                  <li>SL : 1 unit</li>
-                  <li>Forklift : 10 unit</li>
-                  <li>Truck : 46 unit</li>
+                  <li>SL : 2 unit</li>
+                  <li>Forklift : 4 unit</li>
+                  <li>Truck : 19 unit</li>
                   <li>Reefer Plug : 108 plug</li>
-                  <li>Chassis : 46 unit</li>
                 </ul>
               </div>
             </div>
@@ -994,66 +991,18 @@
           </div>
         </div>
 
-        <!-- KARTU TERMINAL 2 -->
-        <div class="terminal-card" style="border: 2px solid #126e80; border-radius: 15px;">
-          <h3 class="terminal-header" style="margin: 0;">Terminal 2</h3>
-          
-          <div class="terminal-img-placeholder">
-            <img src="aset/terminal2.png" alt="Layout Area Terminal 2" />
-          </div>
-          
-          <div class="terminal-info">
-            <div class="info-grid-inner">
-              <div class="info-section">
-                <h4>Fasilitas:</h4>
-                <b>Dermaga 1A + 1B + 1C</b>
-                <ul>
-                  <li>Panjang: 1062 m</li>
-                  <li>Lebar: 35 m</li>
-                  <li>Draft: -16 M LWS</li>
-                  <li>CY: 52 hA</li>
-                </ul>
-              </div>
-              
-              <div class="info-section">
-                <h4>Peralatan:</h4>
-                <ul class="no-bullet">
-                  <li>CC : 6 Unit (2 Unit Ex JICT)</li>
-                  <li>RTG : 16 Unit (electric)</li>
-                  <li>RS : 1 Unit</li>
-                  <li>SL : 1 Unit</li>
-                  <li>Truck : 25 Unit</li>
-                  <li>FL 2 ton : 1 Unit</li>
-                  <li>Reefer Plug : 392 plug</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div class="terminal-capacity">
-              Terminal Capacity: <span class="text-yellow">630,720 TEU's/Year</span><br>
-              Ultimate Capacity 1A + 1B + 1C: <span class="text-yellow">2,9M TEU's / Year</span>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
 
     <div class="layout-container">
       <h2 class="section-title" style="margin-top:0;">Layout Area Penumpukan</h2>
-      <div class="layout-grid-2">
+      
+      <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
         
         <div class="terminal-card" style="background: transparent; box-shadow: none; border: 2px solid #126e80; border-radius: 15px;">
           <h3 class="terminal-header" style="margin: 0;">Terminal 1</h3>
           <div class="placeholder-img" style="border: none; border-radius: 0; height: 350px;">
             <img src="aset/penumpukan1.jpg" alt="Layout Area Penumpukan Terminal 1" />
-          </div>
-        </div>
-
-        <div class="terminal-card" style="background: transparent; box-shadow: none; border: 2px solid #126e80; border-radius: 15px;">
-          <h3 class="terminal-header" style="margin: 0;">Terminal 2</h3>
-          <div class="placeholder-img" style="border: none; border-radius: 0; height: 350px;">
-            <img src="aset/penumpukan2.jpg" alt="Layout Area Penumpukan Terminal 2" />
           </div>
         </div>
 
