@@ -876,6 +876,25 @@
           text-align: justify;
         }
       }
+      /* Gaya untuk pesan dari User */
+      .user-msg { 
+        background: #00abf0; 
+        color: #fff; 
+        padding: 10px; 
+        border-radius: 10px 10px 0 10px; 
+        margin-bottom: 10px; 
+        line-height: 1.4; 
+        margin-left: auto; /* Mendorong ke kanan */
+        width: fit-content; 
+        max-width: 85%; 
+        word-wrap: break-word;
+      }
+      
+      /* Modifikasi sedikit ai-msg agar lebarnya menyesuaikan isi */
+      .ai-msg { 
+        width: fit-content; 
+        max-width: 85%; 
+      }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -925,15 +944,12 @@
           <h4>Pelindo AI Assistant</h4>
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
-        <div class="chat-body">
-          <div class="ai-msg">
-            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
-            bantu terkait operasional hari ini?
-          </div>
+        <div class="chat-body" id="chatBody">
+          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
         </div>
         <div class="chat-input-area">
-          <input type="text" placeholder="Tanya sesuatu..." />
-          <button>Kirim</button>
+          <input type="text" id="chatInput" placeholder="Tanya sesuatu..." />
+          <button id="sendBtn">Kirim</button>
         </div>
       </div>
 
@@ -981,6 +997,58 @@
           avatarImg.src = imgIdle; // Kembali diam
         }
       }
+      // --- LOGIKA GIMMICK CHAT BOT ---
+      const chatBody = document.getElementById("chatBody");
+      const chatInput = document.getElementById("chatInput");
+      const sendBtn = document.getElementById("sendBtn");
+
+      // Daftar respons acak untuk bot
+      const aiResponses = [
+        "Terima kasih atas informasinya. Saat ini sistem operasional berjalan lancar.",
+        "Untuk detail lebih lanjut, Anda bisa mengecek panduan di menu Daftar Isi di atas.",
+        "Mohon maaf, karena masih dalam tahap pengembangan, saya hanya bisa membalas pesan secara otomatis.",
+        "Terkait operasional petikemas, semua prosedur di Terminal Teluk Lamong telah mematuhi standar yang berlaku.",
+        "Pertanyaan yang bagus! Silakan klik salah satu alur visual di halaman ini untuk mempelajarinya lebih dalam.",
+        "Saya mencatat permintaan Anda. Tim operasional kami selalu siap siaga 24/7."
+      ];
+
+      function kirimPesan() {
+        const text = chatInput.value.trim();
+        if (!text) return; // Jangan kirim jika kosong
+
+        // 1. Munculkan pesan User
+        const userDiv = document.createElement("div");
+        userDiv.className = "user-msg";
+        userDiv.textContent = text;
+        chatBody.appendChild(userDiv);
+
+        // Bersihkan kolom input & scroll otomatis ke paling bawah
+        chatInput.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // 2. Simulasi AI sedang "mengetik" / berpikir selama 1 detik
+        setTimeout(() => {
+          const aiDiv = document.createElement("div");
+          aiDiv.className = "ai-msg";
+          
+          // Ambil respons acak dari array
+          const randomText = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          aiDiv.textContent = randomText;
+          
+          chatBody.appendChild(aiDiv);
+          chatBody.scrollTop = chatBody.scrollHeight; // Scroll lagi setelah AI membalas
+        }, 1000);
+      }
+
+      // Kirim pesan ketika tombol "Kirim" diklik
+      sendBtn.addEventListener("click", kirimPesan);
+
+      // Kirim pesan ketika tombol "Enter" ditekan pada keyboard
+      chatInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          kirimPesan();
+        }
+      });
     </script>
     <script>
       // Jalankan fungsi jika user mengubah ukuran browser atau pindah layar
