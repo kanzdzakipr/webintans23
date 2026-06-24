@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -439,7 +439,7 @@
         cursor: pointer;
         font-weight: 600;
       }
-      
+
       /* --- DROPDOWN NAVBAR STYLES --- */
       .dropdown {
         position: relative;
@@ -506,17 +506,17 @@
         animation: fadeIn 0.3s ease;
       }
 
-/* Animasi halus saat dropdown muncul */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      /* Animasi halus saat dropdown muncul */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
       /* Responsif untuk Mobile */
       @media (max-width: 600px) {
         .chat-widget-container {
@@ -560,55 +560,58 @@
         }
       }
       /* Gaya untuk pesan dari User */
-      .user-msg { 
-        background: #00abf0; 
-        color: #fff; 
-        padding: 10px; 
-        border-radius: 10px 10px 0 10px; 
-        margin-bottom: 10px; 
-        line-height: 1.4; 
+      .user-msg {
+        background: #00abf0;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px 10px 0 10px;
+        margin-bottom: 10px;
+        line-height: 1.4;
         margin-left: auto; /* Mendorong ke kanan */
-        width: fit-content; 
-        max-width: 85%; 
+        width: fit-content;
+        max-width: 85%;
         word-wrap: break-word;
       }
-      
+
       /* Modifikasi sedikit ai-msg agar lebarnya menyesuaikan isi */
-      .ai-msg { 
-        width: fit-content; 
-        max-width: 85%; 
+      .ai-msg {
+        width: fit-content;
+        max-width: 85%;
       }
     </style>
   </head>
 
   <body>
-  <div class="navbar">
-    <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="#" class="active">Knowledge Base</a>
-      <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
-    
-    <div class="dropdown">
-      <a href="#" class="dropbtn">Profil TPK ▾</a>
-      <div class="dropdown-content">
-        <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
-        <a href="profil-semarang.html">Semarang</a>
-        <a href="profil-makassar.html">Makassar New Port</a>
-      </div>
-    </div>
+    <div class="navbar">
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="#" class="active">Knowledge Base</a>
+        <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
 
-    <div class="dropdown">
-      <a href="#" class="dropbtn">Dokumentasi ▾</a>
-      <div class="dropdown-content">
-        <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
-        <a href="dokum-semarang.html">Semarang</a>
-        <a href="dokum-makassar.html">Makassar New Port</a>
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Profil TPK ▾</a>
+          <div class="dropdown-content">
+            <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="profil-semarang.html">Semarang</a>
+            <a href="profil-makassar.html">Makassar New Port</a>
+            <a href="profil-IPC-TPK.html">IPC TPK</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Dokumentasi ▾</a>
+          <div class="dropdown-content">
+            <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="dokum-semarang.html">Semarang</a>
+            <a href="dokum-makassar.html">Makassar New Port</a>
+            <a href="dokum-ipc-tpk">IPC TPK</a>
+          </div>
+        </div>
       </div>
+      <a href="index.html" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </a>
     </div>
-  </div> <a href="index.html" class="logout-btn">
-    <i class="fa-solid fa-right-from-bracket"></i> Logout
-  </a>
-</div>
 
     <div class="running-text">
       <div class="text-run">
@@ -1680,7 +1683,10 @@
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body" id="chatBody">
-          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
+          <div class="ai-msg">
+            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
+            bantu terkait operasional hari ini?
+          </div>
         </div>
         <div class="chat-input-area">
           <input type="text" id="chatInput" placeholder="Tanya sesuatu..." />
@@ -1744,7 +1750,7 @@
         "Mohon maaf, karena masih dalam tahap pengembangan, saya hanya bisa membalas pesan secara otomatis.",
         "Terkait operasional petikemas, semua prosedur di Terminal Teluk Lamong telah mematuhi standar yang berlaku.",
         "Pertanyaan yang bagus! Silakan klik salah satu alur visual di halaman ini untuk mempelajarinya lebih dalam.",
-        "Saya mencatat permintaan Anda. Tim operasional kami selalu siap siaga 24/7."
+        "Saya mencatat permintaan Anda. Tim operasional kami selalu siap siaga 24/7.",
       ];
 
       function kirimPesan() {
@@ -1765,11 +1771,12 @@
         setTimeout(() => {
           const aiDiv = document.createElement("div");
           aiDiv.className = "ai-msg";
-          
+
           // Ambil respons acak dari array
-          const randomText = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          const randomText =
+            aiResponses[Math.floor(Math.random() * aiResponses.length)];
           aiDiv.textContent = randomText;
-          
+
           chatBody.appendChild(aiDiv);
           chatBody.scrollTop = chatBody.scrollHeight; // Scroll lagi setelah AI membalas
         }, 1000);
