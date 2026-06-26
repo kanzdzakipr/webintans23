@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 
     <style>
       body {
@@ -107,97 +110,97 @@
       }
 
       .dropdown {
-  position: relative;
-  display: flex; /* Ganti dari inline-block menjadi flex */
-  align-items: center; /* Pastikan konten di dalamnya sejajar */
-}
+        position: relative;
+        display: flex; /* Ganti dari inline-block menjadi flex */
+        align-items: center; /* Pastikan konten di dalamnya sejajar */
+      }
 
-.dropdown .dropbtn {
-  text-decoration: none;
-  font-weight: 600;
-  color: #222;
-  transition: 0.3s;
-  display: inline-block;
-}
+      .dropdown .dropbtn {
+        text-decoration: none;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+        display: inline-block;
+      }
 
-/* Mengatur wadah menu dropdown yang disembunyikan secara default */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  min-width: 250px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 101;
-  
-  /* --- INI YANG DIUBAH --- */
-  top: 100%; 
-  padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
-  /* ----------------------- */
-  
-  left: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  /* Trik jembatan transparan agar tidak hilang saat di-hover */
-  border-top: 20px solid transparent; 
-  background-clip: padding-box;
-}
+      /* Mengatur wadah menu dropdown yang disembunyikan secara default */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.95);
+        min-width: 250px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 101;
 
-/* Mengatur tautan di dalam dropdown */
-.dropdown-content a {
-  color: #222;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 15px;
-  text-align: left;
-  border: none !important; /* Mencegah border dari navbar utama muncul */
-}
+        /* --- INI YANG DIUBAH --- */
+        top: 100%;
+        padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
+        /* ----------------------- */
 
-/* Efek hover untuk tautan di dalam dropdown */
-.dropdown-content a:hover {
-  background-color: #f1f8fc;
-  color: #00abf0;
-}
+        left: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        /* Trik jembatan transparan agar tidak hilang saat di-hover */
+        border-top: 20px solid transparent;
+        background-clip: padding-box;
+      }
 
-/* Memunculkan dropdown saat area dropdown dihover */
-.dropdown:hover .dropdown-content {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
+      /* Mengatur tautan di dalam dropdown */
+      .dropdown-content a {
+        color: #222;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 15px;
+        text-align: left;
+        border: none !important; /* Mencegah border dari navbar utama muncul */
+      }
 
-.logout-btn {
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-  background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
-  padding: 8px 18px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Jarak antara ikon dan teks */
-  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
-}
+      /* Efek hover untuk tautan di dalam dropdown */
+      .dropdown-content a:hover {
+        background-color: #f1f8fc;
+        color: #00abf0;
+      }
 
-.logout-btn:hover {
-  background-color: #bd2130; /* Merah lebih gelap saat di-hover */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
-  color: #fff !important; /* Memastikan teks tetap putih */
-}
+      /* Memunculkan dropdown saat area dropdown dihover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
 
-/* Animasi halus saat dropdown muncul */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      .logout-btn {
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
+        padding: 8px 18px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Jarak antara ikon dan teks */
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+      }
+
+      .logout-btn:hover {
+        background-color: #bd2130; /* Merah lebih gelap saat di-hover */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+        color: #fff !important; /* Memastikan teks tetap putih */
+      }
+
+      /* Animasi halus saat dropdown muncul */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
       /* ANIMASI */
       @keyframes runningText {
@@ -556,7 +559,7 @@
           padding-bottom: 20px;
         }
       }
-      
+
       /* --- TAMBAHAN CSS PROFIL MAKASSAR --- */
       .page-title {
         margin-top: 130px;
@@ -785,7 +788,7 @@
         margin-left: -50vw;
         margin-right: -50vw;
         /* Menetapkan tinggi pasti agar container tidak 'collapse' dan card tidak naik ke atas */
-        height: 500px; 
+        height: 500px;
         margin-bottom: 60px;
         background: #f8f9fa; /* Warna dasar jika gambar telat dimuat */
       }
@@ -823,7 +826,7 @@
         border-radius: 12px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         /* z-index diturunkan ke 2 agar otomatis berada di bawah menu navigasi website (sticky menu) saat di-scroll */
-        z-index: 2; 
+        z-index: 2;
         border-top: 5px solid #ffcc00;
         text-align: center;
       }
@@ -837,7 +840,7 @@
 
       /* Posisi Titik Indikator / Pagination di dalam Card */
       .hero-info-card .swiper-pagination {
-        position: relative; 
+        position: relative;
         bottom: 0 !important;
         margin-top: 20px;
         display: flex;
@@ -877,23 +880,23 @@
         }
       }
       /* Gaya untuk pesan dari User */
-      .user-msg { 
-        background: #00abf0; 
-        color: #fff; 
-        padding: 10px; 
-        border-radius: 10px 10px 0 10px; 
-        margin-bottom: 10px; 
-        line-height: 1.4; 
+      .user-msg {
+        background: #00abf0;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px 10px 0 10px;
+        margin-bottom: 10px;
+        line-height: 1.4;
         margin-left: auto; /* Mendorong ke kanan */
-        width: fit-content; 
-        max-width: 85%; 
+        width: fit-content;
+        max-width: 85%;
         word-wrap: break-word;
       }
-      
+
       /* Modifikasi sedikit ai-msg agar lebarnya menyesuaikan isi */
-      .ai-msg { 
-        width: fit-content; 
-        max-width: 85%; 
+      .ai-msg {
+        width: fit-content;
+        max-width: 85%;
       }
     </style>
 
@@ -920,11 +923,13 @@
             <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
             <a href="#" class="active">Semarang</a>
             <a href="dokum-makassar.html">Makassar New Port</a>
+            <a href="dokum-ipctpk.html">IPC TPK</a>
           </div>
         </div>
-      </div> <a href="index.html" class="logout-btn">
-    <i class="fa-solid fa-right-from-bracket"></i> Logout
-  </a>
+      </div>
+      <a href="index.html" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </a>
     </div>
 
     <div class="running-text">
@@ -934,8 +939,8 @@
           MASIH BELUM TERSEDIA
         </p>
       </div>
-    </div>    
-    
+    </div>
+
     <div class="bottom-hill"></div>
 
     <div class="chat-widget-container">
@@ -945,7 +950,10 @@
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
         <div class="chat-body" id="chatBody">
-          <div class="ai-msg">Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya bantu terkait operasional hari ini?</div>
+          <div class="ai-msg">
+            Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
+            bantu terkait operasional hari ini?
+          </div>
         </div>
         <div class="chat-input-area">
           <input type="text" id="chatInput" placeholder="Tanya sesuatu..." />
@@ -1009,7 +1017,7 @@
         "Mohon maaf, karena masih dalam tahap pengembangan, saya hanya bisa membalas pesan secara otomatis.",
         "Terkait operasional petikemas, semua prosedur di Terminal Teluk Lamong telah mematuhi standar yang berlaku.",
         "Pertanyaan yang bagus! Silakan klik salah satu alur visual di halaman ini untuk mempelajarinya lebih dalam.",
-        "Saya mencatat permintaan Anda. Tim operasional kami selalu siap siaga 24/7."
+        "Saya mencatat permintaan Anda. Tim operasional kami selalu siap siaga 24/7.",
       ];
 
       function kirimPesan() {
@@ -1030,11 +1038,12 @@
         setTimeout(() => {
           const aiDiv = document.createElement("div");
           aiDiv.className = "ai-msg";
-          
+
           // Ambil respons acak dari array
-          const randomText = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          const randomText =
+            aiResponses[Math.floor(Math.random() * aiResponses.length)];
           aiDiv.textContent = randomText;
-          
+
           chatBody.appendChild(aiDiv);
           chatBody.scrollTop = chatBody.scrollHeight; // Scroll lagi setelah AI membalas
         }, 1000);
@@ -1053,35 +1062,37 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // --- GRAFIK BOR ---
-        const ctxBor = document.getElementById('borChart').getContext('2d');
+        const ctxBor = document.getElementById("borChart").getContext("2d");
         new Chart(ctxBor, {
-          type: 'bar',
+          type: "bar",
           data: {
-            labels: ['2023', '2024', '2025 (YTD)'], // Tahun
+            labels: ["2023", "2024", "2025 (YTD)"], // Tahun
             datasets: [
               {
-                label: 'Terminal 1 (%)',
-                data: [29.80, 35.88, 28.99],
-                backgroundColor: '#126e80', // Biru Pelindo
-                borderRadius: 4
+                label: "Terminal 1 (%)",
+                data: [29.8, 35.88, 28.99],
+                backgroundColor: "#126e80", // Biru Pelindo
+                borderRadius: 4,
               },
               {
-                label: 'Terminal 2 (%)',
-                data: [38.90, 31.70, 27.85],
-                backgroundColor: '#ffcc00', // Kuning Pelindo
-                borderRadius: 4
-              }
-            ]
+                label: "Terminal 2 (%)",
+                data: [38.9, 31.7, 27.85],
+                backgroundColor: "#ffcc00", // Kuning Pelindo
+                borderRadius: 4,
+              },
+            ],
           },
           options: {
             responsive: true,
             plugins: {
-              legend: { position: 'bottom' },
+              legend: { position: "bottom" },
               tooltip: {
                 callbacks: {
-                  label: function(context) { return context.parsed.y + '%'; }
-                }
-              }
+                  label: function (context) {
+                    return context.parsed.y + "%";
+                  },
+                },
+              },
             },
             scales: {
               y: {
@@ -1089,46 +1100,48 @@
                 max: 60, // Maksimal persentase
                 title: {
                   display: true,
-                  text: 'Persentase (%)',
-                  font: { size: 16, weight: 'bold' }, // Judul sumbu Y lebih besar
-                  color: '#126e80',
-                  padding: { bottom: 10 }
-                }
-              }
-            }
-          }
+                  text: "Persentase (%)",
+                  font: { size: 16, weight: "bold" }, // Judul sumbu Y lebih besar
+                  color: "#126e80",
+                  padding: { bottom: 10 },
+                },
+              },
+            },
+          },
         });
 
         // --- GRAFIK YOR ---
-        const ctxYor = document.getElementById('yorChart').getContext('2d');
+        const ctxYor = document.getElementById("yorChart").getContext("2d");
         new Chart(ctxYor, {
-          type: 'bar',
+          type: "bar",
           data: {
-            labels: ['2023', '2024', '2025 (YTD)'],
+            labels: ["2023", "2024", "2025 (YTD)"],
             datasets: [
               {
-                label: 'Terminal 1 (%)',
-                data: [43.17, 44.50, 44.81],
-                backgroundColor: '#126e80',
-                borderRadius: 4
+                label: "Terminal 1 (%)",
+                data: [43.17, 44.5, 44.81],
+                backgroundColor: "#126e80",
+                borderRadius: 4,
               },
               {
-                label: 'Terminal 2 (%)',
+                label: "Terminal 2 (%)",
                 data: [47.32, 41.11, 43.59],
-                backgroundColor: '#ffcc00',
-                borderRadius: 4
-              }
-            ]
+                backgroundColor: "#ffcc00",
+                borderRadius: 4,
+              },
+            ],
           },
           options: {
             responsive: true,
             plugins: {
-              legend: { position: 'bottom' },
+              legend: { position: "bottom" },
               tooltip: {
                 callbacks: {
-                  label: function(context) { return context.parsed.y + '%'; }
-                }
-              }
+                  label: function (context) {
+                    return context.parsed.y + "%";
+                  },
+                },
+              },
             },
             scales: {
               y: {
@@ -1136,14 +1149,14 @@
                 max: 60,
                 title: {
                   display: true,
-                  text: 'Persentase (%)',
-                  font: { size: 16, weight: 'bold' },
-                  color: '#126e80',
-                  padding: { bottom: 10 }
-                }
-              }
-            }
-          }
+                  text: "Persentase (%)",
+                  font: { size: 16, weight: "bold" },
+                  color: "#126e80",
+                  padding: { bottom: 10 },
+                },
+              },
+            },
+          },
         });
       });
     </script>
@@ -1153,14 +1166,14 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Inisialisasi Swiper Hero
-        const heroSwiper = new Swiper('.hero-swiper', {
+        const heroSwiper = new Swiper(".hero-swiper", {
           loop: true, // Mengulang dari awal jika slide habis
           autoplay: {
             delay: 4000, // Durasi tiap slide (4 detik)
             disableOnInteraction: false, // Tetap autoplay meski user menyentuh layar
           },
           pagination: {
-            el: '.swiper-pagination',
+            el: ".swiper-pagination",
             clickable: true, // Titik navigasi bisa diklik
           },
         });
