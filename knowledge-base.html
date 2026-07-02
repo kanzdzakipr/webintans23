@@ -233,7 +233,7 @@
         transition: opacity 0.4s ease;
         
         /* Overlay gelap agar teks putih tetap terbaca secara visual */
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.6);
         background-blend-mode: multiply;
         background-size: cover;
         background-position: center;
@@ -242,6 +242,26 @@
       /* Memunculkan gambar saat di-hover */
       .kb-box:hover::after {
         opacity: 1;
+      }
+
+      /* --- MEMASTIKAN KONTEN TETAP DI ATAS GAMBAR --- */
+      .kb-box > * {
+        position: relative;
+        z-index: 2;
+        transition: text-shadow 0.35s ease, transform 0.35s ease;
+      }
+
+      /* --- MENAMBAHKAN TEXT-SHADOW PADA TEKS SAAT HOVER --- */
+      .kb-box:hover .kb-number,
+      .kb-box:hover .kb-title-text,
+      .kb-box:hover .kb-desc,
+      .kb-box:hover .kb-arrow {
+        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.9), 0px 0px 12px rgba(0, 0, 0, 0.6);
+      }
+
+      /* --- MENAMBAHKAN DROP-SHADOW PADA IKON SAAT HOVER --- */
+      .kb-box:hover .kb-icon {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
       }
 
       /* --- MENGATUR GAMBAR UNTUK MASING-MASING KOTAK --- */
@@ -264,11 +284,11 @@
       }
 
       .kb-box.shiptalker::after {
-        background-image: url('aset/Ship Talker.jpg');
+        background-image: url('gambar-shiptalker.jpg');
       }
 
       .kb-box.yardtalker::after {
-        background-image: url('aset/Yard Talker.jpg');
+        background-image: url('gambar-yardtalker.jpg');
       }
 
       .kb-box:hover {
