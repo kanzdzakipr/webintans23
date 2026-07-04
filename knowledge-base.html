@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -64,7 +64,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 18px;
-        align-items: center; /* Tambahkan baris ini agar semua menu sejajar vertikal */
+        align-items: center;
       }
 
       .nav-links a {
@@ -112,24 +112,23 @@
         font-size: 11px;
         font-weight: 700;
         color: #fff;
-        background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
+        background-color: #dc3545;
         padding: 8px 18px;
         border-radius: 20px;
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        gap: 8px; /* Jarak antara ikon dan teks */
+        gap: 8px;
         box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
       }
 
       .logout-btn:hover {
-        background-color: #bd2130; /* Merah lebih gelap saat di-hover */
+        background-color: #bd2130;
         transform: translateY(-2px);
         box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
-        color: #fff !important; /* Memastikan teks tetap putih */
+        color: #fff !important;
       }
 
-      /* ANIMASI */
       @keyframes runningText {
         from {
           transform: translateX(100%);
@@ -139,7 +138,6 @@
         }
       }
 
-      /* RESPONSIVE */
       @media (max-width: 768px) {
         .navbar {
           height: 60px;
@@ -157,7 +155,6 @@
         }
       }
 
-      /* OPSIONAL: PAUSE SAAT HOVER */
       .running-text:hover .text-run {
         animation-play-state: paused;
       }
@@ -190,73 +187,176 @@
         align-items: start;
       }
 
-      /* BOX */
+      /* BOX - versi baru, statis & profesional (tanpa dropdown/accordion) */
       .kb-box {
-        background: #126e80;
-        padding: 30px 20px;
-        border-radius: 25px;
+        background: linear-gradient(145deg, #126e80, #0d5866);
+        padding: 40px 25px;
+        border-radius: 20px;
         text-decoration: none;
         color: #ffffff;
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: all 0.4s ease;
+        text-align: center;
+        transition: all 0.35s ease;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        position: relative;
         overflow: hidden;
+        z-index: 2;
+      }
+
+      .kb-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #00abf0;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s ease;
+        z-index: 3;
+      }
+
+      /* Layer gambar yang akan muncul saat hover */
+      .kb-box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        opacity: 0;
+        z-index: 1; /* Posisi di bawah teks, tapi di atas background gradient */
+        transition: opacity 0.4s ease;
+        
+        /* Overlay gelap agar teks putih tetap terbaca secara visual */
+        background-color: rgba(0, 0, 0, 0.6);
+        background-blend-mode: multiply;
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Memunculkan gambar saat di-hover */
+      .kb-box:hover::after {
+        opacity: 1;
+      }
+
+      /* --- MEMASTIKAN KONTEN TETAP DI ATAS GAMBAR --- */
+      .kb-box > * {
+        position: relative;
+        z-index: 2;
+        transition: text-shadow 0.35s ease, transform 0.35s ease;
+      }
+
+      /* --- MENAMBAHKAN TEXT-SHADOW PADA TEKS SAAT HOVER --- */
+      .kb-box:hover .kb-number,
+      .kb-box:hover .kb-title-text,
+      .kb-box:hover .kb-desc,
+      .kb-box:hover .kb-arrow {
+        text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.9), 0px 0px 12px rgba(0, 0, 0, 0.6);
+      }
+
+      /* --- MENAMBAHKAN DROP-SHADOW PADA IKON SAAT HOVER --- */
+      .kb-box:hover .kb-icon {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      /* --- MENGATUR GAMBAR UNTUK MASING-MASING KOTAK --- */
+      /* Ganti 'berth.jpg', 'manning.jpg', dll dengan link/path gambar aslimu */
+
+      .kb-box.berth::after {
+        background-image: url('aset/berth allocation (BA).jpg');
+      }
+
+      .kb-box.manning::after {
+        background-image: url('aset/Manning & Deployment.png');
+      }
+
+      .kb-box.shipplanner::after {
+        background-image: url('aset/Ship Planner.jpg');
+      }
+
+      .kb-box.yardplanner::after {
+        background-image: url('aset/Yard Planner.jpg');
+      }
+
+      .kb-box.shiptalker::after {
+        background-image: url('aset/Ship Talker.jpg');
+      }
+
+      .kb-box.yardtalker::after {
+        background-image: url('aset/Yard Talker.jpg');
       }
 
       .kb-box:hover {
-        transform: translateY(-5px);
-        background: #126e80;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
       }
 
-      .kb-img {
-        width: 100%;
-        border-radius: 15px;
-        margin-top: 15px;
-        display: block;
-
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: all 0.9s ease;
+      .kb-box:hover::before {
+        transform: scaleX(1);
       }
-      .kb-box:hover .kb-img {
-        max-height: 400px;
-        opacity: 1;
+
+      .kb-number {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        opacity: 0.65;
+        margin-bottom: 14px;
+      }
+
+      .kb-icon {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin-bottom: 18px;
+        transition: all 0.35s ease;
+      }
+
+      .kb-box:hover .kb-icon {
+        background: #00abf0;
+        transform: scale(1.08) rotate(-4deg);
       }
 
       .kb-title-text {
-        font-size: 24px;
+        font-size: 21px;
         font-weight: 700;
-        margin-bottom: 0;
-        text-align: center;
+        margin-bottom: 8px;
       }
 
       .kb-desc {
-        background: #ffffff;
-        color: #555;
-        font-size: 14px;
+        font-size: 13.5px;
         font-weight: 400;
-        line-height: 1.6;
-        text-align: center;
-        border-radius: 15px;
-        width: 100%;
-        max-height: 0;
-        opacity: 0;
-        margin-top: 0;
-        padding: 0 15px;
-        overflow: hidden;
-        transition: all 0.5s ease;
-        box-sizing: border-box;
+        line-height: 1.5;
+        opacity: 0.85;
       }
 
-      .kb-box:hover .kb-desc {
-        max-height: 300px;
-        opacity: 1;
+      .kb-arrow {
         margin-top: 20px;
-        padding: 20px 15px;
+        font-size: 12.5px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: all 0.3s ease;
+        color: #7fe0ff;
+      }
+
+      .kb-box:hover .kb-arrow {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       /* TABEL */
@@ -319,7 +419,7 @@
         bottom: 0;
         z-index: -1;
       }
-      /* Chat Widget Styles */
+
       .chat-widget-container {
         position: fixed;
         bottom: 30px;
@@ -331,9 +431,8 @@
         font-family: "Poppins", sans-serif;
       }
 
-      /* Avatar Image Wrapper */
       .chat-avatar-wrapper {
-        width: 100px; /* Sesuaikan ukuran gambar */
+        width: 100px;
         height: 100px;
         cursor: pointer;
         transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -350,19 +449,16 @@
         object-fit: contain;
       }
 
-      /* Chat Box Popup */
       .chat-box {
         width: 300px;
         height: 300px;
-        background-color: #1e1e1e; /* Warna Gelap */
+        background-color: #1e1e1e;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         display: flex;
         flex-direction: column;
         overflow: hidden;
         margin-bottom: 15px;
-
-        /* Animasi Muncul */
         opacity: 0;
         transform: translateY(20px) scale(0.95);
         transform-origin: bottom right;
@@ -370,16 +466,14 @@
         pointer-events: none;
       }
 
-      /* Saat chat aktif/open */
       .chat-box.active {
         opacity: 1;
         transform: translateY(0) scale(1);
         pointer-events: all;
       }
 
-      /* Chat Header */
       .chat-header {
-        background: #126e80; /* Warna Pelindo */
+        background: #126e80;
         padding: 15px;
         display: flex;
         justify-content: space-between;
@@ -397,7 +491,6 @@
         font-weight: bold;
       }
 
-      /* Chat Body */
       .chat-body {
         flex: 1;
         padding: 15px;
@@ -413,7 +506,6 @@
         line-height: 1.4;
       }
 
-      /* Chat Input */
       .chat-input-area {
         padding: 15px;
         background: #252525;
@@ -439,8 +531,8 @@
         cursor: pointer;
         font-weight: 600;
       }
-      
-      /* --- DROPDOWN NAVBAR STYLES --- */
+
+      /* --- DROPDOWN NAVBAR STYLES (tetap dipakai untuk menu navigasi atas: Profil TPK & Dokumentasi) --- */
       .dropdown {
         position: relative;
         display: inline-block;
@@ -448,8 +540,8 @@
 
       .dropdown {
         position: relative;
-        display: flex; /* Ganti dari inline-block menjadi flex */
-        align-items: center; /* Pastikan konten di dalamnya sejajar */
+        display: flex;
+        align-items: center;
       }
 
       .dropdown .dropbtn {
@@ -461,7 +553,6 @@
         display: inline-block;
       }
 
-      /* Mengatur wadah menu dropdown yang disembunyikan secara default */
       .dropdown-content {
         display: none;
         position: absolute;
@@ -469,21 +560,15 @@
         min-width: 200px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         z-index: 101;
-        /* Trik jembatan transparan agar tidak hilang saat di-hover */
         border-top: 20px solid transparent;
         background-clip: padding-box;
-
-        /* --- INI YANG DIUBAH --- */
         top: 100%;
-        padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
-        /* ----------------------- */
-
+        padding-top: 10px;
         left: 0;
         border-radius: 8px;
         overflow: hidden;
       }
 
-      /* Mengatur tautan di dalam dropdown */
       .dropdown-content a {
         color: #222;
         padding: 12px 16px;
@@ -491,33 +576,30 @@
         display: block;
         font-size: 11px;
         text-align: left;
-        border: none !important; /* Mencegah border dari navbar utama muncul */
+        border: none !important;
       }
 
-      /* Efek hover untuk tautan di dalam dropdown */
       .dropdown-content a:hover {
         background-color: #f1f8fc;
         color: #00abf0;
       }
 
-      /* Memunculkan dropdown saat area dropdown dihover */
       .dropdown:hover .dropdown-content {
         display: block;
         animation: fadeIn 0.3s ease;
       }
 
-/* Animasi halus saat dropdown muncul */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-      /* Responsif untuk Mobile */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       @media (max-width: 600px) {
         .chat-widget-container {
           bottom: 20px;
@@ -532,64 +614,58 @@
           height: 400px;
         }
       }
-      /* --- TAMBAHAN KHUSUS MOBILE TEXT --- */
-      .mobile-hint {
-        display: none; /* Secara default disembunyikan (untuk laptop/PC) */
+
+      .user-msg {
+        background: #00abf0;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px 10px 0 10px;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        margin-left: auto;
+        width: fit-content;
+        max-width: 85%;
+        word-wrap: break-word;
       }
 
-      /* Saat layar di bawah 900px (Tampilan Tablet/HP) */
-      @media (max-width: 900px) {
-        .mobile-hint {
-          display: block; /* Munculkan teks */
-          margin-top: 15px;
-          padding-top: 10px;
-          border-top: 1px solid rgba(255, 255, 255, 0.3); /* Garis pemisah tipis */
-          font-size: 13px;
-          color: black; /* Warna teks agak terang agar kontras */
-          width: 100%;
-          text-align: center;
-          font-weight: 500;
-          background: #ffffff;
-          border-radius: 15px;
-          box-sizing: border-box;
-        }
-
-        /* Opsional: Sedikit ubah padding box biar muat */
-        .kb-box {
-          padding-bottom: 20px;
-        }
+      .ai-msg {
+        width: fit-content;
+        max-width: 85%;
       }
     </style>
   </head>
 
   <body>
-  <div class="navbar">
-    <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="#" class="active">Knowledge Base</a>
-      <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
-    
-    <div class="dropdown">
-      <a href="#" class="dropbtn">Profil TPK ▾</a>
-      <div class="dropdown-content">
-        <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
-        <a href="profil-semarang.html">Semarang</a>
-        <a href="profil-makassar.html">Makassar New Port</a>
-      </div>
-    </div>
+    <div class="navbar">
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="#" class="active">Knowledge Base</a>
+        <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
 
-    <div class="dropdown">
-      <a href="#" class="dropbtn">Dokumentasi ▾</a>
-      <div class="dropdown-content">
-        <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
-        <a href="dokum-semarang.html">Semarang</a>
-        <a href="dokum-makassar.html">Makassar New Port</a>
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Profil TPK ▾</a>
+          <div class="dropdown-content">
+            <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="profil-semarang.html">Semarang</a>
+            <a href="profil-makassar.html">Makassar New Port</a>
+            <a href="profil-IPC-TPK.html">IPC TPK</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <a href="#" class="dropbtn">Dokumentasi ▾</a>
+          <div class="dropdown-content">
+            <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
+            <a href="dokum-semarang.html">Semarang</a>
+            <a href="dokum-makassar.html">Makassar New Port</a>
+            <a href="dokum-ipctpk.html">IPC TPK</a>
+          </div>
+        </div>
       </div>
+      <a href="index.html" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </a>
     </div>
-  </div> <a href="index.html" class="logout-btn">
-    <i class="fa-solid fa-right-from-bracket"></i> Logout
-  </a>
-</div>
 
     <div class="running-text">
       <div class="text-run">
@@ -608,48 +684,54 @@
       kegiatan yang terintegrasi.
     </h2>
 
-    <!-- GRID BOXES -->
+    <!-- GRID BOXES (versi statis & profesional, tanpa dropdown/accordion) -->
     <div class="kb-container">
-      <a href="activity/aktivitas1.html" class="kb-box">
-        <div class="kb-title-text">Aktivitas Terminal 1</div>
-        <div class="kb-desc">Berth Allocation (BA)</div>
-        <img src="aset/berth allocation (BA).jpg" class="kb-img" />
-        <div class="mobile-hint">Berth Allocation (BA)</div>
+      <a href="activity/aktivitas1.html" class="kb-box berth">
+        <div class="kb-number">Aktivitas Terminal 01</div>
+        <div class="kb-icon"><i class="fa-solid fa-anchor"></i></div>
+        <div class="kb-title-text">Berth Allocation</div>
+        <div class="kb-desc">Penentuan & konfirmasi posisi sandar kapal (BA)</div>
+        <div class="kb-arrow">Lihat Detail <i class="fa-solid fa-arrow-right"></i></div>
       </a>
 
-      <a href="activity/aktivitas2.html" class="kb-box">
-        <div class="kb-title-text">Aktivitas Terminal 2</div>
-        <div class="kb-desc">Manning & Deployment</div>
-        <img src="aset/Manning & Deployment.png" class="kb-img" />
-        <div class="mobile-hint">Manning & Deployment</div>
+      <a href="activity/aktivitas2.html" class="kb-box manning">
+        <div class="kb-number">Aktivitas Terminal 02</div>
+        <div class="kb-icon"><i class="fa-solid fa-people-group"></i></div>
+        <div class="kb-title-text">Manning & Deployment</div>
+        <div class="kb-desc">Penyusunan roster & penempatan personel per shift</div>
+        <div class="kb-arrow">Lihat Detail <i class="fa-solid fa-arrow-right"></i></div>
       </a>
 
-      <a href="activity/aktivitas3.html" class="kb-box">
-        <div class="kb-title-text">Aktivitas Terminal 3</div>
-        <div class="kb-desc">Ship Planner</div>
-        <img src="aset/Ship Planner.jpg" class="kb-img" />
-        <div class="mobile-hint">Ship Planner</div>
+      <a href="activity/aktivitas3.html" class="kb-box shipplanner">
+        <div class="kb-number">Aktivitas Terminal 03</div>
+        <div class="kb-icon"><i class="fa-solid fa-route"></i></div>
+        <div class="kb-title-text">Ship Planner</div>
+        <div class="kb-desc">Penyusunan Bay Plan & Crane Work Plan (CWP)</div>
+        <div class="kb-arrow">Lihat Detail <i class="fa-solid fa-arrow-right"></i></div>
       </a>
 
-      <a href="activity/aktivitas4.html" class="kb-box">
-        <div class="kb-title-text">Aktivitas Terminal 4</div>
-        <div class="kb-desc">Yard Planner</div>
-        <img src="aset/Yard Planner.jpg" class="kb-img" />
-        <div class="mobile-hint">Yard Planner</div>
+      <a href="activity/aktivitas4.html" class="kb-box yardplanner">
+        <div class="kb-number">Aktivitas Terminal 04</div>
+        <div class="kb-icon"><i class="fa-solid fa-warehouse"></i></div>
+        <div class="kb-title-text">Yard Planner</div>
+        <div class="kb-desc">Penempatan & pengelolaan slot container di yard</div>
+        <div class="kb-arrow">Lihat Detail <i class="fa-solid fa-arrow-right"></i></div>
       </a>
 
-      <a href="activity/aktivitas5.html" class="kb-box">
-        <div class="kb-title-text">Aktivitas Terminal 5</div>
-        <div class="kb-desc">Ship Talker</div>
-        <img src="aset/Ship Talker.jpg" class="kb-img" />
-        <div class="mobile-hint">Ship Talker</div>
+      <a href="activity/aktivitas5.html" class="kb-box shiptalker">
+        <div class="kb-number">Aktivitas Terminal 05</div>
+        <div class="kb-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <div class="kb-title-text">Ship Talker</div>
+        <div class="kb-desc">Koordinasi instruksi kerja sisi kapal secara langsung</div>
+        <div class="kb-arrow">Lihat Detail <i class="fa-solid fa-arrow-right"></i></div>
       </a>
 
-      <a href="activity/aktivitas6.html" class="kb-box">
-        <div class="kb-title-text">Aktivitas Terminal 6</div>
-        <div class="kb-desc">Yard Talker</div>
-        <img src="aset/Yard Talker.jpg" class="kb-img" />
-        <div class="mobile-hint">Yard Talker</div>
+      <a href="activity/aktivitas6.html" class="kb-box yardtalker">
+        <div class="kb-number">Aktivitas Terminal 06</div>
+        <div class="kb-icon"><i class="fa-solid fa-tower-broadcast"></i></div>
+        <div class="kb-title-text">Yard Talker</div>
+        <div class="kb-desc">Dispatch job yard & kontrol hold/release container</div>
+        <div class="kb-arrow">Lihat Detail <i class="fa-solid fa-arrow-right"></i></div>
       </a>
     </div>
 
@@ -1660,15 +1742,15 @@
           <h4>Pelindo AI Assistant</h4>
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
-        <div class="chat-body">
+        <div class="chat-body" id="chatBody">
           <div class="ai-msg">
             Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
             bantu terkait operasional hari ini?
           </div>
         </div>
         <div class="chat-input-area">
-          <input type="text" placeholder="Tanya sesuatu..." />
-          <button>Kirim</button>
+          <input type="text" id="chatInput" placeholder="Tanya sesuatu..." />
+          <button id="sendBtn">Kirim</button>
         </div>
       </div>
 
@@ -1688,10 +1770,9 @@
       const avatarImg = document.getElementById("avatarImg");
       const chatBox = document.getElementById("chatBox");
 
-      // GANTI NAMA FILE DI SINI JIKA BERBEDA
-      const imgIdle = "char_idle.png"; // Gambar Diam
-      const imgHover = "char_hover.png"; // Gambar saat mouse di atas
-      const imgActive = "char_active.png"; // Gambar saat chat terbuka
+      const imgIdle = "char_idle.png";
+      const imgHover = "char_hover.png";
+      const imgActive = "char_active.png";
 
       function onHoverAvatar() {
         if (!isChatOpen) {
@@ -1710,12 +1791,58 @@
 
         if (isChatOpen) {
           chatBox.classList.add("active");
-          avatarImg.src = imgActive; // Ganti ke gaya 'Active/Chatting'
+          avatarImg.src = imgActive;
         } else {
           chatBox.classList.remove("active");
-          avatarImg.src = imgIdle; // Kembali diam
+          avatarImg.src = imgIdle;
         }
       }
+
+      const chatBody = document.getElementById("chatBody");
+      const chatInput = document.getElementById("chatInput");
+      const sendBtn = document.getElementById("sendBtn");
+
+      const aiResponses = [
+        "Terima kasih atas informasinya. Saat ini sistem operasional berjalan lancar.",
+        "Untuk detail lebih lanjut, Anda bisa mengecek panduan di menu Daftar Isi di atas.",
+        "Mohon maaf, karena masih dalam tahap pengembangan, saya hanya bisa membalas pesan secara otomatis.",
+        "Terkait operasional petikemas, semua prosedur di Terminal Teluk Lamong telah mematuhi standar yang berlaku.",
+        "Pertanyaan yang bagus! Silakan klik salah satu alur visual di halaman ini untuk mempelajarinya lebih dalam.",
+        "Saya mencatat permintaan Anda. Tim operasional kami selalu siap siaga 24/7.",
+      ];
+
+      function kirimPesan() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        const userDiv = document.createElement("div");
+        userDiv.className = "user-msg";
+        userDiv.textContent = text;
+        chatBody.appendChild(userDiv);
+
+        chatInput.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        setTimeout(() => {
+          const aiDiv = document.createElement("div");
+          aiDiv.className = "ai-msg";
+
+          const randomText =
+            aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          aiDiv.textContent = randomText;
+
+          chatBody.appendChild(aiDiv);
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }, 1000);
+      }
+
+      sendBtn.addEventListener("click", kirimPesan);
+
+      chatInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          kirimPesan();
+        }
+      });
     </script>
   </body>
 </html>

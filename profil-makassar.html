@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -10,7 +10,10 @@
       rel="stylesheet"
     />
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -107,96 +110,96 @@
       }
 
       .dropdown {
-  position: relative;
-  display: flex; /* Ganti dari inline-block menjadi flex */
-  align-items: center; /* Pastikan konten di dalamnya sejajar */
-}
+        position: relative;
+        display: flex; /* Ganti dari inline-block menjadi flex */
+        align-items: center; /* Pastikan konten di dalamnya sejajar */
+      }
 
-.dropdown .dropbtn {
-  text-decoration: none;
-  font-weight: 600;
-  color: #222;
-  transition: 0.3s;
-  display: inline-block;
-}
+      .dropdown .dropbtn {
+        text-decoration: none;
+        font-weight: 600;
+        color: #222;
+        transition: 0.3s;
+        display: inline-block;
+      }
 
-/* Mengatur wadah menu dropdown yang disembunyikan secara default */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.95);
-  min-width: 250px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  z-index: 101;
-  
-  /* --- INI YANG DIUBAH --- */
-  top: 100%; 
-  padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
-  /* ----------------------- */
-  
-  left: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  /* Trik jembatan transparan agar tidak hilang saat di-hover */
-  border-top: 20px solid transparent; 
-  background-clip: padding-box;
-}
+      /* Mengatur wadah menu dropdown yang disembunyikan secara default */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.95);
+        min-width: 250px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 101;
 
-/* Mengatur tautan di dalam dropdown */
-.dropdown-content a {
-  color: #222;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 15px;
-  text-align: left;
-  border: none !important; /* Mencegah border dari navbar utama muncul */
-}
+        /* --- INI YANG DIUBAH --- */
+        top: 100%;
+        padding-top: 10px; /* Memberikan sedikit ruang napas dari atas */
+        /* ----------------------- */
 
-/* Efek hover untuk tautan di dalam dropdown */
-.dropdown-content a:hover {
-  background-color: #f1f8fc;
-  color: #00abf0;
-}
+        left: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        /* Trik jembatan transparan agar tidak hilang saat di-hover */
+        border-top: 20px solid transparent;
+        background-clip: padding-box;
+      }
 
-/* Memunculkan dropdown saat area dropdown dihover */
-.dropdown:hover .dropdown-content {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-.logout-btn {
-  text-decoration: none;
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-  background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
-  padding: 8px 18px;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Jarak antara ikon dan teks */
-  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
-}
+      /* Mengatur tautan di dalam dropdown */
+      .dropdown-content a {
+        color: #222;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 15px;
+        text-align: left;
+        border: none !important; /* Mencegah border dari navbar utama muncul */
+      }
 
-.logout-btn:hover {
-  background-color: #bd2130; /* Merah lebih gelap saat di-hover */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
-  color: #fff !important; /* Memastikan teks tetap putih */
-}
+      /* Efek hover untuk tautan di dalam dropdown */
+      .dropdown-content a:hover {
+        background-color: #f1f8fc;
+        color: #00abf0;
+      }
 
-/* Animasi halus saat dropdown muncul */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      /* Memunculkan dropdown saat area dropdown dihover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+      .logout-btn {
+        text-decoration: none;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        background-color: #dc3545; /* Warna merah elegan untuk penanda keluar */
+        padding: 8px 18px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px; /* Jarak antara ikon dan teks */
+        box-shadow: 0 4px 10px rgba(220, 53, 69, 0.2);
+      }
+
+      .logout-btn:hover {
+        background-color: #bd2130; /* Merah lebih gelap saat di-hover */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+        color: #fff !important; /* Memastikan teks tetap putih */
+      }
+
+      /* Animasi halus saat dropdown muncul */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
       /* ANIMASI */
       @keyframes runningText {
@@ -555,7 +558,7 @@
           padding-bottom: 20px;
         }
       }
-      
+
       /* --- TAMBAHAN CSS PROFIL MAKASSAR --- */
       .page-title {
         margin-top: 130px;
@@ -784,7 +787,7 @@
         margin-left: -50vw;
         margin-right: -50vw;
         /* Menetapkan tinggi pasti agar container tidak 'collapse' dan card tidak naik ke atas */
-        height: 500px; 
+        height: 500px;
         margin-bottom: 60px;
         background: #f8f9fa; /* Warna dasar jika gambar telat dimuat */
       }
@@ -822,7 +825,7 @@
         border-radius: 12px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         /* z-index diturunkan ke 2 agar otomatis berada di bawah menu navigasi website (sticky menu) saat di-scroll */
-        z-index: 2; 
+        z-index: 2;
         border-top: 5px solid #ffcc00;
         text-align: center;
       }
@@ -836,7 +839,7 @@
 
       /* Posisi Titik Indikator / Pagination di dalam Card */
       .hero-info-card .swiper-pagination {
-        position: relative; 
+        position: relative;
         bottom: 0 !important;
         margin-top: 20px;
         display: flex;
@@ -875,6 +878,25 @@
           text-align: justify;
         }
       }
+      /* Gaya untuk pesan dari User */
+      .user-msg {
+        background: #00abf0;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px 10px 0 10px;
+        margin-bottom: 10px;
+        line-height: 1.4;
+        margin-left: auto; /* Mendorong ke kanan */
+        width: fit-content;
+        max-width: 85%;
+        word-wrap: break-word;
+      }
+
+      /* Modifikasi sedikit ai-msg agar lebarnya menyesuaikan isi */
+      .ai-msg {
+        width: fit-content;
+        max-width: 85%;
+      }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -892,6 +914,7 @@
             <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
             <a href="profil-semarang.html">Semarang</a>
             <a href="#" class="active">Makassar New Port</a>
+            <a href="profil-IPC-TPK.html">IPC TPK</a>
           </div>
         </div>
         <div class="dropdown">
@@ -900,11 +923,13 @@
             <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
             <a href="dokum-semarang.html">Semarang</a>
             <a href="dokum-makassar.html">Makassar New Port</a>
+            <a href="dokum-ipctpk.html">IPC TPK</a>
           </div>
         </div>
-      </div> <a href="index.html" class="logout-btn">
-    <i class="fa-solid fa-right-from-bracket"></i> Logout
-  </a>
+      </div>
+      <a href="index.html" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+      </a>
     </div>
 
     <div class="running-text">
@@ -924,19 +949,19 @@
         <div class="swiper-wrapper">
           <!-- Slide 1 -->
           <div class="swiper-slide">
-            <img src="slidingphoto/makassar1.png" alt="TPK Makassar New Port">
+            <img src="slidingphoto/makassar1.png" alt="TPK Makassar New Port" />
           </div>
           <!-- Slide 2 -->
           <div class="swiper-slide">
-            <img src="slidingphoto/makassar2.png" alt="TPK Makassar New Port">
+            <img src="slidingphoto/makassar2.png" alt="TPK Makassar New Port" />
           </div>
           <!-- Slide 3 -->
           <div class="swiper-slide">
-            <img src="slidingphoto/makassar3.png" alt="TPK Makassar New Port">
+            <img src="slidingphoto/makassar3.png" alt="TPK Makassar New Port" />
           </div>
           <!-- Slide 4 -->
           <div class="swiper-slide">
-            <img src="slidingphoto/makassar4.png" alt="TPK Makassar New Port">
+            <img src="slidingphoto/makassar4.png" alt="TPK Makassar New Port" />
           </div>
         </div>
       </div>
@@ -944,20 +969,27 @@
       <!-- Card Teks Informasi (Floating) -->
       <div class="hero-info-card">
         <p>
-          Pelabuhan Makassar terletak pada Alur Laut Kepulauan Indonesia (ALKI II) yang menghubungkan Makassar dengan Laut Cina Selatan dan Samudera Pasifik, serta Makassar dengan kawasan Australia dan Oceania, sehingga menjadikan Makassar sangat strategis sebagai Hub Domestik dan Internasional.
+          Pelabuhan Makassar terletak pada Alur Laut Kepulauan Indonesia (ALKI
+          II) yang menghubungkan Makassar dengan Laut Cina Selatan dan Samudera
+          Pasifik, serta Makassar dengan kawasan Australia dan Oceania, sehingga
+          menjadikan Makassar sangat strategis sebagai Hub Domestik dan
+          Internasional.
         </p>
-        
+
         <!-- Pagination Dipindah ke Dalam Card -->
         <div class="swiper-pagination"></div>
       </div>
     </div>
 
-<h2 class="section-title">Indikator Kinerja Operasional</h2>
+    <h2 class="section-title">Indikator Kinerja Operasional</h2>
     <div class="metrics-container">
-      
       <div class="metric-card">
-        <h3 style="font-size:24px; color:#126e80;">Kinerja BOR <br><span style="font-size:14px; color:#777;">(Berth Occupancy Ratio)</span></h3>
-        
+        <h3 style="font-size: 24px; color: #126e80">
+          Kinerja BOR <br /><span style="font-size: 14px; color: #777"
+            >(Berth Occupancy Ratio)</span
+          >
+        </h3>
+
         <div class="summary-wrapper">
           <div class="summary-sub-card">
             <span class="label">Terminal 1 (2025)</span>
@@ -973,8 +1005,12 @@
       </div>
 
       <div class="metric-card">
-        <h3 style="font-size:24px; color:#126e80;">Kinerja YOR <br><span style="font-size:14px; color:#777;">(Yard Occupancy Ratio)</span></h3>
-        
+        <h3 style="font-size: 24px; color: #126e80">
+          Kinerja YOR <br /><span style="font-size: 14px; color: #777"
+            >(Yard Occupancy Ratio)</span
+          >
+        </h3>
+
         <div class="summary-wrapper">
           <div class="summary-sub-card">
             <span class="label">Terminal 1 (2025)</span>
@@ -988,24 +1024,27 @@
 
         <canvas id="yorChart" width="400" height="250"></canvas>
       </div>
-
     </div>
 
     <!-- 3. Layout Terminal Petikemas -->
     <div class="layout-container">
-      <h2 class="section-title" style="margin-top:0;">Layout Terminal Petikemas</h2>
-      
+      <h2 class="section-title" style="margin-top: 0">
+        Layout Terminal Petikemas
+      </h2>
+
       <!-- Menggunakan Grid 2 Kolom dari CSS sebelumnya -->
       <div class="layout-grid-2">
-        
         <!-- KARTU TERMINAL 1 -->
-        <div class="terminal-card" style="border: 2px solid #126e80; border-radius: 15px;">
-          <h3 class="terminal-header" style="margin: 0;">Terminal 1</h3>
-          
+        <div
+          class="terminal-card"
+          style="border: 2px solid #126e80; border-radius: 15px"
+        >
+          <h3 class="terminal-header" style="margin: 0">Terminal 1</h3>
+
           <div class="terminal-img-placeholder">
             <img src="aset/terminal1.png" alt="Layout Area Terminal 1" />
           </div>
-          
+
           <div class="terminal-info">
             <div class="info-grid-inner">
               <div class="info-section">
@@ -1018,7 +1057,7 @@
                   <li>CY: 12,6 hA</li>
                 </ul>
               </div>
-              
+
               <div class="info-section">
                 <h4>Peralatan:</h4>
                 <ul class="no-bullet">
@@ -1032,21 +1071,25 @@
                 </ul>
               </div>
             </div>
-            
+
             <div class="terminal-capacity">
-              Terminal Capacity: <span class="text-yellow">698,913 TEU's/Year</span>
+              Terminal Capacity:
+              <span class="text-yellow">698,913 TEU's/Year</span>
             </div>
           </div>
         </div>
 
         <!-- KARTU TERMINAL 2 -->
-        <div class="terminal-card" style="border: 2px solid #126e80; border-radius: 15px;">
-          <h3 class="terminal-header" style="margin: 0;">Terminal 2</h3>
-          
+        <div
+          class="terminal-card"
+          style="border: 2px solid #126e80; border-radius: 15px"
+        >
+          <h3 class="terminal-header" style="margin: 0">Terminal 2</h3>
+
           <div class="terminal-img-placeholder">
             <img src="aset/terminal2.png" alt="Layout Area Terminal 2" />
           </div>
-          
+
           <div class="terminal-info">
             <div class="info-grid-inner">
               <div class="info-section">
@@ -1059,7 +1102,7 @@
                   <li>CY: 52 hA</li>
                 </ul>
               </div>
-              
+
               <div class="info-section">
                 <h4>Peralatan:</h4>
                 <ul class="no-bullet">
@@ -1073,45 +1116,76 @@
                 </ul>
               </div>
             </div>
-            
+
             <div class="terminal-capacity">
-              Terminal Capacity: <span class="text-yellow">630,720 TEU's/Year</span><br>
-              Ultimate Capacity 1A + 1B + 1C: <span class="text-yellow">2,9M TEU's / Year</span>
+              Terminal Capacity:
+              <span class="text-yellow">630,720 TEU's/Year</span><br />
+              Ultimate Capacity 1A + 1B + 1C:
+              <span class="text-yellow">2,9M TEU's / Year</span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="layout-container">
-      <h2 class="section-title" style="margin-top:0;">Layout Area Penumpukan</h2>
+      <h2 class="section-title" style="margin-top: 0">
+        Layout Area Penumpukan
+      </h2>
       <div class="layout-grid-2">
-        
-        <div class="terminal-card" style="background: transparent; box-shadow: none; border: 2px solid #126e80; border-radius: 15px;">
-          <h3 class="terminal-header" style="margin: 0;">Terminal 1</h3>
-          <div class="placeholder-img" style="border: none; border-radius: 0; height: 350px;">
-            <img src="aset/penumpukan1.jpg" alt="Layout Area Penumpukan Terminal 1" />
+        <div
+          class="terminal-card"
+          style="
+            background: transparent;
+            box-shadow: none;
+            border: 2px solid #126e80;
+            border-radius: 15px;
+          "
+        >
+          <h3 class="terminal-header" style="margin: 0">Terminal 1</h3>
+          <div
+            class="placeholder-img"
+            style="border: none; border-radius: 0; height: 350px"
+          >
+            <img
+              src="aset/penumpukan1.jpg"
+              alt="Layout Area Penumpukan Terminal 1"
+            />
           </div>
         </div>
 
-        <div class="terminal-card" style="background: transparent; box-shadow: none; border: 2px solid #126e80; border-radius: 15px;">
-          <h3 class="terminal-header" style="margin: 0;">Terminal 2</h3>
-          <div class="placeholder-img" style="border: none; border-radius: 0; height: 350px;">
-            <img src="aset/penumpukan2.jpg" alt="Layout Area Penumpukan Terminal 2" />
+        <div
+          class="terminal-card"
+          style="
+            background: transparent;
+            box-shadow: none;
+            border: 2px solid #126e80;
+            border-radius: 15px;
+          "
+        >
+          <h3 class="terminal-header" style="margin: 0">Terminal 2</h3>
+          <div
+            class="placeholder-img"
+            style="border: none; border-radius: 0; height: 350px"
+          >
+            <img
+              src="aset/penumpukan2.jpg"
+              alt="Layout Area Penumpukan Terminal 2"
+            />
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="layout-container">
-      <h2 class="section-title" style="margin-top:0;">Layout Truck Waiting Area</h2>
-      <div class="placeholder-img" style="height: 500px;">
+      <h2 class="section-title" style="margin-top: 0">
+        Layout Truck Waiting Area
+      </h2>
+      <div class="placeholder-img" style="height: 500px">
         [ TEMPLAT GAMBAR: Layout Truck Waiting Area ]
       </div>
-    </div>    
-    
+    </div>
+
     <div class="bottom-hill"></div>
 
     <div class="chat-widget-container">
@@ -1120,15 +1194,15 @@
           <h4>Pelindo AI Assistant</h4>
           <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
-        <div class="chat-body">
+        <div class="chat-body" id="chatBody">
           <div class="ai-msg">
             Halo! Saya AI Assistant Terminal Teluk Lamong. Ada yang bisa saya
             bantu terkait operasional hari ini?
           </div>
         </div>
         <div class="chat-input-area">
-          <input type="text" placeholder="Tanya sesuatu..." />
-          <button>Kirim</button>
+          <input type="text" id="chatInput" placeholder="Tanya sesuatu..." />
+          <button id="sendBtn">Kirim</button>
         </div>
       </div>
 
@@ -1176,39 +1250,94 @@
           avatarImg.src = imgIdle; // Kembali diam
         }
       }
+      // --- LOGIKA GIMMICK CHAT BOT ---
+      const chatBody = document.getElementById("chatBody");
+      const chatInput = document.getElementById("chatInput");
+      const sendBtn = document.getElementById("sendBtn");
+
+      // Daftar respons acak untuk bot
+      const aiResponses = [
+        "Terima kasih atas informasinya. Saat ini sistem operasional berjalan lancar.",
+        "Untuk detail lebih lanjut, Anda bisa mengecek panduan di menu Daftar Isi di atas.",
+        "Mohon maaf, karena masih dalam tahap pengembangan, saya hanya bisa membalas pesan secara otomatis.",
+        "Terkait operasional petikemas, semua prosedur di Terminal Teluk Lamong telah mematuhi standar yang berlaku.",
+        "Pertanyaan yang bagus! Silakan klik salah satu alur visual di halaman ini untuk mempelajarinya lebih dalam.",
+        "Saya mencatat permintaan Anda. Tim operasional kami selalu siap siaga 24/7.",
+      ];
+
+      function kirimPesan() {
+        const text = chatInput.value.trim();
+        if (!text) return; // Jangan kirim jika kosong
+
+        // 1. Munculkan pesan User
+        const userDiv = document.createElement("div");
+        userDiv.className = "user-msg";
+        userDiv.textContent = text;
+        chatBody.appendChild(userDiv);
+
+        // Bersihkan kolom input & scroll otomatis ke paling bawah
+        chatInput.value = "";
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        // 2. Simulasi AI sedang "mengetik" / berpikir selama 1 detik
+        setTimeout(() => {
+          const aiDiv = document.createElement("div");
+          aiDiv.className = "ai-msg";
+
+          // Ambil respons acak dari array
+          const randomText =
+            aiResponses[Math.floor(Math.random() * aiResponses.length)];
+          aiDiv.textContent = randomText;
+
+          chatBody.appendChild(aiDiv);
+          chatBody.scrollTop = chatBody.scrollHeight; // Scroll lagi setelah AI membalas
+        }, 1000);
+      }
+
+      // Kirim pesan ketika tombol "Kirim" diklik
+      sendBtn.addEventListener("click", kirimPesan);
+
+      // Kirim pesan ketika tombol "Enter" ditekan pada keyboard
+      chatInput.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          kirimPesan();
+        }
+      });
     </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // --- GRAFIK BOR ---
-        const ctxBor = document.getElementById('borChart').getContext('2d');
+        const ctxBor = document.getElementById("borChart").getContext("2d");
         new Chart(ctxBor, {
-          type: 'bar',
+          type: "bar",
           data: {
-            labels: ['2023', '2024', '2025 (YTD)'], // Tahun
+            labels: ["2023", "2024", "2025 (YTD)"], // Tahun
             datasets: [
               {
-                label: 'Terminal 1 (%)',
-                data: [29.80, 35.88, 28.99],
-                backgroundColor: '#126e80', // Biru Pelindo
-                borderRadius: 4
+                label: "Terminal 1 (%)",
+                data: [29.8, 35.88, 28.99],
+                backgroundColor: "#126e80", // Biru Pelindo
+                borderRadius: 4,
               },
               {
-                label: 'Terminal 2 (%)',
-                data: [38.90, 31.70, 27.85],
-                backgroundColor: '#ffcc00', // Kuning Pelindo
-                borderRadius: 4
-              }
-            ]
+                label: "Terminal 2 (%)",
+                data: [38.9, 31.7, 27.85],
+                backgroundColor: "#ffcc00", // Kuning Pelindo
+                borderRadius: 4,
+              },
+            ],
           },
           options: {
             responsive: true,
             plugins: {
-              legend: { position: 'bottom' },
+              legend: { position: "bottom" },
               tooltip: {
                 callbacks: {
-                  label: function(context) { return context.parsed.y + '%'; }
-                }
-              }
+                  label: function (context) {
+                    return context.parsed.y + "%";
+                  },
+                },
+              },
             },
             scales: {
               y: {
@@ -1216,46 +1345,48 @@
                 max: 60, // Maksimal persentase
                 title: {
                   display: true,
-                  text: 'Persentase (%)',
-                  font: { size: 16, weight: 'bold' }, // Judul sumbu Y lebih besar
-                  color: '#126e80',
-                  padding: { bottom: 10 }
-                }
-              }
-            }
-          }
+                  text: "Persentase (%)",
+                  font: { size: 16, weight: "bold" }, // Judul sumbu Y lebih besar
+                  color: "#126e80",
+                  padding: { bottom: 10 },
+                },
+              },
+            },
+          },
         });
 
         // --- GRAFIK YOR ---
-        const ctxYor = document.getElementById('yorChart').getContext('2d');
+        const ctxYor = document.getElementById("yorChart").getContext("2d");
         new Chart(ctxYor, {
-          type: 'bar',
+          type: "bar",
           data: {
-            labels: ['2023', '2024', '2025 (YTD)'],
+            labels: ["2023", "2024", "2025 (YTD)"],
             datasets: [
               {
-                label: 'Terminal 1 (%)',
-                data: [43.17, 44.50, 44.81],
-                backgroundColor: '#126e80',
-                borderRadius: 4
+                label: "Terminal 1 (%)",
+                data: [43.17, 44.5, 44.81],
+                backgroundColor: "#126e80",
+                borderRadius: 4,
               },
               {
-                label: 'Terminal 2 (%)',
+                label: "Terminal 2 (%)",
                 data: [47.32, 41.11, 43.59],
-                backgroundColor: '#ffcc00',
-                borderRadius: 4
-              }
-            ]
+                backgroundColor: "#ffcc00",
+                borderRadius: 4,
+              },
+            ],
           },
           options: {
             responsive: true,
             plugins: {
-              legend: { position: 'bottom' },
+              legend: { position: "bottom" },
               tooltip: {
                 callbacks: {
-                  label: function(context) { return context.parsed.y + '%'; }
-                }
-              }
+                  label: function (context) {
+                    return context.parsed.y + "%";
+                  },
+                },
+              },
             },
             scales: {
               y: {
@@ -1263,14 +1394,14 @@
                 max: 60,
                 title: {
                   display: true,
-                  text: 'Persentase (%)',
-                  font: { size: 16, weight: 'bold' },
-                  color: '#126e80',
-                  padding: { bottom: 10 }
-                }
-              }
-            }
-          }
+                  text: "Persentase (%)",
+                  font: { size: 16, weight: "bold" },
+                  color: "#126e80",
+                  padding: { bottom: 10 },
+                },
+              },
+            },
+          },
         });
       });
     </script>
@@ -1280,14 +1411,14 @@
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Inisialisasi Swiper Hero
-        const heroSwiper = new Swiper('.hero-swiper', {
+        const heroSwiper = new Swiper(".hero-swiper", {
           loop: true, // Mengulang dari awal jika slide habis
           autoplay: {
             delay: 4000, // Durasi tiap slide (4 detik)
             disableOnInteraction: false, // Tetap autoplay meski user menyentuh layar
           },
           pagination: {
-            el: '.swiper-pagination',
+            el: ".swiper-pagination",
             clickable: true, // Titik navigasi bisa diklik
           },
         });
