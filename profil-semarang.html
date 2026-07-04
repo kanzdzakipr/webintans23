@@ -894,6 +894,193 @@
           text-align: justify;
         }
       }
+
+      /* --- MENU SHOW-HIDE GABUNGAN DASHBOARD --- */
+      .merged-dashboard-shell {
+        width: min(1600px, 94vw);
+        margin: 130px auto 70px;
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+
+      .merged-sidebar {
+        position: sticky;
+        top: 118px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+      }
+
+      .merged-sidebar-header {
+        padding: 22px;
+        background: linear-gradient(135deg, #1e3a8a, #0f172a);
+        color: #fff;
+      }
+
+      .merged-sidebar-header h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.5px;
+      }
+
+      .merged-sidebar-header p {
+        margin: 6px 0 0;
+        font-size: 12px;
+        color: #cbd5e1;
+      }
+
+      .merged-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 14px;
+      }
+
+      .merged-menu-button {
+        width: 100%;
+        border: 0;
+        background: transparent;
+        color: #475569;
+        padding: 12px 14px;
+        border-radius: 12px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .merged-menu-button i {
+        width: 18px;
+        color: #2563eb;
+      }
+
+      .merged-menu-button:hover,
+      .merged-menu-button.active {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+
+      .merged-content {
+        min-width: 0;
+      }
+
+      .merged-panel {
+        display: none;
+      }
+
+      .merged-panel.active {
+        display: block;
+      }
+
+      .merged-panel-card {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        border-radius: 24px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+      }
+
+      .merged-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 24px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+        background: rgba(248, 250, 252, 0.88);
+      }
+
+      .merged-panel-header h2 {
+        margin: 0;
+        color: #0f172a;
+        font-size: 20px;
+      }
+
+      .merged-panel-header p {
+        margin: 4px 0 0;
+        color: #64748b;
+        font-size: 12px;
+      }
+
+      .merged-frame {
+        width: 100%;
+        height: 82vh;
+        min-height: 720px;
+        border: 0;
+        display: block;
+        background: #f8fafc;
+      }
+
+      #panel-profil .page-title {
+        margin-top: 0;
+      }
+
+      #panel-profil .hero-section {
+        width: 100%;
+        left: auto;
+        right: auto;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      #panel-profil .layout-container {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+      }
+
+      #panel-profil .metrics-container {
+        gap: 20px;
+      }
+
+      #panel-profil .metric-card {
+        flex: 1 1 320px;
+        width: auto;
+      }
+
+      @media (max-width: 980px) {
+        .merged-dashboard-shell {
+          grid-template-columns: 1fr;
+          margin-top: 120px;
+        }
+
+        .merged-sidebar {
+          position: static;
+        }
+
+        .merged-menu {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 620px) {
+        .merged-dashboard-shell {
+          width: min(100% - 24px, 1600px);
+        }
+
+        .merged-menu {
+          grid-template-columns: 1fr;
+        }
+
+        .merged-frame {
+          min-height: 640px;
+        }
+      }
     </style>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -936,9 +1123,37 @@
       </div>
     </div>
 
-    <h1 class="page-title">PROFIL TPK SEMARANG</h1>
-    <!-- HERO HEADER SECTION -->
-    <div class="hero-section">
+    <div class="merged-dashboard-shell">
+      <aside class="merged-sidebar">
+        <div class="merged-sidebar-header">
+          <h2>Profil TPK</h2>
+          <p>Profil dan dashboard operasional Semarang</p>
+        </div>
+        <div class="merged-menu" role="tablist" aria-label="Menu dashboard gabungan">
+          <button class="merged-menu-button active" type="button" data-panel="panel-profil" role="tab" aria-selected="true">
+            <i class="fa-solid fa-house"></i>
+            <span>Profil TPK Semarang</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-operasional" role="tab" aria-selected="false">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Kinerja Operasional</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-peralatan" role="tab" aria-selected="false">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Availability & Utilization</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-yor" role="tab" aria-selected="false">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Yard Occupancy Ratio</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="merged-content">
+        <section class="merged-panel active" id="panel-profil" role="tabpanel">
+          <h1 class="page-title">PROFIL TPK SEMARANG</h1>
+          <!-- HERO HEADER SECTION -->
+          <div class="hero-section">
       <!-- Container Swiper -->
       <div class="swiper hero-swiper">
         <div class="swiper-wrapper">
@@ -974,10 +1189,10 @@
         <!-- Pagination Dipindah ke Dalam Card -->
         <div class="swiper-pagination"></div>
       </div>
-    </div>
+          </div>
 
-    <h2 class="section-title">Indikator Kinerja Operasional</h2>
-    <div class="metrics-container">
+          <h2 class="section-title">Indikator Kinerja Operasional</h2>
+          <div class="metrics-container">
       <div class="metric-card">
         <h3 style="font-size: 24px; color: #126e80">
           Kinerja BOR <br /><span style="font-size: 14px; color: #777"
@@ -1019,10 +1234,10 @@
 
         <canvas id="yorChart" width="400" height="250"></canvas>
       </div>
-    </div>
+          </div>
 
-    <!-- 3. Layout Terminal Petikemas -->
-    <div class="layout-container">
+          <!-- 3. Layout Terminal Petikemas -->
+          <div class="layout-container">
       <h2 class="section-title" style="margin-top: 0">
         Layout Terminal Petikemas
       </h2>
@@ -1072,9 +1287,9 @@
           </div>
         </div>
       </div>
-    </div>
+          </div>
 
-    <div class="layout-container">
+          <div class="layout-container">
       <h2 class="section-title" style="margin-top: 0">
         Layout Area Penumpukan
       </h2>
@@ -1101,15 +1316,57 @@
           </div>
         </div>
       </div>
-    </div>
+          </div>
 
-    <div class="layout-container">
-      <h2 class="section-title" style="margin-top: 0">
-        Layout Truck Waiting Area
-      </h2>
-      <div class="placeholder-img" style="height: 500px">
-        [ TEMPLAT GAMBAR: Layout Truck Waiting Area ]
-      </div>
+          <div class="layout-container">
+            <h2 class="section-title" style="margin-top: 0">
+              Layout Truck Waiting Area
+            </h2>
+            <div class="placeholder-img" style="height: 500px">
+              [ TEMPLAT GAMBAR: Layout Truck Waiting Area ]
+            </div>
+          </div>
+        </section>
+
+        <section class="merged-panel" id="panel-operasional" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Laporan Kinerja Operasional Terminal</h2>
+                <p>Dashboard utama sebagai acuan style analitik.</p>
+              </div>
+              <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="Laporan Kinerja Operasional Terminal" src="Laporan Kinerja Operasional Terminal.html"></iframe>
+          </div>
+        </section>
+
+        <section class="merged-panel" id="panel-peralatan" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Kesiapan dan Penggunaan Alat</h2>
+                <p>Dashboard availability dan utilization peralatan operasional.</p>
+              </div>
+              <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="Kesiapan Availability dan Penggunaan Alat Utilisasi" src="Kesiapan (availability) dan Pengunaan Alat (utilisasi).html"></iframe>
+          </div>
+        </section>
+
+        <section class="merged-panel" id="panel-yor" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Yard Occupancy Ratio (YOR)</h2>
+                <p>Dashboard analisis tingkat okupansi lapangan penumpukan.</p>
+              </div>
+              <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="YOR Dashboard Terminal Peti Kemas" src="YOR.html"></iframe>
+          </div>
+        </section>
+      </main>
     </div>
 
     <div class="bottom-hill"></div>
@@ -1176,6 +1433,32 @@
           avatarImg.src = imgIdle; // Kembali diam
         }
       }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuButtons = document.querySelectorAll(".merged-menu-button");
+        const panels = document.querySelectorAll(".merged-panel");
+
+        menuButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const targetPanelId = button.getAttribute("data-panel");
+
+            menuButtons.forEach((item) => {
+              item.classList.toggle("active", item === button);
+              item.setAttribute("aria-selected", item === button ? "true" : "false");
+            });
+
+            panels.forEach((panel) => {
+              panel.classList.toggle("active", panel.id === targetPanelId);
+            });
+
+            document.querySelector(".merged-dashboard-shell").scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          });
+        });
+      });
     </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
