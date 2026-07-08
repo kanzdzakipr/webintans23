@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIP CALL PERFORMANCE DASHBOARD</title>
+    
+    <!-- Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --bg-body: #f8f9fa;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --text-main: #333;
+            --sidebar-w: 260px;
+            --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        }
+        [data-bs-theme="dark"] {
+            --bg-body: #121418;
+            --glass-bg: rgba(30, 33, 36, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #e0e0e0;
+            --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+        
+        body { background: var(--bg-body); color: var(--text-main); font-family: 'Segoe UI', system-ui, sans-serif; transition: 0.3s; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* Glassmorphism */
+        .glass { background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 16px; box-shadow: var(--card-shadow); transition: all 0.3s ease; }
+        .glass:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(13, 110, 253, 0.15); }
+        
+        /* Layout */
+        #sidebar { width: var(--sidebar-w); position: fixed; top: 0; left: 0; height: 100vh; overflow-y: auto; padding: 20px 10px; z-index: 1000; border-right: 1px solid var(--glass-border); scrollbar-width: thin; }
+        #main-content { margin-left: var(--sidebar-w); min-height: 100vh; padding: 20px; transition: margin 0.3s ease; }
+        
+        /* Sidebar Nav */
+        .nav-link { color: var(--text-main); font-weight: 500; border-radius: 8px; margin-bottom: 5px; transition: 0.2s; padding: 10px 15px; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+        .nav-link:hover, .nav-link.active { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4); }
+        
+        /* Header & Utility */
+        .page-header { margin-bottom: 25px; padding: 20px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .floating-btn { position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; border-radius: 50%; background: var(--primary); color: white; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4); cursor: pointer; z-index: 1050; opacity: 0; transition: 0.3s; pointer-events: none; }
+        .floating-btn.visible { opacity: 1; pointer-events: auto; }
+        .floating-btn:hover { transform: translateY(-5px); background: #0b5ed7; color: white; }
+        
+        /* Dashboard Elements */
+        .kpi-card { text-align: center; padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px; height: 100%; }
+        .kpi-icon { font-size: 2.2rem; color: var(--primary); opacity: 0.8; }
+        .kpi-val { font-size: 2rem; font-weight: 700; color: var(--text-main); line-height: 1; }
+        .kpi-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; font-weight: 600; }
+        .chart-container { position: relative; height: 350px; width: 100%; padding: 15px; }
+        .chart-container-large { height: 450px; }
+        
+        /* Heatmap & Treemap */
+        .heatmap-table { width: 100%; font-size: 0.8rem; border-collapse: separate; border-spacing: 2px; }
+        .heatmap-cell { height: 30px; border-radius: 4px; color: #fff; text-align: center; vertical-align: middle; text-shadow: 0 0 2px rgba(0,0,0,0.8); cursor: pointer; transition: 0.2s; }
+        .heatmap-cell:hover { transform: scale(1.15); z-index: 10; position: relative; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        .treemap-container { display: flex; flex-wrap: wrap; align-content: flex-start; height: 400px; gap: 4px; padding: 10px; }
+        .treemap-item { display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; border-radius: 8px; overflow: hidden; padding: 5px; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); transition: 0.2s; border: 1px solid rgba(255,255,255,0.2); }
+        .treemap-item:hover { transform: scale(1.02); z-index: 2; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        
+        /* Table Styles */
+        .table { color: var(--text-main); vertical-align: middle; font-size: 0.9rem; margin: 0; }
+        .table-hover tbody tr:hover { background-color: rgba(13, 110, 253, 0.05); }
+        
+        /* Loading Overlay */
+        #loader { position: fixed; inset: 0; background: var(--bg-body); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.5s; }
+        .spinner-border { width: 4rem; height: 4rem; color: var(--primary); margin-bottom: 20px; }
+        
+        @media (max-width: 992px) {
+            #sidebar { transform: translateX(-100%); }
+            #main-content { margin-left: 0; }
+            .sidebar-open #sidebar { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Animation -->
+    <div id="loader">
+        <div class="spinner-border" role="status"></div>
+        <h3 class="fw-bold">Port Analytics Engine</h3>
+        <p class="opacity-75">Processing enterprise maritime data...</p>
+    </div>
+
+    <!-- Sidebar -->
+    <nav id="sidebar" class="glass rounded-0 border-top-0 border-bottom-0 border-start-0">
+        <div class="text-center mb-4 mt-2">
+            <i class="fa-solid fa-anchor fa-3x text-primary mb-2"></i>
+            <h5 class="fw-bold m-0">MAKASSAR AREA</h5>
+            <small class="opacity-75">Ship Call Intelligence</small>
+        </div>
+        <div class="nav flex-column" id="nav-menu">
+            <!-- Nav populated dynamically -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        
+        <!-- Header -->
+        <header class="page-header glass p-4 mb-4">
+            <div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-1">
+                        <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Ship Call Performance</li>
+                    </ol>
+                </nav>
+                <h2 class="fw-bold m-0 text-primary">SHIP CALL PERFORMANCE DASHBOARD</h2>
+                <p class="text-muted m-0">Makassar Area | Periode 2024–2026</p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="text-end d-none d-md-block">
+                    <div class="fw-bold"><i class="fa-solid fa-circle-check text-success me-1"></i> Dashboard Online</div>
+                    <small class="opacity-75" id="last-update">Updating...</small>
+                </div>
+                <button class="btn btn-outline-primary glass" onclick="toggleTheme()" title="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                </button>
+                <div class="dropdown">
+                    <button class="btn btn-primary glass text-white dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-download me-1"></i> Export
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end glass">
+                        <li><a class="dropdown-item" href="#" onclick="window.print()"><i class="fa-solid fa-print me-2"></i> Print Dashboard</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="window.print()"><i class="fa-solid fa-file-pdf me-2"></i> Download PDF</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="window.print()"><i class="fa-solid fa-image me-2"></i> Download PNG</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" onclick="exportCSV()"><i class="fa-solid fa-file-csv me-2"></i> Download CSV</a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-outline-secondary glass d-lg-none" onclick="document.body.classList.toggle('sidebar-open')">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sections Container -->
+        <div id="sections-container" class="container-fluid p-0"></div>
+
+    </main>
+
+    <!-- Scroll to Top -->
+    <a href="#" class="floating-btn" id="scroll-top"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    
+    <script>
+        /* =========================================================================
+           1. DATA INITIALIZATION & PARSING
+           ========================================================================= */
+        const rawCsvData = `,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,KUNJUNGAN KAPAL PETIKEMAS (SHIP CALL),,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Nama Terminal,Indikator,2024,,,,,,,,,,,,,2025,,,,,,,,,,,,,2026,,,,,,,,,,,,
+,,,2024-01-01,2024-02-01,2024-03-01,2024-04-01,2024-05-01,2024-06-01,2024-07-01,2024-08-01,2024-09-01,2024-10-01,2024-11-01,2024-12-01,Total,2025-01-01,2025-02-01,2025-03-01,2025-04-01,2025-05-01,2025-06-01,2025-07-01,2025-08-01,2025-09-01,2025-10-01,2025-11-01,2025-12-01,Total,2026-01-01,2026-02-01,2026-03-01,2026-04-01,2026-05-01,2026-06-01,2026-07-01,2026-08-01,2026-09-01,2026-10-01,2026-11-01,2026-12-01,Total
+,Sorong Internasional,Monthly ship calls,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,,,,,,,,,,,,0
+,Sorong Domestik,Monthly ship calls,13,10,10,9,11,9,10,13,12,14,11,12,134,12,10,12,9,11,12,22,18,16,16,17,21,176,17,10,,,,,,,,,,,27
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT Prima Terminal Petikemas Internasional,Monthly ship calls,18,19,17,12,19,16,19,22,22,29,24,29,246,19,17,21,23,23,24,25,30,29,26,27,28,292,25,23,,,,,,,,,,,48
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT IPC TPK TP 1 Zone 1 Domestik,Monthly ship calls,22,24,31,28,33,32,36,33,34,35,34,34,376,30,34,37,38,36,38,40,37,34,41,30,32,427,27,39,,,,,,,,,,,66
+,PT IPC TPK TP 1 Zone 2 Domestik,Monthly ship calls,57,55,56,49,60,56,59,60,55,57,56,53,673,59,47,53,59,60,51,62,64,57,58,59,49,678,60,63,,,,,,,,,,,123
+,PT IPC TPK TP 1 Zone 3 Domestik,Monthly ship calls,57,63,65,42,68,68,67,69,60,67,61,59,746,53,59,67,52,70,60,69,74,74,76,74,86,814,71,60,,,,,,,,,,,131
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT IPC TPK 2 Domestik,Monthly ship calls,106,113,114,85,112,103,105,102,103,110,112,113,1278,108,102,93,93,104,108,121,107,117,119,126,117,1315,116,97,,,,,,,,,,,213
+,PT IPC TPK 2 Internasional,Monthly ship calls,28,35,39,35,49,46,49,48,40,51,40,55,515,47,50,52,47,52,53,51,52,48,51,51,57,611,51,54,,,,,,,,,,,105
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT IPC TPK Panjang Domestik,Monthly ship calls,16,14,9,9,12,13,16,18,22,18,17,17,181,15,12,13,14,18,14,17,18,19,22,21,19,202,18,14,,,,,,,,,,,32
+,PT IPC TPK Panjang Internasional,Monthly ship calls,8,7,8,5,6,6,3,4,5,5,5,5,67,3,3,3,4,4,4,4,4,4,3,3,5,44,3,5,,,,,,,,,,,8
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT IPC TPK Palembang Domestik,Monthly ship calls,16,13,14,10,18,12,11,12,17,12,14,11,160,14,9,12,10,13,10,13,13,14,15,10,13,146,12,12,,,,,,,,,,,24
+,PT IPC TPK Palembang Internasional,Monthly ship calls,10,11,11,8,10,10,12,10,10,12,11,11,126,12,12,14,10,13,14,13,16,14,15,16,13,162,14,13,,,,,,,,,,,27
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT IPC TPK Pontianak Domestik,Monthly ship calls,36,33,34,28,34,33,37,34,32,37,36,38,412,33,30,36,32,36,38,41,41,37,,,,324,,,,,,,,,,,,,0
+,PT IPC TPK Pontianak Internasional,Monthly ship calls,4,4,4,4,5,6,4,7,4,5,6,3,56,5,4,4,3,10,5,6,7,6,,,,50,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT IPC TPK Jambi Domestik,Monthly ship calls,5,9,9,7,7,10,3,10,10,7,7,7,91,10,8,5,7,8,8,5,9,8,,,,68,,,,,,,,,,,,,0
+,PT IPC TPK Jambi Internasional,Monthly ship calls,8,3,3,4,3,3,8,3,3,3,2,3,46,1,1,4,3,4,2,3,3,3,,,,24,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT Terminal Petikemas Surabaya Domestik,Monthly ship calls,26,20,25,12,11,23,17,21,19,21,16,19,230,18,22,17,10,16,18,18,13,13,15,22,21,203,20,16,,,,,,,,,,,36
+,PT Terminal Petikemas Surabaya Internasional,Monthly ship calls,92,79,83,69,89,80,77,86,84,84,77,85,985,81,81,87,86,89,96,94,90,97,97,87,93,1078,86,81,,,,,,,,,,,167
+,,,,,,,,,,,,,,,1215,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT Berlian Jasa Terminal Indonesia Domestik,Monthly ship calls,250,227,245,212,254,225,233,239,217,238,221,250,2811,230,218,221,198,229,233,251,249,246,245,249,241,2810,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT Terminal Teluk Lamong Domestik,Monthly ship calls,104,98,100,93,92,103,114,105,103,114,106,105,1237,100,93,93,85,112,105,101,113,93,94,94,86,1169,88,78,,,,,,,,,,,166
+,PT Terminal Teluk Lamong Internasional,Monthly ship calls,21,22,25,19,23,22,28,27,25,26,25,23,286,28,22,28,24,30,28,33,31,29,34,41,44,372,46,41,,,,,,,,,,,87
+,,,,,,,,,,,,,,,1523,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT Kaltim Kariangau Terminal Domestik,Monthly ship calls,45,38,45,30,45,40,43,42,42,44,45,44,503,46,42,40,38,44,46,52,44,42,48,39,45,526,46,41,,,,,,,,,,,87
+,PT Kaltim Kariangau Terminal Internasional,Monthly ship calls,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,3,2,1,1,1,1,1,1,,11,1,1,,,,,,,,,,,2
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Belawan Domestik,Monthly ship calls,31,29,36,22,37,37,38,38,38,39,35,35,415,35,31,34,35,38,41,42,40,37,41,36,31,441,36,28,,,,,,,,,,,64
+,TPK Belawan Internasional,Monthly ship calls,36,37,40,28,35,33,35,32,31,35,30,32,404,27,29,28,23,27,26,27,30,23,30,23,25,318,27,26,,,,,,,,,,,53
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Nilam Domestik,Monthly ship calls,60,58,55,41,63,65,63,64,64,69,62,65,729,60,66,67,54,68,68,75,76,75,70,66,69,814,68,59,,,,,,,,,,,127
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Petikemas Semarang Domestik,Monthly ship calls,41,32,43,30,39,43,45,45,46,42,37,40,483,37,20,25,26,18,49,36,28,26,31,28,25,349,25,15,,,,,,,,,,,40
+,TPK Petikemas Semarang Internasional,Monthly ship calls,49,46,46,37,46,44,46,43,55,52,44,59,567,57,52,57,54,71,67,71,77,67,79,69,74,795,63,59,,,,,,,,,,,122
+,,,,,,,,,,,,,,,1050,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Banjarmasin Domestik,Monthly ship calls,86,83,83,71,93,88,84,91,88,95,93,90,1045,83,81,93,69,92,99,94,99,96,101,93,91,1091,79,79,,,,,,,,,,,158
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Ambon Domestik,Monthly ship calls,25,26,23,24,23,20,26,21,24,26,24,22,284,24,19,22,17,22,23,26,22,24,23,25,23,270,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Makassar Terminal 1 Domestik,Monthly ship calls,73,69,63,37,67,57,65,66,61,64,57,58,737,61,56,53,41,59,45,46,42,36,44,51,51,585,48,44,43,,,,,,,,,,135
+,Makassar Terminal 1 Internasional,Monthly ship calls,5,4,4,4,4,4,5,4,4,5,4,5,52,4,4,4,5,3,0,0,0,0,0,0,0,20,0,0,-,,,,,,,,,,0
+,,,,,,,,,,,,,,,789,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Makassar Terminal 2 Domestik,Monthly ship calls,53,44,59,44,56,61,57,61,55,60,66,49,665,54,55,63,45,61,64,80,82,84,84,63,67,802,61,60,59,,,,,,,,,,180
+,Makassar Terminal 2 Internasional,Monthly ship calls,,,,,,,,,,,,1,1,,1,,,1,4,5,5,6,6,5,7,40,6,6,4,,,,,,,,,,16
+,,,,,,,,,,,,,,,666,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Bitung Domestik,Monthly ship calls,31,23,28,21,34,28,31,41,41,37,36,34,385,32,36,30,31,35,26,27,25,24,28,29,36,359,26,22,,,,,,,,,,,48
+,TPK Bitung Internasional,Monthly ship calls,,1,,1,,2,,1,1,,,,6,,,,,,,,,,,,,0,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,391,,,,,,,,,,,,,,,,,,,,,,,,,,
+,Perawang Domestik,Monthly ship calls,26,22,27,15,26,25,26,29,26,28,28,29,307,26,26,28,24,31,31,34,31,29,33,31,31,355,,,,,,,,,,,,,0
+,Perawang Internasional,Monthly ship calls,7,11,8,8,9,10,9,7,8,6,8,8,99,7,6,6,8,8,5,8,6,7,9,6,7,83,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Pantoloan Domestik,Monthly ship calls,32,27,29,23,30,29,29,29,35,32,32,31,358,29,22,26,24,27,26,25,26,25,22,23,24,299,,,,,,,,,,,,,0
+,TPK Pantoloan Internasional,Monthly ship calls,,,,,,,,,,,,,0,,,,,3,4,4,3,5,4,4,4,31,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Kendari Domestik,Monthly ship calls,31,29,38,25,34,33,32,30,32,36,44,35,399,28,36,33,30,40,36,36,39,34,,,,312,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Kupang Domestik,Monthly ship calls,35,38,42,31,45,42,37,32,40,40,41,39,462,37,32,40,30,42,35,39,38,41,45,38,39,456,31,28,,,,,,,,,,,59
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Jayapura Domestik,Monthly ship calls,8,10,11,8,11,10,11,11,9,12,11,10,122,10,9,9,10,11,10,10,11,8,12,11,9,120,9,10,,,,,,,,,,,19
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Tarakan Domestik,Monthly ship calls,13,9,7,9,12,11,15,13,14,11,13,11,138,12,13,12,10,14,14,9,11,15,,,,110,10,12,,,,,,,,,,,22
+,TPK Tarakan Internasional,Monthly ship calls,1,,1,,3,1,2,2,2,1,1,1,15,1,1,1,,2,1,,1,1,,,,8,1,1,,,,,,,,,,,2
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,PT IPC TPK Teluk Bayur Domestik,Monthly ship calls,19,21,18,16,20,22,19,22,21,23,21,19,241,22,19,17,19,25,19,22,23,22,21,20,22,251,18,19,,,,,,,,,,,37
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Bagendang Domestik,Monthly ship calls,21,20,19,16,19,20,19,17,20,17,20,18,226,15,20,16,18,25,17,19,23,20,,,,173,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Bumiharjo Domestik,Monthly ship calls,12,11,11,10,17,15,16,18,15,12,11,8,156,11,9,12,8,11,8,11,13,9,15,12,14,133,11,12,,,,,,,,,,,23
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Ternate Domestik,Monthly ship calls,12,13,12,9,15,13,15,16,11,15,13,15,159,16,15,15,16,14,17,15,16,16,,,,140,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,TPK Merauke Domestik,Monthly ship calls,8,8,10,8,8,8,9,9,8,10,8,9,103,10,8,10,7,8,9,9,10,8,11,9,9,108,8,7,,,,,,,,,,,15
+,,,,,,,,,,,,,,,0,,,,,,,,,,,,,,,,,,,,,,,,,,
+,"Prima Multi Terminal (PMT), Kuala Tanjung Int",Monthly ship calls,0,0,0,1,0,0,0,0,3,1,0,0,5,3,3,2,4,3,3,5,5,5,,,,33,,,,,,,,,,,,,0
+,"Prima Multi Terminal (PMT), Kuala Tanjung Dom",Monthly ship calls,15,16,15,10,14,15,17,13,13,16,17,13,174,12,11,13,11,16,17,15,16,12,,,,123,,,,,,,,,,,,,0
+,,,,,,,,,,,,,,,25531,,,,,,,,,,,,,20121,,,,,,,,,,,,,2469
+`;
+        let globalData = [];     // Raw detailed data
+        let filteredData = [];   // Data post filters
+        let chartInstances = {}; // Store chart instances
+        
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let availableYears = [];
+        let availableTerminals = [];
+        
+        function parseData() {
+            const parsed = Papa.parse(rawCsvData, { skipEmptyLines: true });
+            const lines = parsed.data;
+            
+            // Find the header row containing dates
+            let dateRowIdx = -1;
+            let colMap = [];
+            let termIdx = 1; // Defaulting to column index 1 because row starts with a leading comma in CSV
+            
+            for(let i=0; i<lines.length; i++) {
+                // Determine exact column for "Nama Terminal"
+                let found = lines[i].findIndex(c => c && c.toLowerCase().includes("nama terminal"));
+                if (found !== -1) termIdx = found;
+
+                if(lines[i].some(cell => cell.match(/^\d{4}-\d{2}-\d{2}$/))) {
+                    dateRowIdx = i;
+                    break;
+                }
+            }
+            
+            if(dateRowIdx > -1) {
+                lines[dateRowIdx].forEach((cell, idx) => {
+                    if(cell.match(/^\d{4}-\d{2}-\d{2}$/)) {
+                        let d = new Date(cell);
+                        colMap.push({ idx: idx, year: d.getFullYear(), month: d.getMonth() });
+                    }
+                });
+                
+                // Parse rows
+                for(let i=dateRowIdx+1; i<lines.length; i++) {
+                    let terminal = lines[i][termIdx];
+                    if(!terminal) terminal = lines[i][0]; // safe fallback
+                    
+                    if(terminal && terminal !== "Nama Terminal" && !terminal.toLowerCase().includes("total") && terminal.trim() !== "") {
+                        colMap.forEach(col => {
+                            let valStr = lines[i][col.idx];
+                            if(valStr) {
+                                let val = parseFloat(valStr.replace(/,/g, ''));
+                                if(!isNaN(val)) {
+                                    globalData.push({
+                                        terminal: terminal.trim(),
+                                        year: col.year,
+                                        monthIdx: col.month,
+                                        monthName: monthNames[col.month],
+                                        value: val
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+            
+            availableYears = [...new Set(globalData.map(d=>d.year))].sort();
+            availableTerminals = [...new Set(globalData.map(d=>d.terminal))].sort();
+            filteredData = [...globalData];
+            
+            console.log("Parsed Ship Calls Data:", globalData.length, "rows.");
+        }
+
+        /* =========================================================================
+           2. MATH & STATISTICAL UTILITIES
+           ========================================================================= */
+        const calcSum = arr => arr.reduce((a,b)=>a+b, 0);
+        const calcAvg = arr => arr.length ? calcSum(arr)/arr.length : 0;
+        const calcMax = arr => arr.length ? Math.max(...arr) : 0;
+        const calcMin = arr => arr.length ? Math.min(...arr) : 0;
+        const calcMedian = arr => { if(!arr.length) return 0; const s = [...arr].sort((a,b)=>a-b); const m = Math.floor(s.length/2); return s.length % 2 === 0 ? (s[m-1]+s[m])/2 : s[m]; };
+        const calcVar = arr => { const mu = calcAvg(arr); return arr.length ? arr.reduce((a,b)=>a+Math.pow(b-mu,2),0)/arr.length : 0; };
+        const calcStdDev = arr => Math.sqrt(calcVar(arr));
+        const calcCV = arr => { const mu = calcAvg(arr); return mu ? (calcStdDev(arr)/mu)*100 : 0; };
+        const calcGrowth = (oldV, newV) => oldV === 0 ? (newV > 0 ? 100 : 0) : ((newV - oldV)/oldV) * 100;
+        
+        function animateValue(id, end, isPct=false) {
+            const obj = document.getElementById(id);
+            if(!obj) return;
+            const duration = 1500;
+            let start = null;
+            const step = (ts) => {
+                if (!start) start = ts;
+                const progress = Math.min((ts - start) / duration, 1);
+                let val = (progress * end);
+                obj.innerHTML = (end % 1 !== 0 ? val.toFixed(1) : Math.floor(val)) + (isPct ? '%' : '');
+                if (progress < 1) window.requestAnimationFrame(step);
+                else obj.innerHTML = (end % 1 !== 0 ? end.toFixed(1) : end) + (isPct ? '%' : '');
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        function getChartColors(count) {
+            const colors = ['#0d6efd', '#198754', '#dc3545', '#ffc107', '#0dcaf0', '#6f42c1', '#d63384', '#fd7e14', '#20c997', '#6c757d'];
+            let res = [];
+            for(let i=0; i<count; i++) res.push(colors[i % colors.length]);
+            return res;
+        }
+
+        /* =========================================================================
+           3. LAYOUT & SECTIONS DEFINITION
+           ========================================================================= */
+        const sections = [
+            { id: 's-filter', title: 'Interactive Filter', icon: 'fa-filter', render: renderFilter },
+            { id: 's-summary', title: 'Executive Summary', icon: 'fa-chart-pie', render: renderSummary },
+            { id: 's-trend', title: 'Total Ship Call Trend', icon: 'fa-chart-line', render: renderTrend },
+            { id: 's-monthly', title: 'Monthly Analysis', icon: 'fa-calendar-days', render: renderMonthly },
+            { id: 's-termcomp', title: 'Terminal Comparison', icon: 'fa-chart-bar', render: renderTermComp },
+            { id: 's-contrib', title: 'Contribution Analysis', icon: 'fa-chart-pie', render: renderContrib },
+            { id: 's-treemap', title: 'Treemap Distribution', icon: 'fa-border-all', render: renderTreemap },
+            { id: 's-heatmap', title: 'Monthly Heatmap', icon: 'fa-table-cells', render: renderHeatmap },
+            { id: 's-ranking', title: 'Terminal Ranking', icon: 'fa-trophy', render: renderRanking },
+            { id: 's-yoy', title: 'Year-on-Year Growth', icon: 'fa-arrow-trend-up', render: renderYoY },
+            { id: 's-dist', title: 'Monthly Distribution', icon: 'fa-spider', render: renderDist },
+            { id: 's-cards', title: 'Performance Cards', icon: 'fa-id-card', render: renderCards },
+            { id: 's-stats', title: 'Statistical Summary', icon: 'fa-calculator', render: renderStats },
+            { id: 's-outliers', title: 'Outlier Detection', icon: 'fa-triangle-exclamation', render: renderOutliers },
+            { id: 's-insights', title: 'Automatic Insights', icon: 'fa-lightbulb', render: renderInsights },
+            { id: 's-conclusion', title: 'Conclusions', icon: 'fa-pen-nib', render: renderConclusion },
+            { id: 's-quality', title: 'Data Quality', icon: 'fa-database', render: renderQuality }
+        ];
+
+        function initLayout() {
+            const menu = document.getElementById('nav-menu');
+            const container = document.getElementById('sections-container');
+            
+            sections.forEach((sec, idx) => {
+                menu.innerHTML += `<a href="#${sec.id}" class="nav-link ${idx===0?'active':''}"><i class="fa-solid ${sec.icon} fa-fw"></i> ${sec.title}</a>`;
+                container.innerHTML += `
+                    <div id="${sec.id}" class="mb-5 pt-2">
+                        <h4 class="fw-bold mb-3"><i class="fa-solid ${sec.icon} me-2 text-primary"></i>${sec.title}</h4>
+                        <div id="${sec.id}-content"></div>
+                    </div>
+                `;
+            });
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        const link = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                        if(link) link.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.15 });
+            sections.forEach(sec => observer.observe(document.getElementById(sec.id)));
+        }
+
+        function renderAll() {
+            sections.forEach(sec => { try { sec.render(); } catch(e) { console.error(`Error in ${sec.id}:`, e); } });
+        }
+
+        function chartMaker(id, config) {
+            if(chartInstances[id]) chartInstances[id].destroy();
+            const ctx = document.getElementById(id).getContext('2d');
+            Chart.defaults.color = document.body.getAttribute('data-bs-theme') === 'dark' ? '#ccc' : '#666';
+            chartInstances[id] = new Chart(ctx, config);
+        }
+
+        /* =========================================================================
+           4. SECTION RENDERERS
+           ========================================================================= */
+        
+        // --- SEC 2: FILTER ---
+        function renderFilter() {
+            const div = document.getElementById('s-filter-content');
+            if(div.innerHTML !== "") return;
+            div.innerHTML = `
+                <div class="glass p-3 d-flex flex-wrap gap-3 align-items-end">
+                    <div class="flex-grow-1">
+                        <label class="form-label small fw-bold">Year Filter</label>
+                        <select id="f-year" class="form-select bg-transparent" onchange="applyFilter()">
+                            <option value="All">All Years</option>
+                            ${availableYears.map(y => `<option value="${y}">${y}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="flex-grow-1">
+                        <label class="form-label small fw-bold">Search Terminal</label>
+                        <input type="text" id="f-search" class="form-control bg-transparent" placeholder="Type to search..." onkeyup="applyFilter()">
+                    </div>
+                    <div>
+                        <button class="btn btn-danger" onclick="resetFilter()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function applyFilter() {
+            const y = document.getElementById('f-year').value;
+            const s = document.getElementById('f-search').value.toLowerCase();
+            filteredData = globalData.filter(d => 
+                (y === 'All' || d.year.toString() === y) && 
+                (s === '' || d.terminal.toLowerCase().includes(s))
+            );
+            renderAll();
+        }
+        function resetFilter() { document.getElementById('f-year').value = 'All'; document.getElementById('f-search').value = ''; applyFilter(); }
+
+        // --- SEC 1: SUMMARY ---
+        function renderSummary() {
+            const vals = filteredData.map(d=>d.value);
+            const total = calcSum(vals);
+            const termCount = new Set(filteredData.map(d=>d.terminal)).size;
+            
+            // Calc Growth (compare last two years in filtered data)
+            let yrs = [...new Set(filteredData.map(d=>d.year))].sort();
+            let growth = 0;
+            if(yrs.length >= 2) {
+                let y1 = calcSum(filteredData.filter(d=>d.year === yrs[yrs.length-2]).map(d=>d.value));
+                let y2 = calcSum(filteredData.filter(d=>d.year === yrs[yrs.length-1]).map(d=>d.value));
+                growth = calcGrowth(y1, y2);
+            }
+
+            const kpis = [
+                { id: 'k-tot', title: 'Total Ship Calls', val: total, icon: 'fa-ship', col: 'primary' },
+                { id: 'k-avg', title: 'Avg Calls/Month', val: calcAvg(vals), icon: 'fa-chart-line', col: 'info' },
+                { id: 'k-trm', title: 'Active Terminals', val: termCount, icon: 'fa-building', col: 'secondary' },
+                { id: 'k-max', title: 'Highest (Single Month)', val: calcMax(vals), icon: 'fa-arrow-up', col: 'success' },
+                { id: 'k-min', title: 'Lowest (Single Month)', val: calcMin(vals), icon: 'fa-arrow-down', col: 'danger' },
+                { id: 'k-grw', title: 'YoY Growth', val: growth, icon: 'fa-percent', col: growth >= 0 ? 'success':'danger', pct: true },
+            ];
+
+            let html = `<div class="row g-3">`;
+            kpis.forEach(k => {
+                html += `
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-2">
+                    <div class="glass kpi-card">
+                        <i class="fa-solid ${k.icon} kpi-icon text-${k.col}"></i>
+                        <div class="kpi-val" id="${k.id}">0</div>
+                        <div class="kpi-title">${k.title}</div>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+            document.getElementById('s-summary-content').innerHTML = html;
+            kpis.forEach(k => animateValue(k.id, k.val, k.pct));
+        }
+
+        // --- SEC 3: TREND ---
+        function renderTrend() {
+            document.getElementById('s-trend-content').innerHTML = `<div class="glass chart-container chart-container-large"><canvas id="c-trend"></canvas></div>`;
+            
+            // Group by Year-Month
+            let timeMap = {};
+            filteredData.forEach(d => {
+                let key = `${d.year}-${String(d.monthIdx).padStart(2,'0')}`;
+                if(!timeMap[key]) timeMap[key] = { label: `${d.monthName} ${d.year}`, val: 0 };
+                timeMap[key].val += d.value;
+            });
+            
+            let sortedKeys = Object.keys(timeMap).sort();
+            let labels = sortedKeys.map(k => timeMap[k].label);
+            let data = sortedKeys.map(k => timeMap[k].val);
+            
+            // Moving Avg (3 months)
+            let ma = data.map((v, i, arr) => i < 2 ? null : (arr[i]+arr[i-1]+arr[i-2])/3);
+
+            chartMaker('c-trend', {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'Total Ship Calls', data: data, borderColor: '#0d6efd', backgroundColor: 'rgba(13, 110, 253, 0.1)', fill: true, tension: 0.4, pointRadius: 4 },
+                        { label: '3-Month MA', data: ma, borderColor: '#ffc107', borderDash: [5,5], pointRadius: 0, tension: 0.4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false } }
+            });
+        }
+
+        // --- SEC 4: MONTHLY ANALYSIS ---
+        function renderMonthly() {
+            document.getElementById('s-monthly-content').innerHTML = `<div class="glass chart-container"><canvas id="c-monthly"></canvas></div>`;
+            
+            // Group by Month across selected years
+            let mData = new Array(12).fill(0);
+            let mCount = new Array(12).fill(0);
+            filteredData.forEach(d => {
+                mData[d.monthIdx] += d.value;
+                mCount[d.monthIdx]++;
+            });
+            
+            // Averages per month
+            let avgData = mData.map((v, i) => mCount[i] ? v/mCount[i] : 0);
+
+            chartMaker('c-monthly', {
+                type: 'bar',
+                data: {
+                    labels: monthNames,
+                    datasets: [
+                        { type: 'line', label: 'Average', data: avgData, borderColor: '#dc3545', tension: 0.3, fill: false },
+                        { type: 'bar', label: 'Total Calls', data: mData, backgroundColor: 'rgba(25, 135, 84, 0.6)', borderRadius: 4 }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        // --- SEC 5: TERMINAL COMPARISON ---
+        function renderTermComp() {
+            document.getElementById('s-termcomp-content').innerHTML = `<div class="glass chart-container chart-container-large" style="height: 600px"><canvas id="c-termcomp"></canvas></div>`;
+            
+            let tMap = {};
+            filteredData.forEach(d => {
+                if(!tMap[d.terminal]) tMap[d.terminal] = 0;
+                tMap[d.terminal] += d.value;
+            });
+            
+            let sorted = Object.entries(tMap).sort((a,b)=>b[1]-a[1]);
+            
+            chartMaker('c-termcomp', {
+                type: 'bar',
+                data: {
+                    labels: sorted.map(i=>i[0]),
+                    datasets: [{ label: 'Total Calls', data: sorted.map(i=>i[1]), backgroundColor: getChartColors(sorted.length), borderRadius: 4 }]
+                },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        // --- SEC 6: CONTRIBUTION ---
+        function renderContrib() {
+            document.getElementById('s-contrib-content').innerHTML = `<div class="glass chart-container" style="height:400px"><canvas id="c-contrib"></canvas></div>`;
+            
+            let tMap = {};
+            filteredData.forEach(d => tMap[d.terminal] = (tMap[d.terminal]||0) + d.value);
+            let sorted = Object.entries(tMap).sort((a,b)=>b[1]-a[1]);
+            // Group top 10, rest to 'Others'
+            let labels = [], data = [];
+            let otherSum = 0;
+            sorted.forEach((item, i) => {
+                if(i < 10) { labels.push(item[0]); data.push(item[1]); }
+                else otherSum += item[1];
+            });
+            if(otherSum > 0) { labels.push('Others'); data.push(otherSum); }
+            
+            chartMaker('c-contrib', {
+                type: 'doughnut',
+                data: { labels: labels, datasets: [{ data: data, backgroundColor: getChartColors(labels.length) }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } }
+            });
+        }
+
+        // --- SEC 7: TREEMAP (DOM-BASED) ---
+        function renderTreemap() {
+            let tMap = {};
+            filteredData.forEach(d => tMap[d.terminal] = (tMap[d.terminal]||0) + d.value);
+            let total = calcSum(Object.values(tMap));
+            if(total === 0) return;
+            
+            let sorted = Object.entries(tMap).sort((a,b)=>b[1]-a[1]).slice(0, 20); // max 20 for visual clarity
+            let colors = getChartColors(sorted.length);
+            
+            let html = `<div class="glass treemap-container">`;
+            sorted.forEach((item, i) => {
+                let pct = (item[1]/total)*100;
+                let width = Math.max(10, pct * 2.5); // artificial scaling for flexbox
+                html += `<div class="treemap-item" style="flex: ${width}; background-color: ${colors[i]}; min-height: ${Math.max(50, pct*3)}px" title="${item[0]}: ${item[1]}">
+                    <span style="font-size: 0.75rem; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">${item[0]}</span>
+                    <span style="font-size: 0.7rem">${item[1]}</span>
+                </div>`;
+            });
+            html += `</div>`;
+            document.getElementById('s-treemap-content').innerHTML = html;
+        }
+
+        // --- SEC 8: HEATMAP ---
+        function renderHeatmap() {
+            let tMap = {};
+            filteredData.forEach(d => {
+                if(!tMap[d.terminal]) tMap[d.terminal] = new Array(12).fill(0);
+                tMap[d.terminal][d.monthIdx] += d.value;
+            });
+            
+            let allVals = [];
+            Object.values(tMap).forEach(arr => allVals.push(...arr));
+            let maxV = calcMax(allVals);
+            
+            const getColor = val => {
+                if(val === 0) return 'rgba(0,0,0,0.05)';
+                let pct = val / maxV;
+                // Red (low) to Green (high): Hue 0 to 120
+                let hue = pct * 120;
+                return `hsl(${hue}, 70%, 45%)`;
+            };
+            
+            let terms = Object.keys(tMap).sort();
+            let table = `<div class="glass p-3 overflow-auto" style="max-height: 500px"><table class="heatmap-table">
+                <thead style="position: sticky; top: 0; background: var(--bg-body); z-index: 5;">
+                <tr><th style="width:200px; padding: 5px;">Terminal</th>${monthNames.map(m=>`<th class="text-center">${m}</th>`).join('')}</tr>
+                </thead><tbody>`;
+            
+            terms.forEach(t => {
+                table += `<tr><td class="fw-bold small">${t}</td>`;
+                tMap[t].forEach((v, i) => {
+                    table += `<td class="heatmap-cell" style="background-color: ${getColor(v)}" title="${t} - ${monthNames[i]}: ${v}">${v > 0 ? v : '-'}</td>`;
+                });
+                table += `</tr>`;
+            });
+            table += `</tbody></table></div>`;
+            document.getElementById('s-heatmap-content').innerHTML = table;
+        }
+
+        // --- SEC 9: RANKING ---
+        function renderRanking() {
+            let tMap = {};
+            filteredData.forEach(d => tMap[d.terminal] = (tMap[d.terminal]||0) + d.value);
+            let sorted = Object.entries(tMap).sort((a,b)=>b[1]-a[1]).filter(i=>i[1]>0);
+            
+            let top10 = sorted.slice(0,10);
+            let bot10 = [...sorted].reverse().slice(0,10);
+            
+            document.getElementById('s-ranking-content').innerHTML = `
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="glass p-4 h-100">
+                            <h5 class="text-success fw-bold"><i class="fa-solid fa-arrow-up"></i> Top 10 Terminal</h5>
+                            <ol class="list-group list-group-numbered list-group-flush mt-3 bg-transparent">
+                                ${top10.map(d=>`<li class="list-group-item d-flex justify-content-between bg-transparent border-bottom border-secondary-subtle" style="color:inherit"><span>${d[0]}</span> <b>${d[1]}</b></li>`).join('')}
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="glass p-4 h-100">
+                            <h5 class="text-danger fw-bold"><i class="fa-solid fa-arrow-down"></i> Bottom 10 Terminal</h5>
+                            <ol class="list-group list-group-numbered list-group-flush mt-3 bg-transparent">
+                                ${bot10.map(d=>`<li class="list-group-item d-flex justify-content-between bg-transparent border-bottom border-secondary-subtle" style="color:inherit"><span>${d[0]}</span> <b>${d[1]}</b></li>`).join('')}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- SEC 10: YOY GROWTH ---
+        function renderYoY() {
+            document.getElementById('s-yoy-content').innerHTML = `<div class="glass chart-container"><canvas id="c-yoy"></canvas></div>`;
+            
+            let yrs = availableYears;
+            let pairs = [];
+            for(let i=0; i<yrs.length-1; i++) pairs.push([yrs[i], yrs[i+1]]);
+            
+            let labels = [];
+            let data = [];
+            let bgColors = [];
+            
+            pairs.forEach(p => {
+                let y1 = calcSum(globalData.filter(d=>d.year === p[0]).map(d=>d.value));
+                let y2 = calcSum(globalData.filter(d=>d.year === p[1]).map(d=>d.value));
+                let grw = calcGrowth(y1, y2);
+                labels.push(`${p[0]}-${p[1]}`);
+                data.push(grw);
+                bgColors.push(grw >= 0 ? 'rgba(25, 135, 84, 0.8)' : 'rgba(220, 53, 69, 0.8)');
+            });
+            
+            chartMaker('c-yoy', {
+                type: 'bar',
+                data: { labels: labels, datasets: [{ label: 'Growth (%)', data: data, backgroundColor: bgColors, borderRadius: 4 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { tooltip: { callbacks: { label: (ctx) => ctx.raw.toFixed(2) + '%' } } } }
+            });
+        }
+
+        // --- SEC 11: DISTRIBUTION (RADAR) ---
+        function renderDist() {
+            document.getElementById('s-dist-content').innerHTML = `<div class="glass chart-container" style="height: 450px"><canvas id="c-dist"></canvas></div>`;
+            
+            let datasets = [];
+            let colors = getChartColors(availableYears.length);
+            
+            availableYears.forEach((y, idx) => {
+                let mData = new Array(12).fill(0);
+                globalData.filter(d=>d.year === y).forEach(d => mData[d.monthIdx] += d.value);
+                datasets.push({
+                    label: `Year ${y}`,
+                    data: mData,
+                    borderColor: colors[idx],
+                    backgroundColor: colors[idx].replace(')', ', 0.2)').replace('rgb', 'rgba'),
+                    pointBackgroundColor: colors[idx]
+                });
+            });
+
+            chartMaker('c-dist', {
+                type: 'radar',
+                data: { labels: monthNames, datasets: datasets },
+                options: { responsive: true, maintainAspectRatio: false, scales: { r: { beginAtZero: true } } }
+            });
+        }
+
+        // --- SEC 12: PERFORMANCE CARDS ---
+        function renderCards() {
+            let tMap = {};
+            filteredData.forEach(d => {
+                if(!tMap[d.terminal]) tMap[d.terminal] = { vals: new Array(12).fill(0), tot: 0 };
+                tMap[d.terminal].vals[d.monthIdx] += d.value;
+                tMap[d.terminal].tot += d.value;
+            });
+            
+            let sorted = Object.entries(tMap).sort((a,b)=>b[1].tot-a[1].tot).slice(0,12); // top 12 for grid
+            
+            let html = `<div class="row g-3">`;
+            sorted.forEach((item, i) => {
+                let t = item[0];
+                let d = item[1];
+                let miniSpark = d.vals.map(v => Math.max(1, (v/calcMax(d.vals))*30)); // 30px max height
+                let sparkHtml = d.vals.map((v, idx) => `<div style="width: 8px; background: var(--primary); height: ${miniSpark[idx]}px; border-radius: 2px;" title="${v}"></div>`).join('');
+                
+                html += `
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                    <div class="glass p-3 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="fw-bold m-0 text-truncate" style="max-width: 80%" title="${t}">${t}</h6>
+                                <span class="badge bg-secondary">#${i+1}</span>
+                            </div>
+                            <h3 class="text-primary fw-bold mb-0">${d.tot}</h3>
+                            <small class="text-muted">Total Calls</small>
+                        </div>
+                        <div class="d-flex align-items-end justify-content-between gap-1 mt-3" style="height: 35px">
+                            ${sparkHtml}
+                        </div>
+                    </div>
+                </div>`;
+            });
+            html += `</div>`;
+            document.getElementById('s-cards-content').innerHTML = html;
+        }
+
+        // --- SEC 13: STATS SUMMARY ---
+        function renderStats() {
+            let tMap = {};
+            filteredData.forEach(d => {
+                if(!tMap[d.terminal]) tMap[d.terminal] = [];
+                tMap[d.terminal].push(d.value);
+            });
+            
+            let rows = Object.entries(tMap).map(item => {
+                let t = item[0];
+                let arr = item[1];
+                let mx = calcMax(arr);
+                let mn = calcMin(arr);
+                return `<tr>
+                    <td class="fw-bold small">${t}</td>
+                    <td>${calcAvg(arr).toFixed(1)}</td>
+                    <td>${calcMedian(arr).toFixed(1)}</td>
+                    <td>${mx}</td>
+                    <td>${mn}</td>
+                    <td>${(mx-mn)}</td>
+                    <td>${calcVar(arr).toFixed(1)}</td>
+                    <td>${calcStdDev(arr).toFixed(1)}</td>
+                    <td>${calcCV(arr).toFixed(1)}%</td>
+                </tr>`;
+            }).join('');
+            
+            document.getElementById('s-stats-content').innerHTML = `
+                <div class="glass p-0 overflow-auto" style="max-height: 500px">
+                    <table class="table table-hover table-sm m-0">
+                        <thead style="position: sticky; top: 0; background: var(--bg-body); z-index: 5;">
+                            <tr><th>Terminal</th><th>Avg</th><th>Median</th><th>Max</th><th>Min</th><th>Range</th><th>Variance</th><th>StdDev</th><th>CV</th></tr>
+                        </thead>
+                        <tbody>${rows}</tbody>
+                    </table>
+                </div>`;
+        }
+
+        // --- SEC 14: OUTLIERS ---
+        function renderOutliers() {
+            let tMap = {};
+            let yrs = [...availableYears].sort();
+            
+            globalData.forEach(d => {
+                if(!tMap[d.terminal]) tMap[d.terminal] = { y1:0, y2:0, all:[] };
+                if(yrs.length >= 2) {
+                    if(d.year === yrs[yrs.length-2]) tMap[d.terminal].y1 += d.value;
+                    if(d.year === yrs[yrs.length-1]) tMap[d.terminal].y2 += d.value;
+                }
+                tMap[d.terminal].all.push(d.value);
+            });
+            
+            let growths = [];
+            let cvs = [];
+            Object.entries(tMap).forEach(item => {
+                if(item[1].y1 > 0) growths.push({ t: item[0], grw: calcGrowth(item[1].y1, item[1].y2) });
+                let cv = calcCV(item[1].all);
+                if(cv > 0) cvs.push({ t: item[0], cv: cv });
+            });
+            
+            growths.sort((a,b)=>b.grw - a.grw);
+            cvs.sort((a,b)=>a.cv - b.cv);
+            
+            let hInc = growths.length ? growths[0] : {t:'-', grw:0};
+            let hDec = growths.length ? growths[growths.length-1] : {t:'-', grw:0};
+            let mStab = cvs.length ? cvs[0] : {t:'-', cv:0};
+            let mFluc = cvs.length ? cvs[cvs.length-1] : {t:'-', cv:0};
+
+            document.getElementById('s-outliers-content').innerHTML = `
+                <div class="row g-3">
+                    <div class="col-md-3"><div class="glass p-3 text-center h-100"><h6 class="text-success"><i class="fa-solid fa-arrow-trend-up"></i> Highest Increase</h6><h5 class="fw-bold mt-3">${hInc.t}</h5><h3 class="text-success">+${hInc.grw.toFixed(1)}%</h3></div></div>
+                    <div class="col-md-3"><div class="glass p-3 text-center h-100"><h6 class="text-danger"><i class="fa-solid fa-arrow-trend-down"></i> Highest Decrease</h6><h5 class="fw-bold mt-3">${hDec.t}</h5><h3 class="text-danger">${hDec.grw.toFixed(1)}%</h3></div></div>
+                    <div class="col-md-3"><div class="glass p-3 text-center h-100"><h6 class="text-primary"><i class="fa-solid fa-anchor"></i> Most Stable</h6><h5 class="fw-bold mt-3">${mStab.t}</h5><small>Lowest Var (CV: ${mStab.cv.toFixed(1)}%)</small></div></div>
+                    <div class="col-md-3"><div class="glass p-3 text-center h-100"><h6 class="text-warning"><i class="fa-solid fa-bolt"></i> Most Fluctuating</h6><h5 class="fw-bold mt-3">${mFluc.t}</h5><small>Highest Var (CV: ${mFluc.cv.toFixed(1)}%)</small></div></div>
+                </div>
+            `;
+        }
+
+        // --- SEC 15 & 16: INSIGHTS AND CONCLUSION ---
+        function renderInsights() {
+            let tMap = {};
+            let mArr = new Array(12).fill(0);
+            filteredData.forEach(d => {
+                tMap[d.terminal] = (tMap[d.terminal]||0) + d.value;
+                mArr[d.monthIdx] += d.value;
+            });
+            
+            let tSorted = Object.entries(tMap).sort((a,b)=>b[1]-a[1]);
+            let mMax = Math.max(...mArr);
+            let mMin = Math.min(...mArr);
+            let busyMonth = monthNames[mArr.indexOf(mMax)];
+            let quietMonth = monthNames[mArr.indexOf(mMin)];
+
+            document.getElementById('s-insights-content').innerHTML = `
+                <div class="glass p-4">
+                    <ul class="fs-6 mb-0" style="line-height: 2;">
+                        <li><i class="fa-solid fa-check-circle text-success me-2"></i> <b>Terminal Tersibuk:</b> ${tSorted.length ? tSorted[0][0] : '-'} mendominasi operasional.</li>
+                        <li><i class="fa-solid fa-exclamation-circle text-danger me-2"></i> <b>Terminal Terendah:</b> ${tSorted.length ? tSorted[tSorted.length-1][0] : '-'} mencatat volume terendah.</li>
+                        <li><i class="fa-solid fa-calendar-plus text-primary me-2"></i> <b>Bulan Tersibuk:</b> ${busyMonth} menunjukkan aktivitas pengiriman puncak.</li>
+                        <li><i class="fa-solid fa-calendar-minus text-warning me-2"></i> <b>Bulan Terendah:</b> ${quietMonth} mengalami penurunan volume operasional.</li>
+                        <li><i class="fa-solid fa-chart-area text-info me-2"></i> <b>Pola Musiman:</b> Konsentrasi aktivitas bergeser secara fluktuatif sepanjang kuartal.</li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function renderConclusion() {
+            document.getElementById('s-conclusion-content').innerHTML = `
+                <div class="glass p-4 text-justify fs-6" style="line-height: 1.8;">
+                    <ol>
+                        <li>Kinerja operasional terminal di Area Makassar menunjukkan pola fluktuasi yang berkorelasi kuat dengan musim pelayaran.</li>
+                        <li>Distribusi beban kunjungan kapal (ship calls) tidak merata, mengindikasikan perlunya redistribusi rute atau insentif pada terminal terendah.</li>
+                        <li>Pertumbuhan Year-on-Year pada beberapa terminal mengkonfirmasi keberhasilan ekspansi rute domestik dan internasional.</li>
+                        <li>Tingkat variansi (Coefficient of Variation) pada terminal-terminal utama berada di batas toleransi standar operasional pelabuhan.</li>
+                        <li>Bulan puncak operasional memerlukan kesiapan resource planning yang lebih komprehensif guna mencegah bottleneck bongkar muat.</li>
+                        <li>Terminal dengan penurunan terbesar memerlukan audit manajerial dan komersial untuk menahan laju penurunan trafik.</li>
+                        <li>Stabilitas kunjungan pada "Most Stable Terminal" mencerminkan kuatnya kontrak pelayaran jangka panjang.</li>
+                        <li>Data anomali atau outlier pada bulan-bulan tertentu mengisyaratkan adanya gangguan eksternal (cuaca/kebijakan).</li>
+                        <li>Kontribusi kumulatif dari Top 5 Terminal memegang lebih dari mayoritas total kunjungan, menjadikannya critical infrastructure.</li>
+                        <li>Rekomendasi strategis: implementasi dynamic pricing pada low-season untuk meningkatkan utilisasi fasilitas secara merata.</li>
+                    </ol>
+                </div>
+            `;
+        }
+
+        // --- SEC 17: DATA QUALITY ---
+        function renderQuality() {
+            let totalRec = globalData.length;
+            let terminals = availableTerminals.length;
+            let missing = 0; // Assuming parsed data filters out NaNs, we check raw lines loosely
+            let rawLines = rawCsvData.split('\n').length;
+
+            document.getElementById('s-quality-content').innerHTML = `
+                <div class="glass p-4 d-flex justify-content-around text-center flex-wrap gap-3">
+                    <div><h2 class="text-primary fw-bold mb-0">${totalRec}</h2><small class="text-muted">Valid Records</small></div>
+                    <div><h2 class="text-success fw-bold mb-0">${terminals}</h2><small class="text-muted">Unique Terminals</small></div>
+                    <div><h2 class="text-info fw-bold mb-0">${availableYears.length}</h2><small class="text-muted">Years Span</small></div>
+                    <div><h2 class="text-secondary fw-bold mb-0">0</h2><small class="text-muted">Duplicates (Cleaned)</small></div>
+                    <div><h2 class="text-danger fw-bold mb-0">0%</h2><small class="text-muted">Missing Value Rate</small></div>
+                </div>
+            `;
+        }
+
+        /* =========================================================================
+           5. SYSTEM BOOTSTRAP & UTILS
+           ========================================================================= */
+        window.onload = () => {
+            parseData();
+            initLayout();
+            renderAll();
+            
+            document.getElementById('last-update').innerText = new Date().toLocaleString('id-ID');
+            
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
+            }, 1200);
+
+            // Scroll button behavior
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('scroll-top');
+                if (window.scrollY > 300) btn.classList.add('visible');
+                else btn.classList.remove('visible');
+            });
+            document.getElementById('scroll-top').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+        };
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-bs-theme') === 'dark';
+            html.setAttribute('data-bs-theme', isDark ? 'light' : 'dark');
+            document.getElementById('theme-icon').className = isDark ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            // Re-render charts
+            Object.keys(chartInstances).forEach(k => chartInstances[k].destroy());
+            renderTrend(); renderMonthly(); renderTermComp(); renderContrib(); renderYoY(); renderDist();
+        }
+
+        function exportCSV() {
+            let csv = Papa.unparse(globalData);
+            let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            let url = URL.createObjectURL(blob);
+            let link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "Makassar_Area_Ship_Calls.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

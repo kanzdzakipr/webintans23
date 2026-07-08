@@ -878,6 +878,197 @@
           text-align: justify;
         }
       }
+
+      /* Menu show-hide profil dan dashboard operasional Makassar */
+      .merged-dashboard-shell {
+        width: min(1600px, 94vw);
+        margin: 130px auto 70px;
+        display: block;
+      }
+
+      .merged-sidebar {
+        position: sticky;
+        top: 112px;
+        z-index: 20;
+        margin-bottom: 18px;
+        overflow-x: auto;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+        scrollbar-width: thin;
+      }
+
+      .merged-sidebar-header {
+        display: none;
+      }
+
+      .merged-sidebar-header h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0;
+      }
+
+      .merged-sidebar-header p {
+        margin: 6px 0 0;
+        color: #cbd5e1;
+        font-size: 12px;
+      }
+
+      .merged-menu {
+        display: flex;
+        gap: 8px;
+        min-width: max-content;
+        padding: 8px;
+      }
+
+      .merged-menu-button {
+        width: auto;
+        flex: 1 0 auto;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        color: #475569;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      .merged-menu-button i {
+        width: 18px;
+        flex: 0 0 18px;
+        color: #2563eb;
+        text-align: center;
+      }
+
+      .merged-menu-button:hover,
+      .merged-menu-button.active {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+
+      .merged-content {
+        min-width: 0;
+      }
+
+      .merged-panel {
+        display: none;
+      }
+
+      .merged-panel.active {
+        display: block;
+      }
+
+      .merged-panel-card {
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      .merged-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 24px;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .merged-panel-header h2 {
+        margin: 0;
+        color: #0f172a;
+        font-size: 20px;
+        letter-spacing: 0;
+      }
+
+      .merged-panel-header p {
+        margin: 4px 0 0;
+        color: #64748b;
+        font-size: 12px;
+      }
+
+      .merged-panel-header > i {
+        color: #2563eb;
+        font-size: 20px;
+      }
+
+      .merged-frame {
+        width: 100%;
+        height: 82vh;
+        min-height: 720px;
+        display: block;
+        border: 0;
+        background: #f8fafc;
+      }
+
+      #panel-profil .page-title {
+        margin-top: 0;
+      }
+
+      #panel-profil .hero-section {
+        width: 100%;
+        right: auto;
+        left: auto;
+        margin-right: 0;
+        margin-left: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      #panel-profil .layout-container {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+      }
+
+      #panel-profil .metrics-container {
+        gap: 20px;
+      }
+
+      #panel-profil .metric-card {
+        width: auto;
+        flex: 1 1 320px;
+      }
+
+      @media (max-width: 980px) {
+        .merged-dashboard-shell {
+          margin-top: 120px;
+        }
+
+        .merged-sidebar {
+          top: 104px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .merged-dashboard-shell {
+          width: calc(100% - 24px);
+        }
+
+        .merged-menu-button {
+          flex-basis: auto;
+          justify-content: flex-start;
+          text-align: left;
+        }
+
+        .merged-frame {
+          min-height: 640px;
+        }
+      }
+
       /* Gaya untuk pesan dari User */
       .user-msg {
         background: #00abf0;
@@ -942,6 +1133,38 @@
       </div>
     </div>
 
+    <div class="merged-dashboard-shell">
+      <aside class="merged-sidebar">
+        <div class="merged-sidebar-header">
+          <h2>Profil TPK</h2>
+          <p>Profil dan dashboard operasional Makassar</p>
+        </div>
+        <div class="merged-menu" role="tablist" aria-label="Menu dashboard gabungan">
+          <button class="merged-menu-button active" type="button" data-panel="panel-profil" role="tab" aria-selected="true">
+            <i class="fa-solid fa-house"></i>
+            <span>Profil TPK Makassar</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-yor" role="tab" aria-selected="false">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <span>Yard Occupancy Ratio</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-kunjungan" role="tab" aria-selected="false">
+            <i class="fa-solid fa-ship"></i>
+            <span>Kunjungan Kapal</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-kinerja" role="tab" aria-selected="false">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Kinerja Makassar New Port</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-terminal-1" role="tab" aria-selected="false">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Operasional Terminal 1</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="merged-content">
+        <section class="merged-panel active" id="panel-profil" role="tabpanel">
     <h1 class="page-title">PROFIL TPK MAKASSAR NEW PORT</h1>
     <!-- HERO HEADER SECTION -->
     <div class="hero-section">
@@ -1187,6 +1410,62 @@
       </div>
     </div>
 
+        </section>
+
+        <section class="merged-panel" id="panel-yor" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Yard Occupancy Ratio (YOR)</h2>
+                <p>Analisis kapasitas dan okupansi lapangan penumpukan Makassar New Port.</p>
+              </div>
+              <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="Dashboard Yard Occupancy Ratio Makassar" src="YOR-makassar.html"></iframe>
+          </div>
+        </section>
+
+        <section class="merged-panel" id="panel-kunjungan" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Kunjungan Kapal Makassar</h2>
+                <p>Dashboard analisis performa kunjungan dan pelayanan kapal.</p>
+              </div>
+              <i class="fa-solid fa-ship" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="Dashboard Kunjungan Kapal Makassar" src="kunjungan-kapal-makassar.html"></iframe>
+          </div>
+        </section>
+
+        <section class="merged-panel" id="panel-kinerja" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Kinerja Makassar New Port</h2>
+                <p>Dashboard kinerja operasional utama Makassar New Port.</p>
+              </div>
+              <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="Dashboard Kinerja Makassar New Port" src="kinerja-makassar.html"></iframe>
+          </div>
+        </section>
+
+        <section class="merged-panel" id="panel-terminal-1" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Operasional Terminal 1</h2>
+                <p>Dashboard availability dan utilization peralatan Terminal 1.</p>
+              </div>
+              <i class="fa-solid fa-truck-fast" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="Dashboard Operasional Terminal 1" src="operasional-makassar.html"></iframe>
+          </div>
+        </section>
+      </main>
+    </div>
+
     <div class="bottom-hill"></div>
 
     <div class="chat-widget-container">
@@ -1218,6 +1497,33 @@
       </div>
     </div>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuButtons = document.querySelectorAll(".merged-menu-button");
+        const panels = document.querySelectorAll(".merged-panel");
+
+        menuButtons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            const targetPanelId = button.getAttribute("data-panel");
+
+            menuButtons.forEach(function (item) {
+              const isActive = item === button;
+              item.classList.toggle("active", isActive);
+              item.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            panels.forEach(function (panel) {
+              panel.classList.toggle("active", panel.id === targetPanelId);
+            });
+
+            document.querySelector(".merged-dashboard-shell").scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          });
+        });
+      });
+    </script>
     <script>
       let isChatOpen = false;
       const avatarImg = document.getElementById("avatarImg");
