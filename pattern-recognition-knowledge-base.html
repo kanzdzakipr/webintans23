@@ -13,6 +13,17 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:linear-gradient(180deg,#f8fafc 0%,#eef2ff 100%);font-family:Arial, Helvetica, sans-serif;color:var(--ink)}
+.site-navbar{display:flex;justify-content:space-between;align-items:center;gap:18px;position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);box-shadow:0 3px 12px rgba(0,0,0,.08);padding:14px 3vw}
+.site-nav-links{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.site-navbar a{text-decoration:none;font-size:11px;font-weight:700;color:#222;transition:.25s}
+.site-navbar a:hover,.site-navbar a.active{color:#00abf0}
+.site-dropdown{position:relative;display:flex;align-items:center}
+.site-dropdown-content{display:none;position:absolute;top:100%;left:0;min-width:200px;padding-top:10px;background:rgba(255,255,255,.96);box-shadow:0 8px 16px rgba(0,0,0,.1);border-radius:8px;overflow:hidden;z-index:1001}
+.site-dropdown-content a{display:block;padding:12px 16px;font-size:11px;text-align:left;border:none}
+.site-dropdown-content a:hover{background:#f1f8fc;color:#00abf0}
+.site-dropdown:hover .site-dropdown-content{display:block}
+.logout-btn{background:#dc3545;color:white!important;padding:8px 18px;border-radius:20px;box-shadow:0 4px 10px rgba(220,53,69,.2)}
+.logout-btn:hover{background:#bd2130;color:white!important}
 header{padding:24px 30px 18px;background:#111827;color:white;border-bottom:6px solid #14b8d4}
 header h1{margin:0;font-size:24px;letter-spacing:.2px}
 header p{margin:8px 0 0;color:#d1d5db;font-size:14px;max-width:1200px;line-height:1.45}
@@ -80,11 +91,38 @@ svg{font-family:Arial, Helvetica, sans-serif}
 .pathline{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0;color:#334155}
 .arrow{font-weight:900;color:#64748b}
 .figure-caption{text-align:center;font-family:Georgia, 'Times New Roman', serif;font-size:15px;margin-top:12px;color:#111827}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)} .kb-grid{grid-template-columns:1fr} header h1{font-size:20px}}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)} .kb-grid{grid-template-columns:1fr} header h1{font-size:20px} .site-navbar{align-items:flex-start;flex-direction:column} .logout-btn{align-self:flex-start}}
 @media print{header,.tabs,.controls,.no-print,button{display:none!important} body{background:white!important;-webkit-print-color-adjust:exact;print-color-adjust:exact} .card{box-shadow:none;border:none} .page{display:block!important} .tablewrap{max-height:none;overflow:visible} th{position:static}}
 </style>
 </head>
 <body>
+<nav class="site-navbar no-print">
+  <div class="site-nav-links">
+    <a href="home.html">Home</a>
+    <a href="knowledge-base.html">Knowledge Base</a>
+    <a href="#" class="active">Pattern Recognition KB</a>
+    <a href="alur-penanganan.html">Alur Penanganan Proses Petikemas</a>
+    <div class="site-dropdown">
+      <a href="#" class="dropbtn">Profil TPK &#9662;</a>
+      <div class="site-dropdown-content">
+        <a href="profil-surabaya.html">Teluk Lamong Surabaya</a>
+        <a href="profil-semarang.html">Semarang</a>
+        <a href="profil-makassar.html">Makassar New Port</a>
+        <a href="profil-IPC-TPK.html">IPC TPK</a>
+      </div>
+    </div>
+    <div class="site-dropdown">
+      <a href="#" class="dropbtn">Dokumentasi &#9662;</a>
+      <div class="site-dropdown-content">
+        <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
+        <a href="dokum-semarang.html">Semarang</a>
+        <a href="dokum-makassar.html">Makassar New Port</a>
+        <a href="dokum-ipctpk.html">IPC TPK</a>
+      </div>
+    </div>
+  </div>
+  <a href="index.html" class="logout-btn">Logout</a>
+</nav>
 <header>
   <h1>Pattern Recognition & Knowledge Base — Skripsi Kayla</h1>
   <p>Dashboard revisi: setiap entri risiko menyediakan <b>3 opsi Preventive</b>, <b>3 opsi Corrective</b>, dan <b>3 opsi Predictive</b>. Setiap opsi diberi scoring berbasis baseline operasional dan expert judgment; keputusan akhir tetap ditentukan oleh manusia/pakar/operator.</p>
