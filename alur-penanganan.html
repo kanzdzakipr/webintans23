@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aktivitas Terminal</title>
+    <title>Alur Penanganan Proses Petikemas</title>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -656,6 +656,766 @@
         width: fit-content;
         max-width: 85%;
       }
+
+      /* UI refresh */
+      :root {
+        --ink: #172033;
+        --muted: #5f6b7a;
+        --navy: #073b66;
+        --blue: #0878bd;
+        --cyan: #08a6d8;
+        --teal: #147d77;
+        --coral: #d95d50;
+        --surface: #ffffff;
+        --canvas: #f4f7fa;
+        --line: #dce4eb;
+        --shadow: 0 16px 40px rgba(25, 45, 67, 0.1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        color: var(--ink);
+        background: var(--canvas);
+      }
+
+      .navbar {
+        height: 72px;
+        padding: 0 3vw;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid rgba(220, 228, 235, 0.9);
+        box-shadow: 0 6px 24px rgba(25, 45, 67, 0.07);
+      }
+
+      .nav-links {
+        flex: 1 1 auto;
+        min-width: 0;
+        margin-right: 24px;
+        flex-wrap: nowrap;
+        gap: 4px;
+      }
+
+      .nav-links > a,
+      .dropdown .dropbtn {
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 11px;
+        border: 0 !important;
+        border-radius: 6px;
+        color: #354154;
+        white-space: nowrap;
+      }
+
+      .nav-links > a:hover,
+      .nav-links > a.active,
+      .dropdown .dropbtn:hover {
+        color: var(--blue);
+        background: #eaf5fb;
+      }
+
+      .dropdown-content {
+        top: calc(100% + 6px);
+        min-width: 220px;
+        padding: 6px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        overflow: visible;
+      }
+
+      .dropdown-content a {
+        padding: 11px 12px;
+        border-radius: 5px;
+      }
+
+      .logout-btn {
+        flex: 0 0 auto;
+        min-width: max-content;
+        padding: 9px 14px;
+        border-radius: 6px;
+        background: var(--coral);
+        box-shadow: none;
+      }
+
+      .running-text {
+        top: 72px;
+        height: 32px;
+        z-index: 900;
+        background: var(--navy);
+        font-size: 12px;
+      }
+
+      .process-hero {
+        margin-top: 104px;
+        padding: 70px max(6vw, calc((100vw - 1240px) / 2)) 62px;
+        color: #fff;
+        background: #102a43;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .process-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0 0 0 auto;
+        width: 42%;
+        background:
+          linear-gradient(rgba(16, 42, 67, 0.28), rgba(16, 42, 67, 0.28)),
+          url("aset proses penanganan/proses-pemuatan.webp") center / cover;
+        opacity: 0.24;
+        pointer-events: none;
+      }
+
+      .process-kicker {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        color: #7dd3fc;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .title {
+        position: relative;
+        z-index: 1;
+        max-width: 850px;
+        margin: 0;
+        color: #fff;
+        text-align: left;
+        font-size: clamp(36px, 5vw, 62px);
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+
+      .title-2 {
+        position: relative;
+        z-index: 1;
+        max-width: 760px;
+        margin: 20px 0 0;
+        color: #d9e6ef;
+        text-align: left;
+        font-size: 17px;
+        line-height: 1.8;
+      }
+
+      .process-overview {
+        width: min(1240px, calc(100% - 36px));
+        margin: 42px auto 32px;
+      }
+
+      .overview-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        margin-bottom: 18px;
+      }
+
+      .overview-heading h2 {
+        margin: 0;
+        color: var(--navy);
+        font-size: 28px;
+        letter-spacing: 0;
+      }
+
+      .overview-heading p {
+        max-width: 540px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.65;
+        text-align: right;
+      }
+
+      .primary-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .flow-entry {
+        min-height: 210px;
+        display: grid;
+        grid-template-columns: 1fr 180px;
+        gap: 24px;
+        align-items: center;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--blue);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: 0 10px 28px rgba(25, 45, 67, 0.08);
+      }
+
+      .flow-entry:nth-child(2) {
+        border-top-color: var(--teal);
+      }
+
+      .flow-entry h3 {
+        margin: 0 0 8px;
+        color: var(--navy);
+        font-size: 23px;
+        letter-spacing: 0;
+      }
+
+      .flow-entry p {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .flow-entry button {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 14px;
+        border: 0;
+        border-radius: 6px;
+        background: var(--blue);
+        color: #fff;
+        font-family: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .flow-entry:nth-child(2) button {
+        background: var(--teal);
+      }
+
+      .flow-entry button:hover {
+        filter: brightness(0.92);
+      }
+
+      .flow-entry img {
+        width: 180px;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+
+      .operation-zones {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .zone-item {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #f9fbfd;
+        color: #344256;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .zone-item i {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 32px;
+        border-radius: 5px;
+        color: var(--blue);
+        background: #e6f3fa;
+      }
+
+      .master-waterfall {
+        width: min(1240px, calc(100% - 36px));
+        margin: 46px auto 34px;
+      }
+
+      .waterfall-heading {
+        max-width: 820px;
+        margin-bottom: 20px;
+      }
+
+      .waterfall-heading span {
+        color: var(--blue);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .waterfall-heading h2 {
+        margin: 8px 0 10px;
+        color: var(--navy);
+        font-size: 30px;
+        line-height: 1.25;
+        letter-spacing: 0;
+      }
+
+      .waterfall-heading p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .waterfall-scroll {
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scrollbar-color: #9bb8c9 #e6edf2;
+        scrollbar-width: thin;
+      }
+
+      .waterfall-board {
+        min-width: 1120px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .waterfall-stage-head,
+      .waterfall-lane {
+        display: grid;
+        grid-template-columns: 190px repeat(6, minmax(145px, 1fr));
+      }
+
+      .waterfall-stage-head {
+        color: #fff;
+        background: var(--navy);
+      }
+
+      .waterfall-corner,
+      .stage-head {
+        min-height: 86px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.13);
+      }
+
+      .waterfall-corner {
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .stage-head small {
+        color: #7dd3fc;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .stage-head strong {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .stage-head a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .waterfall-lane {
+        border-top: 1px solid var(--line);
+      }
+
+      .lane-label {
+        min-height: 116px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--navy);
+        background: #f3f8fb;
+        border-right: 1px solid var(--line);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .lane-label i {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 32px;
+        border-radius: 5px;
+        color: var(--blue);
+        background: #dff1fa;
+      }
+
+      .waterfall-cell {
+        min-height: 116px;
+        padding: 10px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-right: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .waterfall-cell:last-child {
+        border-right: 0;
+      }
+
+      .waterfall-cell.has-step::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -7px;
+        z-index: 2;
+        width: 12px;
+        height: 12px;
+        border-top: 2px solid #86a9bc;
+        border-right: 2px solid #86a9bc;
+        transform: translateY(-50%) rotate(45deg);
+      }
+
+      .waterfall-cell:last-child::after {
+        display: none;
+      }
+
+      .master-step {
+        width: 100%;
+        min-height: 76px;
+        padding: 11px;
+        border: 1px solid #cfe0e9;
+        border-left: 4px solid var(--blue);
+        border-radius: 6px;
+        background: #f8fbfd;
+        color: #344256;
+        text-align: left;
+        font-family: inherit;
+        cursor: pointer;
+      }
+
+      .master-step:hover {
+        border-color: var(--blue);
+        background: #eef8fc;
+      }
+
+      .master-step small {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--blue);
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      .master-step strong {
+        display: block;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+
+      .master-step.secondary {
+        border-left-color: var(--teal);
+      }
+
+      .master-step.secondary small {
+        color: var(--teal);
+      }
+
+      .master-step.static-step {
+        cursor: default;
+      }
+
+      .procedure-coverage {
+        margin-top: 16px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+      }
+
+      .procedure-coverage h3 {
+        margin: 0 0 6px;
+        color: var(--navy);
+        font-size: 18px;
+      }
+
+      .procedure-coverage > p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .flow-image-index {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .flow-image-group {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #f3f8fb;
+      }
+
+      .flow-image-group h4 {
+        margin: 0 0 11px;
+        color: var(--navy);
+        font-size: 13px;
+      }
+
+      .coverage-groups {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .coverage-group {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #f9fbfd;
+      }
+
+      .coverage-group h4 {
+        margin: 0 0 11px;
+        color: #344256;
+        font-size: 12px;
+      }
+
+      .procedure-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .procedure-link {
+        padding: 6px 8px;
+        border: 1px solid #cddce5;
+        border-radius: 4px;
+        color: #435267;
+        background: #fff;
+        font-family: inherit;
+        font-size: 10px;
+        cursor: pointer;
+      }
+
+      .procedure-link:hover {
+        color: var(--blue);
+        border-color: var(--blue);
+        background: #eef8fc;
+      }
+
+      .toc-container {
+        width: min(1240px, calc(100% - 36px));
+        max-width: none;
+        margin: 32px auto 80px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .toc-header {
+        padding: 19px 25px;
+        background: var(--navy);
+        text-align: left;
+        font-size: 18px;
+      }
+
+      .toc-content {
+        max-height: 620px;
+        padding: 24px;
+      }
+
+      .toc-grid {
+        gap: 28px;
+      }
+
+      .toc-list a {
+        border-radius: 5px;
+        color: #354154;
+      }
+
+      .toc-list a:hover {
+        color: var(--blue);
+        border-left-color: var(--blue);
+        background: #eef7fb;
+      }
+
+      .toc-sub::before {
+        border-color: #b7cfdb;
+      }
+
+      .modal-content,
+      .flowchart-wrapper img,
+      .modal-dua-content,
+      .modal-dua-content img {
+        border-radius: 8px;
+      }
+
+      .modal-dua-content {
+        border: 1px solid #d9e3eb;
+      }
+
+      .modal-dua-content h3 {
+        color: var(--navy);
+      }
+
+      .modal-dua-content p {
+        border-left-color: var(--cyan);
+        border-radius: 6px;
+      }
+
+      .chat-box {
+        border-radius: 8px;
+      }
+
+      .chat-header,
+      .chat-input-area button {
+        background: var(--teal);
+      }
+
+      @media (max-width: 980px) {
+        .nav-links {
+          overflow-x: auto;
+          scrollbar-width: none;
+        }
+
+        .nav-links::-webkit-scrollbar {
+          display: none;
+        }
+
+        .primary-flow-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .operation-zones {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .coverage-groups {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        .navbar {
+          height: 64px;
+          padding: 0 52px 0 12px;
+        }
+
+        .nav-links {
+          margin-right: 0;
+        }
+
+        .nav-links > a,
+        .dropdown .dropbtn {
+          padding: 0 9px;
+          font-size: 10px;
+        }
+
+        .logout-btn {
+          position: absolute;
+          top: 14px;
+          right: 10px;
+          padding: 8px 10px;
+          font-size: 0;
+        }
+
+        .logout-btn i {
+          font-size: 13px;
+        }
+
+        .running-text {
+          top: 64px;
+          height: 30px;
+          font-size: 10px;
+        }
+
+        .process-hero {
+          margin-top: 94px;
+          padding: 54px 18px;
+        }
+
+        .process-hero::after {
+          width: 70%;
+        }
+
+        .title {
+          font-size: 36px;
+        }
+
+        .title-2 {
+          font-size: 15px;
+        }
+
+        .process-overview {
+          margin-top: 32px;
+        }
+
+        .overview-heading {
+          display: block;
+        }
+
+        .overview-heading p {
+          margin-top: 8px;
+          text-align: left;
+        }
+
+        .flow-entry {
+          grid-template-columns: 1fr;
+          padding: 22px;
+        }
+
+        .flow-entry img {
+          width: 100%;
+        }
+
+        .operation-zones {
+          grid-template-columns: 1fr;
+        }
+
+        .waterfall-heading h2 {
+          font-size: 25px;
+        }
+
+        .procedure-coverage {
+          padding: 18px;
+        }
+
+        .flow-image-index {
+          grid-template-columns: 1fr;
+        }
+
+        .coverage-groups {
+          grid-template-columns: 1fr;
+        }
+
+        .toc-content {
+          padding: 18px 14px;
+        }
+
+        .toc-grid {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .text-run {
+          animation: none;
+        }
+      }
     </style>
   </head>
 
@@ -699,12 +1459,376 @@
       </div>
     </div>
 
-    <h1 class="title">ALUR PENANGANAN PROSES PETIKEMAS</h1>
-    <h2 class="title-2">
-      Berikut adalah alur penanganan proses petikemas di Terminal Teluk Lamong
-      yang dapat membantu Anda memahami langkah-langkah operasional yang
-      dilakukan setiap harinya.
-    </h2>
+    <header class="process-hero">
+      <span class="process-kicker">
+        <i class="fa-solid fa-route"></i>
+        OPERASIONAL TERMINAL
+      </span>
+      <h1 class="title">ALUR PENANGANAN PROSES PETIKEMAS</h1>
+      <h2 class="title-2">
+        Berikut adalah alur penanganan proses petikemas di Terminal Teluk Lamong
+        yang dapat membantu Anda memahami langkah-langkah operasional yang
+        dilakukan setiap harinya.
+      </h2>
+    </header>
+
+    <section class="process-overview" aria-labelledby="overview-title">
+      <div class="overview-heading">
+        <h2 id="overview-title">Jalur Operasional Utama</h2>
+        <p>
+          Dua alur inti menghubungkan perencanaan kapal, gate, lapangan
+          penumpukan, dan kegiatan di dermaga.
+        </p>
+      </div>
+
+      <div class="primary-flow-grid">
+        <article class="flow-entry">
+          <div>
+            <h3>Proses Pemuatan</h3>
+            <p>
+              Dari rencana penyandaran dan receiving hingga petikemas dimuat ke
+              kapal dan truk keluar terminal.
+            </p>
+            <button type="button" onclick="document.querySelector('.toc-list a[href=&quot;#proses-pemuatan&quot;]').click()">
+              <i class="fa-solid fa-arrow-up-from-bracket"></i>
+              Buka Alur Pemuatan
+            </button>
+          </div>
+          <img
+            src="aset proses penanganan/proses-pemuatan.webp"
+            alt="Pratinjau flowchart proses pemuatan"
+          />
+        </article>
+
+        <article class="flow-entry">
+          <div>
+            <h3>Proses Pembongkaran</h3>
+            <p>
+              Dari penerimaan data bongkar hingga petikemas diserahkan melalui
+              gate out kepada pengguna jasa.
+            </p>
+            <button type="button" onclick="document.querySelector('.toc-list a[href=&quot;#proses-pembongkaran&quot;]').click()">
+              <i class="fa-solid fa-arrow-down-to-bracket"></i>
+              Buka Alur Pembongkaran
+            </button>
+          </div>
+          <img
+            src="aset proses penanganan/proses-pembongkaran.webp"
+            alt="Pratinjau flowchart proses pembongkaran"
+          />
+        </article>
+      </div>
+
+      <div class="operation-zones" aria-label="Area utama operasional terminal">
+        <div class="zone-item">
+          <i class="fa-solid fa-clipboard-check"></i>
+          Planning &amp; Control
+        </div>
+        <div class="zone-item">
+          <i class="fa-solid fa-archway"></i>
+          Gate
+        </div>
+        <div class="zone-item">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          Lapangan Penumpukan
+        </div>
+        <div class="zone-item">
+          <i class="fa-solid fa-ship"></i>
+          Dermaga
+        </div>
+      </div>
+    </section>
+
+    <section class="master-waterfall" aria-labelledby="waterfall-title">
+      <div class="waterfall-heading">
+        <span>MASTER FLOWCHART REPLICA</span>
+        <h2 id="waterfall-title">
+          Waterfall Aktivitas Terminal dan Area Operasional
+        </h2>
+        <p>
+          Replikasi menyeluruh ini menyatukan enam Aktivitas Terminal dari
+          Knowledge Base dengan titik kerja Planning &amp; Control, Gate,
+          Lapangan Penumpukan, dan Dermaga.
+        </p>
+      </div>
+
+      <div class="waterfall-scroll">
+        <div class="waterfall-board">
+          <div class="waterfall-stage-head">
+            <div class="waterfall-corner">Kategori / Aktivitas</div>
+            <div class="stage-head">
+              <small>AT 01</small>
+              <strong><a href="activity/aktivitas1.html">Berth Allocation</a></strong>
+            </div>
+            <div class="stage-head">
+              <small>AT 02</small>
+              <strong><a href="activity/aktivitas2.html">Manning &amp; Deployment</a></strong>
+            </div>
+            <div class="stage-head">
+              <small>AT 03</small>
+              <strong><a href="activity/aktivitas3.html">Ship Planner</a></strong>
+            </div>
+            <div class="stage-head">
+              <small>AT 04</small>
+              <strong><a href="activity/aktivitas4.html">Yard Planner</a></strong>
+            </div>
+            <div class="stage-head">
+              <small>AT 05</small>
+              <strong><a href="activity/aktivitas5.html">Ship Talker</a></strong>
+            </div>
+            <div class="stage-head">
+              <small>AT 06</small>
+              <strong><a href="activity/aktivitas6.html">Yard Talker</a></strong>
+            </div>
+          </div>
+
+          <div class="waterfall-lane">
+            <div class="lane-label">
+              <i class="fa-solid fa-clipboard-check"></i>
+              Planning &amp; Control
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step" type="button" data-flow-target="1-1">
+                <small>PERENCANAAN</small>
+                <strong>Rencana sandar dan alokasi penumpukan</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <div class="master-step static-step">
+                <small>SUMBER DAYA</small>
+                <strong>Roster, shift, dan deployment personel</strong>
+              </div>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step" type="button" data-flow-target="1-6">
+                <small>PERENCANAAN KAPAL</small>
+                <strong>Bay plan, CWP, dan sequence</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step" type="button" data-flow-target="1-4">
+                <small>ALOKASI YARD</small>
+                <strong>Blok dan slot penumpukan</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <div class="master-step static-step">
+                <small>KONTROL KAPAL</small>
+                <strong>Koordinasi instruksi sisi kapal</strong>
+              </div>
+            </div>
+            <div class="waterfall-cell">
+              <div class="master-step static-step">
+                <small>KONTROL YARD</small>
+                <strong>Monitoring job, hold, dan release</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="waterfall-lane">
+            <div class="lane-label">
+              <i class="fa-solid fa-archway"></i>
+              Gate
+            </div>
+            <div class="waterfall-cell"></div>
+            <div class="waterfall-cell has-step">
+              <div class="master-step secondary static-step">
+                <small>DEPLOYMENT GATE</small>
+                <strong>Petugas pemeriksaan dan layanan gate</strong>
+              </div>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step secondary" type="button" data-flow-target="1-2">
+                <small>ADMINISTRASI</small>
+                <strong>Request receiving dan pembayaran</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step secondary" type="button" data-flow-target="1-3">
+                <small>GATE IN</small>
+                <strong>Verifikasi dan penerimaan petikemas</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step secondary" type="button" data-flow-target="2-8">
+                <small>DELIVERY</small>
+                <strong>Truk masuk untuk pengambilan</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell">
+              <button class="master-step secondary" type="button" data-flow-target="2-10">
+                <small>GATE OUT</small>
+                <strong>Pengeluaran petikemas dari terminal</strong>
+              </button>
+            </div>
+          </div>
+
+          <div class="waterfall-lane">
+            <div class="lane-label">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              Lapangan Penumpukan
+            </div>
+            <div class="waterfall-cell"></div>
+            <div class="waterfall-cell has-step">
+              <div class="master-step static-step">
+                <small>DEPLOYMENT YARD</small>
+                <strong>Operator alat dan personel lapangan</strong>
+              </div>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step" type="button" data-flow-target="1-5">
+                <small>DATA MUAT</small>
+                <strong>Shipping Instruction dan pre-plan</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step" type="button" data-flow-target="2-6">
+                <small>YARD PLAN</small>
+                <strong>Penempatan dan operasi penumpukan</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step" type="button" data-flow-target="1-9">
+                <small>TRANSFER JOB</small>
+                <strong>Pengambilan petikemas untuk pemuatan</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell">
+              <button class="master-step" type="button" data-flow-target="2-9">
+                <small>YARD DISPATCH</small>
+                <strong>Lift-on petikemas delivery</strong>
+              </button>
+            </div>
+          </div>
+
+          <div class="waterfall-lane">
+            <div class="lane-label">
+              <i class="fa-solid fa-ship"></i>
+              Dermaga
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step secondary" type="button" data-flow-target="1-7">
+                <small>BERTHING</small>
+                <strong>Rencana penambatan kapal</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <div class="master-step secondary static-step">
+                <small>DEPLOYMENT QUAY</small>
+                <strong>Gang, crane, dan tenaga dermaga</strong>
+              </div>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step secondary" type="button" data-flow-target="1-6">
+                <small>CRANE PLAN</small>
+                <strong>CWP dan urutan kerja crane</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step secondary" type="button" data-flow-target="2-5">
+                <small>TRANSFER PLAN</small>
+                <strong>Dermaga menuju lapangan</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell has-step">
+              <button class="master-step secondary" type="button" data-flow-target="1-11">
+                <small>SHIP TALKER</small>
+                <strong>Instruksi operasi pemuatan kapal</strong>
+              </button>
+            </div>
+            <div class="waterfall-cell">
+              <button class="master-step secondary" type="button" data-flow-target="2-4">
+                <small>EKSEKUSI BONGKAR</small>
+                <strong>Operasi pembongkaran petikemas</strong>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="procedure-coverage">
+        <h3>Cakupan Prosedur Khusus</h3>
+        <p>
+          Seluruh gambar prosedur 3–21 dirangkum menurut area kerja dominan dan
+          tetap dapat dibuka dalam viewer detail yang sama.
+        </p>
+        <div class="flow-image-index">
+          <div class="flow-image-group">
+            <h4>Gambar Tahap Pemuatan</h4>
+            <div class="procedure-links">
+              <button class="procedure-link" type="button" data-flow-target="1-1">1.1 Rencana Sandar</button>
+              <button class="procedure-link" type="button" data-flow-target="1-2">1.2 Request Receiving</button>
+              <button class="procedure-link" type="button" data-flow-target="1-3">1.3 Gate Receiving</button>
+              <button class="procedure-link" type="button" data-flow-target="1-4">1.4 Penumpukan</button>
+              <button class="procedure-link" type="button" data-flow-target="1-5">1.5 SI &amp; Pre-plan</button>
+              <button class="procedure-link" type="button" data-flow-target="1-6">1.6 CWP &amp; Sequence</button>
+              <button class="procedure-link" type="button" data-flow-target="1-7">1.7 Penambatan</button>
+              <button class="procedure-link" type="button" data-flow-target="1-9">1.9 Ambil dari Yard</button>
+              <button class="procedure-link" type="button" data-flow-target="1-10">1.10 Transfer Dermaga</button>
+              <button class="procedure-link" type="button" data-flow-target="1-11">1.11 Operasi Muat</button>
+              <button class="procedure-link" type="button" data-flow-target="1-12">1.12 Truk Keluar</button>
+              <button class="procedure-link" type="button" data-flow-target="1-13">1.13 Pre Gate In</button>
+            </div>
+          </div>
+          <div class="flow-image-group">
+            <h4>Gambar Tahap Pembongkaran</h4>
+            <div class="procedure-links">
+              <button class="procedure-link" type="button" data-flow-target="2-1">2.1 Permintaan Sandar</button>
+              <button class="procedure-link" type="button" data-flow-target="2-2">2.2 Rencana Bongkar</button>
+              <button class="procedure-link" type="button" data-flow-target="2-4">2.4 Operasi Bongkar</button>
+              <button class="procedure-link" type="button" data-flow-target="2-5">2.5 Transfer ke Yard</button>
+              <button class="procedure-link" type="button" data-flow-target="2-6">2.6 Operasi Yard</button>
+              <button class="procedure-link" type="button" data-flow-target="2-7">2.7 Request Delivery</button>
+              <button class="procedure-link" type="button" data-flow-target="2-8">2.8 Truk Masuk</button>
+              <button class="procedure-link" type="button" data-flow-target="2-9">2.9 Ambil dari Yard</button>
+              <button class="procedure-link" type="button" data-flow-target="2-10">2.10 Gate Out</button>
+              <button class="procedure-link" type="button" data-flow-target="2-11">2.11 Pre Gate In</button>
+            </div>
+          </div>
+        </div>
+        <div class="coverage-groups">
+          <div class="coverage-group">
+            <h4>Planning &amp; Control</h4>
+            <div class="procedure-links">
+              <button class="procedure-link" type="button" data-flow-target="prosedur-3">03 Batal Muat</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-6">06 Alih Kapal</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-17">17 Overbrengen</button>
+            </div>
+          </div>
+          <div class="coverage-group">
+            <h4>Gate</h4>
+            <div class="procedure-links">
+              <button class="procedure-link" type="button" data-flow-target="prosedur-5">05 Batal Muat Delivery</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-18">18 Behandle</button>
+            </div>
+          </div>
+          <div class="coverage-group">
+            <h4>Lapangan Penumpukan</h4>
+            <div class="procedure-links">
+              <button class="procedure-link" type="button" data-flow-target="prosedur-7">07 Reefer Bongkar</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-8">08 Reefer Muat</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-19">19 Gerakan Ekstra</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-20">20 Shifting</button>
+            </div>
+          </div>
+          <div class="coverage-group">
+            <h4>Dermaga</h4>
+            <div class="procedure-links">
+              <button class="procedure-link" type="button" data-flow-target="prosedur-4">04 Batal Muat Kapal</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-9">09 Transhipment Bongkar</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-10">10 Transhipment Muat</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-11">11 DG Bongkar</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-12">12 DG Muat</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-13">13 UC Bongkar</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-14">14 UC Muat</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-15">15 OOG Bongkar</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-16">16 OOG Muat</button>
+              <button class="procedure-link" type="button" data-flow-target="prosedur-21">21 Buka/Tutup Palka</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <div class="toc-container">
       <div class="toc-header">Daftar Isi Alur Penanganan</div>
@@ -1250,6 +2374,25 @@
                 captionText.innerText = title + " (Foto Belum Diunggah)";
               };
             }
+          }
+        });
+      });
+
+      document.querySelectorAll("[data-flow-target]").forEach((trigger) => {
+        trigger.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-flow-target");
+
+          if (dataSubBab[targetId]) {
+            bukaSubBab(targetId);
+            return;
+          }
+
+          const tocTarget = document.querySelector(
+            '.toc-list a[href="#' + targetId + '"]',
+          );
+
+          if (tocTarget) {
+            tocTarget.click();
           }
         });
       });
