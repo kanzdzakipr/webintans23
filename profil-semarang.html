@@ -808,9 +808,19 @@
         background: #f8f9fa; /* Warna dasar jika gambar telat dimuat */
       }
 
-      .hero-swiper {
+      .hero-swiper .swiper-slide {
         width: 100%;
-        height: 100%; /* Mengikuti tinggi hero-section (500px) */
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .hero-swiper .swiper-slide video,
+      .shot-video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;      /* penuh tanpa ada ruang kosong */
+        object-position: center;
       }
 
       .hero-swiper .swiper-slide {
@@ -1175,21 +1185,13 @@
       <!-- Container Swiper -->
       <div class="swiper hero-swiper">
         <div class="swiper-wrapper">
-          <!-- Slide 1 -->
           <div class="swiper-slide">
-            <img src="slidingphoto/semarang1.png" alt="TPK Semarang" />
-          </div>
-          <!-- Slide 2 -->
-          <div class="swiper-slide">
-            <img src="slidingphoto/semarang2.png" alt="TPK Semarang" />
-          </div>
-          <!-- Slide 3 -->
-          <div class="swiper-slide">
-            <img src="slidingphoto/semarang3.png" alt="TPK Semarang" />
-          </div>
-          <!-- Slide 4 -->
-          <div class="swiper-slide">
-            <img src="slidingphoto/semarang4.png" alt="TPK Semarang" />
+            <video class="shot-video" autoplay muted loop playsinline>
+              <source
+                src="Dokum semarang/terminal teluk lamong.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
         </div>
       </div>
@@ -1197,11 +1199,12 @@
       <!-- Card Teks Informasi (Floating) -->
       <div class="hero-info-card">
         <p>
-          Pelabuhan Makassar terletak pada Alur Laut Kepulauan Indonesia (ALKI
-          II) yang menghubungkan Makassar dengan Laut Cina Selatan dan Samudera
-          Pasifik, serta Makassar dengan kawasan Australia dan Oceania, sehingga
-          menjadikan Makassar sangat strategis sebagai Hub Domestik dan
-          Internasional.
+          Sebagai ibu kota dan pusat pertumbuhan ekonomi di Jawa Tengah, 
+          Semarang memegang peran strategis dalam mendukung konektivitas 
+          logistik nasional. Akses langsung ke jalan tol dan jalur kereta 
+          api memperkuat posisi Semarang sebagai simpul utama dalam rantai 
+          pasok, menjadikannya pilihan ideal bagi pelaku usaha di sektor 
+          manufaktur, agrikultur, dan perdagangan.
         </p>
 
         <!-- Pagination Dipindah ke Dalam Card -->
