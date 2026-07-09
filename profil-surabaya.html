@@ -894,6 +894,175 @@
           text-align: justify;
         }
       }
+
+      .merged-dashboard-shell {
+        width: min(1600px, 94vw);
+        margin: 130px auto 70px;
+        display: block;
+      }
+
+      .merged-sidebar {
+        position: sticky;
+        top: 112px;
+        z-index: 20;
+        margin-bottom: 18px;
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+        overflow-x: auto;
+        scrollbar-width: thin;
+      }
+
+      .merged-sidebar-header {
+        display: none;
+      }
+
+      .merged-menu {
+        display: flex;
+        gap: 8px;
+        min-width: max-content;
+        padding: 8px;
+      }
+
+      .merged-menu-button {
+        width: auto;
+        flex: 1 0 auto;
+        border: 0;
+        background: transparent;
+        color: #475569;
+        padding: 12px 14px;
+        border-radius: 12px;
+        justify-content: center;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .merged-menu-button i {
+        width: 18px;
+        color: #2563eb;
+      }
+
+      .merged-menu-button:hover,
+      .merged-menu-button.active {
+        background: #eff6ff;
+        color: #1d4ed8;
+      }
+
+      .merged-content {
+        min-width: 0;
+      }
+
+      .merged-panel {
+        display: none;
+      }
+
+      .merged-panel.active {
+        display: block;
+      }
+
+      .merged-panel-card {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        overflow: hidden;
+      }
+
+      .merged-panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 20px 24px;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .merged-panel-header h2 {
+        margin: 0;
+        color: #0f172a;
+        font-size: 20px;
+      }
+
+      .merged-panel-header p {
+        margin: 4px 0 0;
+        color: #64748b;
+        font-size: 12px;
+      }
+
+      .merged-frame {
+        width: 100%;
+        height: 82vh;
+        min-height: 720px;
+        border: 0;
+        display: block;
+        background: #f8fafc;
+      }
+
+      #panel-profil .page-title {
+        margin-top: 0;
+      }
+
+      #panel-profil .hero-section {
+        width: 100%;
+        left: auto;
+        right: auto;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      #panel-profil .layout-container {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+      }
+
+      #panel-profil .metrics-container {
+        gap: 20px;
+      }
+
+      #panel-profil .metric-card {
+        flex: 1 1 320px;
+        width: auto;
+      }
+
+      @media (max-width: 980px) {
+        .merged-dashboard-shell {
+          margin-top: 120px;
+        }
+
+        .merged-sidebar {
+          top: 104px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .merged-dashboard-shell {
+          width: min(100% - 24px, 1600px);
+        }
+
+        .merged-menu-button {
+          flex-basis: auto;
+          justify-content: flex-start;
+          text-align: left;
+        }
+
+        .merged-frame {
+          min-height: 640px;
+        }
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
@@ -914,15 +1083,6 @@
             <a href="profil-IPC-TPK.html">IPC TPK</a>
           </div>
         </div>
-        <div class="dropdown">
-          <a href="#" class="dropbtn">Dokumentasi ▾</a>
-          <div class="dropdown-content">
-            <a href="dokum-surabaya.html">Teluk Lamong Surabaya</a>
-            <a href="dokum-semarang.html">Semarang</a>
-            <a href="dokum-makassar.html">Makassar New Port</a>
-            <a href="dokum-ipctpk.html">IPC TPK</a>
-          </div>
-        </div>
       </div>
       <a href="index.html" class="logout-btn">
         <i class="fa-solid fa-right-from-bracket"></i> Logout
@@ -938,9 +1098,28 @@
       </div>
     </div>
 
-    <h1 class="page-title">PROFIL TPK TELUK LAMONG SURABAYA</h1>
+    <div class="merged-dashboard-shell">
+      <aside class="merged-sidebar">
+        <div class="merged-sidebar-header">
+          <h2>Profil TPK</h2>
+        </div>
+        <div class="merged-menu" role="tablist" aria-label="Menu dashboard gabungan">
+          <button class="merged-menu-button active" type="button" data-panel="panel-profil" role="tab" aria-selected="true">
+            <i class="fa-solid fa-house"></i>
+            <span>Profil TPK Surabaya</span>
+          </button>
+          <button class="merged-menu-button" type="button" data-panel="panel-operasional" role="tab" aria-selected="false">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Kinerja Operasional</span>
+          </button>
+        </div>
+      </aside>
 
-    <!-- HERO HEADER SECTION -->
+      <main class="merged-content">
+        <section class="merged-panel active" id="panel-profil" role="tabpanel">
+          <h1 class="page-title">PROFIL TPK TELUK LAMONG SURABAYA</h1>
+
+          <!-- HERO HEADER SECTION -->
     <div class="hero-section">
       <!-- Container Swiper -->
       <div class="swiper hero-swiper">
@@ -1200,6 +1379,22 @@
     </div>
 
     <!-- TABEL BESAR -->
+        </section>
+
+        <section class="merged-panel" id="panel-operasional" role="tabpanel">
+          <div class="merged-panel-card">
+            <div class="merged-panel-header">
+              <div>
+                <h2>Laporan Kinerja Operasional Terminal</h2>
+                <p>Dashboard operasional utama Terminal Teluk Lamong.</p>
+              </div>
+              <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+            </div>
+            <iframe class="merged-frame" title="Laporan Kinerja Operasional Terminal" src="kinerja-operasional-semarang.html"></iframe>
+          </div>
+        </section>
+      </main>
+    </div>
 
     <div class="bottom-hill"></div>
 
@@ -1436,6 +1631,32 @@
             el: ".swiper-pagination",
             clickable: true,
           },
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuButtons = document.querySelectorAll(".merged-menu-button");
+        const panels = document.querySelectorAll(".merged-panel");
+
+        menuButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const targetPanelId = button.getAttribute("data-panel");
+
+            menuButtons.forEach((item) => {
+              item.classList.toggle("active", item === button);
+              item.setAttribute("aria-selected", item === button ? "true" : "false");
+            });
+
+            panels.forEach((panel) => {
+              panel.classList.toggle("active", panel.id === targetPanelId);
+            });
+
+            document.querySelector(".merged-dashboard-shell").scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          });
         });
       });
     </script>
