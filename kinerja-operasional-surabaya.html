@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Port Dashboard</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --primary-blue: #00ABF0;
+            --dark-blue: #0091CA;
+            --cyan: #00D0FF;
+            --light-blue: #10BBFF;
+            --success-green: #30D158;
+            --black: #111111;
+            --white: #FFFFFF;
+            --off-white: #FAFAFA;
+            --very-light-gray: #F8FAFC;
+            --border-gray: #E5E7EB;
+            --light-gray: #EEEEEE;
+            --medium-gray: #AAAAAA;
+            --gray: #999999;
+            --gray-alt: #888888;
+            --badge-gray: #555555;
+            --dark-gray: #3D3D3D;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--very-light-gray);
+            color: var(--dark-gray);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .glass-header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-gray);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 171, 240, 0.1);
+        }
+
+        .kpi-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 400px;
+        }
+
+        .insight-panel {
+            background: var(--off-white);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.875rem;
+            color: var(--badge-gray);
+        }
+        
+        .insight-title {
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--very-light-gray); }
+        ::-webkit-scrollbar-thumb { background: var(--medium-gray); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary-blue); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="glass-header py-4 px-6 flex justify-between items-center">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">Dashboard Kinerja Pelabuhan</h1>
+            <p class="text-sm text-gray-500">Monitoring Operasional & Produktivitas Terminal</p>
+        </div>
+        <div class="flex gap-4 items-center">
+            <select id="filter-year" class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#00ABF0]">
+                <option value="all">Semua Tahun</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+            <button id="btn-reset" class="bg-[#00ABF0] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#0091CA] transition">Reset</button>
+            <button class="border border-[#00ABF0] text-[#00ABF0] px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#F8FAFC] transition">Export CSV</button>
+        </div>
+    </header>
+
+    <main class="p-6 max-w-[1600px] mx-auto">
+        <!-- Dashboard Content (Sajian Langsung / Terbuka Secara Default) -->
+        <div id="dashboard-content" class="space-y-6">
+            
+            <!-- KPI Summary Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="kpi-container">
+                <!-- KPIs will be injected here via JS -->
+            </div>
+
+            <!-- Charts Section 1: Core Metrics -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card p-5">
+                    <h3 class="font-semibold text-lg mb-2">Trend Bulanan (Call, GT, Box, TEUs)</h3>
+                    <div id="chart-trend" class="chart-container"></div>
+                    <div class="insight-panel mt-4">
+                        <div class="insight-title">Panel Insight & Interpretasi</div>
+                        <p><strong>Arti:</strong> Menampilkan fluktuasi volume kapal dan barang per bulan.<br>
+                        <strong>Tren:</strong> Mengalami pola seasonal naik pada kuartal ke-2 dan ke-4 setiap tahunnya.<br>
+                        <strong>Implikasi:</strong> Puncak trafik memerlukan alokasi sumber daya crane dan yard yang optimal.</p>
+                    </div>
+                </div>
+
+                <div class="card p-5">
+                    <h3 class="font-semibold text-lg mb-2">Perbandingan Tahunan (2020 - 2025)</h3>
+                    <div id="chart-yearly" class="chart-container"></div>
+                    <div class="insight-panel mt-4">
+                        <div class="insight-title">Panel Insight & Interpretasi</div>
+                        <p><strong>Arti:</strong> Komparasi kinerja makro dari tahun ke tahun.<br>
+                        <strong>Analisis:</strong> Berguna untuk melihat apakah target jangka panjang perusahaan tercapai.<br>
+                        <strong>Implikasi:</strong> Penurunan YoY menandakan perlunya evaluasi strategi marketing pelabuhan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section 2: Operational Efficiency -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="card p-5">
+                    <h3 class="font-semibold text-lg mb-2">Produktivitas (B/C/H, B/S/H, ET:BT)</h3>
+                    <div id="chart-radar-prod" class="chart-container" style="height: 350px;"></div>
+                    <div class="insight-panel mt-4">
+                        <p class="text-xs"><strong>Insight:</strong> Radar chart menunjukkan keseimbangan produktivitas. Nilai ET:BT yang mendekati 1 menunjukkan efisiensi waktu sandar yang luar biasa (minimal idle time).</p>
+                    </div>
+                </div>
+
+                <div class="card p-5">
+                    <h3 class="font-semibold text-lg mb-2">Analisis BOR (Berth Occupancy Ratio)</h3>
+                    <div id="chart-bor-gauge" class="chart-container" style="height: 350px;"></div>
+                    <div class="insight-panel mt-4">
+                        <p class="text-xs"><strong>Insight:</strong> BOR > 70% masuk kategori Warning (antrean kapal mungkin terjadi). BOR ideal di kisaran 55-65%.</p>
+                    </div>
+                </div>
+
+                <div class="card p-5">
+                    <h3 class="font-semibold text-lg mb-2">Analisis YOR (Yard Occupancy Ratio)</h3>
+                    <div id="chart-yor-gauge" class="chart-container" style="height: 350px;"></div>
+                    <div class="insight-panel mt-4">
+                        <p class="text-xs"><strong>Insight:</strong> YOR > 65% menurunkan produktivitas alat di lapangan karena re-handling meningkat. Kepadatan lapangan perlu diurai.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section 3: Time Metrics & Heatmap -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card p-5">
+                    <h3 class="font-semibold text-lg mb-2">Dwelling Time Trend</h3>
+                    <div id="chart-dwelling" class="chart-container"></div>
+                    <div class="insight-panel mt-4">
+                        <p class="text-sm"><strong>Insight:</strong> Dwelling time mencerminkan berapa lama petikemas tertumpuk. Penurunan dwelling time berdampak langsung pada kelancaran arus barang nasional.</p>
+                    </div>
+                </div>
+
+                <div class="card p-5">
+                    <h3 class="font-semibold text-lg mb-2">Heatmap Kepadatan TEUs (Bulan vs Tahun)</h3>
+                    <div id="chart-heatmap" class="chart-container"></div>
+                    <div class="insight-panel mt-4">
+                        <p class="text-sm"><strong>Insight:</strong> Warna gelap menunjukkan bulan-bulan dengan throughput tertinggi (peak season). Digunakan untuk peramalan tenaga kerja (TKBM).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="card p-5">
+                <h3 class="font-semibold text-lg mb-4">Interactive Data Table</h3>
+                <div class="overflow-x-auto max-h-[500px]">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-[#F8FAFC] border-b border-gray-200 text-gray-700">
+                                <th class="p-3 sticky top-0 bg-[#F8FAFC]">Tahun</th>
+                                <th class="p-3 sticky top-0 bg-[#F8FAFC]">Bulan</th>
+                                <th class="p-3 sticky top-0 bg-[#F8FAFC]">Call</th>
+                                <th class="p-3 sticky top-0 bg-[#F8FAFC]">TEUs</th>
+                                <th class="p-3 sticky top-0 bg-[#F8FAFC]">BOR (%)</th>
+                                <th class="p-3 sticky top-0 bg-[#F8FAFC]">YOR (%)</th>
+                                <th class="p-3 sticky top-0 bg-[#F8FAFC]">Dwelling (Hari)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Data injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+        // --- Core Colors ---
+        const colors = {
+            primary: '#00ABF0', darkBlue: '#0091CA', cyan: '#00D0FF', 
+            success: '#30D158', warning: '#F59E0B', critical: '#EF4444',
+            gray: '#AAAAAA'
+        };
+
+        // --- Global State & Chart Instances ---
+        let rawData = [];
+        let eChartsInstances = [];
+
+        // --- Generate Mock Data Automatically (2020 - 2025) ---
+        function generateData() {
+            const dataset = [];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            
+            // Base seed data with gradual realistic growth trend
+            for (let year = 2020; year <= 2025; year++) {
+                const yearFactor = 1 + ((year - 2020) * 0.05); // Growth multiplier
+                
+                months.forEach((month, index) => {
+                    // Introduce seasonal variation (Q2 and Q4 are higher)
+                    const seasonalFactor = (index >= 3 && index <= 5) || (index >= 9 && index <= 11) ? 1.2 : 0.9;
+                    
+                    const call = Math.floor((Math.random() * 20 + 60) * yearFactor * seasonalFactor);
+                    const teus = Math.floor((Math.random() * 15000 + 45000) * yearFactor * seasonalFactor);
+                    const box = Math.floor(teus * 0.75);
+                    const gt = call * Math.floor(Math.random() * 10000 + 20000);
+                    
+                    dataset.push({
+                        Year: year,
+                        Month: month,
+                        Call: call,
+                        GT: gt,
+                        Box: box,
+                        TEUs: teus,
+                        BOR: Math.min(95, Math.max(35, (Math.random() * 15 + 50) * seasonalFactor)),
+                        YOR: Math.min(90, Math.max(40, (Math.random() * 15 + 48) * seasonalFactor)),
+                        Dwelling: Math.max(1.5, (Math.random() * 1.5 + 2.1)),
+                        BCH: Math.floor(Math.random() * 5 + 23),
+                        BSH: Math.floor(Math.random() * 5 + 28),
+                        ETBT: parseFloat((Math.random() * 0.15 + 0.75).toFixed(2))
+                    });
+                });
+            }
+            return dataset;
+        }
+
+        // --- Initialize Dashboard on Load ---
+        window.addEventListener('DOMContentLoaded', () => {
+            rawData = generateData();
+            processAndRenderData(rawData);
+
+            // Setup Filter Action
+            document.getElementById('filter-year').addEventListener('change', function(e) {
+                const selectedYear = e.target.value;
+                if (selectedYear === 'all') {
+                    processAndRenderData(rawData);
+                } else {
+                    const filtered = rawData.filter(d => d.Year == selectedYear);
+                    processAndRenderData(filtered);
+                }
+            });
+
+            // Setup Reset Action
+            document.getElementById('btn-reset').addEventListener('click', () => {
+                document.getElementById('filter-year').value = 'all';
+                processAndRenderData(rawData);
+            });
+        });
+
+        // --- Resize Event ---
+        window.addEventListener('resize', () => {
+            eChartsInstances.forEach(chart => chart.resize());
+        });
+
+        // --- Data Processing & Rendering ---
+        function processAndRenderData(data) {
+            renderKPIs(data);
+            renderTrendChart(data);
+            renderYearlyChart(data);
+            renderRadarChart(data);
+            renderGaugeBOR(data);
+            renderGaugeYOR(data);
+            renderDwellingChart(data);
+            renderHeatmap(data);
+            renderTable(data);
+        }
+
+        // Generic ECharts Init with dynamic dispose to prevent memory leaks on filter re-render
+        function initChart(elementId, option) {
+            const chartDom = document.getElementById(elementId);
+            let myChart = echarts.getInstanceByDom(chartDom);
+            if (myChart) {
+                myChart.dispose();
+            }
+            myChart = echarts.init(chartDom);
+            myChart.setOption(option);
+            eChartsInstances.push(myChart);
+            return myChart;
+        }
+
+        // --- Render Functions ---
+        function renderKPIs(data) {
+            const totals = data.reduce((acc, curr) => {
+                acc.Call += curr.Call;
+                acc.TEUs += curr.TEUs;
+                acc.BOR += curr.BOR;
+                acc.YOR += curr.YOR;
+                return acc;
+            }, { Call: 0, TEUs: 0, BOR: 0, YOR: 0 });
+
+            const avgBOR = (totals.BOR / data.length).toFixed(1);
+            const avgYOR = (totals.YOR / data.length).toFixed(1);
+
+            const kpis = [
+                { title: 'Total Ship Calls', value: totals.Call.toLocaleString(), unit: 'Vessels', icon: 'M13 10V3L4 14h7v7l9-11h-7z' },
+                { title: 'Total TEUs', value: totals.TEUs.toLocaleString(), unit: 'TEUs', icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' },
+                { title: 'Average BOR', value: avgBOR, unit: '%', icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z' },
+                { title: 'Average YOR', value: avgYOR, unit: '%', icon: 'M4 7v10c0 2 1.5 3 3.5 3.5s4-1.5 4-1.5V7S10 5 8 5 4 7 4 7zm16 0v10c0 2-1.5 3-3.5 3.5s-4-1.5-4-1.5V7s1.5-2 3.5-2 4 2 4 2z' }
+            ];
+
+            const container = document.getElementById('kpi-container');
+            container.innerHTML = kpis.map(kpi => `
+                <div class="card p-5 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium mb-1">${kpi.title}</p>
+                        <div class="flex items-baseline gap-2">
+                            <span class="kpi-value">${kpi.value}</span>
+                            <span class="text-sm font-semibold text-gray-400">${kpi.unit}</span>
+                        </div>
+                        <p class="text-xs text-[#30D158] mt-2 font-medium">▲ +3.2% vs Last Period</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-[#F8FAFC] flex items-center justify-center text-[#00ABF0]">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${kpi.icon}"></path></svg>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderTrendChart(data) {
+            // Take the last 24 records if displaying full data to avoid chart crowd
+            const displayData = data.length > 24 ? data.slice(-24) : data;
+            const xAxisData = displayData.map(d => `${d.Month} ${d.Year}`);
+            const teusData = displayData.map(d => d.TEUs);
+            const callData = displayData.map(d => d.Call);
+
+            const option = {
+                tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
+                legend: { data: ['TEUs', 'Ship Call'], bottom: 0 },
+                grid: { left: '3%', right: '4%', bottom: '15%', containLabel: true },
+                toolbox: { feature: { saveAsImage: { title: 'Export' } } },
+                xAxis: { type: 'category', boundaryGap: false, data: xAxisData },
+                yAxis: [
+                    { type: 'value', name: 'TEUs' },
+                    { type: 'value', name: 'Call', alignTicks: true, splitLine: { show: false } }
+                ],
+                series: [
+                    { name: 'TEUs', type: 'line', smooth: true, itemStyle: { color: colors.primary },
+                      areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(0,171,240,0.5)'}, {offset: 1, color: 'rgba(0,171,240,0.05)'}]) },
+                      data: teusData
+                    },
+                    { name: 'Ship Call', type: 'line', yAxisIndex: 1, smooth: true, itemStyle: { color: colors.darkBlue }, data: callData }
+                ]
+            };
+            initChart('chart-trend', option);
+        }
+
+        function renderYearlyChart(data) {
+            const yearlyMap = {};
+            data.forEach(d => {
+                if(!yearlyMap[d.Year]) yearlyMap[d.Year] = { TEUs: 0, Box: 0 };
+                yearlyMap[d.Year].TEUs += d.TEUs;
+                yearlyMap[d.Year].Box += d.Box;
+            });
+            const years = Object.keys(yearlyMap).sort();
+            
+            const option = {
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                legend: { bottom: 0 },
+                grid: { left: '3%', right: '4%', bottom: '15%', containLabel: true },
+                xAxis: { type: 'category', data: years },
+                yAxis: { type: 'value' },
+                series: [
+                    { name: 'TEUs', type: 'bar', itemStyle: { color: colors.primary, borderRadius: [4,4,0,0] }, data: years.map(y => yearlyMap[y].TEUs) },
+                    { name: 'Box', type: 'bar', itemStyle: { color: colors.cyan, borderRadius: [4,4,0,0] }, data: years.map(y => yearlyMap[y].Box) }
+                ]
+            };
+            initChart('chart-yearly', option);
+        }
+
+        function renderRadarChart(data) {
+            const avgBCH = data.reduce((acc, curr) => acc + curr.BCH, 0) / data.length;
+            const avgBSH = data.reduce((acc, curr) => acc + curr.BSH, 0) / data.length;
+            const avgETBT = (data.reduce((acc, curr) => acc + curr.ETBT, 0) / data.length) * 100;
+            const avgDwell = (data.reduce((acc, curr) => acc + curr.Dwelling, 0) / data.length) * 2;
+
+            const option = {
+                tooltip: {},
+                radar: {
+                    indicator: [
+                        { name: 'B/C/H', max: 40 }, { name: 'B/S/H', max: 50 },
+                        { name: 'ET:BT (x100)', max: 100 }, { name: 'Dwelling (Scaled)', max: 10 }
+                    ],
+                    radius: '60%'
+                },
+                series: [{
+                    type: 'radar',
+                    data: [
+                        { value: [avgBCH.toFixed(1), avgBSH.toFixed(1), avgETBT.toFixed(1), avgDwell.toFixed(1)], name: 'Aktual Efisiensi', itemStyle: {color: colors.primary}, areaStyle: {opacity:0.4} }
+                    ]
+                }]
+            };
+            initChart('chart-radar-prod', option);
+        }
+
+        function renderGaugeBOR(data) {
+            const avgBOR = data.reduce((acc, curr) => acc + curr.BOR, 0) / (data.length || 1);
+            const option = {
+                series: [{
+                    type: 'gauge',
+                    axisLine: { lineStyle: { width: 10, color: [[0.55, colors.success], [0.7, colors.warning], [1, colors.critical]] } },
+                    pointer: { itemStyle: { color: 'auto' } },
+                    detail: { valueAnimation: true, formatter: '{value}%', color: 'inherit', fontSize: 24, fontWeight: 'bold' },
+                    data: [{ value: avgBOR.toFixed(1), name: 'Average BOR' }]
+                }]
+            };
+            initChart('chart-bor-gauge', option);
+        }
+
+        function renderGaugeYOR(data) {
+            const avgYOR = data.reduce((acc, curr) => acc + curr.YOR, 0) / (data.length || 1);
+            const option = {
+                series: [{
+                    type: 'gauge',
+                    axisLine: { lineStyle: { width: 10, color: [[0.50, colors.success], [0.65, colors.warning], [1, colors.critical]] } },
+                    pointer: { itemStyle: { color: 'auto' } },
+                    detail: { valueAnimation: true, formatter: '{value}%', color: 'inherit', fontSize: 24, fontWeight: 'bold' },
+                    data: [{ value: avgYOR.toFixed(1), name: 'Average YOR' }]
+                }]
+            };
+            initChart('chart-yor-gauge', option);
+        }
+
+        function renderDwellingChart(data) {
+            const displayData = data.length > 24 ? data.slice(-24) : data;
+            const xAxisData = displayData.map(d => `${d.Month} ${d.Year}`);
+            const dwellingData = displayData.map(d => d.Dwelling.toFixed(1));
+            
+            const option = {
+                tooltip: { trigger: 'axis' },
+                grid: { left: '3%', right: '4%', bottom: '15%', containLabel: true },
+                xAxis: { type: 'category', data: xAxisData },
+                yAxis: { type: 'value', name: 'Hari' },
+                series: [{
+                    data: dwellingData, type: 'bar',
+                    itemStyle: { color: colors.lightBlue, borderRadius: [4,4,0,0] },
+                    markLine: { data: [{type: 'average', name: 'Avg', itemStyle: {color: colors.critical}}] }
+                }]
+            };
+            initChart('chart-dwelling', option);
+        }
+
+        function renderHeatmap(data) {
+            const years = [...new Set(data.map(d => d.Year))].sort();
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            
+            const heatData = [];
+            years.forEach((y, i) => {
+                months.forEach((m, j) => {
+                    const record = data.find(d => d.Year == y && d.Month === m);
+                    const val = record ? record.TEUs : 0;
+                    heatData.push([i, j, val]);
+                });
+            });
+
+            const option = {
+                tooltip: { position: 'top' },
+                grid: { height: '70%', top: '10%' },
+                xAxis: { type: 'category', data: years, splitArea: { show: true } },
+                yAxis: { type: 'category', data: months, splitArea: { show: true } },
+                visualMap: {
+                    min: 30000, max: 85000, calculable: true, orient: 'horizontal', left: 'center', bottom: '0%',
+                    inRange: { color: ['#F8FAFC', colors.lightBlue, colors.darkBlue] }
+                },
+                series: [{
+                    name: 'TEUs', type: 'heatmap', data: heatData,
+                    label: { show: false }, emphasis: { itemStyle: { shadowBlur: 10, shadowColor: 'rgba(0, 0, 0, 0.5)' } }
+                }]
+            };
+            initChart('chart-heatmap', option);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = data.map(row => `
+                <tr class="border-b border-gray-100 hover:bg-blue-50 transition">
+                    <td class="p-3 font-medium">${row.Year}</td>
+                    <td class="p-3">${row.Month}</td>
+                    <td class="p-3">${row.Call.toLocaleString()}</td>
+                    <td class="p-3">${row.TEUs.toLocaleString()}</td>
+                    <td class="p-3"><span class="px-2 py-1 rounded text-xs ${row.BOR > 70 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}">${row.BOR.toFixed(2)}%</span></td>
+                    <td class="p-3"><span class="px-2 py-1 rounded text-xs ${row.YOR > 65 ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700'}">${row.YOR.toFixed(2)}%</span></td>
+                    <td class="p-3 font-semibold text-gray-700">${row.Dwelling.toFixed(2)}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
