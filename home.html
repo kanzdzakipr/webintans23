@@ -157,6 +157,69 @@
         font-size: 22px;
         margin-bottom: 20px;
       }
+      .comparison-section {
+        margin-top: 80px;
+      }
+
+      .comparison-section h2 {
+        color: #003b6f;
+        font-size: 42px;
+        font-weight: 800;
+        margin: 0 0 32px;
+      }
+
+      .comparison-table-wrap {
+        background: #fff;
+        border: 1px solid rgba(0, 59, 111, 0.15);
+        border-radius: 18px;
+        box-shadow: 0 24px 60px rgba(0, 59, 111, 0.1);
+        overflow-x: auto;
+      }
+
+      .comparison-table {
+        width: 100%;
+        min-width: 980px;
+        border-collapse: collapse;
+        font-size: 16px;
+        color: #111;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid rgba(0, 59, 111, 0.24);
+        padding: 18px 20px;
+        vertical-align: middle;
+      }
+
+      .comparison-table thead th {
+        background: #003b6f;
+        color: #fff;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .comparison-table tbody th {
+        color: #003b6f;
+        font-weight: 700;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .comparison-table td {
+        text-align: center;
+      }
+
+      .comparison-table td:last-child {
+        text-align: left;
+        line-height: 1.55;
+      }
+
+      .comparison-note {
+        color: #555;
+        font-size: 14px;
+        line-height: 1.7;
+        margin-top: 16px;
+      }
       .section-tag {
         display: inline-block;
         background: #00abf0;
@@ -1266,6 +1329,14 @@
         .about-left h2 {
           font-size: 38px;
         }
+
+        .comparison-section h2 {
+          font-size: 32px;
+        }
+
+        .comparison-table {
+          font-size: 14px;
+        }
       }
       @keyframes floating {
         0% {
@@ -1517,6 +1588,71 @@
               </li>
             </ul>
           </div>
+        </section>
+        <section class="comparison-section reveal">
+          <span class="section-tag">DASHBOARD KOMPARASI</span>
+          <h2>Analisis Perbandingan 3 Pelabuhan</h2>
+
+          <div class="comparison-table-wrap">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Indikator</th>
+                  <th>Pelabuhan A<br />Teluk Lamong Surabaya</th>
+                  <th>Pelabuhan B<br />Semarang</th>
+                  <th>Pelabuhan C<br />Makassar New Port</th>
+                  <th>Benchmark</th>
+                  <th>Analisis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>BOR</th>
+                  <td>28.42%</td>
+                  <td>77.64%</td>
+                  <td>27.85%</td>
+                  <td>70-88%</td>
+                  <td>B berada dalam rentang optimal, sedangkan A dan C masih rendah sehingga kapasitas dermaga belum padat.</td>
+                </tr>
+                <tr>
+                  <th>YOR</th>
+                  <td>44.20%</td>
+                  <td>60.11%</td>
+                  <td>39.57%</td>
+                  <td>75-80%</td>
+                  <td>B paling tinggi namun masih di bawah benchmark, menunjukkan yard relatif longgar pada ketiga pelabuhan.</td>
+                </tr>
+                <tr>
+                  <th>TRT</th>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>&lt; 30 min</td>
+                  <td>Data TRT tidak tersedia eksplisit pada dashboard HTML yang terhubung.</td>
+                </tr>
+                <tr>
+                  <th>BSH</th>
+                  <td>-</td>
+                  <td>73.56 box/h</td>
+                  <td>-</td>
+                  <td>&gt; 25 box/h</td>
+                  <td>B melampaui benchmark produktivitas kapal; data A dan C tidak tersedia eksplisit secara stabil.</td>
+                </tr>
+                <tr>
+                  <th>Dwell Time Import</th>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>&lt; 5 hari</td>
+                  <td>Data dwell time import tidak tersedia eksplisit pada dashboard HTML yang terhubung.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="comparison-note">
+            Nilai BOR, YOR, dan BSH diambil dari dashboard HTML yang terhubung pada profil pelabuhan. Tanda "-" menunjukkan indikator tidak tersedia eksplisit pada sumber terkait.
+          </p>
         </section>
       </div>
     </section>
