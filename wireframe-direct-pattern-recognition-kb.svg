@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Direct Wireframe Pattern Recognition Knowledge Base</title>
+  <desc id="desc">Wireframe SVG yang diturunkan langsung dari struktur pattern-recognition-knowledge-base.html.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#222"/>
+    </marker>
+    <style>
+      .page{fill:#f5f5f5}
+      .navBar{fill:#fff;stroke:#bbb;stroke-width:1}
+      .hero{fill:#111827}
+      .wrap{fill:none;stroke:#aaa;stroke-width:1;stroke-dasharray:8 8}
+      .card{fill:#fff;stroke:#222;stroke-width:2}
+      .cardSoft{fill:#fafafa;stroke:#666;stroke-width:1.5}
+      .tab{fill:#fff;stroke:#555;stroke-width:1.5}
+      .tabActive{fill:#111827;stroke:#111827;stroke-width:1.5}
+      .button{fill:#111827;stroke:#111827;stroke-width:1.5}
+      .button2{fill:#efefef;stroke:#555;stroke-width:1.5}
+      .field{fill:#fff;stroke:#666;stroke-width:1.5}
+      .tableHead{fill:#ddd;stroke:#222;stroke-width:1.5}
+      .tableCell{fill:#fff;stroke:#777;stroke-width:1}
+      .alt{fill:#f7f7f7;stroke:#777;stroke-width:1}
+      .badge{fill:#eee;stroke:#222;stroke-width:1}
+      .badgeDark{fill:#333;stroke:#111;stroke-width:1}
+      .line{stroke:#333;stroke-width:2;fill:none}
+      .thin{stroke:#777;stroke-width:1.5;fill:none}
+      .dash{stroke:#333;stroke-width:1.5;stroke-dasharray:7 5;fill:none}
+      .txt{font-family:Arial, Helvetica, sans-serif;fill:#111}
+      .white{font-family:Arial, Helvetica, sans-serif;fill:#fff}
+      .navTxt{font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;fill:#222}
+      .small{font-size:13px}
+      .tiny{font-size:11px}
+      .label{font-size:15px;font-weight:700}
+      .h1{font-size:28px;font-weight:700}
+      .h2{font-size:21px;font-weight:700}
+      .kpi{font-size:27px;font-weight:700}
+      .muted{fill:#555}
+      .ann{fill:#fff;stroke:#111;stroke-width:1.5;stroke-dasharray:5 5}
+    </style>
+  </defs>
+
+  <rect class="page" x="0" y="0" width="1920" height="1080"/>
+  <rect class="wrap" x="18" y="18" width="1884" height="1044" rx="8"/>
+  <text class="txt tiny" x="34" y="1048">Canvas 16:9 desktop | Low-fidelity SVG | Direct mapping dari pattern-recognition-knowledge-base.html</text>
+
+  <!-- Actual navbar from HTML -->
+  <rect class="navBar" x="0" y="0" width="1920" height="58"/>
+  <text class="navTxt" x="58" y="36">Home</text>
+  <text class="navTxt" x="116" y="36">Knowledge Base</text>
+  <rect class="tabActive" x="236" y="15" width="172" height="30" rx="15"/>
+  <text class="white" x="258" y="35" font-size="14" font-weight="700">Pattern Recognition KB</text>
+  <text class="navTxt" x="430" y="36">Alur Penanganan Proses Petikemas</text>
+  <text class="navTxt" x="680" y="36">Profil TPK v</text>
+  <rect class="button" x="1784" y="13" width="90" height="32" rx="16"/>
+  <text class="white" x="1807" y="34" font-size="13" font-weight="700">Logout</text>
+
+  <!-- Header from HTML -->
+  <rect class="hero" x="0" y="58" width="1920" height="98"/>
+  <text class="white" x="58" y="103" font-size="27" font-weight="700">Pattern Recognition &amp; Knowledge Base</text>
+  <text class="white" x="58" y="131" font-size="15">Dashboard revisi: setiap entri risiko menyediakan 3 opsi Preventive, 3 opsi Corrective, dan 3 opsi Predictive.</text>
+  <text class="white" x="58" y="150" font-size="15">Setiap opsi diberi scoring berbasis baseline operasional dan expert judgment; keputusan akhir tetap manusia/pakar/operator.</text>
+
+  <!-- Tabs -->
+  <g transform="translate(130,180)">
+    <rect class="tabActive" x="0" y="0" width="210" height="38" rx="19"/>
+    <text class="white" x="24" y="24" font-size="14" font-weight="700">1. Pattern Recognition Map</text>
+    <rect class="tab" x="224" y="0" width="250" height="38" rx="19"/>
+    <text class="txt small" x="246" y="24" font-weight="700">2. Tabel Risiko &amp; Action Scoring</text>
+    <rect class="tab" x="488" y="0" width="210" height="38" rx="19"/>
+    <text class="txt small" x="513" y="24" font-weight="700">3. Coding Scheme per AT</text>
+    <rect class="tab" x="712" y="0" width="190" height="38" rx="19"/>
+    <text class="txt small" x="742" y="24" font-weight="700">4. Cara Baca untuk RQ</text>
+    <text class="txt tiny muted" x="930" y="24">Tab aktif di HTML: #dashboard. Tab lain ditampilkan sebagai ringkasan wireframe di sisi kanan/bawah.</text>
+  </g>
+
+  <!-- Main dashboard card -->
+  <rect class="card" x="130" y="240" width="1185" height="506" rx="18"/>
+  <text class="txt h2" x="158" y="276">Pattern Recognition Map dari WBS Level 1</text>
+  <text class="txt small muted" x="158" y="302">Klik node warna untuk menampilkan relasi. Pola: AT -> AA/AP -> Risiko -> Penyebab -> Opsi Tindakan.</text>
+
+  <!-- Six stats from HTML -->
+  <g transform="translate(158,326)">
+    <rect class="cardSoft" x="0" y="0" width="180" height="70" rx="14"/>
+    <text class="txt kpi" x="16" y="34">65</text><text class="txt tiny muted" x="16" y="55">TOTAL RELASI KB</text>
+    <rect class="cardSoft" x="194" y="0" width="180" height="70" rx="14"/>
+    <text class="txt kpi" x="210" y="34">25</text><text class="txt tiny muted" x="210" y="55">AKTIVITAS TERMINAL</text>
+    <rect class="cardSoft" x="388" y="0" width="180" height="70" rx="14"/>
+    <text class="txt kpi" x="404" y="34">30</text><text class="txt tiny muted" x="404" y="55">ADMINISTRASI</text>
+    <rect class="cardSoft" x="582" y="0" width="180" height="70" rx="14"/>
+    <text class="txt kpi" x="598" y="34">35</text><text class="txt tiny muted" x="598" y="55">PEMERIKSAAN</text>
+    <rect class="cardSoft" x="776" y="0" width="180" height="70" rx="14"/>
+    <text class="txt kpi" x="792" y="34">585</text><text class="txt tiny muted" x="792" y="55">OPSI TINDAKAN</text>
+    <rect class="cardSoft" x="970" y="0" width="180" height="70" rx="14"/>
+    <text class="txt kpi" x="986" y="34">9</text><text class="txt tiny muted" x="986" y="55">OPSI PER RELASI</text>
+  </g>
+
+  <!-- Filters from dashboard -->
+  <g transform="translate(158,414)">
+    <text class="txt tiny" x="0" y="-6">Filter Proses</text>
+    <rect class="field" x="0" y="0" width="142" height="34" rx="10"/><text class="txt tiny muted" x="14" y="22">Semua</text>
+    <text class="txt tiny" x="158" y="-6">Filter Alur</text>
+    <rect class="field" x="158" y="0" width="142" height="34" rx="10"/><text class="txt tiny muted" x="172" y="22">Impor / Ekspor</text>
+    <text class="txt tiny" x="316" y="-6">Filter Tahap</text>
+    <rect class="field" x="316" y="0" width="176" height="34" rx="10"/><text class="txt tiny muted" x="330" y="22">Kapal Datang / Pergi</text>
+    <text class="txt tiny" x="508" y="-6">Filter AT</text>
+    <rect class="field" x="508" y="0" width="142" height="34" rx="10"/><text class="txt tiny muted" x="522" y="22">AT 1 ... AT 25</text>
+    <text class="txt tiny" x="666" y="-6">Cari Kata</text>
+    <rect class="field" x="666" y="0" width="210" height="34" rx="10"/><text class="txt tiny muted" x="680" y="22">risiko / aktivitas / tindakan</text>
+    <rect class="button" x="892" y="0" width="74" height="34" rx="10"/><text class="white" x="914" y="22" font-size="12" font-weight="700">Reset</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(158,468)">
+    <text class="txt tiny muted" x="0" y="14">Legend node:</text>
+    <rect class="badge" x="78" y="0" width="40" height="20" rx="5"/><text class="txt tiny" x="88" y="14">AT</text>
+    <rect class="badge" x="126" y="0" width="58" height="20" rx="5"/><text class="txt tiny" x="136" y="14">AA/AP</text>
+    <rect class="badge" x="192" y="0" width="48" height="20" rx="5"/><text class="txt tiny" x="202" y="14">Risk</text>
+    <rect class="badge" x="248" y="0" width="54" height="20" rx="5"/><text class="txt tiny" x="258" y="14">Cause</text>
+    <rect class="badge" x="310" y="0" width="78" height="20" rx="5"/><text class="txt tiny" x="320" y="14">Preventive</text>
+    <rect class="badge" x="396" y="0" width="78" height="20" rx="5"/><text class="txt tiny" x="406" y="14">Corrective</text>
+    <rect class="badge" x="482" y="0" width="78" height="20" rx="5"/><text class="txt tiny" x="492" y="14">Predictive</text>
+  </g>
+
+  <!-- Main SVG map viewport -->
+  <rect class="cardSoft" x="158" y="500" width="1128" height="218" rx="8"/>
+  <text class="txt tiny muted" x="172" y="520">#mainSvg .svgbox: network scrollable, node dapat diklik</text>
+  <g transform="translate(186,545)">
+    <rect class="cardSoft" x="0" y="0" width="112" height="45" rx="7"/><text class="txt tiny" x="21" y="19" font-weight="700">WBS Level 1</text><text class="txt tiny" x="18" y="34">Terminal PKS</text>
+    <line class="line" x1="112" y1="22" x2="160" y2="22" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="160" y="0" width="112" height="45" rx="7"/><text class="txt tiny" x="185" y="19" font-weight="700">WBS Level 2</text><text class="txt tiny" x="184" y="34">Administrasi</text>
+    <line class="line" x1="272" y1="22" x2="320" y2="22" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="320" y="0" width="112" height="45" rx="7"/><text class="txt tiny" x="358" y="19" font-weight="700">Alur</text><text class="txt tiny" x="354" y="34">Impor</text>
+    <line class="line" x1="432" y1="22" x2="480" y2="22" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="480" y="0" width="112" height="45" rx="7"/><text class="txt tiny" x="506" y="19" font-weight="700">WBS Level 3</text><text class="txt tiny" x="498" y="34">Sebelum kapal</text>
+    <line class="line" x1="592" y1="22" x2="640" y2="22" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="640" y="0" width="112" height="45" rx="7"/><text class="txt tiny" x="685" y="19" font-weight="700">AT</text><text class="txt tiny" x="674" y="34">AT 1</text>
+    <line class="line" x1="752" y1="22" x2="800" y2="22" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="800" y="0" width="112" height="45" rx="7"/><text class="txt tiny" x="848" y="19" font-weight="700">AA/AP</text><text class="txt tiny" x="834" y="34">AA 1</text>
+    <line class="line" x1="912" y1="22" x2="960" y2="22" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="960" y="0" width="112" height="45" rx="7"/><text class="txt tiny" x="1001" y="19" font-weight="700">Risk</text><text class="txt tiny" x="1000" y="34">R1</text>
+    <rect class="cardSoft" x="800" y="90" width="112" height="45" rx="7"/><text class="txt tiny" x="842" y="109" font-weight="700">Cause</text><text class="txt tiny" x="840" y="124">C1</text>
+    <line class="line" x1="1016" y1="45" x2="856" y2="90" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="960" y="86" width="112" height="32" rx="7"/><text class="txt tiny" x="997" y="106" font-weight="700">PM 1</text>
+    <rect class="cardSoft" x="960" y="126" width="112" height="32" rx="7"/><text class="txt tiny" x="997" y="146" font-weight="700">CM 1</text>
+    <rect class="cardSoft" x="960" y="166" width="112" height="32" rx="7"/><text class="txt tiny" x="994" y="186" font-weight="700">PDM 1</text>
+    <line class="thin" x1="912" y1="112" x2="960" y2="102" marker-end="url(#arrow)"/>
+    <line class="thin" x1="912" y1="112" x2="960" y2="142" marker-end="url(#arrow)"/>
+    <line class="thin" x1="912" y1="112" x2="960" y2="182" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Detail relation card -->
+  <rect class="card" x="130" y="766" width="1185" height="214" rx="18"/>
+  <text class="txt h2" x="158" y="802">Detail Relasi</text>
+  <text class="txt small muted" x="158" y="826">Klik node pada diagram atau gunakan filter untuk melihat relasi.</text>
+  <g transform="translate(158,848)">
+    <rect class="tableHead" x="0" y="0" width="80" height="34"/><text class="txt tiny" x="24" y="22">KB</text>
+    <rect class="tableHead" x="80" y="0" width="160" height="34"/><text class="txt tiny" x="112" y="22">Aktivitas</text>
+    <rect class="tableHead" x="240" y="0" width="160" height="34"/><text class="txt tiny" x="294" y="22">Risiko</text>
+    <rect class="tableHead" x="400" y="0" width="180" height="34"/><text class="txt tiny" x="456" y="22">Penyebab</text>
+    <rect class="tableHead" x="580" y="0" width="330" height="34"/><text class="txt tiny" x="672" y="22">Opsi Tindakan + Scoring</text>
+    <rect class="tableHead" x="910" y="0" width="230" height="34"/><text class="txt tiny" x="968" y="22">Keputusan Manusia</text>
+    <rect class="tableCell" x="0" y="34" width="80" height="58"/><text class="txt tiny" x="14" y="68">KB-001</text>
+    <rect class="tableCell" x="80" y="34" width="160" height="58"/><text class="txt tiny" x="94" y="58">AA 1</text><text class="txt tiny" x="94" y="76">Menerima ETA</text>
+    <rect class="tableCell" x="240" y="34" width="160" height="58"/><text class="txt tiny" x="254" y="58">R1</text><text class="txt tiny" x="254" y="76">ETA tidak akurat</text>
+    <rect class="tableCell" x="400" y="34" width="180" height="58"/><text class="txt tiny" x="414" y="58">C1</text><text class="txt tiny" x="414" y="76">Update jadwal lambat</text>
+    <rect class="tableCell" x="580" y="34" width="330" height="58"/><text class="txt tiny" x="594" y="56">PM.1 PM.2 PM.3 | CM.1 CM.2 CM.3 | PDM.1 PDM.2 PDM.3</text><text class="txt tiny" x="594" y="76">Dropdown skor: Efektif, Mudah, Cepat, Dampak, Kesiapan</text>
+    <rect class="tableCell" x="910" y="34" width="230" height="58"/><text class="txt tiny" x="924" y="56">Rekomendasi skor tertinggi</text><text class="txt tiny" x="924" y="76">Select tindakan + textarea catatan</text>
+  </g>
+
+  <!-- Right column: direct hidden tabs overview -->
+  <rect class="card" x="1340" y="240" width="450" height="230" rx="18"/>
+  <text class="txt h2" x="1364" y="276">Tab 2: Tabel Risiko &amp; Action Scoring</text>
+  <text class="txt small muted" x="1364" y="302">Kontrol aktual: Search, Filter Proses, Filter Alur, Reset, Export Keputusan CSV.</text>
+  <rect class="field" x="1364" y="322" width="132" height="32" rx="10"/><text class="txt tiny muted" x="1376" y="342">Search</text>
+  <rect class="field" x="1508" y="322" width="110" height="32" rx="10"/><text class="txt tiny muted" x="1520" y="342">Proses</text>
+  <rect class="field" x="1630" y="322" width="110" height="32" rx="10"/><text class="txt tiny muted" x="1642" y="342">Alur</text>
+  <rect class="button" x="1364" y="370" width="70" height="32" rx="10"/><text class="white" x="1384" y="391" font-size="12">Reset</text>
+  <rect class="button" x="1448" y="370" width="150" height="32" rx="10"/><text class="white" x="1468" y="391" font-size="12">Export Keputusan CSV</text>
+  <rect class="cardSoft" x="1364" y="418" width="398" height="28" rx="4"/><text class="txt tiny" x="1376" y="436">#fullTable: 11 kolom + actionHTML + decisionHTML</text>
+
+  <rect class="card" x="1340" y="494" width="450" height="210" rx="18"/>
+  <text class="txt h2" x="1364" y="530">Kartu Knowledge Base</text>
+  <text class="txt small muted" x="1364" y="554">#kbCards memakai grid 3 kolom pada desktop.</text>
+  <g transform="translate(1364,574)">
+    <rect class="cardSoft" x="0" y="0" width="126" height="88" rx="12"/>
+    <text class="txt tiny" x="12" y="22">KB-001</text><text class="txt tiny" x="12" y="42">Aktivitas</text><text class="txt tiny" x="12" y="62">Risiko</text>
+    <rect class="cardSoft" x="138" y="0" width="126" height="88" rx="12"/>
+    <text class="txt tiny" x="150" y="22">KB-002</text><text class="txt tiny" x="150" y="42">Penyebab</text><text class="txt tiny" x="150" y="62">Rekomendasi</text>
+    <rect class="cardSoft" x="276" y="0" width="126" height="88" rx="12"/>
+    <text class="txt tiny" x="288" y="22">KB-003</text><text class="txt tiny" x="288" y="42">9 opsi</text><text class="txt tiny" x="288" y="62">Skor /25</text>
+  </g>
+
+  <rect class="card" x="1340" y="728" width="450" height="252" rx="18"/>
+  <text class="txt h2" x="1364" y="764">Tab 3 &amp; 4: Coding Scheme dan Cara Baca</text>
+  <text class="txt small muted" x="1364" y="790">#schemeSelect memilih AT; #schemeSvg menggambar AT -> AA/AP -> R -> C -> PM/CM/PDM.</text>
+  <rect class="field" x="1364" y="812" width="220" height="32" rx="10"/><text class="txt tiny muted" x="1378" y="832">Pilih Aktivitas Terminal</text>
+  <g transform="translate(1364,864)">
+    <rect class="cardSoft" x="0" y="0" width="70" height="36" rx="6"/><text class="txt tiny" x="24" y="23">AT</text>
+    <line class="line" x1="70" y1="18" x2="112" y2="18" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="112" y="0" width="70" height="36" rx="6"/><text class="txt tiny" x="128" y="23">AA/AP</text>
+    <line class="line" x1="182" y1="18" x2="224" y2="18" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="224" y="0" width="70" height="36" rx="6"/><text class="txt tiny" x="247" y="23">R</text>
+    <line class="line" x1="294" y1="18" x2="336" y2="18" marker-end="url(#arrow)"/>
+    <rect class="cardSoft" x="336" y="0" width="70" height="36" rx="6"/><text class="txt tiny" x="359" y="23">C</text>
+    <rect class="cardSoft" x="250" y="62" width="156" height="34" rx="6"/><text class="txt tiny" x="276" y="83">PM / CM / PDM</text>
+    <line class="thin" x1="371" y1="36" x2="328" y2="62" marker-end="url(#arrow)"/>
+  </g>
+  <rect class="cardSoft" x="1364" y="932" width="398" height="30" rx="4"/>
+  <text class="txt tiny" x="1376" y="952">Cara baca: elemen, makna, contoh kode, action scoring, human decision.</text>
+
+  <!-- HTML implementation notes -->
+  <rect class="ann" x="130" y="995" width="1660" height="45" rx="8"/>
+  <text class="txt tiny" x="148" y="1015">Implementasi aktual di file: pattern-recognition-knowledge-base.html. Data utama: RECORDS hardcoded 65 relasi, actionOptions menghasilkan 9 opsi per risiko, scoring tersimpan di localStorage, exportCSV mengunduh keputusan_action_scoring_9opsi_kayla.csv.</text>
+  <text class="txt tiny" x="148" y="1032">Alur pengguna aktual: filter/klik node -> render detail table -> ubah skor 1-5 -> rekomendasi skor tertinggi -> pilih keputusan manusia -> catatan -> export CSV.</text>
+</svg>

@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Wireframe Pattern Recognition Knowledge Base</title>
+  <desc id="desc">Low fidelity desktop wireframe for terminal container operational information system pattern recognition knowledge base page.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111"/>
+    </marker>
+    <style>
+      .bg{fill:#f4f4f4}
+      .panel{fill:#fff;stroke:#111;stroke-width:2}
+      .soft{fill:#fafafa;stroke:#555;stroke-width:1.5}
+      .muted{fill:#e8e8e8;stroke:#555;stroke-width:1.5}
+      .dark{fill:#111}
+      .text{font-family:Arial, Helvetica, sans-serif;fill:#111}
+      .title{font-size:32px;font-weight:700}
+      .subtitle{font-size:18px}
+      .nav{font-size:15px;font-weight:700}
+      .small{font-size:13px}
+      .tiny{font-size:11px}
+      .label{font-size:14px;font-weight:700}
+      .kpi{font-size:28px;font-weight:700}
+      .note{font-size:12px;fill:#333}
+      .line{stroke:#111;stroke-width:2;fill:none}
+      .thin{stroke:#666;stroke-width:1.5;fill:none}
+      .dash{stroke:#333;stroke-width:1.5;stroke-dasharray:6 5;fill:none}
+      .active{fill:#111;stroke:#111}
+      .activeText{fill:#fff;font-family:Arial, Helvetica, sans-serif;font-size:15px;font-weight:700}
+      .badge{fill:#eee;stroke:#111;stroke-width:1}
+      .badgeDark{fill:#444;stroke:#111;stroke-width:1}
+      .badgeText{font-family:Arial, Helvetica, sans-serif;font-size:11px;font-weight:700;fill:#111}
+      .badgeTextWhite{font-family:Arial, Helvetica, sans-serif;font-size:11px;font-weight:700;fill:#fff}
+      .headerText{font-family:Arial, Helvetica, sans-serif;fill:#fff;font-size:18px;font-weight:700}
+      .inputText{font-family:Arial, Helvetica, sans-serif;fill:#333;font-size:13px}
+      .tableHead{fill:#ddd;stroke:#111;stroke-width:1.5}
+      .tableCell{fill:#fff;stroke:#777;stroke-width:1}
+      .tableAlt{fill:#f7f7f7;stroke:#777;stroke-width:1}
+      .annot{fill:#fff;stroke:#111;stroke-width:1.5;stroke-dasharray:5 4}
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1920" height="1080"/>
+
+  <!-- Header and navigation -->
+  <rect class="dark" x="0" y="0" width="1920" height="72"/>
+  <text class="headerText" x="36" y="44">Sistem Informasi Operasional Terminal Petikemas</text>
+  <text class="nav" x="510" y="44" fill="#fff">Beranda</text>
+  <text class="nav" x="590" y="44" fill="#fff">Profil Terminal</text>
+  <text class="nav" x="720" y="44" fill="#fff">Knowledge Base</text>
+  <text class="nav" x="855" y="44" fill="#fff">Alur Proses</text>
+  <rect class="active" x="970" y="18" width="170" height="36" rx="4"/>
+  <text class="activeText" x="991" y="42">Pattern Recognition</text>
+  <text class="nav" x="1168" y="44" fill="#fff">Dashboard</text>
+  <rect x="1725" y="18" width="154" height="36" rx="18" fill="#fff" stroke="#fff"/>
+  <text class="nav" x="1756" y="42" fill="#111">Profil / Logout</text>
+
+  <!-- Page title -->
+  <text class="text title" x="36" y="122">Pattern Recognition Knowledge Base</text>
+  <text class="text subtitle" x="36" y="153">Mengidentifikasi hubungan antara aktivitas WBS, risiko, penyebab, dampak, indikator KPI, dan tindakan pengendalian.</text>
+  <rect class="annot" x="1325" y="96" width="555" height="70" rx="6"/>
+  <text class="note" x="1342" y="120">Keterkaitan project: halaman ini memformalkan modul</text>
+  <text class="note" x="1342" y="139">pattern-recognition-knowledge-base.html: map, tabel risiko, action scoring,</text>
+  <text class="note" x="1342" y="158">localStorage keputusan, dan export CSV.</text>
+
+  <!-- Filter panel -->
+  <rect class="panel" x="36" y="182" width="1848" height="98" rx="8"/>
+  <text class="label text" x="58" y="208">Panel Filter dan Pencarian</text>
+  <g transform="translate(58,222)">
+    <rect class="soft" x="0" y="0" width="250" height="42" rx="5"/>
+    <text class="inputText" x="12" y="26">Cari kode / nama aktivitas</text>
+    <rect class="soft" x="270" y="0" width="205" height="42" rx="5"/>
+    <text class="inputText" x="284" y="26">Terminal: Semarang</text>
+    <rect class="soft" x="495" y="0" width="210" height="42" rx="5"/>
+    <text class="inputText" x="509" y="26">Kategori proses</text>
+    <rect class="soft" x="725" y="0" width="220" height="42" rx="5"/>
+    <text class="inputText" x="739" y="26">Aktivitas WBS / AT</text>
+    <rect class="soft" x="965" y="0" width="190" height="42" rx="5"/>
+    <text class="inputText" x="979" y="26">Tingkat risiko</text>
+    <rect class="dark" x="1182" y="0" width="142" height="42" rx="5"/>
+    <text class="activeText" x="1203" y="27">Terapkan Filter</text>
+    <rect class="muted" x="1340" y="0" width="88" height="42" rx="5"/>
+    <text class="nav" x="1363" y="27" fill="#111">Reset</text>
+    <text class="note" x="1460" y="17">Interaksi: filter mengubah peta hubungan, tabel risiko,</text>
+    <text class="note" x="1460" y="34">dan daftar action scoring secara serentak.</text>
+  </g>
+
+  <!-- KPI cards -->
+  <g transform="translate(36,298)">
+    <rect class="soft" x="0" y="0" width="444" height="80" rx="8"/>
+    <text class="kpi text" x="22" y="38">65</text>
+    <text class="small text" x="22" y="61">Jumlah aktivitas / relasi KB</text>
+    <rect class="soft" x="468" y="0" width="444" height="80" rx="8"/>
+    <text class="kpi text" x="490" y="38">65</text>
+    <text class="small text" x="490" y="61">Jumlah risiko teridentifikasi</text>
+    <rect class="soft" x="936" y="0" width="444" height="80" rx="8"/>
+    <text class="kpi text" x="958" y="38">12</text>
+    <text class="small text" x="958" y="61">Risiko prioritas tinggi / ekstrem</text>
+    <rect class="soft" x="1404" y="0" width="444" height="80" rx="8"/>
+    <text class="kpi text" x="1426" y="38">585</text>
+    <text class="small text" x="1426" y="61">Jumlah tindakan yang telah dinilai</text>
+  </g>
+
+  <!-- Main body columns -->
+  <rect class="panel" x="36" y="398" width="1138" height="356" rx="8"/>
+  <text class="label text" x="58" y="425">Peta Hubungan Pattern Recognition</text>
+  <text class="note" x="58" y="446">Klik node untuk membuka panel detail risiko. Toolbar: zoom, reset tampilan, fullscreen.</text>
+  <g transform="translate(1010,413)">
+    <rect class="soft" x="0" y="0" width="36" height="30" rx="4"/><text class="label text" x="11" y="21">+</text>
+    <rect class="soft" x="42" y="0" width="36" height="30" rx="4"/><text class="label text" x="56" y="21">-</text>
+    <rect class="soft" x="84" y="0" width="62" height="30" rx="4"/><text class="tiny text" x="96" y="20">Reset</text>
+  </g>
+
+  <!-- Network map -->
+  <g transform="translate(68,472)">
+    <line class="line" x1="150" y1="70" x2="245" y2="70" marker-end="url(#arrow)"/>
+    <line class="line" x1="395" y1="70" x2="490" y2="70" marker-end="url(#arrow)"/>
+    <line class="line" x1="640" y1="70" x2="735" y2="70" marker-end="url(#arrow)"/>
+    <line class="line" x1="885" y1="70" x2="980" y2="70" marker-end="url(#arrow)"/>
+    <line class="thin" x1="560" y1="112" x2="560" y2="170"/>
+    <line class="thin" x1="805" y1="112" x2="805" y2="170"/>
+    <line class="thin" x1="1050" y1="112" x2="1050" y2="170"/>
+    <rect class="soft" x="0" y="18" width="150" height="104" rx="5"/>
+    <text class="label text" x="18" y="50">Aktivitas WBS</text>
+    <text class="tiny text" x="18" y="72">AT 24 / AP 31</text>
+    <text class="tiny text" x="18" y="94">Pemeriksaan</text>
+    <rect class="muted" x="245" y="18" width="150" height="104" rx="5"/>
+    <text class="label text" x="292" y="50">Risiko</text>
+    <text class="tiny text" x="268" y="72">R61</text>
+    <text class="tiny text" x="268" y="94">Twistlock tidak aman</text>
+    <rect class="soft" x="490" y="18" width="150" height="104" rx="5"/>
+    <text class="label text" x="532" y="50">Penyebab</text>
+    <text class="tiny text" x="512" y="72">C61</text>
+    <text class="tiny text" x="512" y="94">Pemasangan kurang teliti</text>
+    <rect class="soft" x="735" y="18" width="150" height="104" rx="5"/>
+    <text class="label text" x="777" y="50">Dampak</text>
+    <text class="tiny text" x="757" y="72">Gangguan operasi</text>
+    <text class="tiny text" x="757" y="94">Keterlambatan kapal</text>
+    <rect class="soft" x="980" y="18" width="150" height="104" rx="5"/>
+    <text class="label text" x="1014" y="50">Tindakan</text>
+    <text class="tiny text" x="1002" y="72">PM / CM / PDM</text>
+    <text class="tiny text" x="1002" y="94">3 alternatif</text>
+    <rect class="muted" x="480" y="170" width="160" height="58" rx="5"/>
+    <text class="label text" x="505" y="194">Indikator KPI</text>
+    <text class="tiny text" x="502" y="215">BOR, YOR, produktivitas</text>
+    <rect class="muted" x="725" y="170" width="160" height="58" rx="5"/>
+    <text class="label text" x="750" y="194">Lesson Learned</text>
+    <text class="tiny text" x="747" y="215">Sumber pengetahuan KB</text>
+    <rect class="muted" x="970" y="170" width="160" height="58" rx="5"/>
+    <text class="label text" x="1000" y="194">Validasi Pakar</text>
+    <text class="tiny text" x="1000" y="215">Draft / valid</text>
+  </g>
+  <rect class="annot" x="58" y="685" width="1088" height="50" rx="6"/>
+  <text class="note" x="76" y="706">Anotasi alur: Pilih aktivitas WBS -> identifikasi risiko -> lihat penyebab dan dampak -> bandingkan tindakan -> scoring -> rekomendasi -> keputusan pakar.</text>
+  <text class="note" x="76" y="724">Data konseptual mengikuti pola project: AT/AA/AP -> R -> C -> PM/CM/PDM dari halaman Pattern Recognition.</text>
+
+  <!-- Right detail panel -->
+  <rect class="panel" x="1194" y="398" width="690" height="356" rx="8"/>
+  <text class="label text" x="1216" y="425">Panel Detail Risiko (Side Panel / Modal)</text>
+  <rect class="soft" x="1216" y="446" width="646" height="286" rx="6"/>
+  <text class="small text" x="1234" y="472">Kode Risiko: R61</text>
+  <text class="small text" x="1234" y="497">Aktivitas terkait: AP 31 - Memastikan penguncian twistlock aman</text>
+  <text class="small text" x="1234" y="522">Deskripsi risiko: Twistlock tidak terkunci aman</text>
+  <text class="small text" x="1234" y="547">Penyebab: pemasangan kurang teliti, komponen rusak, tidak ada pemeriksaan ulang</text>
+  <text class="small text" x="1234" y="572">Dampak operasional: potensi kecelakaan lifting, keterlambatan, penurunan produktivitas</text>
+  <text class="small text" x="1234" y="597">KPI terdampak: produktivitas crane, waktu tunggu kapal, service level</text>
+  <text class="small text" x="1234" y="622">Sumber pengetahuan: knowledge-base.html dan lesson learned operasi terminal</text>
+  <text class="small text" x="1234" y="647">Status validasi pakar: Menunggu validasi / tervalidasi</text>
+  <rect class="dark" x="1234" y="675" width="112" height="34" rx="4"/>
+  <text class="activeText" x="1256" y="697">Beri Penilaian</text>
+  <rect class="muted" x="1360" y="675" width="105" height="34" rx="4"/>
+  <text class="nav" x="1381" y="697" fill="#111">Tutup</text>
+
+  <!-- Table -->
+  <rect class="panel" x="36" y="772" width="1138" height="224" rx="8"/>
+  <text class="label text" x="58" y="799">Tabel Knowledge Base Risiko</text>
+  <g transform="translate(58,818)">
+    <rect class="tableHead" x="0" y="0" width="70" height="36"/><text class="tiny text" x="10" y="23">Kode WBS</text>
+    <rect class="tableHead" x="70" y="0" width="130" height="36"/><text class="tiny text" x="88" y="23">Aktivitas</text>
+    <rect class="tableHead" x="200" y="0" width="125" height="36"/><text class="tiny text" x="235" y="23">Risiko</text>
+    <rect class="tableHead" x="325" y="0" width="120" height="36"/><text class="tiny text" x="354" y="23">Penyebab</text>
+    <rect class="tableHead" x="445" y="0" width="105" height="36"/><text class="tiny text" x="474" y="23">Dampak</text>
+    <rect class="tableHead" x="550" y="0" width="92" height="36"/><text class="tiny text" x="565" y="23">Tingkat</text>
+    <rect class="tableHead" x="642" y="0" width="130" height="36"/><text class="tiny text" x="657" y="23">Preventive</text>
+    <rect class="tableHead" x="772" y="0" width="130" height="36"/><text class="tiny text" x="786" y="23">Corrective</text>
+    <rect class="tableHead" x="902" y="0" width="130" height="36"/><text class="tiny text" x="916" y="23">Predictive</text>
+    <rect class="tableHead" x="1032" y="0" width="70" height="36"/><text class="tiny text" x="1054" y="23">Aksi</text>
+    <g transform="translate(0,36)">
+      <rect class="tableCell" x="0" y="0" width="70" height="40"/><text class="tiny text" x="10" y="24">AP 31</text>
+      <rect class="tableCell" x="70" y="0" width="130" height="40"/><text class="tiny text" x="78" y="17">Pemeriksaan</text><text class="tiny text" x="78" y="31">twistlock</text>
+      <rect class="tableCell" x="200" y="0" width="125" height="40"/><text class="tiny text" x="209" y="24">R61 tidak aman</text>
+      <rect class="tableCell" x="325" y="0" width="120" height="40"/><text class="tiny text" x="334" y="24">C61 human error</text>
+      <rect class="tableCell" x="445" y="0" width="105" height="40"/><text class="tiny text" x="454" y="24">Delay / safety</text>
+      <rect class="tableCell" x="550" y="0" width="92" height="40"/><rect class="badgeDark" x="562" y="10" width="54" height="20" rx="10"/><text class="badgeTextWhite" x="574" y="25">Tinggi</text>
+      <rect class="tableCell" x="642" y="0" width="130" height="40"/><text class="tiny text" x="650" y="24">Inspeksi ulang</text>
+      <rect class="tableCell" x="772" y="0" width="130" height="40"/><text class="tiny text" x="780" y="24">Koreksi lock</text>
+      <rect class="tableCell" x="902" y="0" width="130" height="40"/><text class="tiny text" x="910" y="24">Monitoring histori</text>
+      <rect class="tableCell" x="1032" y="0" width="70" height="40"/><text class="tiny text" x="1040" y="24">Detail</text>
+    </g>
+    <g transform="translate(0,76)">
+      <rect class="tableAlt" x="0" y="0" width="70" height="40"/><text class="tiny text" x="10" y="24">AP 33</text>
+      <rect class="tableAlt" x="70" y="0" width="130" height="40"/><text class="tiny text" x="78" y="17">Finalisasi</text><text class="tiny text" x="78" y="31">kapal pergi</text>
+      <rect class="tableAlt" x="200" y="0" width="125" height="40"/><text class="tiny text" x="209" y="24">R63 gagal onboard</text>
+      <rect class="tableAlt" x="325" y="0" width="120" height="40"/><text class="tiny text" x="334" y="24">Load list tidak cocok</text>
+      <rect class="tableAlt" x="445" y="0" width="105" height="40"/><text class="tiny text" x="454" y="24">Service failure</text>
+      <rect class="tableAlt" x="550" y="0" width="92" height="40"/><rect class="badge" x="562" y="10" width="60" height="20" rx="10"/><text class="badgeText" x="574" y="25">Ekstrem</text>
+      <rect class="tableAlt" x="642" y="0" width="130" height="40"/><text class="tiny text" x="650" y="24">Rekonsiliasi</text>
+      <rect class="tableAlt" x="772" y="0" width="130" height="40"/><text class="tiny text" x="780" y="24">Koordinasi PIC</text>
+      <rect class="tableAlt" x="902" y="0" width="130" height="40"/><text class="tiny text" x="910" y="24">Notifikasi cut-off</text>
+      <rect class="tableAlt" x="1032" y="0" width="70" height="40"/><text class="tiny text" x="1040" y="24">Nilai</text>
+    </g>
+    <text class="note" x="0" y="146">Badge risiko: rendah, sedang, tinggi, ekstrem. Aksi: Lihat Detail atau Beri Penilaian.</text>
+  </g>
+
+  <!-- Action scoring and history -->
+  <rect class="panel" x="1194" y="772" width="690" height="224" rx="8"/>
+  <text class="label text" x="1216" y="799">Action Scoring dan Riwayat Keputusan</text>
+  <g transform="translate(1216,818)">
+    <rect class="soft" x="0" y="0" width="206" height="112" rx="5"/>
+    <text class="label text" x="14" y="23">Preventive measure</text>
+    <text class="tiny text" x="14" y="45">Ef 5 | Md 4 | Cp 4 | Dp 5 | Sd 4</text>
+    <text class="small text" x="14" y="70">Total skor: 22/25</text>
+    <rect class="badgeDark" x="14" y="82" width="140" height="22" rx="11"/>
+    <text class="badgeTextWhite" x="26" y="97">Rekomendasi Sistem</text>
+    <rect class="soft" x="220" y="0" width="206" height="112" rx="5"/>
+    <text class="label text" x="234" y="23">Corrective measure</text>
+    <text class="tiny text" x="234" y="45">Ef 4 | Md 3 | Cp 5 | Dp 4 | Sd 3</text>
+    <text class="small text" x="234" y="70">Total skor: 19/25</text>
+    <rect class="soft" x="440" y="0" width="206" height="112" rx="5"/>
+    <text class="label text" x="454" y="23">Predictive measure</text>
+    <text class="tiny text" x="454" y="45">Ef 5 | Md 3 | Cp 4 | Dp 5 | Sd 5</text>
+    <text class="small text" x="454" y="70">Total skor: 22/25</text>
+    <rect class="soft" x="0" y="126" width="426" height="42" rx="5"/>
+    <text class="inputText" x="14" y="152">Catatan keputusan pakar / manusia...</text>
+    <rect class="dark" x="444" y="126" width="142" height="42" rx="5"/>
+    <text class="activeText" x="464" y="153">Simpan Penilaian</text>
+    <text class="note" x="0" y="190">Riwayat: tanggal, pengguna/pakar, risiko, tindakan dipilih, total skor, catatan.</text>
+    <rect class="muted" x="502" y="172" width="80" height="30" rx="4"/><text class="tiny text" x="515" y="192">Export CSV</text>
+    <rect class="muted" x="590" y="172" width="56" height="30" rx="4"/><text class="tiny text" x="602" y="192">Cetak</text>
+  </g>
+
+  <!-- Source linkage strip -->
+  <rect class="annot" x="36" y="1010" width="1848" height="48" rx="6"/>
+  <text class="note" x="56" y="1030">Sumber dan keterkaitan project: knowledge-base.html memuat aktivitas terminal; activity/aktivitas*.html memuat detail aktivitas; pattern-recognition-knowledge-base.html memuat RECORDS, pattern map, scoring, keputusan, export CSV; BAB_Sistem_Informasi.md menjelaskan static web app, localStorage, DSS, dan batas keputusan manusia.</text>
+  <text class="note" x="56" y="1048">Footer wireframe: Sistem Informasi Operasional Terminal Petikemas | Versi prototipe | Rekomendasi sistem adalah alat bantu keputusan; keputusan akhir tetap oleh pengguna atau pakar.</text>
+</svg>
